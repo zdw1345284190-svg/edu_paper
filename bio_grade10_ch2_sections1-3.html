@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一生物 第二章 2.1-2.3 单元检测</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "SimSun", "宋体", "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #222;
+  background: #f5f5f5;
+  padding: 20px;
+}
+.paper-container {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20mm 25mm;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  min-height: 297mm;
+}
+.paper-header {
+  text-align: center;
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+.paper-header h1 { font-size: 22px; margin-bottom: 5px; }
+.paper-header h2 { font-size: 16px; font-weight: normal; margin-bottom: 10px; }
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 10px 0;
+  font-size: 15px;
+}
+.info-row label { display: inline-flex; align-items: center; gap: 5px; }
+.info-row input { border: none; border-bottom: 1px solid #333; padding: 2px 5px; font-size: 14px; width: 120px; background: transparent; }
+.score-summary { text-align: right; font-size: 15px; margin: 10px 0; padding: 5px 0; border-bottom: 1px solid #999; }
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 18px 0 10px 0;
+  padding: 5px 10px;
+  background: #e8f0fe;
+  border-left: 4px solid #1a73e8;
+}
+.choice-question, .fill-question, .calc-question {
+  margin: 12px 0;
+  padding: 6px 10px;
+  border-left: 3px solid transparent;
+}
+.choice-question.correct { border-left-color: #4caf50; background: #f0faf0; }
+.choice-question.wrong { border-left-color: #f44336; background: #fef0f0; }
+.fill-question.correct { border-left-color: #4caf50; background: #f0faf0; }
+.fill-question.wrong { border-left-color: #f44336; background: #fef0f0; }
+.q-head { font-weight: bold; margin-right: 4px; }
+.q-text { }
+.options { margin: 6px 0 4px 22px; }
+.options label { display: block; margin: 3px 0; cursor: pointer; }
+.options input { margin-right: 6px; }
+.fill-input { border: none; border-bottom: 1px solid #666; padding: 2px 4px; font-size: 14px; font-family: inherit; text-align: center; }
+.fill-input:focus { outline: none; border-bottom-color: #1a73e8; }
+.answer-area {
+  width: 100%;
+  min-height: 60px;
+  margin: 6px 0;
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+.answer-area:focus { outline: none; border-color: #1a73e8; }
+.submit-area { text-align: center; margin: 30px 0 20px; }
+.submit-btn {
+  padding: 12px 40px;
+  font-size: 18px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.submit-btn:hover { background: #1557b0; }
+.score-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+.score-modal.show { display: flex; }
+.score-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 40px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.score-card h2 { font-size: 24px; margin-bottom: 10px; }
+.score-number { font-size: 48px; font-weight: bold; color: #1a73e8; margin: 10px 0; }
+.score-detail { font-size: 14px; color: #666; margin: 8px 0; }
+.score-btn {
+  margin: 8px 6px;
+  padding: 8px 24px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.score-btn-primary { background: #1a73e8; color: #fff; }
+.score-btn-secondary { background: #e8e8e8; color: #333; }
+.score-btn-primary:hover { background: #1557b0; }
+.score-btn-secondary:hover { background: #d0d0d0; }
+.answer-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid #333;
+}
+.answer-section h2 { font-size: 18px; margin-bottom: 15px; }
+.answer-item { margin: 8px 0; padding: 6px 10px; background: #f9f9f9; border-left: 3px solid #999; }
+.answer-item .ans-key { font-weight: bold; color: #1a73e8; }
+.answer-item .ans-detail { color: #555; margin-top: 3px; font-size: 13px; }
+.correct-mark { color: #4caf50; font-weight: bold; }
+.wrong-mark { color: #f44336; font-weight: bold; }
+table.data-table { border-collapse: collapse; margin: 8px 0; width: 100%; }
+table.data-table th, table.data-table td { border: 1px solid #666; padding: 6px 10px; text-align: center; }
+table.data-table th { background: #e8f0fe; }
+.sub-question { margin: 4px 0; }
+.sub-question .sub-label { font-weight: bold; }
+.score-tag { float: right; color: #888; font-size: 13px; }
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper-container { box-shadow: none; padding: 15mm 20mm; max-width: none; }
+  .submit-area, .score-modal, .toggle-answer-btn { display: none !important; }
+  .answer-section { display: block !important; }
+  .fill-input { border-bottom: 1px solid #000; background: transparent; }
+  .answer-area { border: 1px solid #000; }
+  .choice-question, .fill-question { break-inside: avoid; }
+  .no-print { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="paper-container" id="paper">
+
+  <!-- ===== 试卷头部 ===== -->
+  <div class="paper-header">
+    <h1>高一生物·单元检测</h1>
+    <h2>人教版必修1 第二章 第1-3节（2.1 细胞中的元素和化合物 / 2.2 细胞中的无机物 / 2.3 细胞中的糖类和脂质）</h2>
+    <div class="info-row">
+      <label>姓名：<input type="text" id="studentName" placeholder="请输入姓名"></label>
+      <label>班级：<input type="text" id="studentClass" placeholder="请输入班级"></label>
+      <label>学号：<input type="text" id="studentId" placeholder="请输入学号"></label>
+    </div>
+    <div class="score-summary">
+      总分：100分 &nbsp;&nbsp; 单选题：36分 &nbsp;&nbsp; 多选题：12分 &nbsp;&nbsp; 填空题：12分 &nbsp;&nbsp; 解答题：40分
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 一、单选题（12题，每题3分，共36分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">一、单选题（本大题共12小题，每题3分，共36分。每题只有一个选项符合题意。）</div>
+
+  <!-- q1 -->
+  <div class="choice-question" data-qid="q1" data-type="single" data-answer="C">
+    <span class="q-head">1.</span>
+    <span class="q-text">下列元素中，属于微量元素的是（　）</span>
+    <div class="options" data-qid="q1">
+      <label><input type="radio" name="q1" value="A"> A．C、H、O</label>
+      <label><input type="radio" name="q1" value="B"> B．N、P、S</label>
+      <label><input type="radio" name="q1" value="C"> C．Fe、Mn、B</label>
+      <label><input type="radio" name="q1" value="D"> D．K、Ca、Mg</label>
+    </div>
+  </div>
+
+  <!-- q2 -->
+  <div class="choice-question" data-qid="q2" data-type="single" data-answer="D">
+    <span class="q-head">2.</span>
+    <span class="q-text">生物体内构成生物大分子的最基本元素是（　）</span>
+    <div class="options" data-qid="q2">
+      <label><input type="radio" name="q2" value="A"> A．H</label>
+      <label><input type="radio" name="q2" value="B"> B．O</label>
+      <label><input type="radio" name="q2" value="C"> C．N</label>
+      <label><input type="radio" name="q2" value="D"> D．C</label>
+    </div>
+  </div>
+
+  <!-- q3 -->
+  <div class="choice-question" data-qid="q3" data-type="single" data-answer="B">
+    <span class="q-head">3.</span>
+    <span class="q-text">占细胞干重最多的化合物是（　）</span>
+    <div class="options" data-qid="q3">
+      <label><input type="radio" name="q3" value="A"> A．水</label>
+      <label><input type="radio" name="q3" value="B"> B．蛋白质</label>
+      <label><input type="radio" name="q3" value="C"> C．脂质</label>
+      <label><input type="radio" name="q3" value="D"> D．糖类</label>
+    </div>
+  </div>
+
+  <!-- q4 -->
+  <div class="choice-question" data-qid="q4" data-type="single" data-answer="A">
+    <span class="q-head">4.</span>
+    <span class="q-text">检测还原糖时，应选用的试剂及实验条件是（　）</span>
+    <div class="options" data-qid="q4">
+      <label><input type="radio" name="q4" value="A"> A．斐林试剂，水浴加热</label>
+      <label><input type="radio" name="q4" value="B"> B．双缩脲试剂，水浴加热</label>
+      <label><input type="radio" name="q4" value="C"> C．斐林试剂，常温</label>
+      <label><input type="radio" name="q4" value="D"> D．碘液，水浴加热</label>
+    </div>
+  </div>
+
+  <!-- q5 -->
+  <div class="choice-question" data-qid="q5" data-type="single" data-answer="C">
+    <span class="q-head">5.</span>
+    <span class="q-text">蛋白质与双缩脲试剂反应呈现的颜色是（　）</span>
+    <div class="options" data-qid="q5">
+      <label><input type="radio" name="q5" value="A"> A．砖红色</label>
+      <label><input type="radio" name="q5" value="B"> B．橘黄色</label>
+      <label><input type="radio" name="q5" value="C"> C．紫色</label>
+      <label><input type="radio" name="q5" value="D"> D．蓝色</label>
+    </div>
+  </div>
+
+  <!-- q6 -->
+  <div class="choice-question" data-qid="q6" data-type="single" data-answer="B">
+    <span class="q-head">6.</span>
+    <span class="q-text">脂肪被苏丹Ⅲ染液染色后呈现的颜色是（　）</span>
+    <div class="options" data-qid="q6">
+      <label><input type="radio" name="q6" value="A"> A．红色</label>
+      <label><input type="radio" name="q6" value="B"> B．橘黄色</label>
+      <label><input type="radio" name="q6" value="C"> C．紫色</label>
+      <label><input type="radio" name="q6" value="D"> D．蓝色</label>
+    </div>
+  </div>
+
+  <!-- q7 -->
+  <div class="choice-question" data-qid="q7" data-type="single" data-answer="D">
+    <span class="q-head">7.</span>
+    <span class="q-text">关于细胞中水的叙述，错误的是（　）</span>
+    <div class="options" data-qid="q7">
+      <label><input type="radio" name="q7" value="A"> A．自由水是细胞内良好的溶剂</label>
+      <label><input type="radio" name="q7" value="B"> B．结合水是细胞结构的重要成分</label>
+      <label><input type="radio" name="q7" value="C"> C．自由水参与细胞内的化学反应</label>
+      <label><input type="radio" name="q7" value="D"> D．自由水/结合水的比值越小，代谢越旺盛</label>
+    </div>
+  </div>
+
+  <!-- q8 -->
+  <div class="choice-question" data-qid="q8" data-type="single" data-answer="A">
+    <span class="q-head">8.</span>
+    <span class="q-text">下列无机盐离子中，参与构成血红蛋白的是（　）</span>
+    <div class="options" data-qid="q8">
+      <label><input type="radio" name="q8" value="A"> A．Fe²⁺</label>
+      <label><input type="radio" name="q8" value="B"> B．Mg²⁺</label>
+      <label><input type="radio" name="q8" value="C"> C．Ca²⁺</label>
+      <label><input type="radio" name="q8" value="D"> D．I⁻</label>
+    </div>
+  </div>
+
+  <!-- q9 -->
+  <div class="choice-question" data-qid="q9" data-type="single" data-answer="C">
+    <span class="q-head">9.</span>
+    <span class="q-text">下列糖类中，属于单糖的是（　）</span>
+    <div class="options" data-qid="q9">
+      <label><input type="radio" name="q9" value="A"> A．蔗糖</label>
+      <label><input type="radio" name="q9" value="B"> B．淀粉</label>
+      <label><input type="radio" name="q9" value="C"> C．葡萄糖</label>
+      <label><input type="radio" name="q9" value="D"> D．纤维素</label>
+    </div>
+  </div>
+
+  <!-- q10 -->
+  <div class="choice-question" data-qid="q10" data-type="single" data-answer="B">
+    <span class="q-head">10.</span>
+    <span class="q-text">存在于动物乳汁中的二糖是（　）</span>
+    <div class="options" data-qid="q10">
+      <label><input type="radio" name="q10" value="A"> A．蔗糖</label>
+      <label><input type="radio" name="q10" value="B"> B．乳糖</label>
+      <label><input type="radio" name="q10" value="C"> C．麦芽糖</label>
+      <label><input type="radio" name="q10" value="D"> D．糖原</label>
+    </div>
+  </div>
+
+  <!-- q11 -->
+  <div class="choice-question" data-qid="q11" data-type="single" data-answer="D">
+    <span class="q-head">11.</span>
+    <span class="q-text">下列物质中，属于植物细胞中储能物质的是（　）</span>
+    <div class="options" data-qid="q11">
+      <label><input type="radio" name="q11" value="A"> A．纤维素</label>
+      <label><input type="radio" name="q11" value="B"> B．糖原</label>
+      <label><input type="radio" name="q11" value="C"> C．淀粉</label>
+      <label><input type="radio" name="q11" value="D"> D．几丁质</label>
+    </div>
+  </div>
+
+  <!-- q12 -->
+  <div class="choice-question" data-qid="q12" data-type="single" data-answer="A">
+    <span class="q-head">12.</span>
+    <span class="q-text">下列脂质中，能促进人和动物肠道对钙的吸收的是（　）</span>
+    <div class="options" data-qid="q12">
+      <label><input type="radio" name="q12" value="A"> A．维生素D</label>
+      <label><input type="radio" name="q12" value="B"> B．性激素</label>
+      <label><input type="radio" name="q12" value="C"> C．胆固醇</label>
+      <label><input type="radio" name="q12" value="D"> D．磷脂</label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 二、多选题（3题，每题4分，共12分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">二、多选题（本大题共3小题，每题4分，共12分。每题有2-3个正确选项，全对得4分，部分选对得2分，有错选得0分。）</div>
+
+  <!-- q101 -->
+  <div class="choice-question" data-qid="q101" data-type="multi" data-answer='["A","C","D"]'>
+    <span class="q-head">13.（多选）</span>
+    <span class="q-text">下列关于组成细胞的元素和化合物的叙述，正确的有（　）</span>
+    <div class="options" data-qid="q101">
+      <label><input type="checkbox" name="q101" value="A"> A．C是构成细胞的最基本元素</label>
+      <label><input type="checkbox" name="q101" value="B"> B．占细胞鲜重最多的化合物是蛋白质</label>
+      <label><input type="checkbox" name="q101" value="C"> C．Fe、Mn、B、Zn、Mo、Cu属于微量元素</label>
+      <label><input type="checkbox" name="q101" value="D"> D．P、S、K、Ca、Mg属于大量元素</label>
+    </div>
+  </div>
+
+  <!-- q102 -->
+  <div class="choice-question" data-qid="q102" data-type="multi" data-answer='["A","C","D"]'>
+    <span class="q-head">14.（多选）</span>
+    <span class="q-text">下列关于糖类的叙述，正确的有（　）</span>
+    <div class="options" data-qid="q102">
+      <label><input type="checkbox" name="q102" value="A"> A．葡萄糖是细胞生命活动的主要能源物质</label>
+      <label><input type="checkbox" name="q102" value="B"> B．蔗糖是二糖，由两分子葡萄糖组成</label>
+      <label><input type="checkbox" name="q102" value="C"> C．纤维素是植物细胞壁的主要成分</label>
+      <label><input type="checkbox" name="q102" value="D"> D．糖原是动物细胞的储能物质</label>
+    </div>
+  </div>
+
+  <!-- q103 -->
+  <div class="choice-question" data-qid="q103" data-type="multi" data-answer='["A","B","C"]'>
+    <span class="q-head">15.（多选）</span>
+    <span class="q-text">下列关于脂质的叙述，正确的有（　）</span>
+    <div class="options" data-qid="q103">
+      <label><input type="checkbox" name="q103" value="A"> A．脂肪是细胞内良好的储能物质</label>
+      <label><input type="checkbox" name="q103" value="B"> B．磷脂是构成细胞膜的重要成分</label>
+      <label><input type="checkbox" name="q103" value="C"> C．胆固醇参与血液中脂质的运输</label>
+      <label><input type="checkbox" name="q103" value="D"> D．性激素的元素组成与糖类不同</label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 三、填空题（6题，每空2分，共12分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">三、填空题（本大题共6小题，每空2分，共12分）</div>
+
+  <!-- q16 (fill q11) -->
+  <div class="fill-question" data-qid="q11">
+    <span class="q-head">16.</span>
+    <span class="q-text">细胞中含量最多的有机化合物是 </span>
+    <input type="text" class="fill-input" data-answer="蛋白质" style="width:80px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- q17 (fill q12) -->
+  <div class="fill-question" data-qid="q12">
+    <span class="q-head">17.</span>
+    <span class="q-text">还原糖的检测试剂是 </span>
+    <input type="text" class="fill-input" data-answer="斐林" data-alt="斐林试剂" style="width:70px;">
+    <span class="q-text"> 试剂，反应条件是 </span>
+    <input type="text" class="fill-input" data-answer="水浴加热" style="width:90px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- q18 (fill q13) -->
+  <div class="fill-question" data-qid="q13">
+    <span class="q-head">18.</span>
+    <span class="q-text">细胞中大部分水以 </span>
+    <input type="text" class="fill-input" data-answer="游离" style="width:60px;">
+    <span class="q-text"> 形式存在，称为自由水；与细胞内其他物质结合的水称为 </span>
+    <input type="text" class="fill-input" data-answer="结合水" style="width:70px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- q19 (fill q14) -->
+  <div class="fill-question" data-qid="q14">
+    <span class="q-head">19.</span>
+    <span class="q-text">参与构成叶绿素的元素是 </span>
+    <input type="text" class="fill-input" data-answer="Mg" data-alt="镁" style="width:50px;">
+    <span class="q-text">，参与构成血红蛋白的元素是 </span>
+    <input type="text" class="fill-input" data-answer="Fe" data-alt="铁" style="width:50px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- q20 (fill q15) -->
+  <div class="fill-question" data-qid="q15">
+    <span class="q-head">20.</span>
+    <span class="q-text">植物细胞中储能的多糖是 </span>
+    <input type="text" class="fill-input" data-answer="淀粉" style="width:70px;">
+    <span class="q-text">，动物细胞中储能的多糖是 </span>
+    <input type="text" class="fill-input" data-answer="糖原" data-alt="肝糖原" style="width:70px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- q21 (fill q16) -->
+  <div class="fill-question" data-qid="q16">
+    <span class="q-head">21.</span>
+    <span class="q-text">固醇类物质主要包括胆固醇、性激素和 </span>
+    <input type="text" class="fill-input" data-answer="维生素D" data-alt="维生素D|维D" style="width:90px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 四、解答题（4题，共40分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">四、解答题（本大题共4小题，共40分）</div>
+
+  <!-- q17（10分） -->
+  <div class="calc-question" data-qid="q17">
+    <span class="q-head">22.（10分）</span>
+    <span class="q-text">现有失去标签的三种待测样品A、B、C，已知它们分别是还原糖溶液、蛋白质溶液和脂肪乳液中的一种。请根据所学知识完成下表：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <table class="data-table">
+        <tr><th>待测样品</th><th>检测试剂</th><th>实验现象（预期）</th><th>样品成分</th></tr>
+        <tr>
+          <td>A</td>
+          <td>斐林试剂，水浴加热</td>
+          <td><input type="text" class="fill-input" data-answer="砖红色沉淀" data-alt="砖红色" style="width:100px;"></td>
+          <td>还原糖</td>
+        </tr>
+        <tr>
+          <td>B</td>
+          <td>双缩脲试剂</td>
+          <td><input type="text" class="fill-input" data-answer="紫色" style="width:80px;"></td>
+          <td><input type="text" class="fill-input" data-answer="蛋白质" style="width:70px;"></td>
+        </tr>
+        <tr>
+          <td>C</td>
+          <td>苏丹Ⅲ染液</td>
+          <td><input type="text" class="fill-input" data-answer="橘黄色" style="width:80px;"></td>
+          <td><input type="text" class="fill-input" data-answer="脂肪" style="width:70px;"></td>
+        </tr>
+      </table>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- q18（10分） -->
+  <div class="calc-question" data-qid="q18">
+    <span class="q-head">23.（10分）</span>
+    <span class="q-text">下表中是某植物种子在萌发前后几种有机物的含量变化：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <table class="data-table">
+        <tr><th>有机物种类</th><th>萌发前（mg/g）</th><th>萌发后（mg/g）</th></tr>
+        <tr><td>淀粉</td><td>68</td><td>25</td></tr>
+        <tr><td>还原糖</td><td>15</td><td>52</td></tr>
+        <tr><td>蛋白质</td><td>120</td><td>118</td></tr>
+      </table>
+    </div>
+    <div style="margin:8px 0 4px 22px;">
+      <div class="sub-question">(1) 种子萌发过程中，淀粉含量 ______（增加/减少），还原糖含量 ______（增加/减少），说明淀粉 ______ 生成了还原糖。<span style="float:right;">（3分）</span></div>
+      <div class="sub-question">(2) 在此过程中，细胞中自由水/结合水的比值会 ______（增大/减小），代谢 ______（增强/减弱）。<span style="float:right;">（3分）</span></div>
+      <div class="sub-question">(3) 结合水的功能是 ______。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(4) 如果该种子烘干后燃烧，灰分中含有的主要元素是 ______。<span style="float:right;">（2分）</span></div>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- q19（10分） -->
+  <div class="calc-question" data-qid="q19">
+    <span class="q-head">24.（10分）</span>
+    <span class="q-text">糖类和脂质是细胞中两类重要的有机物，请回答以下问题：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <div class="sub-question">(1) 组成糖类和脂质的共有元素是 ______。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(2) 写出两种植物细胞中特有的二糖：______、______；写出两种动物细胞中特有的糖类：______、______。<span style="float:right;">（4分）</span></div>
+      <div class="sub-question">(3) 胆固醇在人体内的作用有 ______ 和 ______。<span style="float:right;">（4分）</span></div>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- q20（10分） -->
+  <div class="calc-question" data-qid="q20">
+    <span class="q-head">25.（10分）</span>
+    <span class="q-text">某同学要减肥，采取了完全不吃主食（米饭、面条等）的方法。请结合本章所学知识分析：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <div class="sub-question">(1) 主食中的主要成分是 ______，它是人体最 ______（主要/不重要）的能源物质。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(2) 当主食摄入不足时，人体会大量消耗 ______ 和 ______ 来供能。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(3) 如果长期过度节食，可能会造成 ______ 缺乏，导致免疫力下降等健康问题。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(4) 请从合理膳食的角度，对该同学的减肥方法提出建议：______。<span style="float:right;">（4分）</span></div>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- ===== 提交按钮 ===== -->
+  <div class="submit-area">
+    <button class="submit-btn" onclick="submitPaper()">提交试卷</button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 参考答案区 -->
+  <!-- ============================================================ -->
+  <div class="answer-section" id="answerSection">
+    <h2>参考答案与解析</h2>
+    <button class="toggle-answer-btn score-btn score-btn-secondary" onclick="toggleAnswer()">隐藏答案</button>
+
+    <div id="answerContent">
+      <h3 style="margin-top:15px;">一、单选题</h3>
+      <div class="answer-item"><strong>1.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：Fe、Mn、B、Zn、Mo、Cu属于微量元素。C、H、O、N、P、S、K、Ca、Mg属于大量元素。</span></div>
+      <div class="answer-item"><strong>2.</strong> 答案：<span class="ans-key">D</span><br><span class="ans-detail">解析：碳原子构成的碳链是生物大分子的基本骨架，因此C是最基本元素。</span></div>
+      <div class="answer-item"><strong>3.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：占细胞鲜重最多的是水，占干重最多的是蛋白质。</span></div>
+      <div class="answer-item"><strong>4.</strong> 答案：<span class="ans-key">A</span><br><span class="ans-detail">解析：还原糖+斐林试剂→砖红色沉淀，需水浴加热。双缩脲试剂用于检测蛋白质，不需加热。</span></div>
+      <div class="answer-item"><strong>5.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：蛋白质+双缩脲试剂→紫色；斐林试剂+还原糖→砖红色；苏丹Ⅲ+脂肪→橘黄色；淀粉+碘液→蓝色。</span></div>
+      <div class="answer-item"><strong>6.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：苏丹Ⅲ染液将脂肪染成橘黄色，苏丹Ⅳ染液将脂肪染成红色。</span></div>
+      <div class="answer-item"><strong>7.</strong> 答案：<span class="ans-key">D</span><br><span class="ans-detail">解析：自由水/结合水比值越大，代谢越旺盛；比值越小，抗逆性越强。</span></div>
+      <div class="answer-item"><strong>8.</strong> 答案：<span class="ans-key">A</span><br><span class="ans-detail">解析：Fe²⁺参与血红蛋白的合成，Mg²⁺参与叶绿素的合成。</span></div>
+      <div class="answer-item"><strong>9.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：葡萄糖是单糖，不能水解。蔗糖是二糖，淀粉和纤维素是多糖。</span></div>
+      <div class="answer-item"><strong>10.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：乳糖存在于动物乳汁中；蔗糖和麦芽糖主要存在于植物细胞中；糖原是多糖。</span></div>
+      <div class="answer-item"><strong>11.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：淀粉是植物细胞中的储能物质；糖原是动物细胞的储能物质；纤维素和几丁质是结构物质。</span></div>
+      <div class="answer-item"><strong>12.</strong> 答案：<span class="ans-key">A</span><br><span class="ans-detail">解析：维生素D能促进钙和磷的吸收；胆固醇参与细胞膜的构成和血脂运输；性激素调节生殖功能。</span></div>
+
+      <h3 style="margin-top:15px;">二、多选题</h3>
+      <div class="answer-item"><strong>13.</strong> 答案：<span class="ans-key">A、C、D</span><br><span class="ans-detail">解析：占细胞鲜重最多的是水，不是蛋白质，B错误。</span></div>
+      <div class="answer-item"><strong>14.</strong> 答案：<span class="ans-key">A、C、D</span><br><span class="ans-detail">解析：蔗糖由一分子葡萄糖和一分子果糖组成，不是两分子葡萄糖，B错误。</span></div>
+      <div class="answer-item"><strong>15.</strong> 答案：<span class="ans-key">A、B、C</span><br><span class="ans-detail">解析：性激素是固醇类，元素组成与糖类相同（C、H、O），只是比例不同，D错误。</span></div>
+
+      <h3 style="margin-top:15px;">三、填空题</h3>
+      <div class="answer-item"><strong>16.</strong> 答案：<span class="ans-key">蛋白质</span><br><span class="ans-detail">解析：占细胞鲜重最多的是水（无机物），最多有机物是蛋白质。</span></div>
+      <div class="answer-item"><strong>17.</strong> 答案：<span class="ans-key">斐林（斐林试剂）；水浴加热</span><br><span class="ans-detail">解析：斐林试剂检测还原糖，需要水浴加热条件下产生砖红色沉淀。</span></div>
+      <div class="answer-item"><strong>18.</strong> 答案：<span class="ans-key">游离；结合水</span><br><span class="ans-detail">解析：自由水以游离形式存在，结合水与其他物质结合。</span></div>
+      <div class="answer-item"><strong>19.</strong> 答案：<span class="ans-key">Mg（镁）；Fe（铁）</span><br><span class="ans-detail">解析：Mg²⁺→叶绿素，Fe²⁺→血红蛋白。</span></div>
+      <div class="answer-item"><strong>20.</strong> 答案：<span class="ans-key">淀粉；糖原（肝糖原）</span><br><span class="ans-detail">解析：淀粉是植物储能物质，糖原（肝糖原和肌糖原）是动物储能物质。</span></div>
+      <div class="answer-item"><strong>21.</strong> 答案：<span class="ans-key">维生素D</span><br><span class="ans-detail">解析：固醇包括胆固醇、性激素、维生素D三类。</span></div>
+
+      <h3 style="margin-top:15px;">四、解答题</h3>
+      <div class="answer-item"><strong>22.（10分）</strong><br>
+        <table class="data-table" style="width:auto;">
+          <tr><th>待测样品</th><th>检测试剂</th><th>实验现象（预期）</th><th>样品成分</th></tr>
+          <tr><td>A</td><td>斐林试剂，水浴加热</td><td>砖红色沉淀</td><td>还原糖</td></tr>
+          <tr><td>B</td><td>双缩脲试剂</td><td>紫色</td><td>蛋白质</td></tr>
+          <tr><td>C</td><td>苏丹Ⅲ染液</td><td>橘黄色</td><td>脂肪</td></tr>
+        </table>
+        <span class="ans-detail">解析：斐林试剂检测还原糖（水浴加热→砖红色沉淀）；双缩脲试剂检测蛋白质→紫色；苏丹Ⅲ染液检测脂肪→橘黄色。</span>
+      </div>
+      <div class="answer-item"><strong>23.（10分）</strong><br>
+        <span class="ans-detail">(1) 减少；增加；水解（3分）<br>
+        (2) 增大；增强（3分）<br>
+        (3) 构成细胞结构的重要成分（2分）<br>
+        (4) 无机盐（或矿物质/矿质元素）（2分）<br>
+        解析：种子萌发时淀粉水解为还原糖供能；代谢增强使自由水/结合水比值增大；结合水构成细胞结构；燃烧后灰分为无机盐。</span>
+      </div>
+      <div class="answer-item"><strong>24.（10分）</strong><br>
+        <span class="ans-detail">(1) C、H、O（2分）<br>
+        (2) 蔗糖、麦芽糖；乳糖、糖原（4分，合理即可）<br>
+        (3) 构成细胞膜的重要成分；参与血液中脂质的运输（4分）<br>
+        解析：糖类和脂质共有元素为C、H、O；植物特有：蔗糖、麦芽糖（二糖）；动物特有：乳糖（二糖）、糖原（多糖）；胆固醇功能为构成细胞膜和参与血脂运输。</span>
+      </div>
+      <div class="answer-item"><strong>25.（10分）</strong><br>
+        <span class="ans-detail">(1) 淀粉（糖类）；主要（2分）<br>
+        (2) 脂肪；蛋白质（2分，顺序可换）<br>
+        (3) 蛋白质（2分）<br>
+        (4) 应控制总热量摄入，适量减少碳水化合物的摄入而非完全不吃；增加运动；保证蛋白质、维生素等营养物质的均衡摄入；多吃蔬菜水果，少食高油高糖食物。（4分，言之有理即可）<br>
+        解析：主食富含淀粉（糖类），是主要能源物质；摄入不足时机体消耗脂肪和蛋白质供能；长期节食导致蛋白质缺乏影响免疫力。</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end paper-container -->
+
+<!-- ===== 成绩弹窗 ===== -->
+<div class="score-modal" id="scoreModal">
+  <div class="score-card">
+    <h2>📝 成绩报告</h2>
+    <div class="score-number" id="scoreDisplay">0</div>
+    <div style="font-size:16px; color:#666;">总分：100分</div>
+    <div class="score-detail" id="scoreDetail"></div>
+    <div style="margin-top:15px;">
+      <button class="score-btn score-btn-primary" onclick="closeScore()">关闭</button>
+      <button class="score-btn score-btn-secondary" onclick="toggleAnswer(); closeScore();">查看答案</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== 答案配置 =====
+const ANSWER_KEY = {
+  q1: 'C', q2: 'D', q3: 'B', q4: 'A', q5: 'C', q6: 'B', q7: 'D', q8: 'A', q9: 'C', q10: 'B', q11: 'C', q12: 'A',
+  q101: ['A','C','D'], q102: ['A','C','D'], q103: ['A','B','C']
+};
+
+// ===== 评分引擎 =====
+function submitPaper() {
+  const result = gradePaper();
+  showScore(result);
+}
+
+function gradePaper() {
+  let totalScore = 0;
+  let details = [];
+  let singleCorrect = 0, singleTotal = 12;
+  let multiCorrect = 0, multiPartial = 0, multiTotal = 3;
+  let fillScore = 0, fillTotal = 0;
+
+  // 1. 评分单选题 (data-type="single")
+  document.querySelectorAll('.choice-question[data-type="single"]').forEach(function(q) {
+    const qid = q.dataset.qid;
+    const correctAnswer = ANSWER_KEY[qid];
+    if (!correctAnswer) return;
+    const selected = q.querySelector('input[type="radio"]:checked');
+    const userAnswer = selected ? selected.value : '';
+    const isCorrect = (userAnswer === correctAnswer);
+    if (isCorrect) { totalScore += 3; details.push(qid + ': 正确 ✓ (+3分)'); }
+    else { details.push(qid + ': 错误 ✗ (你的答案: ' + (userAnswer || '未作答') + ', 正确答案: ' + correctAnswer + ')'); }
+    // 视觉反馈
+    q.classList.remove('correct','wrong');
+    q.classList.add(isCorrect ? 'correct' : 'wrong');
+    q.querySelectorAll('input[type="radio"]').forEach(function(r) {
+      r.disabled = true;
+      if (r.value === correctAnswer) r.parentElement.style.color = '#4caf50';
+      else if (r.checked && r.value !== correctAnswer) r.parentElement.style.color = '#f44336';
+    });
+  });
+
+  // 2. 评分多选题
+  document.querySelectorAll('.choice-question[data-type="multi"]').forEach(function(q) {
+    const qid = q.dataset.qid;
+    const correctArr = ANSWER_KEY[qid];
+    if (!correctArr) return;
+    const checked = q.querySelectorAll('input[type="checkbox"]:checked');
+    const userArr = Array.from(checked).map(function(c) { return c.value; });
+    const correctSet = new Set(correctArr);
+    const userSet = new Set(userArr);
+    // 检查是否有错选
+    let hasWrong = false;
+    userArr.forEach(function(v) { if (!correctSet.has(v)) hasWrong = true; });
+    let isFullCorrect = false, isPartial = false;
+    if (!hasWrong && userArr.length > 0) {
+      if (userArr.length === correctArr.length && userArr.every(function(v) { return correctSet.has(v); })) {
+        isFullCorrect = true;
+        totalScore += 4;
+        details.push(qid + ': 全对 ✓ (+4分)');
+      } else {
+        isPartial = true;
+        totalScore += 2;
+        details.push(qid + ': 部分正确 (+2分)');
+      }
+    } else if (hasWrong) {
+      details.push(qid + ': 有错选 (+0分)');
+    } else {
+      details.push(qid + ': 未作答 (+0分)');
+    }
+    q.classList.remove('correct','wrong');
+    if (isFullCorrect) q.classList.add('correct');
+    else if (userArr.length > 0) q.classList.add('wrong');
+    q.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+      c.disabled = true;
+      if (correctArr.indexOf(c.value) >= 0) c.parentElement.style.color = '#4caf50';
+      else if (c.checked) c.parentElement.style.color = '#f44336';
+    });
+  });
+
+  // 3. 评分填空题
+  document.querySelectorAll('.fill-input').forEach(function(inp) {
+    const answer = inp.dataset.answer;
+    const altStr = inp.dataset.alt;
+    const alts = altStr ? altStr.split('|') : [];
+    const userVal = inp.value.trim();
+    const isCorrect = (userVal === answer) || alts.some(function(a) { return userVal === a; });
+    if (isCorrect) { totalScore += 2; fillScore += 2; }
+    fillTotal += 2;
+    inp.style.borderBottomColor = isCorrect ? '#4caf50' : (userVal ? '#f44336' : '#999');
+    inp.style.borderBottomWidth = '2px';
+  });
+
+  // 4. 解答题标记
+  document.querySelectorAll('.calc-question').forEach(function(q) {
+    details.push(q.dataset.qid + ': 需人工批改');
+  });
+
+  return { total: totalScore, details: details };
+}
+
+function showScore(result) {
+  document.getElementById('scoreDisplay').textContent = result.total + '分';
+  let detailHtml = '';
+  result.details.forEach(function(d) {
+    detailHtml += '<div>' + d + '</div>';
+  });
+  document.getElementById('scoreDetail').innerHTML = detailHtml;
+  document.getElementById('scoreModal').classList.add('show');
+}
+
+function closeScore() {
+  document.getElementById('scoreModal').classList.remove('show');
+}
+
+function toggleAnswer() {
+  var content = document.getElementById('answerContent');
+  var btn = document.querySelector('.toggle-answer-btn');
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    btn.textContent = '隐藏答案';
+  } else {
+    content.style.display = 'none';
+    btn.textContent = '显示答案';
+  }
+}
+</script>
+
+</body>
+</html>

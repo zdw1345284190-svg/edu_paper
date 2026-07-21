@@ -1000,19 +1000,35 @@ function highlightAnswers(details) {
   }
 }
 
+// ===== 参考答案密码锁 =====
+let answerUnlocked = false;
+
 // ===== 切换参考答案 =====
 function toggleAnswer() {
   const ref = document.getElementById('refAnswers');
-  ref.classList.toggle('show');
   const btn = document.querySelector('.btn-ref');
-  if (ref.classList.contains('show')) {
+
+  // 如果已解锁，直接切换
+  if (answerUnlocked) {
+    ref.classList.toggle('show');
+    btn.textContent = ref.classList.contains('show') ? '🙈 隐藏参考答案' : '📖 查看参考答案';
+    if (ref.classList.contains('show') && window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise([ref]);
+    }
+    return;
+  }
+
+  // 未解锁：弹出密码框
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    answerUnlocked = true;
+    ref.classList.add('show');
     btn.textContent = '🙈 隐藏参考答案';
-    // 触发MathJax重新渲染参考答案中的公式
     if (window.MathJax && MathJax.typesetPromise) {
       MathJax.typesetPromise([ref]);
     }
-  } else {
-    btn.textContent = '📖 查看参考答案';
+  } else if (pwd !== null) {
+    alert('密码错误，无法查看参考答案！');
   }
 }
 

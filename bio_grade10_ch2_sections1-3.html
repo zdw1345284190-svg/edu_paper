@@ -133,6 +133,7 @@ body {
   padding-top: 20px;
   border-top: 2px solid #333;
 }
+#answerContent { display: none; }
 .answer-section h2 { font-size: 18px; margin-bottom: 15px; }
 .answer-item { margin: 8px 0; padding: 6px 10px; background: #f9f9f9; border-left: 3px solid #999; }
 .answer-item .ans-key { font-weight: bold; color: #1a73e8; }
@@ -517,7 +518,7 @@ table.data-table th { background: #e8f0fe; }
   <!-- ============================================================ -->
   <div class="answer-section" id="answerSection">
     <h2>参考答案与解析</h2>
-    <button class="toggle-answer-btn score-btn score-btn-secondary" onclick="toggleAnswer()">隐藏答案</button>
+    <button class="toggle-answer-btn score-btn score-btn-secondary" onclick="toggleAnswer()">显示答案</button>
 
     <div id="answerContent">
       <h3 style="margin-top:15px;">一、单选题</h3>
@@ -709,15 +710,33 @@ function closeScore() {
   document.getElementById('scoreModal').classList.remove('show');
 }
 
+// ===== 参考答案密码锁 =====
+var answerUnlocked = false;
+
 function toggleAnswer() {
   var content = document.getElementById('answerContent');
   var btn = document.querySelector('.toggle-answer-btn');
-  if (content.style.display === 'none') {
+
+  // 如果已解锁，直接切换
+  if (answerUnlocked) {
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      btn.textContent = '隐藏答案';
+    } else {
+      content.style.display = 'none';
+      btn.textContent = '显示答案';
+    }
+    return;
+  }
+
+  // 未解锁：弹出密码框
+  var pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    answerUnlocked = true;
     content.style.display = 'block';
     btn.textContent = '隐藏答案';
-  } else {
-    content.style.display = 'none';
-    btn.textContent = '显示答案';
+  } else if (pwd !== null) {
+    alert('密码错误，无法查看参考答案！');
   }
 }
 </script>

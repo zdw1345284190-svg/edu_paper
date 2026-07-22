@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一物理·运动的描述 单元测试</title>
+<style>
+  /* ===== 全局重置 & 基础 ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "SimSun", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    line-height: 1.8;
+    font-size: 15px;
+    padding: 20px;
+  }
+
+  /* ===== 试卷容器 ===== */
+  .paper {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px 32px 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    border-radius: 2px;
+  }
+
+  /* ===== 页头 ===== */
+  .exam-header {
+    text-align: center;
+    border-bottom: 3px double #222;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+  }
+  .exam-header h1 {
+    font-size: 22px;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .exam-header .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .exam-header .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .exam-header .info-row span { display: inline-block; }
+  .exam-header .info-row .label { font-weight: 600; }
+  .exam-header .info-row .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1px solid #222;
+    margin: 0 4px;
+    padding: 0 8px;
+  }
+
+  /* ===== 通用标题 ===== */
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    padding: 4px 0 4px 12px;
+    border-left: 4px solid #1a5276;
+    background: #f7f9fc;
+  }
+  .section-title .score-hint {
+    font-weight: 400;
+    font-size: 13px;
+    color: #777;
+    margin-left: 8px;
+  }
+
+  /* ===== 题目布局 ===== */
+  .question { margin-bottom: 14px; }
+  .question .q-head {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .question .q-body { padding-left: 6px; }
+  .question .q-body p { margin-bottom: 4px; }
+
+  /* ===== 选项（单选 / 多选） ===== */
+  .options { list-style: none; padding-left: 20px; }
+  .options li { margin-bottom: 2px; }
+  .options li label {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    cursor: pointer;
+    padding: 1px 6px;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .options li label:hover { background: #eef4fa; }
+  .options li input[type="radio"],
+  .options li input[type="checkbox"] {
+    width: 15px; height: 15px;
+    margin-right: 4px;
+    accent-color: #1a5276;
+    cursor: pointer;
+  }
+
+  /* ===== 填空题 ===== */
+  .fillin { margin: 4px 0; }
+  .fillin input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #888;
+    width: 90px;
+    padding: 0 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background: transparent;
+    text-align: center;
+  }
+  .fillin input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: #1a5276;
+    border-bottom-width: 2px;
+  }
+  .fillin .blank-long {
+    display: inline-block;
+    min-width: 60px;
+    border-bottom: 1px solid #888;
+    margin: 0 4px;
+    padding: 0 6px;
+  }
+
+  /* ===== 解答题 ===== */
+  .calc-question .q-body { margin-bottom: 6px; }
+  .calc-question textarea {
+    width: 100%;
+    min-height: 80px;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    background: #fafcfe;
+  }
+  .calc-question textarea:focus {
+    border-color: #1a5276;
+    box-shadow: 0 0 0 2px rgba(26,82,118,0.12);
+    outline: none;
+  }
+  .calc-question .sub-q { margin: 6px 0 6px 16px; }
+  .calc-question .sub-q .sq-label { font-weight: 600; }
+
+  /* ===== SVG 简图 ===== */
+  .figure-container {
+    text-align: center;
+    margin: 8px 0;
+  }
+  .figure-container svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ===== 参考答案区 ===== */
+  .answer-section {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 2px dashed #ccc;
+  }
+  .answer-section h2 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .toggle-answer-btn {
+    display: inline-block;
+    padding: 6px 22px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #1a5276;
+    background: #fff;
+    color: #1a5276;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+    margin-bottom: 10px;
+  }
+  .toggle-answer-btn:hover {
+    background: #1a5276;
+    color: #fff;
+  }
+  #answerContent {
+    background: #f7f9fc;
+    border: 1px solid #d5dfe8;
+    border-radius: 4px;
+    padding: 18px 22px;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  #answerContent .ans-block {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8ee;
+  }
+  #answerContent .ans-block:last-child { border-bottom: none; }
+  #answerContent .ans-q { font-weight: 600; color: #1a5276; }
+  #answerContent .ans-body { padding-left: 8px; }
+  #answerContent .ans-body .ans-key {
+    color: #c0392b;
+    font-weight: 600;
+  }
+  #answerContent .ans-body .ans-detail {
+    color: #444;
+    margin-top: 2px;
+  }
+
+  /* ===== 底部交卷 ===== */
+  .submit-bar {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #ccc;
+  }
+  .submit-bar button {
+    padding: 8px 36px;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    background: #1a5276;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .submit-bar button:hover { background: #0e3a55; }
+
+  /* ===== 右侧分数汇总（可选） ===== */
+  .score-summary {
+    position: fixed; right: 16px; top: 80px;
+    width: 170px;
+    background: #fff;
+    border: 1px solid #d5dfe8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: none;
+  }
+  .score-summary h3 { font-size: 13px; margin-bottom: 6px; }
+  .score-summary .ss-row {
+    display: flex; justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .score-summary .ss-total {
+    font-weight: 700; font-size: 14px; margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ===== 打印样式 ===== */
+  @page {
+    size: A4;
+    margin: 18mm 20mm 22mm;
+  }
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      font-size: 13.5px;
+    }
+    .paper {
+      max-width: 100%;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    .score-summary { display: none !important; }
+    .submit-bar { display: none !important; }
+    .toggle-answer-btn { display: none !important; }
+    #answerContent { display: block !important; }
+    .options li label:hover { background: transparent; }
+    textarea { border: 1px solid #ccc; background: #fafafa; }
+    .calc-question textarea { min-height: 60px; }
+    .exam-header .info-row .blank { border-bottom: 1px solid #000; }
+    .fillin input[type="text"] { border-bottom: 1px solid #000; }
+    .answer-section { border-top-color: #aaa; }
+    #answerContent { background: #fafafa; border-color: #ccc; }
+  }
+
+  /* ===== 移动端适配 ===== */
+  @media screen and (max-width: 640px) {
+    body { padding: 8px; }
+    .paper { padding: 14px 16px; }
+    .exam-header .info-row { flex-direction: column; align-items: center; }
+    .options { padding-left: 8px; }
+    .score-summary { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <!-- ======================== 页头 ======================== -->
+  <div class="exam-header">
+    <h1>高一物理·必修第一册 第一章</h1>
+    <div class="subtitle">「运动的描述」单元测试</div>
+    <div class="info-row">
+      <span><span class="label">姓名：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">班级：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">学号：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">得分：</span><span class="blank">&nbsp;</span></span>
+    </div>
+    <div style="margin-top:6px; font-size:13px; color:#666;">
+      总分：100分 &nbsp;&nbsp;|&nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp;|&nbsp;&nbsp; 命题范围：人教版必修第一册第一章
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section-title">
+    一、单项选择题（共10题，每题3分，共30分）
+    <span class="score-hint">每题只有一个正确选项</span>
+  </div>
+
+  <!-- q1 -->
+  <div class="question" id="q1">
+    <div class="q-head">1.</div>
+    <div class="q-body">
+      <p>下列关于质点的说法，正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A．质点是一个理想化模型，实际并不存在</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B．体积很大的物体一定不能看成质点</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C．研究地球绕太阳公转时，地球不能看成质点</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D．质点就是体积很小的点</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q2 -->
+  <div class="question" id="q2">
+    <div class="q-head">2.</div>
+    <div class="q-body">
+      <p>坐在行驶的列车中的乘客，看到车窗外的树木向后运动，他选择的参考系是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A．地面</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B．树木</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C．列车</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D．太阳</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q3 -->
+  <div class="question" id="q3">
+    <div class="q-head">3.</div>
+    <div class="q-body">
+      <p>下列物理量中，属于时刻的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A．百米赛跑的成绩 10.2 秒</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B．列车从北京到上海运行 4 小时</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C．课间休息 10 分钟</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D．上午 8:00 开始上课</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q4 -->
+  <div class="question" id="q4">
+    <div class="q-head">4.</div>
+    <div class="q-body">
+      <p>一个人从 A 点出发，向北走了 3m 到达 B 点，再向东走了 4m 到达 C 点。则从 A 到 C 的位移大小为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A．5m</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B．7m</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C．1m</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D．12m</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q5 -->
+  <div class="question" id="q5">
+    <div class="q-head">5.</div>
+    <div class="q-body">
+      <p>某同学沿 400m 标准跑道跑一圈回到起点，他的位移和路程分别是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A．400m，400m</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B．0，400m</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C．400m，0</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D．0，0</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q6 -->
+  <div class="question" id="q6">
+    <div class="q-head">6.</div>
+    <div class="q-body">
+      <p>关于平均速度，下列说法正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A．平均速度就是速度的平均值</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B．平均速度等于位移与时间的比值</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C．平均速度等于路程与时间的比值</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D．平均速度的方向与位移方向无关</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q7 -->
+  <div class="question" id="q7">
+    <div class="q-head">7.</div>
+    <div class="q-body">
+      <p>关于瞬时速度和速率，下列说法正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A．瞬时速度是矢量，速率是标量</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B．瞬时速度的大小等于瞬时速率，都是矢量</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C．汽车速度计显示的是平均速度</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D．瞬时速度就是平均速度</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q8 -->
+  <div class="question" id="q8">
+    <div class="q-head">8.</div>
+    <div class="q-body">
+      <p>某物体的加速度为 \(-5\,\text{m/s}^2\)，下列说法正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A．物体一定在做减速运动</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B．物体的速度一定在减小</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C．加速度的负号表示加速度方向与正方向相反</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D．物体速度变化量为负，说明速度一定减小</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q9 -->
+  <div class="question" id="q9">
+    <div class="q-head">9.</div>
+    <div class="q-body">
+      <p>一物体的加速度为 \(3\,\text{m/s}^2\)，表示该物体（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A．每秒速度增加 3m/s</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B．每秒速度减小 3m/s</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C．第 3s 末的速度是 3m/s</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D．每秒位移增加 3m</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q10 -->
+  <div class="question" id="q10">
+    <div class="q-head">10.</div>
+    <div class="q-body">
+      <p>电磁打点计时器使用的电源是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A．直流 6V</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B．交流 6V</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C．直流 220V</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D．交流 220V</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section-title">
+    二、多项选择题（共3题，每题4分，共12分）
+    <span class="score-hint">每题有多个正确选项，全部选对得4分，选对但不全得2分，有选错得0分</span>
+  </div>
+
+  <!-- q101 -->
+  <div class="question" id="q101">
+    <div class="q-head">11.（多选）</div>
+    <div class="q-body">
+      <p>下列情况中，可以把物体看成质点的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q101" value="A"> A．研究地球的自转</label></li>
+        <li><label><input type="checkbox" name="q101" value="B"> B．研究地球绕太阳的公转</label></li>
+        <li><label><input type="checkbox" name="q101" value="C"> C．研究火车从北京到上海的平均速度</label></li>
+        <li><label><input type="checkbox" name="q101" value="D"> D．研究乒乓球的旋转</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q102 -->
+  <div class="question" id="q102">
+    <div class="q-head">12.（多选）</div>
+    <div class="q-body">
+      <p>关于位移和路程，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q102" value="A"> A．位移是矢量，路程是标量</label></li>
+        <li><label><input type="checkbox" name="q102" value="B"> B．物体做单向直线运动时，位移大小等于路程</label></li>
+        <li><label><input type="checkbox" name="q102" value="C"> C．位移的大小一定小于路程</label></li>
+        <li><label><input type="checkbox" name="q102" value="D"> D．位移的方向由初位置指向末位置</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q103 -->
+  <div class="question" id="q103">
+    <div class="q-head">13.（多选）</div>
+    <div class="q-body">
+      <p>关于加速度，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q103" value="A"> A．加速度是描述速度变化快慢的物理量</label></li>
+        <li><label><input type="checkbox" name="q103" value="B"> B．加速度越大，速度变化越快</label></li>
+        <li><label><input type="checkbox" name="q103" value="C"> C．加速度方向与速度方向相同时，物体做加速运动</label></li>
+        <li><label><input type="checkbox" name="q103" value="D"> D．加速度减小时，速度一定减小</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section-title">
+    三、填空题（共6题，每题3分，共18分）
+  </div>
+
+  <!-- q11 -->
+  <div class="question" id="q11">
+    <div class="q-head">14.</div>
+    <div class="q-body">
+      <p>研究运动员百米赛跑的成绩时，运动员______（选填"能"或"不能"）看成质点。</p>
+      <div class="fillin">答案：<input type="text" id="fill_q11" maxlength="4" style="width:60px;"></div>
+    </div>
+  </div>
+
+  <!-- q12 -->
+  <div class="question" id="q12">
+    <div class="q-head">15.</div>
+    <div class="q-body">
+      <p>以下各选项属于时刻的有______，属于时间间隔的有______。（填序号）</p>
+      <p style="padding-left:16px;">① 第2秒末 &nbsp; ② 前3秒 &nbsp; ③ 第4秒内 &nbsp; ④ 5:00</p>
+      <div class="fillin">时刻：<input type="text" id="fill_q12a" maxlength="10" style="width:100px;"> &nbsp; 时间间隔：<input type="text" id="fill_q12b" maxlength="10" style="width:100px;"></div>
+    </div>
+  </div>
+
+  <!-- q13 -->
+  <div class="question" id="q13">
+    <div class="q-head">16.</div>
+    <div class="q-body">
+      <p>一物体从 A 到 B 的直线距离为 10m，又从 B 沿原路返回 4m 到 C，则全程的位移大小为______m，路程为______m。</p>
+      <div class="fillin">位移：<input type="text" id="fill_q13a" maxlength="4" style="width:50px;"> m &nbsp; 路程：<input type="text" id="fill_q13b" maxlength="4" style="width:50px;"> m</div>
+    </div>
+  </div>
+
+  <!-- q14 -->
+  <div class="question" id="q14">
+    <div class="q-head">17.</div>
+    <div class="q-body">
+      <p>一物体在 5s 内的位移为 20m，则它的平均速度为______m/s。</p>
+      <div class="fillin"><input type="text" id="fill_q14" maxlength="4" style="width:50px;"> m/s</div>
+    </div>
+  </div>
+
+  <!-- q15 -->
+  <div class="question" id="q15">
+    <div class="q-head">18.</div>
+    <div class="q-body">
+      <p>某物体做直线运动，初速度为 2m/s，末速度为 10m/s，用时 4s，则加速度为______m/s²。</p>
+      <div class="fillin"><input type="text" id="fill_q15" maxlength="4" style="width:60px;"> m/s²</div>
+    </div>
+  </div>
+
+  <!-- q16 -->
+  <div class="question" id="q16">
+    <div class="q-head">19.</div>
+    <div class="q-body">
+      <p>电磁打点计时器的工作频率为 50Hz，则打点周期为______s。</p>
+      <div class="fillin"><input type="text" id="fill_q16" maxlength="6" style="width:70px;"> s</div>
+    </div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section-title">
+    四、解答题（共4题，共40分）
+    <span class="score-hint">请写出必要的文字说明和解题过程</span>
+  </div>
+
+  <!-- q17 -->
+  <div class="question calc-question" id="q17">
+    <div class="q-head">20.（8分）</div>
+    <div class="q-body">
+      <p>某人从 O 点出发，先向东走了 6m 到达 A 点，再向北走了 8m 到达 B 点。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求整个过程中人的位移大小和方向；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求整个过程中人通过的路程；（2分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 如果这个人从 O 到 B 用时 10s，求平均速度的大小。（2分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- q18 -->
+  <div class="question calc-question" id="q18">
+    <div class="q-head">21.（10分）</div>
+    <div class="q-body">
+      <p>一辆汽车在平直公路上行驶，在第 1s 内、第 2s 内、第 3s 内的位移分别为 5m、10m、15m。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求汽车在前 2s 内的平均速度；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求汽车在第 3s 内的平均速度；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 能否判断汽车是否做匀变速直线运动？为什么？（3分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- q19 -->
+  <div class="question calc-question" id="q19">
+    <div class="q-head">22.（10分）</div>
+    <div class="q-body">
+      <p>某物体做直线运动，其 \(v\!-\!t\) 图象如下图所示：</p>
+      <div class="figure-container">
+        <svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #d0d8e0; border-radius:4px; background:#fafcfe;">
+          <!-- 坐标轴 -->
+          <line x1="40" y1="170" x2="340" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="40" y1="170" x2="40" y2="20" stroke="#333" stroke-width="1.5"/>
+          <!-- 箭头 -->
+          <polygon points="335,170 340,170 338,165" fill="#333"/>
+          <polygon points="40,25 40,20 35,22" fill="#333"/>
+          <!-- 刻度 & 标签 -->
+          <text x="100" y="186" font-size="12" text-anchor="middle" fill="#333">2</text>
+          <text x="160" y="186" font-size="12" text-anchor="middle" fill="#333">4</text>
+          <text x="220" y="186" font-size="12" text-anchor="middle" fill="#333">6</text>
+          <text x="310" y="186" font-size="12" text-anchor="middle" fill="#333">t/s</text>
+          <text x="32" y="130" font-size="12" text-anchor="end" fill="#333">2</text>
+          <text x="32" y="90" font-size="12" text-anchor="end" fill="#333">4</text>
+          <text x="32" y="50" font-size="12" text-anchor="end" fill="#333">6</text>
+          <text x="20" y="24" font-size="12" text-anchor="middle" fill="#333">v/(m·s⁻¹)</text>
+          <!-- 网格虚线 -->
+          <line x1="100" y1="170" x2="100" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="160" y1="170" x2="160" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="220" y1="170" x2="220" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="130" x2="340" y2="130" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="90" x2="340" y2="90" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="50" x2="340" y2="50" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <!-- v-t 折线: (0,2) -> (2s,6) -> (4s,6) -> (6s,2) -->
+          <circle cx="40" cy="130" r="4" fill="#c0392b"/>
+          <circle cx="100" cy="50" r="4" fill="#c0392b"/>
+          <circle cx="160" cy="50" r="4" fill="#c0392b"/>
+          <circle cx="220" cy="130" r="4" fill="#c0392b"/>
+          <polyline points="40,130 100,50 160,50 220,130" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求 0–2s 内的加速度；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求 4–6s 内的加速度；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 判断各段的运动性质（加速/减速/匀速）。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- q20 -->
+  <div class="question calc-question" id="q20">
+    <div class="q-head">23.（12分）</div>
+    <div class="q-body">
+      <p>打点计时器实验中，某同学得到一条纸带，如下图所示（各计数点间的时间间隔 \(T=0.1\text{s}\)）：</p>
+      <div style="text-align:center; margin:8px 0; font-family:'Courier New',monospace; font-size:14px; letter-spacing:2px;">
+        A·————B————C————D————E
+        <br><span style="font-size:12px; color:#666;">
+        AB=2.5cm &nbsp; BC=3.5cm &nbsp; CD=4.5cm &nbsp; DE=5.5cm
+        </span>
+      </div>
+      <div class="sub-q"><span class="sq-label">(1)</span> 打点计时器的工作电压和频率是多少？（2分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求 B 点的瞬时速度大小；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求 C 点的瞬时速度大小；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(4)</span> 求纸带运动的加速度。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- ======================== 交卷按钮 ======================== -->
+  <div class="submit-bar">
+    <button onclick="submitExam()">提交试卷（Ctrl+Enter）</button>
+    <button onclick="clearAnswers()" style="background:#888; margin-left:8px;">清空答案</button>
+    <p style="margin-top:6px; font-size:12px; color:#999;">按下 Ctrl+Enter 也可提交</p>
+  </div>
+
+  <!-- ======================== 参考答案 ======================== -->
+  <div class="answer-section">
+    <h2>参考答案与解析</h2>
+    <button class="toggle-answer-btn" onclick="toggleAnswer()">显示答案</button>
+    <div id="answerContent" style="display:none;">
+
+      <!-- 单选题 -->
+      <div class="ans-block">
+        <div class="ans-q">一、单项选择题（每题3分）</div>
+        <div class="ans-body">
+          <p><span class="ans-key">1.【A】</span> 质点是理想化模型，实际不存在。能否看成质点取决于研究问题，与体积大小无关。研究地球公转时地球可看成质点。</p>
+          <p><span class="ans-key">2.【C】</span> 乘客看到树木向后运动，是以自己或列车为参考系。</p>
+          <p><span class="ans-key">3.【D】</span> 时刻对应时间点，时间间隔对应时间段。8:00是时刻，百米赛跑成绩10.2秒、运行4小时、休息10分钟均为时间间隔。</p>
+          <p><span class="ans-key">4.【A】</span> 位移大小为起点到终点的直线距离。\(x = \sqrt{3^2 + 4^2} = 5\,\text{m}\)。</p>
+          <p><span class="ans-key">5.【B】</span> 跑一圈回到起点，初末位置重合，位移为 0；路程为 400m。</p>
+          <p><span class="ans-key">6.【B】</span> 平均速度 \(\bar{v} = \Delta x / \Delta t\)，是位移与时间的比值，方向与位移方向相同。</p>
+          <p><span class="ans-key">7.【A】</span> 瞬时速度是矢量，速率是标量，A正确B错误。汽车速度计显示的是瞬时速率，C错误。瞬时速度不是平均速度，D错误。</p>
+          <p><span class="ans-key">8.【C】</span> 加速度的负号只表示方向与正方向相反。加速还是减速要看 \(a\) 与 \(v\) 的方向关系，不是看 \(a\) 的符号。</p>
+          <p><span class="ans-key">9.【A】</span> \(a = 3\,\text{m/s}^2\) 表示速度每秒增加 3m/s（当 \(a\) 与 \(v\) 同向时）。</p>
+          <p><span class="ans-key">10.【B】</span> 电磁打点计时器使用交流 6V 以下电源，频率 50Hz，周期 0.02s。</p>
+        </div>
+      </div>
+
+      <!-- 多选题 -->
+      <div class="ans-block">
+        <div class="ans-q">二、多项选择题（每题4分）</div>
+        <div class="ans-body">
+          <p><span class="ans-key">11.【B、C】</span> 研究地球公转和火车平均速度时，物体的形状和大小可以忽略，能看作质点。研究自转和旋转时不能。</p>
+          <p><span class="ans-key">12.【A、B、D】</span> 位移是矢量，路程是标量。单向直线运动时位移大小等于路程。位移大小不大于路程（可等于），C说"一定小于"错误。</p>
+          <p><span class="ans-key">13.【A、B、C】</span> 加速度减小时，只要 \(a\) 与 \(v\) 同向，速度仍在增加（只是增加得慢了），D错误。</p>
+        </div>
+      </div>
+
+      <!-- 填空题 -->
+      <div class="ans-block">
+        <div class="ans-q">三、填空题（每题3分）</div>
+        <div class="ans-body">
+          <p><span class="ans-key">14.【能】</span> 研究百米赛跑成绩时，关注的是整体用时，形状大小可以忽略。</p>
+          <p><span class="ans-key">15.【①④；②③】</span> 时刻指某一瞬间（第2秒末、5:00），时间间隔指一段时间（前3秒、第4秒内）。</p>
+          <p><span class="ans-key">16.【6；14】</span> 位移：\(10 - 4 = 6\,\text{m}\)（方向从A指向C）。路程：\(10 + 4 = 14\,\text{m}\)。</p>
+          <p><span class="ans-key">17.【4】</span> \(\bar{v} = \Delta x / \Delta t = 20/5 = 4\,\text{m/s}\)。</p>
+          <p><span class="ans-key">18.【2】</span> \(a = \Delta v / \Delta t = (10 - 2) / 4 = 2\,\text{m/s}^2\)。</p>
+          <p><span class="ans-key">19.【0.02】</span> \(T = 1/f = 1/50 = 0.02\,\text{s}\)。</p>
+        </div>
+      </div>
+
+      <!-- 解答题 -->
+      <div class="ans-block">
+        <div class="ans-q">四、解答题</div>
+        <div class="ans-body">
+          <p><span class="ans-key">20.（8分）</span></p>
+          <p style="padding-left:16px;">(1) 位移大小：\(x = \sqrt{6^2 + 8^2} = 10\,\text{m}\)（2分），方向：东偏北，与正东方向夹角 \(\theta = \arctan(8/6) \approx 53^\circ\)（2分）</p>
+          <p style="padding-left:16px;">(2) 路程：\(s = 6 + 8 = 14\,\text{m}\)（2分）</p>
+          <p style="padding-left:16px;">(3) 平均速度：\(\bar{v} = x / t = 10 / 10 = 1\,\text{m/s}\)（2分）</p>
+
+          <p><span class="ans-key">21.（10分）</span></p>
+          <p style="padding-left:16px;">(1) 前2s内位移：\(x = 5 + 10 = 15\,\text{m}\)（1分），\(\bar{v} = 15/2 = 7.5\,\text{m/s}\)（3分）</p>
+          <p style="padding-left:16px;">(2) 第3s内位移为15m，平均速度 \(\bar{v} = 15/1 = 15\,\text{m/s}\)（3分）</p>
+          <p style="padding-left:16px;">(3) 不能判断（1分）。因为不知道每1s内的具体运动情况，可能是匀速、加速或变速，仅凭三段位移无法确定是否为匀变速（2分）。</p>
+
+          <p><span class="ans-key">22.（10分）</span></p>
+          <p style="padding-left:16px;">(1) 0–2s：\(a_1 = (6-2)/2 = 2\,\text{m/s}^2\)（3分）</p>
+          <p style="padding-left:16px;">(2) 4–6s：\(a_2 = (2-6)/2 = -2\,\text{m/s}^2\)（3分）</p>
+          <p style="padding-left:16px;">(3) 0–2s：\(a&gt;0\) 且 \(v&gt;0\)，\(a\) 与 \(v\) 同向，做加速运动（2分）<br>
+             2–4s：速度不变，做匀速运动（1分）<br>
+             4–6s：\(a&lt;0\) 且 \(v&gt;0\)，\(a\) 与 \(v\) 反向，做减速运动（1分）</p>
+
+          <p><span class="ans-key">23.（12分）</span></p>
+          <p style="padding-left:16px;">(1) 工作电压为交流 6V（1分），频率为 50Hz（1分）</p>
+          <p style="padding-left:16px;">(2) \(v_B = \overline{AC}/2T = (2.5+3.5) / (2 \times 0.1) = 6.0/0.2 = 0.30\,\text{m/s}\)（3分）</p>
+          <p style="padding-left:16px;">(3) \(v_C = \overline{BD}/2T = (3.5+4.5) / (2 \times 0.1) = 8.0/0.2 = 0.40\,\text{m/s}\)（3分）</p>
+          <p style="padding-left:16px;">(4) 逐差法：\(a = (v_C - v_B)/T = (0.40 - 0.30)/0.1 = 1.0\,\text{m/s}^2\)（4分）<br>
+             或 \(a = (DE - AB) / (3T^2) = (5.5-2.5) / (3 \times 0.01) = 3.0/0.03 = 1.0\,\text{m/s}^2\)</p>
+        </div>
+      </div>
+
+    </div><!-- /answerContent -->
+  </div><!-- /answer-section -->
+
+</div><!-- /paper -->
+
+<!-- ======================== JavaScript ======================== -->
+<script>
+// ===== 答案自动缓存（防手机切后台丢失） =====
+const PAPER_ID = 'physics_grade10_ch1';
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  // 单选/多选的选中状态
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  // 填空输入
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  // 解答题区域
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('.question, [data-qid]');
+    var key = parent ? (parent.id || parent.getAttribute('data-qid')) : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    // 恢复单选
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    // 恢复多选
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    // 恢复填空
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key);
+        if (!el) el = document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    // 恢复解答题
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('#' + key + ' textarea') || document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+  var scoreEl = document.getElementById('displayScore');
+  if (scoreEl) scoreEl.textContent = '______';
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+// 页面恢复 + 自动保存
+restoreAnswers();
+setupAutoSave();
+
+// ===== 参考答案密码锁 =====
+let answerUnlocked = false;
+
+function toggleAnswer() {
+  const content = document.getElementById('answerContent');
+  const btn = document.querySelector('.toggle-answer-btn');
+
+  if (answerUnlocked) {
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      btn.textContent = '隐藏答案';
+    } else {
+      content.style.display = 'none';
+      btn.textContent = '显示答案';
+    }
+    return;
+  }
+
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    answerUnlocked = true;
+    content.style.display = 'block';
+    btn.textContent = '隐藏答案';
+  } else if (pwd !== null) {
+    alert('密码错误，无法查看参考答案！');
+  }
+}
+
+// ===== Ctrl+Enter 提交 =====
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    submitExam();
+  }
+});
+
+// ===== 提交试卷（提示并滚动到顶部） =====
+function submitExam() {
+  saveAnswers();  // 提交前确保保存
+  // 收集单选题答案
+  const singleAns = {};
+  const singleKeys = { q1:'A', q2:'C', q3:'D', q4:'A', q5:'B', q6:'B', q7:'A', q8:'C', q9:'A', q10:'B' };
+  let singleScore = 0;
+  let singleResult = '';
+  for (let i = 1; i <= 10; i++) {
+    const name = 'q' + i;
+    const sel = document.querySelector('input[name="' + name + '"]:checked');
+    const userAns = sel ? sel.value : '未选';
+    const correct = singleKeys[name];
+    const isCorrect = (userAns === correct);
+    if (isCorrect) singleScore += 3;
+    singleResult += (i + '.' + userAns + (isCorrect ? '✓' : '✗(' + correct + ')') + ' ');
+  }
+
+  // 收集多选题答案
+  const multiKeys = { q101:['B','C'], q102:['A','B','D'], q103:['A','B','C'] };
+  let multiScore = 0;
+  let multiResult = '';
+  for (const name in multiKeys) {
+    const checks = document.querySelectorAll('input[name="' + name + '"]:checked');
+    const userVals = Array.from(checks).map(c => c.value).sort();
+    const correctVals = multiKeys[name].slice().sort();
+    const match = (userVals.length === correctVals.length && userVals.every((v,i) => v === correctVals[i]));
+    if (match) multiScore += 4;
+    else if (userVals.length > 0 && userVals.every(v => multiKeys[name].includes(v))) multiScore += 2;
+    multiResult += (name.replace('q','') + '.' + (userVals.join(',') || '未选') + (match ? '✓' : '') + ' ');
+  }
+
+  // 填空题（仅展示，不计分）
+  const fillIds = ['fill_q11','fill_q12a','fill_q12b','fill_q13a','fill_q13b','fill_q14','fill_q15','fill_q16'];
+  let fillResult = '';
+  fillIds.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) fillResult += (id + '=' + (el.value || '空') + ' ');
+  });
+
+  const totalScore = singleScore + multiScore;
+
+  alert(
+    '===== 提交成功 =====\n\n' +
+    '【单选题】' + singleScore + '/30分\n' + singleResult + '\n\n' +
+    '【多选题】' + multiScore + '/12分\n' + multiResult + '\n\n' +
+    '【填空题】（请对照答案自行批改）\n' + fillResult + '\n\n' +
+    '【当前总分】' + totalScore + '/100分（不含填空和解答题）\n\n' +
+    '参考答案已加密，请点击下方"显示答案"按钮查看。'
+  );
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<!-- ======================== MathJax 3 ======================== -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax',
+    processHtmlClass: 'has-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" integrity="sha384-3zM7/8QKzP+4zvx22aP6C8ghQGATV04Hh2gG8lsh3kI5GdC4sL8F9bJOJmxH8s9" crossorigin="anonymous"></script>
+
+</body>
+</html>

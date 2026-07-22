@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一化学（人教版）第一章 物质及其变化</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Times New Roman', '宋体', SimSun, serif;
+  font-size: 14px;
+  line-height: 1.8;
+  background: #f0f0f0;
+  padding: 20px;
+  color: #222;
+}
+.paper {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20mm 25mm;
+  box-shadow: 0 0 12px rgba(0,0,0,.12);
+  min-height: 297mm;
+  position: relative;
+}
+
+/* ===== Header ===== */
+.header { text-align: center; margin-bottom: 18px; border-bottom: 2px solid #333; padding-bottom: 14px; }
+.header h1 { font-size: 20px; font-weight: bold; letter-spacing: 2px; margin-bottom: 6px; }
+.header .sub { font-size: 15px; color: #555; margin-bottom: 4px; }
+.header .info-bar { font-size: 14px; color: #333; margin: 4px 0; }
+.student-info { display: flex; justify-content: center; gap: 24px; margin-top: 10px; flex-wrap: wrap; }
+.student-info label { font-size: 14px; }
+.student-info input { border: none; border-bottom: 1px solid #333; width: 90px; font-size: 14px; padding: 0 4px; background: transparent; outline: none; }
+
+/* ===== Sections ===== */
+.section { margin-bottom: 20px; }
+.section h2 { font-size: 16px; font-weight: bold; margin: 16px 0 10px; padding-left: 6px; border-left: 4px solid #1a5276; }
+
+/* ===== Questions ===== */
+.question { margin-bottom: 14px; padding: 8px 10px; border-left: 3px solid transparent; }
+.question:hover { border-left-color: #85c1e9; }
+.q-title { font-weight: bold; margin-bottom: 4px; }
+.q-text { margin-bottom: 6px; text-indent: 2em; }
+
+/* Options */
+.options { margin: 6px 0 4px 2em; }
+.options label { display: block; cursor: pointer; padding: 2px 4px; }
+.options label:hover { background: #eaf2f8; }
+.options input[type="radio"], .options input[type="checkbox"] { margin-right: 6px; vertical-align: middle; }
+
+/* Fill-in blanks */
+.fill-question .q-text { text-indent: 0; }
+.fill-blank {
+  border: none; border-bottom: 1.5px solid #333;
+  width: 100px; text-align: center; font-size: 14px;
+  padding: 0 4px; margin: 0 2px; background: transparent; outline: none;
+  font-family: inherit;
+}
+.fill-blank:focus { border-bottom-color: #2980b9; border-bottom-width: 2px; }
+.fill-blank.correct { border-bottom-color: #27ae60; background: #eafaf1; }
+.fill-blank.wrong { border-bottom-color: #e74c3c; background: #fdedec; }
+
+/* Calc textarea */
+.calc-question textarea {
+  width: 100%; min-height: 70px; margin-top: 6px;
+  border: 1px solid #bbb; border-radius: 4px; padding: 8px;
+  font-family: inherit; font-size: 14px; resize: vertical;
+  outline: none; line-height: 1.6;
+}
+.calc-question textarea:focus { border-color: #2980b9; box-shadow: 0 0 3px rgba(41,128,185,.3); }
+.calc-question .q-text { text-indent: 0; }
+.sub-q { margin: 6px 0 4px 1.5em; }
+
+/* ===== Buttons ===== */
+.btn-group { text-align: center; margin: 20px 0 10px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-group button {
+  padding: 8px 22px; font-size: 15px; border: none; border-radius: 4px;
+  cursor: pointer; font-family: inherit; transition: background .2s;
+}
+.btn-submit { background: #1a5276; color: #fff; }
+.btn-submit:hover { background: #154360; }
+.btn-clear { background: #922b21; color: #fff; }
+.btn-clear:hover { background: #7b241c; }
+.btn-reveal { background: #7d6608; color: #fff; }
+.btn-reveal:hover { background: #665705; }
+
+/* ===== Result ===== */
+#result { text-align: center; font-size: 16px; font-weight: bold; margin: 12px 0; padding: 10px; border-radius: 4px; display: none; }
+#result.show { display: block; }
+#result.pass { background: #d5f5e3; color: #1e8449; }
+#result.fail { background: #fadbd8; color: #922b21; }
+
+/* ===== Answer Section ===== */
+.answer-section {
+  margin-top: 24px; padding: 16px 20px; background: #fef9e7;
+  border: 1px solid #f9e79f; border-radius: 6px; display: none;
+}
+.answer-section.show { display: block; }
+.answer-section h3 { font-size: 17px; margin-bottom: 12px; border-bottom: 1px solid #f9e79f; padding-bottom: 6px; }
+.answer-item { margin-bottom: 10px; padding: 6px 8px; border-left: 3px solid #f9e79f; }
+.answer-item .ans-label { font-weight: bold; color: #1a5276; }
+.answer-item .ans-key { color: #922b21; font-weight: bold; }
+.answer-item .ans-desc { color: #555; font-size: 13px; margin-top: 2px; }
+
+/* Status feedback on question */
+.question.correct-q { border-left-color: #27ae60; background: #f0faf4; }
+.question.wrong-q { border-left-color: #e74c3c; background: #fdf2f2; }
+
+/* ===== Print ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper { box-shadow: none; padding: 15mm 20mm; max-width: 100%; }
+  .btn-group, #result, .answer-section, .student-info input { display: none; }
+  .student-info { display: flex; }
+  .student-info input { border-bottom: 1px solid #000; display: inline-block; }
+  .question:hover { border-left-color: transparent; }
+  .no-print { display: none; }
+  .section { page-break-inside: avoid; }
+  .fill-blank { border-bottom: 1.5px solid #000; }
+  @page { size: A4; margin: 15mm; }
+}
+
+/* ===== Misc ===== */
+.clearfix::after { content: ''; display: table; clear: both; }
+.score-badge { display: inline-block; background: #1a5276; color: #fff; padding: 0 8px; border-radius: 3px; font-size: 12px; margin-left: 6px; }
+.total-score { font-size: 18px; text-align: center; padding: 10px; margin: 10px 0; background: #eaf2f8; border-radius: 4px; }
+.password-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); z-index: 999; display: flex; align-items: center; justify-content: center; }
+.password-modal-inner { background: #fff; padding: 30px; border-radius: 8px; text-align: center; max-width: 320px; width: 90%; }
+.password-modal-inner h3 { margin-bottom: 12px; }
+.password-modal-inner input { padding: 6px 10px; font-size: 16px; width: 120px; text-align: center; margin-bottom: 12px; border: 1px solid #bbb; border-radius: 4px; outline: none; }
+.password-modal-inner input:focus { border-color: #2980b9; }
+.password-modal-inner .pm-btn { padding: 6px 16px; margin: 0 4px; cursor: pointer; border: none; border-radius: 4px; font-size: 14px; }
+.pm-confirm { background: #1a5276; color: #fff; }
+.pm-cancel { background: #bbb; color: #333; }
+</style>
+</head>
+<body>
+
+<div class="paper" id="paper">
+
+  <!-- ==================== HEADER ==================== -->
+  <div class="header">
+    <h1>高一化学（人教版必修第一册）</h1>
+    <div class="sub">第一章 &nbsp; 物质及其变化 &nbsp; 单元检测卷</div>
+    <div class="info-bar">
+      <strong>总分：100分</strong> &nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp; 命题范围：第一章
+    </div>
+    <div class="student-info">
+      <label>姓名：<input type="text" id="student-name" autocomplete="off"></label>
+      <label>班级：<input type="text" id="student-class" autocomplete="off" style="width:70px"></label>
+      <label>学号：<input type="text" id="student-id" autocomplete="off" style="width:80px"></label>
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section">
+    <h2>一、单选题（共10题，每题3分，共30分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题只有一个选项符合题意。</p>
+
+    <!-- q1 -->
+    <div class="question" data-qid="q1" data-type="single" data-answer="B">
+      <div class="q-title">1.</div>
+      <div class="q-text">下列物质中，属于纯净物的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A．盐酸</label>
+        <label><input type="radio" name="q1" value="B"> B．液氯</label>
+        <label><input type="radio" name="q1" value="C"> C．漂白粉</label>
+        <label><input type="radio" name="q1" value="D"> D．空气</label>
+      </div>
+    </div>
+
+    <!-- q2 -->
+    <div class="question" data-qid="q2" data-type="single" data-answer="B">
+      <div class="q-title">2.</div>
+      <div class="q-text">当光束通过下列分散系时，能观察到丁达尔效应的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A．NaCl溶液</label>
+        <label><input type="radio" name="q2" value="B"> B．Fe(OH)\(_3\)胶体</label>
+        <label><input type="radio" name="q2" value="C"> C．蔗糖溶液</label>
+        <label><input type="radio" name="q2" value="D"> D．CuSO\(_4\)溶液</label>
+      </div>
+    </div>
+
+    <!-- q3 -->
+    <div class="question" data-qid="q3" data-type="single" data-answer="C">
+      <div class="q-title">3.</div>
+      <div class="q-text">下列物质中，属于电解质的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> A．铜</label>
+        <label><input type="radio" name="q3" value="B"> B．蔗糖</label>
+        <label><input type="radio" name="q3" value="C"> C．NaCl</label>
+        <label><input type="radio" name="q3" value="D"> D．乙醇</label>
+      </div>
+    </div>
+
+    <!-- q4 -->
+    <div class="question" data-qid="q4" data-type="single" data-answer="D">
+      <div class="q-title">4.</div>
+      <div class="q-text">下列离子方程式中，正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> A．铁与稀盐酸反应：2Fe + 6H\(^+\) = 2Fe\(^{3+}\) + 3H\(_2\)↑</label>
+        <label><input type="radio" name="q4" value="B"> B．铜与硝酸银反应：Cu + Ag\(^+\) = Cu\(^{2+}\) + Ag</label>
+        <label><input type="radio" name="q4" value="C"> C．碳酸钙与盐酸反应：CO\(_3^{2-}\) + 2H\(^+\) = CO\(_2\)↑ + H\(_2\)O</label>
+        <label><input type="radio" name="q4" value="D"> D．氢氧化钠与盐酸反应：OH\(^-\) + H\(^+\) = H\(_2\)O</label>
+      </div>
+    </div>
+
+    <!-- q5 -->
+    <div class="question" data-qid="q5" data-type="single" data-answer="C">
+      <div class="q-title">5.</div>
+      <div class="q-text">下列各组离子在溶液中能大量共存的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> A．H\(^+\)、Cl\(^-\)、OH\(^-\)、Na\(^+\)</label>
+        <label><input type="radio" name="q5" value="B"> B．Ba\(^{2+}\)、Cl\(^-\)、SO\(_4^{2-}\)、K\(^+\)</label>
+        <label><input type="radio" name="q5" value="C"> C．Cu\(^{2+}\)、NO\(_3^-\)、SO\(_4^{2-}\)、K\(^+\)</label>
+        <label><input type="radio" name="q5" value="D"> D．H\(^+\)、Cl\(^-\)、CO\(_3^{2-}\)、Na\(^+\)</label>
+      </div>
+    </div>
+
+    <!-- q6 -->
+    <div class="question" data-qid="q6" data-type="single" data-answer="B">
+      <div class="q-title">6.</div>
+      <div class="q-text">氧化还原反应的特征是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q6" value="A"> A．有电子转移</label>
+        <label><input type="radio" name="q6" value="B"> B．有化合价升降</label>
+        <label><input type="radio" name="q6" value="C"> C．有氧参与</label>
+        <label><input type="radio" name="q6" value="D"> D．有新物质生成</label>
+      </div>
+    </div>
+
+    <!-- q7 -->
+    <div class="question" data-qid="q7" data-type="single" data-answer="B">
+      <div class="q-title">7.</div>
+      <div class="q-text">在反应 2Na + Cl\(_2\) = 2NaCl 中，氧化剂是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A．Na</label>
+        <label><input type="radio" name="q7" value="B"> B．Cl\(_2\)</label>
+        <label><input type="radio" name="q7" value="C"> C．NaCl</label>
+        <label><input type="radio" name="q7" value="D"> D．Na\(^+\)</label>
+      </div>
+    </div>
+
+    <!-- q8 -->
+    <div class="question" data-qid="q8" data-type="single" data-answer="C">
+      <div class="q-title">8.</div>
+      <div class="q-text">下列反应中，水作还原剂的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q8" value="A"> A．2Na + 2H\(_2\)O = 2NaOH + H\(_2\)↑</label>
+        <label><input type="radio" name="q8" value="B"> B．Cl\(_2\) + H\(_2\)O ⇌ HCl + HClO</label>
+        <label><input type="radio" name="q8" value="C"> C．2F\(_2\) + 2H\(_2\)O = 4HF + O\(_2\)</label>
+        <label><input type="radio" name="q8" value="D"> D．CO\(_2\) + H\(_2\)O = H\(_2\)CO\(_3\)</label>
+      </div>
+    </div>
+
+    <!-- q9 -->
+    <div class="question" data-qid="q9" data-type="single" data-answer="B">
+      <div class="q-title">9.</div>
+      <div class="q-text">下列关于Fe(OH)\(_3\)胶体的制备，说法正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q9" value="A"> A．将FeCl\(_3\)溶液滴入热水中，持续加热</label>
+        <label><input type="radio" name="q9" value="B"> B．将FeCl\(_3\)饱和溶液滴入沸水中，继续煮沸至红褐色</label>
+        <label><input type="radio" name="q9" value="C"> C．将FeCl\(_3\)溶液滴入NaOH溶液中</label>
+        <label><input type="radio" name="q9" value="D"> D．将Fe(OH)\(_3\)固体溶于水中</label>
+      </div>
+    </div>
+
+    <!-- q10 -->
+    <div class="question" data-qid="q10" data-type="single" data-answer="B">
+      <div class="q-title">10.</div>
+      <div class="q-text">下列转化中，需要加入氧化剂才能实现的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q10" value="A"> A．Cl\(_2\) → Cl\(^-\)</label>
+        <label><input type="radio" name="q10" value="B"> B．Fe\(^{2+}\) → Fe\(^{3+}\)</label>
+        <label><input type="radio" name="q10" value="C"> C．H\(^+\) → H\(_2\)</label>
+        <label><input type="radio" name="q10" value="D"> D．Cu\(^{2+}\) → Cu</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section">
+    <h2>二、多选题（共3题，每题4分，共12分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题有多个选项符合题意。全对得4分，部分选对得2分，有错选得0分。</p>
+
+    <!-- q101 -->
+    <div class="question" data-qid="q101" data-type="multi" data-answer='["B","C"]'>
+      <div class="q-title">11.</div>
+      <div class="q-text">下列关于胶体的说法正确的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q101" value="A"> A．胶体是一种稳定的分散系，不会发生聚沉</label>
+        <label><input type="checkbox" name="q101" value="B"> B．Fe(OH)\(_3\)胶体可以透过滤纸</label>
+        <label><input type="checkbox" name="q101" value="C"> C．丁达尔效应是胶体粒子对光的散射产生的</label>
+        <label><input type="checkbox" name="q101" value="D"> D．溶液和胶体的本质区别是能否产生丁达尔效应</label>
+      </div>
+    </div>
+
+    <!-- q102 -->
+    <div class="question" data-qid="q102" data-type="multi" data-answer='["B","C","D"]'>
+      <div class="q-title">12.</div>
+      <div class="q-text">下列离子方程式书写正确的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q102" value="A"> A．碳酸钙与盐酸反应：CO\(_3^{2-}\) + 2H\(^+\) = CO\(_2\)↑ + H\(_2\)O</label>
+        <label><input type="checkbox" name="q102" value="B"> B．氢氧化钡与稀硫酸反应：Ba\(^{2+}\) + 2OH\(^-\) + 2H\(^+\) + SO\(_4^{2-}\) = BaSO\(_4\)↓ + 2H\(_2\)O</label>
+        <label><input type="checkbox" name="q102" value="C"> C．铁与硫酸铜反应：Fe + Cu\(^{2+}\) = Fe\(^{2+}\) + Cu</label>
+        <label><input type="checkbox" name="q102" value="D"> D．碳酸氢钠与盐酸反应：HCO\(_3^-\) + H\(^+\) = CO\(_2\)↑ + H\(_2\)O</label>
+      </div>
+    </div>
+
+    <!-- q103 -->
+    <div class="question" data-qid="q103" data-type="multi" data-answer='["A","B","D"]'>
+      <div class="q-title">13.</div>
+      <div class="q-text">关于氧化还原反应的说法正确的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q103" value="A"> A．氧化剂发生还原反应</label>
+        <label><input type="checkbox" name="q103" value="B"> B．失电子的物质是还原剂</label>
+        <label><input type="checkbox" name="q103" value="C"> C．有单质生成的反应一定是氧化还原反应</label>
+        <label><input type="checkbox" name="q103" value="D"> D．置换反应一定是氧化还原反应</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section">
+    <h2>三、填空题（共6题，每题3分，共18分）</h2>
+
+    <!-- q11 (Display 14) -->
+    <div class="question fill-question" data-qid="q11" data-type="fill">
+      <div class="q-title">14. <span style="font-weight:normal">将下列物质进行分类（填序号）：①盐酸　②液氯　③NaCl　④蔗糖　⑤Cu</span></div>
+      <div class="q-text">
+        属于电解质的是 <input type="text" class="fill-blank" id="q11-0" data-answer="③" data-alt="3|III" style="width:50px" autocomplete="off">，
+        属于非电解质的是 <input type="text" class="fill-blank" id="q11-1" data-answer="④" data-alt="4|IV" style="width:50px" autocomplete="off">。
+      </div>
+    </div>
+
+    <!-- q12 (Display 15) -->
+    <div class="question fill-question" data-qid="q12" data-type="fill">
+      <div class="q-title">15. <span style="font-weight:normal">Fe(OH)\(_3\)胶体的制备方法是：</span></div>
+      <div class="q-text">
+        向 <input type="text" class="fill-blank" id="q12-0" data-answer="沸水" data-alt="沸腾的水|开水" style="width:90px" autocomplete="off"> 中逐滴加入
+        <input type="text" class="fill-blank" id="q12-1" data-answer="FeCl₃饱和溶液" data-alt="饱和FeCl₃溶液|FeCl3饱和溶液|饱和氯化铁溶液" style="width:130px" autocomplete="off">，
+        继续煮沸至溶液呈红褐色，停止加热。
+      </div>
+    </div>
+
+    <!-- q13 (Display 16) -->
+    <div class="question fill-question" data-qid="q13" data-type="fill">
+      <div class="q-title">16. <span style="font-weight:normal">在 H\(_2\) + CuO \(\xrightarrow{\triangle}\) Cu + H\(_2\)O 反应中，</span></div>
+      <div class="q-text">
+        被氧化的元素是 <input type="text" class="fill-blank" id="q13-0" data-answer="H" data-alt="氢" style="width:50px" autocomplete="off">，
+        被还原的元素是 <input type="text" class="fill-blank" id="q13-1" data-answer="Cu" data-alt="铜" style="width:50px" autocomplete="off">。
+      </div>
+    </div>
+
+    <!-- q14 (Display 17) -->
+    <div class="question fill-question" data-qid="q14" data-type="fill">
+      <div class="q-title">17. <span style="font-weight:normal">在反应 2KMnO\(_4\) + 16HCl = 2KCl + 2MnCl\(_2\) + 5Cl\(_2\)↑ + 8H\(_2\)O 中，</span></div>
+      <div class="q-text">
+        氧化剂是 <input type="text" class="fill-blank" id="q14-0" data-answer="KMnO₄" data-alt="KMnO4|高锰酸钾" style="width:90px" autocomplete="off">，
+        还原剂是 <input type="text" class="fill-blank" id="q14-1" data-answer="HCl" data-alt="盐酸|氯化氢" style="width:70px" autocomplete="off">。
+      </div>
+    </div>
+
+    <!-- q15 (Display 18) -->
+    <div class="question fill-question" data-qid="q15" data-type="fill">
+      <div class="q-title">18. <span style="font-weight:normal">下列物质中：①NaOH　②CH\(_3\)COOH　③H\(_2\)CO\(_3\)　④HCl</span></div>
+      <div class="q-text">
+        属于强电解质的是 <input type="text" class="fill-blank" id="q15-0" data-answer="①④" data-alt="1 4|①,④|1,4|① ④" style="width:60px" autocomplete="off">（填序号），
+        属于弱电解质的是 <input type="text" class="fill-blank" id="q15-1" data-answer="②③" data-alt="2 3|②,③|2,3|② ③" style="width:60px" autocomplete="off">。
+      </div>
+    </div>
+
+    <!-- q16 (Display 19) -->
+    <div class="question fill-question" data-qid="q16" data-type="fill">
+      <div class="q-title">19. <span style="font-weight:normal">某溶液中可能含有Cl\(^-\)、CO\(_3^{2-}\)、SO\(_4^{2-}\)，加入稀盐酸后产生无色无味的气体，则溶液中一定有</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q16-0" data-answer="CO₃²⁻" data-alt="CO3^2-|CO32-|碳酸根|CO3 2-" style="width:100px" autocomplete="off"> 离子。
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section">
+    <h2>四、解答题（共4题，共40分）</h2>
+
+    <!-- q17 (Display 20) -->
+    <div class="question calc-question" data-qid="q17" data-type="calc">
+      <div class="q-title">20. <span style="font-weight:normal">（8分）请用树状分类法对下列物质进行分类，画出分类图：</span></div>
+      <div class="q-text">Na、Na\(_2\)O、NaOH、Na\(_2\)CO\(_3\)、NaHCO\(_3\)、NaCl</div>
+      <div class="sub-q">要求：至少分三层（单质/化合物 → 氧化物/碱/盐 → 进一步细分）。</div>
+      <textarea id="q17" placeholder="请在下方作答……"></textarea>
+    </div>
+
+    <!-- q18 (Display 21) -->
+    <div class="question calc-question" data-qid="q18" data-type="calc">
+      <div class="q-title">21. <span style="font-weight:normal">（10分）写出下列反应的离子方程式：</span></div>
+      <div class="sub-q">(1)（3分）碳酸钠与足量盐酸反应</div>
+      <textarea id="q18-1" placeholder="(1)" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（4分）氢氧化钡溶液与稀硫酸反应</div>
+      <textarea id="q18-2" placeholder="(2)" style="min-height:50px"></textarea>
+      <div class="sub-q">(3)（3分）铁片插入硝酸银溶液中</div>
+      <textarea id="q18-3" placeholder="(3)" style="min-height:50px"></textarea>
+    </div>
+
+    <!-- q19 (Display 22) -->
+    <div class="question calc-question" data-qid="q19" data-type="calc">
+      <div class="q-title">22. <span style="font-weight:normal">（10分）用双线桥法分析下列氧化还原反应，标出电子转移方向和数目，并指出氧化剂和还原剂：</span></div>
+      <div class="q-text">2KMnO\(_4\) + 16HCl = 2KCl + 2MnCl\(_2\) + 5Cl\(_2\)↑ + 8H\(_2\)O</div>
+      <div class="sub-q">(1)（5分）用双线桥标出电子转移（用文字描述在下方空白处）</div>
+      <textarea id="q19-1" placeholder="(1) 双线桥分析……" style="min-height:60px"></textarea>
+      <div class="sub-q">(2)（2分）氧化剂：<input type="text" id="q19-oxidizer" data-answer="KMnO₄" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px" autocomplete="off"> &nbsp; 还原剂：<input type="text" id="q19-reducer" data-answer="HCl" style="border:none;border-bottom:1px solid #333;width:70px;padding:0 4px" autocomplete="off"></div>
+      <div class="sub-q">(3)（3分）当有1mol KMnO\(_4\)参加反应时，转移电子的物质的量为 <input type="text" id="q19-mol" data-answer="5" data-alt="5mol|5 mol|5.0" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px" autocomplete="off"> mol。</div>
+    </div>
+
+    <!-- q20 (Display 23) -->
+    <div class="question calc-question" data-qid="q20" data-type="calc">
+      <div class="q-title">23. <span style="font-weight:normal">（12分）有一包白色固体粉末，可能含有NaCl、Na\(_2\)CO\(_3\)、Na\(_2\)SO\(_4\)中的一种或几种，现进行如下实验：</span></div>
+      <div class="sub-q">① 取少量固体粉末于试管中，加入足量蒸馏水，固体完全溶解，得到无色透明溶液。</div>
+      <div class="sub-q">② 向①所得溶液中加入过量稀盐酸，产生无色无味气体。</div>
+      <div class="sub-q">③ 继续向②所得溶液中滴加BaCl\(_2\)溶液，无明显现象。</div>
+      <div class="sub-q">④ 另取少量原始固体粉末，进行焰色试验，火焰呈黄色。</div>
+      <div class="sub-q" style="margin-top:6px;">(1)（2分）实验②中产生的气体是 <input type="text" id="q20-gas" data-answer="CO₂" data-alt="CO2|二氧化碳" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px" autocomplete="off">（写化学式）。</div>
+      <div class="sub-q">(2)（4分）由实验②可推断固体中一定含有 <input type="text" id="q20-comp1" data-answer="Na₂CO₃" data-alt="Na2CO3|碳酸钠" style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px" autocomplete="off">，理由是（用离子方程式表示）<input type="text" id="q20-ioneq" data-answer="CO₃²⁻+2H⁺=CO₂↑+H₂O" data-alt="CO3^2-+2H+=CO2↑+H2O|CO32-+2H+=CO2↑+H2O|CO3 2-+2H+=CO2+H2O" style="border:none;border-bottom:1px solid #333;width:300px;padding:0 4px;font-family:inherit" autocomplete="off"></div>
+      <div class="sub-q">(3)（2分）由实验③可推断固体中一定不含 <input type="text" id="q20-comp2" data-answer="Na₂SO₄" data-alt="Na2SO4|硫酸钠" style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px" autocomplete="off">。</div>
+      <div class="sub-q">(4)（4分）该白色固体粉末的组成是 <input type="text" id="q20-comp3" data-answer="一定含有Na₂CO₃，可能含有NaCl" data-alt="Na2CO3和NaCl的混合物|含有Na2CO3，可能含NaCl|一定含Na2CO3，可能含NaCl" style="border:none;border-bottom:1px solid #333;width:350px;padding:0 4px;font-family:inherit" autocomplete="off">。</div>
+    </div>
+  </div>
+
+  <!-- ==================== BUTTONS ==================== -->
+  <div class="btn-group no-print">
+    <button class="btn-submit" onclick="submitPaper()">提交试卷</button>
+    <button class="btn-clear" onclick="clearAll()">清空答案</button>
+    <button class="btn-reveal" onclick="showPasswordModal()">查看答案</button>
+  </div>
+
+  <div id="result"></div>
+
+  <!-- ==================== ANSWER SECTION ==================== -->
+  <div class="answer-section" id="answer-section">
+    <h3>📖 参考答案与解析</h3>
+
+    <div class="answer-item"><span class="ans-label">一、单选题</span></div>
+    <div class="answer-item"><span class="ans-label">1.</span> <span class="ans-key">B</span> —— <span class="ans-desc">液氯是纯净的Cl₂，盐酸是HCl水溶液（混合物），漂白粉是混合物，空气是混合物。</span></div>
+    <div class="answer-item"><span class="ans-label">2.</span> <span class="ans-key">B</span> —— <span class="ans-desc">丁达尔效应是胶体的特征现象，Fe(OH)₃胶体可以产生丁达尔效应。</span></div>
+    <div class="answer-item"><span class="ans-label">3.</span> <span class="ans-key">C</span> —— <span class="ans-desc">电解质是水溶液或熔融状态下能导电的化合物。铜是单质，蔗糖和乙醇是非电解质。</span></div>
+    <div class="answer-item"><span class="ans-label">4.</span> <span class="ans-key">D</span> —— <span class="ans-desc">A错，铁与盐酸生成Fe²⁺而非Fe³⁺；B错，电荷不守恒（Ag⁺系数应为2）；C错，CaCO₃难溶于水不能拆。</span></div>
+    <div class="answer-item"><span class="ans-label">5.</span> <span class="ans-key">C</span> —— <span class="ans-desc">A中H⁺+OH⁻→水；B中Ba²⁺+SO₄²⁻→沉淀；D中H⁺+CO₃²⁻→气体。</span></div>
+    <div class="answer-item"><span class="ans-label">6.</span> <span class="ans-key">B</span> —— <span class="ans-desc">特征：化合价变化（升降）。本质：电子转移。</span></div>
+    <div class="answer-item"><span class="ans-label">7.</span> <span class="ans-key">B</span> —— <span class="ans-desc">Cl₂得电子，化合价降低（0→-1），是氧化剂。</span></div>
+    <div class="answer-item"><span class="ans-label">8.</span> <span class="ans-key">C</span> —— <span class="ans-desc">F₂与H₂O反应中，H₂O中的O从-2价升到0价生成O₂，水被氧化，作还原剂。</span></div>
+    <div class="answer-item"><span class="ans-label">9.</span> <span class="ans-key">B</span> —— <span class="ans-desc">制备方法：FeCl₃饱和溶液滴入沸水中，继续煮沸至红褐色，停止加热。</span></div>
+    <div class="answer-item"><span class="ans-label">10.</span> <span class="ans-key">B</span> —— <span class="ans-desc">Fe²⁺→Fe³⁺化合价升高（+2→+3），需加氧化剂。A/C/D是化合价降低，需加还原剂。</span></div>
+
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">二、多选题</span></div>
+    <div class="answer-item"><span class="ans-label">11.</span> <span class="ans-key">B, C</span> —— <span class="ans-desc">A错，胶体介稳，可以聚沉。B对，胶体能透过滤纸（不能透过半透膜）。C对。D错，本质区别是分散质粒子大小。</span></div>
+    <div class="answer-item"><span class="ans-label">12.</span> <span class="ans-key">B, C, D</span> —— <span class="ans-desc">A错，CaCO₃难溶于水不能拆，应写化学式。B正确（注意系数配平）。C正确。D正确。</span></div>
+    <div class="answer-item"><span class="ans-label">13.</span> <span class="ans-key">A, B, D</span> —— <span class="ans-desc">A对，氧化剂得电子被还原，发生还原反应。B对。C错（如3O₂→2O₃有单质但化合价不变，不是氧化还原）。D对，置换反应一定有化合价变化。</span></div>
+
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">三、填空题</span></div>
+    <div class="answer-item"><span class="ans-label">14.</span> <span class="ans-key">③；④</span> —— <span class="ans-desc">NaCl是电解质（溶于水导电）；蔗糖是非电解质（水溶液和熔融都不导电）。盐酸是混合物，液氯和Cu是单质，不是电解质也不是非电解质。</span></div>
+    <div class="answer-item"><span class="ans-label">15.</span> <span class="ans-key">沸水；FeCl₃饱和溶液</span> —— <span class="ans-desc">FeCl₃ + 3H₂O \(\xrightarrow{沸水}\) Fe(OH)₃(胶体) + 3HCl</span></div>
+    <div class="answer-item"><span class="ans-label">16.</span> <span class="ans-key">H（氢）；Cu（铜）</span> —— <span class="ans-desc">H从0价升到+1价被氧化；Cu从+2价降到0价被还原。</span></div>
+    <div class="answer-item"><span class="ans-label">17.</span> <span class="ans-key">KMnO₄；HCl</span> —— <span class="ans-desc">KMnO₄中Mn从+7降到+2（得电子，氧化剂）；HCl中Cl从-1升到0（失电子，还原剂）。</span></div>
+    <div class="answer-item"><span class="ans-label">18.</span> <span class="ans-key">①④；②③</span> —— <span class="ans-desc">强电解质：完全电离（强酸、强碱、大部分盐）。NaOH是强碱，HCl是强酸。CH₃COOH和H₂CO₃是弱酸，部分电离。</span></div>
+    <div class="answer-item"><span class="ans-label">19.</span> <span class="ans-key">CO₃²⁻（碳酸根）</span> —— <span class="ans-desc">CO₃²⁻ + 2H⁺ = CO₂↑ + H₂O，产生无色无味气体（CO₂）。</span></div>
+
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">四、解答题（参考解答）</span></div>
+    <div class="answer-item">
+      <span class="ans-label">20.</span> <span class="ans-key">（8分）</span>
+      <div class="ans-desc">
+        树状分类图如下：<br>
+        <pre style="font-family:inherit;margin:4px 0 0 1.5em;line-height:1.7;">
+        Na（钠）——————————单质
+       /
+      /   Na₂O（氧化钠）——氧化物（碱性氧化物）
+      |  /
+物质—纯净物—化合物—NaOH（氢氧化钠）——碱（一元碱）
+      |            \
+      |             盐——Na₂CO₃（碳酸钠）——正盐
+      |                \—NaHCO₃（碳酸氢钠）——酸式盐
+      |                  \—NaCl（氯化钠）——正盐
+        </pre>
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">21.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1) CO₃²⁻ + 2H⁺ = CO₂↑ + H₂O（3分）<br>
+        (2) Ba²⁺ + 2OH⁻ + 2H⁺ + SO₄²⁻ = BaSO₄↓ + 2H₂O（4分，注意OH⁻和H⁺系数均为2）<br>
+        (3) Fe + 2Ag⁺ = Fe²⁺ + 2Ag（3分）
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">22.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1) 双线桥分析：<br>
+        &nbsp;&nbsp;KMnO₄中Mn从+7→+2，得5e⁻×2 = 10e⁻（被还原）<br>
+        &nbsp;&nbsp;HCl中Cl从-1→0，失1e⁻×10 = 10e⁻（被氧化）<br>
+        &nbsp;&nbsp;电子转移总数为10e⁻，方向：从HCl中的Cl指向KMnO₄中的Mn。<br>
+        (2) 氧化剂：KMnO₄；还原剂：HCl（2分）<br>
+        (3) 5mol（3分）。KMnO₄中Mn从+7降到+2，每个KMnO₄得5e⁻，1mol得5mol e⁻。
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">23.</span> <span class="ans-key">（12分）</span>
+      <div class="ans-desc">
+        (1) CO₂（2分）<br>
+        (2) Na₂CO₃（2分），CO₃²⁻ + 2H⁺ = CO₂↑ + H₂O（2分）<br>
+        (3) Na₂SO₄（2分，BaCl₂检测SO₄²⁻，无明显现象说明不含SO₄²⁻）<br>
+        (4) 一定含有Na₂CO₃，可能含有NaCl（4分，焰色黄色说明含Na⁺，但所有物质都含Na⁺，不能区分NaCl是否存在）<br>
+        &nbsp;&nbsp;综上：一定含Na₂CO₃，一定不含Na₂SO₄，NaCl无法确定。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== PASSWORD MODAL ==================== -->
+<div id="password-modal" class="password-modal" style="display:none">
+  <div class="password-modal-inner">
+    <h3>🔒 请输入密码查看答案</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:10px;">（请联系老师获取密码）</p>
+    <input type="password" id="pwd-input" maxlength="10" onkeydown="if(event.key==='Enter')checkPassword()" autocomplete="off">
+    <div>
+      <button class="pm-btn pm-confirm" onclick="checkPassword()">确认</button>
+      <button class="pm-btn pm-cancel" onclick="closePasswordModal()">取消</button>
+    </div>
+    <p id="pwd-error" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none">密码错误，请重试</p>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Scoring Engine — Standard Three-part Configuration
+   ============================================================ */
+const PAPER_ID = 'chem_grade10_ch1';
+const ANSWER_PASSWORD = '2641';
+
+const ANSWER_KEY = {
+  // Single choice
+  q1: 'B', q2: 'B', q3: 'C', q4: 'D', q5: 'C',
+  q6: 'B', q7: 'B', q8: 'C', q9: 'B', q10: 'B',
+  // Multi choice
+  q101: ['B', 'C'],
+  q102: ['B', 'C', 'D'],
+  q103: ['A', 'B', 'D'],
+  // Fill-in
+  q11: ['③', '④'],
+  q12: ['沸水', 'FeCl₃饱和溶液'],
+  q13: ['H', 'Cu'],
+  q14: ['KMnO₄', 'HCl'],
+  q15: ['①④', '②③'],
+  q16: ['CO₃²⁻']
+};
+
+const SCORE_MAP = {
+  q1: 3, q2: 3, q3: 3, q4: 3, q5: 3,
+  q6: 3, q7: 3, q8: 3, q9: 3, q10: 3,
+  q101: 4, q102: 4, q103: 4,
+  q11: 3, q12: 3, q13: 3, q14: 3, q15: 3, q16: 3,
+  q17: 8, q18: 10, q19: 10, q20: 12
+};
+
+const QUESTION_TYPES = {
+  q1:'single', q2:'single', q3:'single', q4:'single', q5:'single',
+  q6:'single', q7:'single', q8:'single', q9:'single', q10:'single',
+  q101:'multi', q102:'multi', q103:'multi',
+  q11:'fill', q12:'fill', q13:'fill', q14:'fill', q15:'fill', q16:'fill',
+  q17:'calc', q18:'calc', q19:'calc', q20:'calc'
+};
+
+const QUESTION_LABELS = {
+  q1:'1', q2:'2', q3:'3', q4:'4', q5:'5', q6:'6', q7:'7', q8:'8', q9:'9', q10:'10',
+  q101:'11', q102:'12', q103:'13',
+  q11:'14', q12:'15', q13:'16', q14:'17', q15:'18', q16:'19',
+  q17:'20', q18:'21', q19:'22', q20:'23'
+};
+
+/* ============================================================
+   Utility Functions
+   ============================================================ */
+
+/** Normalize string for comparison: trim, collapse spaces, unify common symbols */
+function norm(s) {
+  if (!s) return '';
+  return s.trim()
+    .replace(/\s+/g, '')
+    .replace(/³/g, '3').replace(/₂/g, '2').replace(/₃/g, '3').replace(/₄/g, '4')
+    .replace(/²/g, '2').replace(/⁺/g, '+').replace(/⁻/g, '-')
+    .replace(/→/g, '=').replace(/↑/g, '').replace(/↓/g, '')
+    .toLowerCase();
+}
+
+/** Check if user answer matches expected answer (with alt support) */
+function matchAnswer(userVal, expected, altStr) {
+  if (!userVal) return false;
+  const u = norm(userVal);
+  if (u === norm(expected)) return true;
+  if (altStr) {
+    const alts = altStr.split('|').map(s => norm(s));
+    return alts.includes(u);
+  }
+  return false;
+}
+
+/** Get selected value from a group of radio buttons */
+function getRadioValue(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+
+/** Get all checked values from a group of checkboxes */
+function getCheckboxValues(name) {
+  const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
+  return Array.from(checked).map(cb => cb.value);
+}
+
+/** Fill input status class */
+function setFillStatus(qid, blankIndex, correct) {
+  const el = document.getElementById(qid + '-' + blankIndex);
+  if (el) {
+    el.classList.remove('correct', 'wrong');
+    el.classList.add(correct ? 'correct' : 'wrong');
+  }
+}
+
+/** Question correct/wrong visual */
+function setQuestionStatus(qid, correct) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  if (q) {
+    q.classList.remove('correct-q', 'wrong-q');
+    q.classList.add(correct ? 'correct-q' : 'wrong-q');
+  }
+}
+
+/* ============================================================
+   Scoring Functions
+   ============================================================ */
+
+function scoreSingle(qid) {
+  const userAns = getRadioValue(qid);
+  const correct = ANSWER_KEY[qid];
+  return { score: userAns === correct ? SCORE_MAP[qid] : 0, user: userAns, correct: correct };
+}
+
+function scoreMulti(qid) {
+  const userAns = getCheckboxValues(qid);
+  const correct = ANSWER_KEY[qid];
+  if (!userAns.length) return { score: 0, user: userAns, correct: correct };
+  for (let a of userAns) {
+    if (!correct.includes(a)) return { score: 0, user: userAns, correct: correct };
+  }
+  if (userAns.length === correct.length) return { score: SCORE_MAP[qid], user: userAns, correct: correct };
+  return { score: SCORE_MAP[qid] / 2, user: userAns, correct: correct };
+}
+
+function scoreFill(qid) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  const inputs = q ? q.querySelectorAll('.fill-blank') : [];
+  let allCorrect = true;
+  let blankResults = [];
+  inputs.forEach((input, idx) => {
+    const val = input.value.trim();
+    const ans = input.dataset.answer;
+    const alt = input.dataset.alt;
+    const ok = matchAnswer(val, ans, alt);
+    setFillStatus(qid, idx, ok);
+    if (!ok) allCorrect = false;
+    blankResults.push(ok);
+  });
+  return { score: allCorrect ? SCORE_MAP[qid] : 0, blanks: blankResults };
+}
+
+/** Calc questions: check embedded fill-ins if present, rest is manual */
+function scoreCalc(qid) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  if (!q) return { score: 0, manual: true };
+  // Score any inline input fields within calc questions
+  const inputs = q.querySelectorAll('input[data-answer]');
+  let subScore = 0;
+  let subTotal = 0;
+  inputs.forEach(input => {
+    // Each inline input is worth a portion — we just check correctness
+    const val = input.value.trim();
+    const ans = input.dataset.answer;
+    const alt = input.dataset.alt;
+    const ok = matchAnswer(val, ans, alt);
+    if (ok) subScore++;
+    subTotal++;
+    input.style.borderBottomColor = ok ? '#27ae60' : '#e74c3c';
+    input.style.background = ok ? '#eafaf1' : '#fdedec';
+  });
+  // For partially auto-scored calc questions, return the auto part
+  return { score: subScore, total: subTotal, manual: true };
+}
+
+/* ============================================================
+   Main Submit
+   ============================================================ */
+
+function submitPaper() {
+  let totalScore = 0;
+  const maxAuto = 60; // single(30) + multi(12) + fill(18)
+  const resultEl = document.getElementById('result');
+  const results = [];
+
+  // --- Single choice ---
+  ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].forEach(qid => {
+    const r = scoreSingle(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.user === r.correct);
+    results.push({ qid, ...r });
+  });
+
+  // --- Multi choice ---
+  ['q101','q102','q103'].forEach(qid => {
+    const r = scoreMulti(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.score > 0);
+    results.push({ qid, ...r });
+  });
+
+  // --- Fill-in ---
+  ['q11','q12','q13','q14','q15','q16'].forEach(qid => {
+    const r = scoreFill(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.score > 0);
+    results.push({ qid, ...r });
+  });
+
+  // Save to localStorage
+  saveToStorage();
+
+  // Show result
+  const pct = Math.round((totalScore / maxAuto) * 100);
+  resultEl.className = 'show ' + (pct >= 60 ? 'pass' : 'fail');
+  resultEl.innerHTML = '📊 客观题得分：<strong>' + totalScore + '</strong> / ' + maxAuto +
+    ' （' + pct + '%）' +
+    '<br><span style="font-size:14px;font-weight:normal;">主观题（解答题20-23题，共40分）请老师手动批改。</span>' +
+    '<br><span style="font-size:14px;font-weight:normal;">总分 = 客观题 ' + totalScore + ' + 主观题（待批改）</span>';
+
+  // Scroll to result
+  resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ============================================================
+   Password & Answer Reveal
+   ============================================================ */
+
+function showPasswordModal() {
+  document.getElementById('password-modal').style.display = 'flex';
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-error').style.display = 'none';
+  document.getElementById('pwd-input').focus();
+}
+
+function closePasswordModal() {
+  document.getElementById('password-modal').style.display = 'none';
+}
+
+function checkPassword() {
+  const pwd = document.getElementById('pwd-input').value;
+  if (pwd === ANSWER_PASSWORD) {
+    closePasswordModal();
+    document.getElementById('answer-section').classList.toggle('show');
+  } else {
+    document.getElementById('pwd-error').style.display = 'block';
+    document.getElementById('pwd-input').focus();
+    document.getElementById('pwd-input').select();
+  }
+}
+
+/* ============================================================
+   Clear All
+   ============================================================ */
+
+function clearAll() {
+  if (!confirm('确定要清空所有答案吗？')) return;
+  // Clear radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+  // Clear checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+  // Clear fill-in inputs
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    el.value = '';
+    el.classList.remove('correct', 'wrong');
+  });
+  // Clear textareas
+  document.querySelectorAll('textarea').forEach(el => el.value = '');
+  // Clear calc inline inputs
+  document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+    el.value = '';
+    el.style.borderBottomColor = '#333';
+    el.style.background = 'transparent';
+  });
+  // Clear question status
+  document.querySelectorAll('.question').forEach(el => {
+    el.classList.remove('correct-q', 'wrong-q');
+  });
+  // Clear result
+  document.getElementById('result').className = '';
+  document.getElementById('result').innerHTML = '';
+  // Hide answer section
+  document.getElementById('answer-section').classList.remove('show');
+  // Remove localStorage
+  localStorage.removeItem(PAPER_ID);
+}
+
+/* ============================================================
+   LocalStorage Auto Save & Restore
+   ============================================================ */
+
+function saveToStorage() {
+  const data = {};
+  // Student info
+  ['student-name','student-class','student-id'].forEach(id => {
+    data[id] = document.getElementById(id).value;
+  });
+  // Radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(el => {
+    if (el.checked) data[el.name] = el.value;
+  });
+  // Checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    const key = el.name + '_cb';
+    if (!data[key]) data[key] = [];
+    if (el.checked) data[key].push(el.value);
+  });
+  // Fill-in blanks
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    data[el.id] = el.value;
+  });
+  // Textareas
+  document.querySelectorAll('textarea').forEach(el => {
+    data[el.id] = el.value;
+  });
+  // Calc inline inputs
+  document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+    data[el.id] = el.value;
+  });
+  try {
+    localStorage.setItem(PAPER_ID, JSON.stringify(data));
+  } catch(e) {}
+}
+
+function restoreFromStorage() {
+  try {
+    const raw = localStorage.getItem(PAPER_ID);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    // Student info
+    ['student-name','student-class','student-id'].forEach(id => {
+      if (data[id]) document.getElementById(id).value = data[id];
+    });
+    // Radio buttons
+    Object.keys(data).forEach(key => {
+      if (key.startsWith('q') && !key.includes('_')) {
+        const radio = document.querySelector(`input[name="${key}"][value="${data[key]}"]`);
+        if (radio) radio.checked = true;
+      }
+    });
+    // Checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+      const key = el.name + '_cb';
+      if (data[key] && data[key].includes(el.value)) el.checked = true;
+    });
+    // Fill-in blanks
+    document.querySelectorAll('.fill-blank').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+    // Textareas
+    document.querySelectorAll('textarea').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+    // Calc inline inputs
+    document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+  } catch(e) {}
+}
+
+/* ============================================================
+   Auto-save on input change
+   ============================================================ */
+
+document.addEventListener('input', function() {
+  saveToStorage();
+});
+
+/* ============================================================
+   Ctrl+Enter Shortcut
+   ============================================================ */
+
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    submitPaper();
+  }
+});
+
+/* ============================================================
+   Init
+   ============================================================ */
+
+window.addEventListener('DOMContentLoaded', function() {
+  restoreFromStorage();
+});
+</script>
+
+</body>
+</html>

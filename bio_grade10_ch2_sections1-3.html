@@ -508,9 +508,10 @@ table.data-table th { background: #e8f0fe; }
     <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
   </div>
 
-  <!-- ===== 提交按钮 ===== -->
-  <div class="submit-area">
+<!-- ===== 提交按钮 ===== -->
+  <div style="text-align:center; margin:30px 0 20px;">
     <button class="submit-btn" onclick="submitPaper()">提交试卷</button>
+    <button class="submit-btn" onclick="clearAnswers()" style="background:#888; margin-left:10px;">清空答案</button>
   </div>
 
   <!-- ============================================================ -->
@@ -598,6 +599,97 @@ table.data-table th { background: #e8f0fe; }
 </div>
 
 <script>
+// ===== 答案自动缓存（防手机切后台丢失） =====
+var PAPER_ID = 'bio_grade10_ch2_sections1-3';
+var STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('[data-qid]');
+    var key = parent ? parent.getAttribute('data-qid') : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key) || document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+restoreAnswers();
+setupAutoSave();
+
 // ===== 答案配置 =====
 const ANSWER_KEY = {
   q1: 'C', q2: 'D', q3: 'B', q4: 'A', q5: 'C', q6: 'B', q7: 'D', q8: 'A', q9: 'C', q10: 'B', q11: 'C', q12: 'A',
@@ -606,6 +698,7 @@ const ANSWER_KEY = {
 
 // ===== 评分引擎 =====
 function submitPaper() {
+  saveAnswers();
   const result = gradePaper();
   showScore(result);
 }

@@ -160,20 +160,248 @@ function normalizeStr(s) {
 
 答案比对前必须 trim + 去空格，避免用户不小心多打了空格导致误判。
 
-### 9. Ctrl+Enter 快捷键
+### 9. 答案自动缓存 + 清空按钮（防手机切后台丢失）
+
+所有试卷需内置 localStorage 答案自动缓存机制。学生用手机打开试卷时，切到后台不会丢失已填答案。
+
+#### 9.1 PAPER_ID 命名规则
+
+每份试卷定义唯一 ID，作为 localStorage key 的一部分：
+
+```javascript
+// 命名格式：{subject}_grade{level}_ch{chapter}_sections{range}
+const PAPER_ID = 'physics_grade10_ch1';
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+```
+
+不同试卷 key 不同，即使用户同时打开多份试卷也不会混淆。
+
+#### 9.2 完整实现代码
+
+**注意 textarea 的识别方式**：textarea 不一定有 id 属性，需要根据其父元素来定位。有两种常见 DOM 结构：
+
+- **模式 A（data-qid 型）**：`<div class="calc-question" data-qid="q17">` → 用 `[data-qid="q17"] textarea` 定位
+- **模式 B（id 型）**：`<div class="question" id="q17">` → 用 `#q17 textarea` 定位
+
+两种模式都要兼容：
+
+```javascript
+// ===== 答案自动缓存 =====
+const PAPER_ID = 'physics_grade10_ch1';  // 每份试卷唯一
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  // 单选
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  // 多选（存选中值数组）
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  // 填空输入（优先 id，其次 data-qid）
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  // 解答题 textarea（通过父元素定位）
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('[data-qid], .question, .calc-question');
+    var key = parent ? (parent.id || parent.getAttribute('data-qid')) : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    // 恢复单选
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    // 恢复多选
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    // 恢复填空
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key) || document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    // 恢复解答题
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('#' + key + ' textarea')
+                || document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}  // localStorage 不可用时静默失败
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+// 页面加载即恢复 + 开启自动保存
+restoreAnswers();
+setupAutoSave();
+```
+
+#### 9.3 关键设计要点
+
+| 要点 | 说明 |
+|------|------|
+| key 唯一性 | `test_answers_` + `PAPER_ID`，不同试卷互不干扰 |
+| 提交前保存 | `submitPaper()`/`submitExam()` 开头调用 `saveAnswers()`，保证最后输入不丢 |
+| 清空确认 | `clearAnswers()` 先弹出 `confirm()`，防误触 |
+| 异常静默 | `try/catch` 包裹 localStorage 操作，兼容无痕模式等受限环境 |
+| textarea 定位 | 通过 `父元素.id` 或 `父元素.data-qid` 回退匹配，不自带 id 也能工作 |
+
+#### 9.4 清空按钮
+
+在提交按钮旁添加清空按钮，样式与提交按钮保持一致但颜色区分：
+
+```html
+<!-- 提交栏示例 -->
+<div class="submit-bar">
+  <button class="btn-submit" onclick="submitPaper()">📝 提交试卷</button>
+  <button class="btn-ref" onclick="toggleAnswer()">📖 查看参考答案</button>
+  <button onclick="clearAnswers()" style="background:#888; color:#fff; border:none; padding:10px 18px; border-radius:6px; cursor:pointer;">🗑️ 清空答案</button>
+</div>
+```
+
+### 10. Ctrl+Enter 快捷键
 
 ```javascript
 document.addEventListener('keydown', function(e) {
-  if (e.ctrlKey && e.key === 'Enter') submitPaper();
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    submitPaper();
+  }
 });
 ```
 
-### 10. 试卷头部核心信息
+建议在提交按钮上标注"按下 Ctrl+Enter 也可提交"。
+
+### 11. 试卷头部核心信息
 
 ```
 标题：{学科} · {教材版本} 第{X}章（X.X-X.X）单元测试卷
 一行副信息：总分 100 分 | 考试时间 45 分钟
+信息行：姓名 ______  班级 ______  学号 ______  得分 ______
 ```
+
+### 12. 一题多空（填空题多个输入框）
+
+化学/生物学科经常有"将____逐滴加入____中，继续煮沸至____"这种一题多空。每个空各占一个 `fill-input`，分别配 `data-answer` 和 `data-alt`。
+
+```html
+<div class="fill-question" data-qid="q11">
+  15. Fe(OH)₃胶体的制备方法：向
+  <input type="text" class="fill-input input-sm" data-answer="沸水" style="width:50px;">
+  中逐滴加入
+  <input type="text" class="fill-input" data-answer="FeCl₃饱和" data-alt="FeCl₃饱和溶液|饱和FeCl₃|饱和氯化铁" style="width:100px;">
+  溶液，继续煮沸至溶液呈红褐色，停止加热。
+</div>
+```
+
+**经验**：评分引擎遍历 `fill-question` 下的所有 `fill-input` 逐个评分，每个空独立计分。分值为 `SCORE_MAP.fill` × 该题空数。例如一题2空，每空3分则该题6分。
+
+**注意填空输入框宽度**：
+| class | 宽度 | 适用场景 |
+|-------|------|---------|
+| `fill-input`（默认）| 80px | 一般术语 |
+| `input-sm` | 50px | 元素符号、数字、字母 |
+| `input-long` | 120px | 长句子 |
+
+### 13. 解答题内嵌自动评分（calc-question 混合模式）
+
+部分解答题中某些小问可以用输入框自动评分（如化学中的"氧化剂：____ 还原剂：____"，或计算题中的"加速度 = ____ m/s²"），其余小问仍需人工评阅。
+
+实现方式：在 `calc-question` 里混用 `<input>` + `<textarea>`。评分引擎会：
+- 扫描 `calc-question` 内带 `data-answer` 的 `<input>` → 自动评分
+- 标记 `<textarea>` → 需人工批改
+
+```html
+<div class="calc-question" data-qid="q19">
+  <span class="q-head">22.（10分）</span>
+  <span class="q-text">用双线桥法分析氧化还原反应：</span>
+  <div class="q-text" style="font-size:16px; text-align:center; margin:8px 0;">
+    \(2KMnO₄ + 16HCl = 2KCl + 2MnCl₂ + 5Cl₂↑ + 8H₂O\)
+  </div>
+  <div style="margin:2px 0 4px 22px;">
+    (1) 用双线桥标出电子转移方向和数目；<span style="float:right;">（5分）</span><br>
+    (2) 氧化剂：<input type="text" class="fill-input input-sm" data-answer="KMnO₄" style="width:70px;">
+       还原剂：<input type="text" class="fill-input input-sm" data-answer="HCl" style="width:70px;">
+       <span style="float:right;">（2分）</span><br>
+    (3) 转移电子的物质的量：<input type="text" class="fill-input input-sm" data-answer="5" style="width:50px;"> mol
+       <span style="float:right;">（3分）</span>
+  </div>
+  <textarea class="answer-area" placeholder="请在此书写(1)的双线桥分析过程..."></textarea>
+</div>
+```
+
+**关键**：calc-question 内的 `<input>` 必须带 `data-answer` 属性，评分引擎按 name/qid 不匹配的方式单独处理，与外面的填空题互通评分逻辑。
+
+### 14. MathJax 化学式/离子符号规范
+
+化学试卷中的元素符号、离子、化学式、反应式均用 MathJax 渲染。常用写法：
+
+| 显示效果 | 写法 | 说明 |
+|---------|------|------|
+| \(Fe^{3+}\) | `\(Fe^{3+}\)` | 离子：元素 + 上标电荷 |
+| \(CO_3^{2-}\) | `\(CO_3^{2-}\)` | 多原子离子：下标+上标 |
+| \(H_2O\) | `\(H_2O\)` | 分子式：下标 |
+| \(2KMnO₄\) | `\(2KMnO₄\)` | 带系数：直接写 |
+| \(H_2SO_4\) | `\(H_2SO_4\)` | 酸：下标数字 |
+| \(CO_2↑\) | `\(CO_2↑\)` | 气体符号 |
+| \(BaSO_4↓\) | `\(BaSO_4↓\)` | 沉淀符号 |
+| \(⇌\) | `\(\rightleftharpoons\)` | 可逆反应箭头 |
+| \(→(△)→\) | `\(\xrightarrow{\triangle}\)` | 加热条件 |
+| \(2H⁺ + CO_3^{2-} = CO_2↑ + H_2O\) | `\(2H⁺ + CO_3^{2-} = CO_2↑ + H_2O\)` | 完整离子方程式 |
+
+**经验**：MathJax 中 `=` 自动渲染为等号，`−`（减号）和 `–`（短横线）不同，推荐用 `-`（连字符）保证一致性。上标电荷用 `^{n+}` / `^{n-}`，下标用 `_{n}`。
 
 ## 快速上手
 
@@ -331,8 +559,10 @@ const ANSWER_KEY = {
 |------|------|------|
 | `math_grade10_ch1_sections1-5.html` | 高一数学·集合与常用逻辑用语 | 8单选+3多选+6填空+4解答（100分） |
 | `bio_grade10_ch2_sections1-3.html` | 高一生物·组成细胞的分子 | 12单选+3多选+6填空+4解答（100分） |
+| `physics_grade10_ch1.html` | 高一物理·运动的描述 | 10单选+3多选+6填空+4解答（100分） |
+| `chem_grade10_ch1.html` | 高一化学·物质及其变化 | 10单选+3多选+6填空+4解答（100分） |
 
-> 新建试卷时，可直接参考上述两个文件的源码结构。
+> 新建试卷时，可直接参考上述文件的源码结构。
 
 ## A4 打印
 

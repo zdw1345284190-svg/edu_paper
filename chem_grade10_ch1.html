@@ -26,7 +26,7 @@ body {
   max-width: 210mm;
   margin: 0 auto;
   background: #fff;
-  padding: 20mm 25mm;
+  padding: 28px 32px;
   box-shadow: 0 0 12px rgba(0,0,0,.12);
   min-height: 297mm;
   position: relative;
@@ -127,6 +127,17 @@ body {
   .section { page-break-inside: avoid; }
   .fill-blank { border-bottom: 1.5px solid #000; }
   @page { size: A4; margin: 15mm; }
+}
+
+/* ===== 手机端适配 ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 8px; }
+  .paper { padding: 14px 16px; box-shadow: none; min-height: auto; }
+  .student-info { flex-direction: column; gap: 6px; align-items: center; }
+  .options { margin-left: 0.5em; }
+  .sub-q { margin-left: 0.5em; }
+  .header h1 { font-size: 17px; }
+  .btn-group button { padding: 8px 14px; font-size: 14px; }
 }
 
 /* ===== Misc ===== */

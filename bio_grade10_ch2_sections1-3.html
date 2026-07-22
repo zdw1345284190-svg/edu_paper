@@ -25,9 +25,10 @@ body {
   max-width: 210mm;
   margin: 0 auto;
   background: #fff;
-  padding: 20mm 25mm;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
   min-height: 297mm;
+  position: relative;
 }
 .paper-header {
   text-align: center;
@@ -146,6 +147,16 @@ table.data-table th { background: #e8f0fe; }
 .sub-question { margin: 4px 0; }
 .sub-question .sub-label { font-weight: bold; }
 .score-tag { float: right; color: #888; font-size: 13px; }
+/* ===== 手机端适配 ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 8px; }
+  .paper-container { padding: 14px 16px; box-shadow: none; min-height: auto; }
+  .info-row { flex-direction: column; gap: 6px; align-items: center; }
+  .paper-header h1 { font-size: 18px; }
+  .options { margin-left: 0.5em; }
+  .submit-btn { padding: 10px 20px; font-size: 14px; }
+}
+
 @media print {
   body { background: #fff; padding: 0; }
   .paper-container { box-shadow: none; padding: 15mm 20mm; max-width: none; }

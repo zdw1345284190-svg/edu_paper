@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一物理·必修第一册 第三章 3.1 重力与弹力 — 3.2 摩擦力</title>
+<script>
+MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: '宋体', 'SimSun', 'Noto Serif CJK SC', serif;
+  font-size: 14px;
+  line-height: 1.7;
+  background: #f5f5f5;
+  color: #222;
+}
+.container {
+  max-width: 210mm;
+  margin: 20px auto;
+  padding: 20mm 18mm;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+/* === 双线页头 === */
+.header {
+  text-align: center;
+  padding: 10px 0 12px;
+  border-top: 3px double #333;
+  border-bottom: 3px double #333;
+  margin-bottom: 18px;
+}
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.header .sub {
+  font-size: 14px;
+  color: #555;
+  margin-top: 4px;
+}
+.header .info {
+  font-size: 13px;
+  color: #555;
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+/* === 蓝色左边框小节标题 === */
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  border-left: 4px solid #1a73e8;
+  padding-left: 10px;
+  margin: 22px 0 12px;
+  color: #1a3c6b;
+}
+/* === 题目 === */
+.question {
+  margin: 12px 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+.question p.q-text {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.options label {
+  display: block;
+  padding: 2px 6px;
+  margin: 1px 0;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.options label:hover { background: #e8f0fe; }
+.options input { margin-right: 6px; }
+.fill-in {
+  border: none;
+  border-bottom: 1px solid #666;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  text-align: center;
+  width: 80px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.fill-in:focus { border-bottom-color: #1a73e8; border-bottom-width: 2px; }
+.fill-in-lg { width: 120px; }
+.fill-in-sm { width: 50px; }
+/* === 题号标记（答题区）=== */
+.q-tag { font-weight: 700; color: #1a3c6b; }
+.score-badge {
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+}
+/* === 结果反馈 === */
+.result-badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-left: 8px;
+  padding: 0 6px;
+}
+.result-correct { color: #0a7; }
+.result-partial { color: #e67e22; }
+.result-wrong { color: #d32f2f; }
+.result-pending { color: #999; }
+.answer-reveal {
+  display: none;
+  margin-top: 4px;
+  padding: 4px 10px;
+  background: #f0f7ff;
+  border-left: 3px solid #1a73e8;
+  font-size: 13px;
+  color: #1a3c6b;
+}
+.answer-reveal .ans-label { font-weight: 700; }
+/* === 解答题 === */
+.problem-area {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.problem-area:focus { border-color: #1a73e8; }
+/* === 按钮 === */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0 16px;
+}
+.btn {
+  padding: 8px 24px;
+  font-family: inherit;
+  font-size: 14px;
+  border: 1px solid #1a73e8;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #fff;
+  color: #1a73e8;
+  transition: all 0.2s;
+}
+.btn:hover { background: #e8f0fe; }
+.btn-primary { background: #1a73e8; color: #fff; }
+.btn-primary:hover { background: #1558b0; }
+.btn-danger { border-color: #d32f2f; color: #d32f2f; }
+.btn-danger:hover { background: #fce4e4; }
+/* === 成绩汇总 === */
+.score-summary {
+  display: none;
+  border: 2px solid #1a73e8;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  background: #f8fbff;
+}
+.score-summary h3 {
+  text-align: center;
+  font-size: 18px;
+  color: #1a3c6b;
+  margin-bottom: 8px;
+}
+.score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 20px;
+  font-size: 14px;
+}
+.score-grid .item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  border-bottom: 1px dashed #ddd;
+}
+.score-grid .total-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 6px;
+  margin-top: 4px;
+  border-top: 2px solid #1a73e8;
+}
+/* === 解答题答案区 === */
+.problem-solution { margin-top: 8px; }
+.problem-solution summary {
+  cursor: pointer;
+  color: #1a73e8;
+  font-weight: 600;
+  font-size: 13px;
+}
+.problem-solution .sol-content {
+  padding: 8px 12px;
+  background: #f8fbff;
+  border: 1px solid #d0e2f7;
+  border-radius: 4px;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+/* === 小题号 === */
+.sub-q { margin: 4px 0 4px 18px; }
+/* === 打印样式 === */
+@media print {
+  body { background: #fff; }
+  .container { box-shadow: none; margin: 0; padding: 15mm 12mm; }
+  .btn-row, .no-print { display: none !important; }
+  .answer-reveal { display: block !important; }
+  .problem-area { border: none; min-height: auto; }
+}
+/* === 其他 === */
+.legend { font-size: 12px; color: #777; margin-bottom: 10px; }
+.sub-label { font-weight: 400; color: #555; }
+hr { border: none; border-top: 1px solid #ddd; margin: 14px 0; }
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+
+<!-- ====== 页头 ====== -->
+<div class="header">
+  <h1>高一物理·必修第一册</h1>
+  <div class="sub">第三章 3.1 重力与弹力 — 3.2 摩擦力</div>
+  <div class="info">
+    <span>满分：100分</span>
+    <span>时间：45分钟</span>
+    <span>得分：<span id="displayScore">—</span></span>
+  </div>
+</div>
+
+<!-- ====== 单选题 ====== -->
+<div class="section-title">一、单选题（共10小题，每小题3分，共30分）</div>
+
+<div class="question" data-qid="q1" data-type="single">
+  <p class="q-text"><span class="q-tag">1.</span> 关于重力，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q1" value="A"> A. 重力的方向总是垂直向下</label>
+    <label><input type="radio" name="q1" value="B"> B. 重力的大小与物体的运动状态有关</label>
+    <label><input type="radio" name="q1" value="C"> C. 重力的方向总是竖直向下</label>
+    <label><input type="radio" name="q1" value="D"> D. 重心一定在物体上</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>C</div>
+</div>
+
+<div class="question" data-qid="q2" data-type="single">
+  <p class="q-text"><span class="q-tag">2.</span> 关于弹力，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q2" value="A"> A. 相互接触的物体间一定存在弹力</label>
+    <label><input type="radio" name="q2" value="B"> B. 不接触的物体间也可能存在弹力</label>
+    <label><input type="radio" name="q2" value="C"> C. 弹力的方向总是与施力物体形变的方向相反</label>
+    <label><input type="radio" name="q2" value="D"> D. 弹力的大小只与物体的形变程度有关</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>C</div>
+</div>
+
+<div class="question" data-qid="q3" data-type="single">
+  <p class="q-text"><span class="q-tag">3.</span> 关于滑动摩擦力，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q3" value="A"> A. 滑动摩擦力的方向总是与物体的运动方向相反</label>
+    <label><input type="radio" name="q3" value="B"> B. 滑动摩擦力的大小与接触面积有关</label>
+    <label><input type="radio" name="q3" value="C"> C. 滑动摩擦力的大小与正压力成正比</label>
+    <label><input type="radio" name="q3" value="D"> D. 滑动摩擦力一定是阻力</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>C</div>
+</div>
+
+<div class="question" data-qid="q4" data-type="single">
+  <p class="q-text"><span class="q-tag">4.</span> 一根弹簧原长为10 cm，劲度系数 $k=200\ \text{N/m}$，在弹性限度内，弹簧长度为15 cm时，弹力大小为（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A"> A. 10 N</label>
+    <label><input type="radio" name="q4" value="B"> B. 20 N</label>
+    <label><input type="radio" name="q4" value="C"> C. 30 N</label>
+    <label><input type="radio" name="q4" value="D"> D. 40 N</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>A</div>
+</div>
+
+<div class="question" data-qid="q5" data-type="single">
+  <p class="q-text"><span class="q-tag">5.</span> 质量为2 kg的物体静止在水平地面上，与地面间的动摩擦因数 $\mu=0.3$，最大静摩擦力为7 N。用水平拉力 $F=5\ \text{N}$ 拉物体，物体受到的摩擦力大小为（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A"> A. 0</label>
+    <label><input type="radio" name="q5" value="B"> B. 5 N</label>
+    <label><input type="radio" name="q5" value="C"> C. 6 N</label>
+    <label><input type="radio" name="q5" value="D"> D. 7 N</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>B</div>
+</div>
+
+<div class="question" data-qid="q6" data-type="single">
+  <p class="q-text"><span class="q-tag">6.</span> 下列关于静摩擦力的说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q6" value="A"> A. 静摩擦力的方向总是与物体的运动方向相反</label>
+    <label><input type="radio" name="q6" value="B"> B. 静摩擦力的大小与正压力成正比</label>
+    <label><input type="radio" name="q6" value="C"> C. 两个相对静止的物体间一定有静摩擦力</label>
+    <label><input type="radio" name="q6" value="D"> D. 静摩擦力的方向与物体相对运动趋势的方向相反</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>D</div>
+</div>
+
+<div class="question" data-qid="q7" data-type="single">
+  <p class="q-text"><span class="q-tag">7.</span> 某同学用弹簧测力计称量一物体，弹簧测力计示数为4.9 N，则该物体的质量为（$g$ 取9.8 N/kg）（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q7" value="A"> A. 0.5 kg</label>
+    <label><input type="radio" name="q7" value="B"> B. 0.49 kg</label>
+    <label><input type="radio" name="q7" value="C"> C. 4.9 kg</label>
+    <label><input type="radio" name="q7" value="D"> D. 1 kg</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>A</div>
+</div>
+
+<div class="question" data-qid="q8" data-type="single">
+  <p class="q-text"><span class="q-tag">8.</span> 书放在水平桌面上静止，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q8" value="A"> A. 书对桌面的压力就是书的重力</label>
+    <label><input type="radio" name="q8" value="B"> B. 书对桌面的压力是由于桌面的形变产生的</label>
+    <label><input type="radio" name="q8" value="C"> C. 桌面对书的支持力是由于桌面的形变产生的</label>
+    <label><input type="radio" name="q8" value="D"> D. 书对桌面的压力与书的重力是一对平衡力</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>C</div>
+</div>
+
+<div class="question" data-qid="q9" data-type="single">
+  <p class="q-text"><span class="q-tag">9.</span> 一根弹簧在弹性限度内，将其拉伸 $\Delta x$ 时弹力大小为 $F_1$，压缩 $\Delta x$ 时弹力大小为 $F_2$，则（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q9" value="A"> A. $F_1 > F_2$</label>
+    <label><input type="radio" name="q9" value="B"> B. $F_1 < F_2$</label>
+    <label><input type="radio" name="q9" value="C"> C. $F_1 = F_2$</label>
+    <label><input type="radio" name="q9" value="D"> D. 无法比较</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>C</div>
+</div>
+
+<div class="question" data-qid="q10" data-type="single">
+  <p class="q-text"><span class="q-tag">10.</span> 水平地面上放一重为 $G$ 的物体，物体与地面间的动摩擦因数为 $\mu$。用水平力 $F$ 拉物体使之匀速运动，则 $F$ 的大小为（　）</p>
+  <div class="options">
+    <label><input type="radio" name="q10" value="A"> A. $G$</label>
+    <label><input type="radio" name="q10" value="B"> B. $\mu G$</label>
+    <label><input type="radio" name="q10" value="C"> C. $\dfrac{G}{\mu}$</label>
+    <label><input type="radio" name="q10" value="D"> D. $\mu$</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>B</div>
+</div>
+
+<!-- ====== 多选题 ====== -->
+<div class="section-title">二、多选题（共3小题，每小题4分，共12分。选对但不全得2分，有选错得0分）</div>
+
+<div class="question" data-qid="q11" data-type="multi">
+  <p class="q-text"><span class="q-tag">11.</span> 关于重力和重心，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="checkbox" name="q11" value="A"> A. 重心一定在物体上</label>
+    <label><input type="checkbox" name="q11" value="B"> B. 重力的方向总是竖直向下</label>
+    <label><input type="checkbox" name="q11" value="C"> C. 形状规则的物体，重心一定在其几何中心</label>
+    <label><input type="checkbox" name="q11" value="D"> D. 重力是由于地球对物体的吸引而产生的</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>B、D</div>
+</div>
+
+<div class="question" data-qid="q12" data-type="multi">
+  <p class="q-text"><span class="q-tag">12.</span> 关于摩擦力，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="checkbox" name="q12" value="A"> A. 摩擦力的方向可能与运动方向相同</label>
+    <label><input type="checkbox" name="q12" value="B"> B. 滑动摩擦力总是阻碍物体的运动</label>
+    <label><input type="checkbox" name="q12" value="C"> C. 静摩擦力的大小在0到最大静摩擦力之间</label>
+    <label><input type="checkbox" name="q12" value="D"> D. 两个物体之间如果有摩擦力，则一定存在弹力</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>A、C、D</div>
+</div>
+
+<div class="question" data-qid="q13" data-type="multi">
+  <p class="q-text"><span class="q-tag">13.</span> 关于弹力，下列说法正确的是（　）</p>
+  <div class="options">
+    <label><input type="checkbox" name="q13" value="A"> A. 压力、支持力、拉力都属于弹力</label>
+    <label><input type="checkbox" name="q13" value="B"> B. 轻绳产生的弹力方向沿绳指向绳收缩的方向</label>
+    <label><input type="checkbox" name="q13" value="C"> C. 轻杆产生的弹力方向一定沿杆</label>
+    <label><input type="checkbox" name="q13" value="D"> D. 弹簧的弹力大小一定满足 $F=kx$</label>
+  </div>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>A、B</div>
+</div>
+
+<!-- ====== 填空题 ====== -->
+<div class="section-title">三、填空题（共5小题，每小题4分，共20分）</div>
+
+<div class="question" data-qid="q14" data-type="fill">
+  <p class="q-text"><span class="q-tag">14.</span> 重力的公式为 $G=$ <input type="text" class="fill-in fill-in-lg" data-fill="q14_1" placeholder="公式">，其中 $g=$ <input type="text" class="fill-in fill-in-sm" data-fill="q14_2" placeholder="数值"> N/kg。</p>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>$G=mg$，$g=9.8\ \text{N/kg}$</div>
+</div>
+
+<div class="question" data-qid="q15" data-type="fill">
+  <p class="q-text"><span class="q-tag">15.</span> 一根弹簧原长为10 cm，劲度系数 $k=200\ \text{N/m}$，在弹性限度内，弹簧长度为15 cm时，弹力大小为 <input type="text" class="fill-in fill-in-sm" data-fill="q15_1" placeholder="数值"> N。</p>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>10 N</div>
+</div>
+
+<div class="question" data-qid="q16" data-type="fill">
+  <p class="q-text"><span class="q-tag">16.</span> 质量为5 kg的物体静止在水平地面上，与地面间的动摩擦因数 $\mu=0.4$，最大静摩擦力为22 N。用水平拉力 $F=15\ \text{N}$ 拉物体时，物体所受摩擦力大小为 <input type="text" class="fill-in fill-in-sm" data-fill="q16_1" placeholder="数值"> N；若用 $F=25\ \text{N}$ 拉物体，物体所受摩擦力大小为 <input type="text" class="fill-in fill-in-sm" data-fill="q16_2" placeholder="数值"> N。</p>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>15 N，20 N</div>
+</div>
+
+<div class="question" data-qid="q17" data-type="fill">
+  <p class="q-text"><span class="q-tag">17.</span> 一根原长为20 cm的弹簧，劲度系数 $k=500\ \text{N/m}$，在弹性限度内，将弹簧拉长到25 cm时，弹力大小为 <input type="text" class="fill-in fill-in-sm" data-fill="q17_1" placeholder="数值"> N；若将弹簧压缩到16 cm，弹力大小为 <input type="text" class="fill-in fill-in-sm" data-fill="q17_2" placeholder="数值"> N。</p>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>25 N，20 N</div>
+</div>
+
+<div class="question" data-qid="q18" data-type="fill">
+  <p class="q-text"><span class="q-tag">18.</span> 滑动摩擦力的公式为 $f=$ <input type="text" class="fill-in fill-in-lg" data-fill="q18_1" placeholder="公式">，其中 $F_N$ 表示 <input type="text" class="fill-in fill-in-lg" data-fill="q18_2" placeholder="名称">。</p>
+  <div class="answer-reveal"><span class="ans-label">答案：</span>$f=\mu F_N$，$F_N$ 表示正压力（支持力）</div>
+</div>
+
+<!-- ====== 解答题 ====== -->
+<div class="section-title">四、解答题（共3小题，共38分。解答应写出必要的文字说明、方程式和重要演算步骤）</div>
+
+<div class="question" data-qid="q19" data-type="problem">
+  <p class="q-text"><span class="q-tag">19.</span>（10分）质量为 $m=2\ \text{kg}$ 的物体放置在水平地面上，物体与地面间的动摩擦因数 $\mu=0.2$，现用一水平拉力 $F$ 使物体做匀速直线运动。（$g$ 取 $10\ \text{m/s}^2$）求：</p>
+  <div class="sub-q">（1）物体所受的重力 $G$；（2分）</div>
+  <div class="sub-q">（2）地面对物体的支持力 $F_N$；（2分）</div>
+  <div class="sub-q">（3）滑动摩擦力 $f$ 的大小；（3分）</div>
+  <div class="sub-q">（4）水平拉力 $F$ 的大小。（3分）</div>
+  <textarea class="problem-area" data-problem="q19" rows="4" placeholder="请在此作答..."></textarea>
+  <details class="problem-solution no-print">
+    <summary>查看答案与解析</summary>
+    <div class="sol-content">
+      <strong>解：</strong><br>
+      （1）$G = mg = 2 \times 10 = 20\ \text{N}$<br>
+      （2）物体在竖直方向平衡：$F_N = G = 20\ \text{N}$<br>
+      （3）$f = \mu F_N = 0.2 \times 20 = 4\ \text{N}$<br>
+      （4）物体水平方向匀速，拉力等于滑动摩擦力：$F = f = 4\ \text{N}$
+    </div>
+  </details>
+</div>
+
+<div class="question" data-qid="q20" data-type="problem">
+  <p class="q-text"><span class="q-tag">20.</span>（12分）一根轻弹簧在弹性限度内，下端悬挂物体。当物体质量为 $0.5\ \text{kg}$ 时弹簧长度为15 cm，当物体质量为 $1.0\ \text{kg}$ 时弹簧长度为20 cm。（$g$ 取 $10\ \text{m/s}^2$）求：</p>
+  <div class="sub-q">（1）弹簧的原长 $L_0$；（4分）</div>
+  <div class="sub-q">（2）弹簧的劲度系数 $k$；（4分）</div>
+  <div class="sub-q">（3）若用该弹簧水平拉一质量为 $2\ \text{kg}$ 的木块在水平面上匀速运动，弹簧长度为18 cm，求木块与水平面间的动摩擦因数 $\mu$。（4分）</div>
+  <textarea class="problem-area" data-problem="q20" rows="4" placeholder="请在此作答..."></textarea>
+  <details class="problem-solution no-print">
+    <summary>查看答案与解析</summary>
+    <div class="sol-content">
+      <strong>解：</strong><br>
+      设弹簧原长为 $L_0$，劲度系数为 $k$。<br><br>
+      （1）（2）由胡克定律 $F = kx$：<br>
+      &nbsp;&nbsp;$m_1g = k(L_1 - L_0)$，即 $0.5 \times 10 = k(0.15 - L_0)$ &nbsp;……①<br>
+      &nbsp;&nbsp;$m_2g = k(L_2 - L_0)$，即 $1.0 \times 10 = k(0.20 - L_0)$ &nbsp;……②<br>
+      由②÷①得：$\dfrac{10}{5} = \dfrac{0.20 - L_0}{0.15 - L_0}$<br>
+      &nbsp;&nbsp;$2(0.15 - L_0) = 0.20 - L_0$<br>
+      &nbsp;&nbsp;$0.30 - 2L_0 = 0.20 - L_0$<br>
+      &nbsp;&nbsp;$L_0 = 0.10\ \text{m} = 10\ \text{cm}$<br>
+      代入①：$5 = k(0.15 - 0.10)$，$k = \dfrac{5}{0.05} = 100\ \text{N/m}$<br><br>
+      （3）水平拉木块匀速运动时，弹簧拉力等于滑动摩擦力：<br>
+      &nbsp;&nbsp;$F_{\text{弹}} = k(L - L_0) = 100 \times (0.18 - 0.10) = 8\ \text{N}$<br>
+      &nbsp;&nbsp;$f = \mu mg = \mu \times 2 \times 10 = 20\mu$<br>
+      &nbsp;&nbsp;由 $F_{\text{弹}} = f$ 得：$8 = 20\mu$，$\mu = 0.4$
+    </div>
+  </details>
+</div>
+
+<div class="question" data-qid="q21" data-type="problem">
+  <p class="q-text"><span class="q-tag">21.</span>（16分）质量为 $m=4\ \text{kg}$ 的物体放置在水平地面上，物体与地面间的动摩擦因数 $\mu=0.3$，最大静摩擦力等于滑动摩擦力。现对物体施加一水平拉力 $F$。（$g$ 取 $10\ \text{m/s}^2$）</p>
+  <div class="sub-q">（1）当 $F=5\ \text{N}$ 时，物体静止，求物体所受摩擦力的大小和方向；（4分）</div>
+  <div class="sub-q">（2）当 $F=10\ \text{N}$ 时，物体仍静止，求物体所受摩擦力的大小和方向；（4分）</div>
+  <div class="sub-q">（3）当 $F=15\ \text{N}$ 时，求物体所受摩擦力的大小和方向；（4分）</div>
+  <div class="sub-q">（4）若物体在 $F=15\ \text{N}$ 拉力下运动一段时间后撤去 $F$，求撤去 $F$ 瞬间物体所受摩擦力的大小和方向。（4分）</div>
+  <textarea class="problem-area" data-problem="q21" rows="5" placeholder="请在此作答..."></textarea>
+  <details class="problem-solution no-print">
+    <summary>查看答案与解析</summary>
+    <div class="sol-content">
+      <strong>解：</strong><br>
+      物体对地面的正压力 $F_N = mg = 4 \times 10 = 40\ \text{N}$<br>
+      最大静摩擦力等于滑动摩擦力：$f_{\max} = \mu F_N = 0.3 \times 40 = 12\ \text{N}$<br><br>
+      （1）$F = 5\ \text{N} &lt; f_{\max}$，物体静止，受静摩擦力：<br>
+      &nbsp;&nbsp;$f_1 = F = 5\ \text{N}$，方向水平向左（与 $F$ 相反）<br><br>
+      （2）$F = 10\ \text{N} &lt; f_{\max}$，物体静止，受静摩擦力：<br>
+      &nbsp;&nbsp;$f_2 = F = 10\ \text{N}$，方向水平向左<br><br>
+      （3）$F = 15\ \text{N} &gt; f_{\max}$，物体滑动，受滑动摩擦力：<br>
+      &nbsp;&nbsp;$f_3 = \mu F_N = 0.3 \times 40 = 12\ \text{N}$，方向水平向左<br><br>
+      （4）撤去 $F$ 后，物体由于惯性继续向右运动，受滑动摩擦力：<br>
+      &nbsp;&nbsp;$f_4 = \mu F_N = 12\ \text{N}$，方向水平向左（与运动方向相反）
+    </div>
+  </details>
+</div>
+
+<!-- ====== 按钮 ====== -->
+<div class="btn-row">
+  <button class="btn btn-primary" id="btnSubmit">提交并评分</button>
+  <button class="btn" id="btnShowAnswers">显示答案</button>
+  <button class="btn btn-danger" id="btnClear">清除作答</button>
+</div>
+
+<!-- ====== 成绩汇总 ====== -->
+<div class="score-summary" id="scoreSummary">
+  <h3>📊 成绩汇总</h3>
+  <div class="score-grid" id="scoreGrid">
+    <div class="item"><span>一、单选题（共30分）</span><span id="scoreSingle">0 / 30</span></div>
+    <div class="item"><span>二、多选题（共12分）</span><span id="scoreMulti">0 / 12</span></div>
+    <div class="item"><span>三、填空题（共20分）</span><span id="scoreFill">0 / 20</span></div>
+    <div class="item"><span>四、解答题（共38分）</span><span id="scoreProblem">— / 38</span></div>
+    <div class="total-row"><span>总分</span><span id="scoreTotal">0 / 100</span></div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ====== JavaScript ====== -->
+<script>
+(function() {
+  'use strict';
+
+  // ====== 答案密钥 ======
+  const ANSWER = {
+    // 单选
+    q1: 'C', q2: 'C', q3: 'C', q4: 'A', q5: 'B',
+    q6: 'D', q7: 'A', q8: 'C', q9: 'C', q10: 'B',
+    // 多选
+    q11: ['B','D'], q12: ['A','C','D'], q13: ['A','B'],
+    // 填空子项
+    q14_1: 'G=mg',    q14_2: '9.8',
+    q15_1: '10',
+    q16_1: '15',      q16_2: '20',
+    q17_1: '25',      q17_2: '20',
+    q18_1: 'μF_N',    q18_2: '正压力'
+  };
+
+  // 填空可接受答案（大小写不敏感，须与ANSWER值同时考虑）
+  const FILL_ACCEPT = {
+    q14_1: ['G=mg', 'G=mg', 'G = mg', 'mg', 'Mg'],
+    q14_2: ['9.8', '9.8N/kg', '9.8 N/kg', '9.8N'],
+    q15_1: ['10', '10.0'],
+    q16_1: ['15', '15.0'],
+    q16_2: ['20', '20.0'],
+    q17_1: ['25', '25.0'],
+    q17_2: ['20', '20.0'],
+    q18_1: ['μF_N', 'μFN', 'uFn', 'uF_N', 'μF', 'μFn', 'μFn'],
+    q18_2: ['正压力', '压力', '支持力', '法向压力']
+  };
+
+  // 得分配置
+  const SCORE = {
+    q1: 3,  q2: 3,  q3: 3,  q4: 3,  q5: 3,
+    q6: 3,  q7: 3,  q8: 3,  q9: 3,  q10: 3,
+    q11: { max: 4, partial: 2 },
+    q12: { max: 4, partial: 2 },
+    q13: { max: 4, partial: 2 },
+    q14_1: 2, q14_2: 2,
+    q15_1: 4,
+    q16_1: 2, q16_2: 2,
+    q17_1: 2, q17_2: 2,
+    q18_1: 2, q18_2: 2,
+    q19: 10, q20: 12, q21: 16
+  };
+
+  const FILL_PARENT = {
+    q14_1: 'q14', q14_2: 'q14',
+    q15_1: 'q15',
+    q16_1: 'q16', q16_2: 'q16',
+    q17_1: 'q17', q17_2: 'q17',
+    q18_1: 'q18', q18_2: 'q18'
+  };
+
+  // ====== DOM 引用 ======
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  const displayScore  = $('#displayScore');
+  const scoreSummary  = $('#scoreSummary');
+  const scoreSingle   = $('#scoreSingle');
+  const scoreMulti    = $('#scoreMulti');
+  const scoreFill     = $('#scoreFill');
+  const scoreProblem  = $('#scoreProblem');
+  const scoreTotal    = $('#scoreTotal');
+
+  // ====== 状态 ======
+  let answersRevealed = false;
+
+  // ====== localStorage ======
+  const STORAGE_KEY = 'physics_ch3_test_answers';
+
+  function saveToLS() {
+    var data = {};
+    // 单选
+    document.querySelectorAll('input[type="radio"][name^="q"]:checked').forEach(function(r) {
+      data[r.name] = r.value;
+    });
+    // 多选
+    ['q11','q12','q13'].forEach(function(name) {
+      var vals = [];
+      document.querySelectorAll('input[type="checkbox"][name="' + name + '"]:checked').forEach(function(c) {
+        vals.push(c.value);
+      });
+      data[name] = vals;
+    });
+    // 填空
+    document.querySelectorAll('[data-fill]').forEach(function(inp) {
+      data[inp.getAttribute('data-fill')] = inp.value;
+    });
+    // 解答
+    document.querySelectorAll('[data-problem]').forEach(function(ta) {
+      data[ta.getAttribute('data-problem')] = ta.value;
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  function loadFromLS() {
+    var raw;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch(e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch(e) { return; }
+    if (!data) return;
+
+    // 单选
+    Object.keys(data).forEach(function(k) {
+      if (k.match(/^q\d+$/) && !k.match(/^q1[123]$/)) {
+        var r = document.querySelector('input[type="radio"][name="' + k + '"][value="' + data[k] + '"]');
+        if (r) r.checked = true;
+      }
+    });
+    // 多选
+    ['q11','q12','q13'].forEach(function(name) {
+      var vals = data[name];
+      if (Array.isArray(vals)) {
+        vals.forEach(function(v) {
+          var c = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + v + '"]');
+          if (c) c.checked = true;
+        });
+      }
+    });
+    // 填空
+    document.querySelectorAll('[data-fill]').forEach(function(inp) {
+      var key = inp.getAttribute('data-fill');
+      if (data[key] !== undefined) inp.value = data[key];
+    });
+    // 解答
+    document.querySelectorAll('[data-problem]').forEach(function(ta) {
+      var key = ta.getAttribute('data-problem');
+      if (data[key] !== undefined) ta.value = data[key];
+    });
+  }
+
+  // ====== 评分核心 ======
+
+  /** 获取用户对单选/多选的选中值 */
+  function getSelected(qId) {
+    var type = document.querySelector('[data-qid="' + qId + '"]');
+    if (!type) return null;
+    var t = type.getAttribute('data-type');
+    if (t === 'single') {
+      var r = document.querySelector('input[type="radio"][name="' + qId + '"]:checked');
+      return r ? r.value : null;
+    }
+    if (t === 'multi') {
+      var vals = [];
+      document.querySelectorAll('input[type="checkbox"][name="' + qId + '"]:checked').forEach(function(c) {
+        vals.push(c.value);
+      });
+      return vals;
+    }
+    return null;
+  }
+
+  /** 判断两个数组集合是否相等（无序） */
+  function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    var sa = a.slice().sort(), sb = b.slice().sort();
+    return sa.every(function(v, i) { return v === sb[i]; });
+  }
+
+  /** 评分单选 */
+  function gradeSingle(qId) {
+    var sel = getSelected(qId);
+    var correct = ANSWER[qId];
+    if (sel === null) return { score: 0, status: 'pending' };
+    return { score: sel === correct ? SCORE[qId] : 0, status: sel === correct ? 'correct' : 'wrong' };
+  }
+
+  /** 评分多选 */
+  function gradeMulti(qId) {
+    var sel = getSelected(qId);
+    var correct = ANSWER[qId];
+    var cfg = SCORE[qId];
+    if (!sel || sel.length === 0) return { score: 0, status: 'pending' };
+    var hasWrong = sel.some(function(v) { return correct.indexOf(v) === -1; });
+    var allCorrect = correct.every(function(v) { return sel.indexOf(v) !== -1; });
+    if (allCorrect && !hasWrong) return { score: cfg.max, status: 'correct' };
+    if (!hasWrong) return { score: cfg.partial, status: 'partial' };
+    return { score: 0, status: 'wrong' };
+  }
+
+  /** 标准化字符串 */
+  function norm(s) {
+    return String(s).trim().replace(/\s+/g, '');
+  }
+
+  /** 评分填空子项 */
+  function gradeFillBlank(key) {
+    var inp = document.querySelector('[data-fill="' + key + '"]');
+    if (!inp) return { score: 0, status: 'pending' };
+    var val = norm(inp.value);
+    if (!val) return { score: 0, status: 'pending' };
+
+    var acceptable = FILL_ACCEPT[key] || [ANSWER[key]];
+    var match = acceptable.some(function(a) {
+      return norm(a).toLowerCase() === val.toLowerCase() ||
+             norm(a).toLowerCase().replace(/[_\s]/g,'') === val.toLowerCase().replace(/[_\s]/g,'');
+    });
+    // 也直接比较答案
+    if (!match) {
+      match = norm(ANSWER[key]).toLowerCase() === val.toLowerCase() ||
+              norm(ANSWER[key]).toLowerCase().replace(/[_\s]/g,'') === val.toLowerCase().replace(/[_\s]/g,'');
+    }
+
+    return { score: match ? (SCORE[key] || 2) : 0, status: match ? 'correct' : 'wrong' };
+  }
+
+  /** 评分整个填空题 */
+  function gradeFill(qId) {
+    var blanks = document.querySelectorAll('[data-fill]');
+    var totalScore = 0, maxScore = 0;
+    var anyDone = false;
+    blanks.forEach(function(inp) {
+      var key = inp.getAttribute('data-fill');
+      if (FILL_PARENT[key] !== qId) return;
+      var result = gradeFillBlank(key);
+      totalScore += result.score;
+      maxScore += (SCORE[key] || 2);
+      if (result.status !== 'pending') anyDone = true;
+    });
+    return { score: totalScore, max: maxScore, done: anyDone };
+  }
+
+  // ====== 提交评分 ======
+  function doSubmit() {
+    var singleTotal = 0, singleMax = 0;
+    var multiTotal = 0, multiMax = 0;
+    var fillTotal = 0, fillMax = 0;
+
+    // 清除旧标记
+    $$('.result-badge').forEach(function(el) { el.remove(); });
+
+    // 单选
+    for (var i = 1; i <= 10; i++) {
+      var qId = 'q' + i;
+      var r = gradeSingle(qId);
+      singleTotal += r.score;
+      singleMax += SCORE[qId];
+      showBadge(qId, r.status, r.score, SCORE[qId]);
+    }
+
+    // 多选
+    ['q11','q12','q13'].forEach(function(qId) {
+      var r = gradeMulti(qId);
+      multiTotal += r.score;
+      multiMax += SCORE[qId].max;
+      var label = r.status === 'correct' ? (r.score + '/' + SCORE[qId].max) :
+                  r.status === 'partial' ? (r.score + '/' + SCORE[qId].max) :
+                  r.status === 'wrong' ? '0/' + SCORE[qId].max : '—';
+      showBadge(qId, r.status, r.score, SCORE[qId].max);
+    });
+
+    // 填空
+    var fillQuestions = ['q14','q15','q16','q17','q18'];
+    fillQuestions.forEach(function(qId) {
+      var r = gradeFill(qId);
+      fillTotal += r.score;
+      fillMax += r.max;
+      showBadge(qId, r.done ? (r.score === r.max ? 'correct' : 'wrong') : 'pending', r.score, r.max);
+    });
+
+    // 更新成绩汇总
+    scoreSingle.textContent  = singleTotal + ' / ' + singleMax;
+    scoreMulti.textContent   = multiTotal + ' / ' + multiMax;
+    scoreFill.textContent    = fillTotal + ' / ' + fillMax;
+    scoreProblem.textContent = '— / 38';
+    var total = singleTotal + multiTotal + fillTotal;
+    scoreTotal.textContent   = total + ' / 100';
+    displayScore.textContent = total;
+    scoreSummary.style.display = 'block';
+  }
+
+  /** 在题目旁显示得分徽章 */
+  function showBadge(qId, status, score, maxScore) {
+    var qEl = document.querySelector('[data-qid="' + qId + '"]');
+    if (!qEl) return;
+    var old = qEl.querySelector('.result-badge');
+    if (old) old.remove();
+
+    var badge = document.createElement('span');
+    badge.className = 'result-badge';
+    var label = '';
+    if (status === 'correct') { label = '✓ ' + score; badge.classList.add('result-correct'); }
+    else if (status === 'partial') { label = '~ ' + score + '/' + maxScore; badge.classList.add('result-partial'); }
+    else if (status === 'wrong') { label = '✗ 0/' + maxScore; badge.classList.add('result-wrong'); }
+    else { label = '—'; badge.classList.add('result-pending'); }
+    badge.textContent = label;
+
+    var p = qEl.querySelector('.q-text');
+    if (p) p.appendChild(badge);
+  }
+
+  // ====== 显示答案（密码保护） ======
+  function promptPassword() {
+    var pwd = prompt('请输入密码以显示答案：');
+    return pwd === '2641';
+  }
+
+  function revealAllAnswers() {
+    if (answersRevealed) {
+      // 已显示则隐藏
+      $$('.answer-reveal').forEach(function(el) { el.style.display = 'none'; });
+      answersRevealed = false;
+      return;
+    }
+    if (!promptPassword()) {
+      alert('密码错误！');
+      return;
+    }
+    $$('.answer-reveal').forEach(function(el) { el.style.display = 'block'; });
+    answersRevealed = true;
+  }
+
+  // ====== 清除作答 ======
+  function clearAll() {
+    if (!confirm('确定要清除所有作答记录吗？')) return;
+    // 清除单选
+    document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    // 清除多选
+    document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+    // 清除填空
+    document.querySelectorAll('[data-fill]').forEach(function(inp) { inp.value = ''; });
+    // 清除解答
+    document.querySelectorAll('[data-problem]').forEach(function(ta) { ta.value = ''; });
+    // 清除标记
+    $$('.result-badge').forEach(function(el) { el.remove(); });
+    // 清除成绩
+    scoreSummary.style.display = 'none';
+    displayScore.textContent = '—';
+    // 清除localStorage
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  }
+
+  // ====== 事件绑定 ======
+
+  // 自动保存到 localStorage
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"], [data-fill]')) {
+      saveToLS();
+    }
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('[data-fill], [data-problem]')) {
+      saveToLS();
+    }
+  });
+
+  // 提交按钮
+  $('#btnSubmit').addEventListener('click', doSubmit);
+
+  // 显示答案按钮
+  $('#btnShowAnswers').addEventListener('click', revealAllAnswers);
+
+  // Ctrl+Enter 密码
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.preventDefault();
+      revealAllAnswers();
+    }
+  });
+
+  // 清除按钮
+  $('#btnClear').addEventListener('click', clearAll);
+
+  // ====== 初始化 ======
+  loadFromLS();
+})();
+</script>
+
+</body>
+</html>

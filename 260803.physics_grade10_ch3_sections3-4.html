@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一物理·必修第一册 第三章 3.3 牛顿第三定律 — 3.4 力的合成与分解</title>
+<!-- OMO_INTERNAL_INITIATOR -->
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'宋体','SimSun',serif;font-size:14px;line-height:1.8;color:#222;background:#f5f5f5;padding:20px}
+.container{max-width:210mm;margin:0 auto;background:#fff;padding:30px 25px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.header{border-top:3px double #333;border-bottom:3px double #333;text-align:center;padding:15px 0;margin-bottom:8px}
+.header h1{font-size:20px;letter-spacing:2px}
+.header .info{font-size:13px;color:#555;margin-top:6px}
+.section-title{border-left:4px solid #1a73e8;padding-left:10px;font-size:16px;font-weight:bold;margin:18px 0 12px 0}
+.question{margin:10px 0;padding:6px 0}
+.question .q-text{font-weight:bold;margin-bottom:4px}
+.options{margin-left:12px}
+.options label{display:block;padding:2px 4px;border-radius:3px;cursor:pointer;transition:background .15s}
+.options label:hover{background:#e8f0fe}
+input[type="radio"],input[type="checkbox"]{margin-right:4px;transform:scale(1.1)}
+.fill-in{border:none;border-bottom:1px solid #999;width:80px;text-align:center;font-family:inherit;font-size:14px;padding:2px}
+.fill-in:focus{border-bottom-color:#1a73e8;outline:none}
+.answer-box textarea{width:100%;min-height:50px;font-family:inherit;font-size:13px;padding:6px;border:1px solid #ccc;border-radius:3px;resize:vertical}
+.answer-box textarea:focus{border-color:#1a73e8;outline:none}
+.btn-row{text-align:center;margin:18px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{padding:8px 20px;border:none;border-radius:4px;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-submit{background:#1a73e8;color:#fff}
+.btn-answer{background:#e8a317;color:#fff}
+.btn-clear{background:#888;color:#fff}
+.btn-reset{background:#d32f2f;color:#fff}
+.score-box{border:2px solid #1a73e8;padding:12px;border-radius:6px;margin:12px 0;text-align:center;font-size:16px;display:none}
+.score-box.show{display:block}
+.score-box .big{font-size:28px;font-weight:bold;color:#1a73e8}
+.result-badge{display:inline-block;padding:0 6px;border-radius:3px;font-size:12px;font-weight:bold;margin-left:6px}
+.correct{color:#2e7d32}
+.wrong{color:#c62828}
+.partial{color:#f57f17}
+.answer-reveal{display:none;background:#f0f7ff;border:1px dashed #1a73e8;padding:8px 12px;margin:6px 0;border-radius:4px;font-size:13px;color:#1557b0}
+.answer-reveal.show{display:block}
+.essay-answer{margin-top:4px}
+.check-mark{display:inline-block;width:18px;text-align:center}
+.check-correct{color:#2e7d32;background:#e8f5e9;border-radius:50%}
+.check-wrong{color:#c62828;background:#ffebee;border-radius:50%}
+.check-partial{color:#e65100;background:#fff3e0;border-radius:50%}
+@media print{body{background:#fff;padding:0}.container{box-shadow:none;padding:15px}.no-print{display:none}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>高一物理·必修第一册</h1>
+<h1 style="font-size:17px;margin-top:2px">第三章 3.3 牛顿第三定律 — 3.4 力的合成与分解</h1>
+<div class="info">满分：100分 &nbsp;|&nbsp; 时间：45分钟 &nbsp;|&nbsp; 姓名：<span style="border-bottom:1px solid #999;min-width:60px;display:inline-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &nbsp; 得分：<span id="totalScore">__</span></div>
+</div>
+
+<div class="section-title">一、单选题（共10题，每题3分，共30分）</div>
+
+<div id="q1" class="question" data-type="single" data-answer="B">
+<div class="q-text">1. 关于作用力和反作用力，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q1" value="A"> A. 作用力和反作用力可以作用在同一物体上</label>
+<label><input type="radio" name="q1" value="B"> B. 作用力和反作用力大小相等、方向相反、作用在同一直线上</label>
+<label><input type="radio" name="q1" value="C"> C. 先有作用力，后有反作用力</label>
+<label><input type="radio" name="q1" value="D"> D. 作用力和反作用力的合力为零</label>
+</div>
+<div class="answer-reveal">答案：B</div>
+</div>
+
+<div id="q2" class="question" data-type="single" data-answer="C">
+<div class="q-text">2. 两个共点力的大小分别为$F_1=3\text{N}$和$F_2=4\text{N}$，它们的合力大小不可能为（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q2" value="A"> A. 1N</label>
+<label><input type="radio" name="q2" value="B"> B. 5N</label>
+<label><input type="radio" name="q2" value="C"> C. 8N</label>
+<label><input type="radio" name="q2" value="D"> D. 7N</label>
+</div>
+<div class="answer-reveal">答案：C（合力范围$|F_1-F_2|\le F\le F_1+F_2$，即1N~7N）</div>
+</div>
+
+<div id="q3" class="question" data-type="single" data-answer="B">
+<div class="q-text">3. 物体在斜面上保持静止状态，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q3" value="A"> A. 斜面对物体的支持力与物体对斜面的压力是一对平衡力</label>
+<label><input type="radio" name="q3" value="B"> B. 斜面对物体的支持力与物体对斜面的压力是一对作用力与反作用力</label>
+<label><input type="radio" name="q3" value="C"> C. 物体所受重力和斜面对物体的支持力是一对平衡力</label>
+<label><input type="radio" name="q3" value="D"> D. 物体所受重力与物体对斜面的压力是一对作用力与反作用力</label>
+</div>
+<div class="answer-reveal">答案：B</div>
+</div>
+
+<div id="q4" class="question" data-type="single" data-answer="A">
+<div class="q-text">4. 已知两个共点力的合力大小为10N，其中一个分力大小为6N，方向与合力方向夹角为37°（$\sin37°=0.6,\cos37°=0.8$），则另一个分力的大小为（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q4" value="A"> A. 8N</label>
+<label><input type="radio" name="q4" value="B"> B. 6N</label>
+<label><input type="radio" name="q4" value="C"> C. 10N</label>
+<label><input type="radio" name="q4" value="D"> D. 4N</label>
+</div>
+<div class="answer-reveal">答案：A（由余弦定理：$F_2=\sqrt{10^2+6^2-2\times10\times6\times\cos37°}=\sqrt{100+36-96}=8\text{N}$）</div>
+</div>
+
+<div id="q5" class="question" data-type="single" data-answer="C">
+<div class="q-text">5. 关于牛顿第三定律，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q5" value="A"> A. 拔河时甲队胜了乙队，说明甲队对乙队的拉力大于乙队对甲队的拉力</label>
+<label><input type="radio" name="q5" value="B"> B. 物体加速运动时，作用力大于反作用力</label>
+<label><input type="radio" name="q5" value="C"> C. 作用力与反作用力总是同时产生、同时消失、同时变化</label>
+<label><input type="radio" name="q5" value="D"> D. 一对平衡力也是作用力与反作用力</label>
+</div>
+<div class="answer-reveal">答案：C</div>
+</div>
+
+<div id="q6" class="question" data-type="single" data-answer="D">
+<div class="q-text">6. 一个质量为$m=2\text{kg}$的物体放在水平地面上，用与水平方向成$\theta=30°$角斜向上的拉力$F=10\text{N}$拉物体，物体静止不动，则地面对物体的摩擦力大小为（$g=10\text{m/s}^2$）（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q6" value="A"> A. 10N</label>
+<label><input type="radio" name="q6" value="B"> B. $5\sqrt{3}\text{N}$</label>
+<label><input type="radio" name="q6" value="C"> C. $5\sqrt{2}\text{N}$</label>
+<label><input type="radio" name="q6" value="D"> D. $5\sqrt{3}\text{N}$</label>
+</div>
+<div class="answer-reveal">答案：D（$f=F\cos30°=10\times\frac{\sqrt{3}}{2}=5\sqrt{3}\text{N}$）</div>
+</div>
+
+<div id="q7" class="question" data-type="single" data-answer="A">
+<div class="q-text">7. 关于力的合成，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q7" value="A"> A. 两个力的合力可能小于其中任意一个分力</label>
+<label><input type="radio" name="q7" value="B"> B. 两个力的合力一定大于其中任意一个分力</label>
+<label><input type="radio" name="q7" value="C"> C. 两个力的合力不可能等于其中一个分力</label>
+<label><input type="radio" name="q7" value="D"> D. 两个分力大小一定时，夹角越大合力越大</label>
+</div>
+<div class="answer-reveal">答案：A（当两分力夹角$>90°$时，合力可能小于任一分力）</div>
+</div>
+
+<div id="q8" class="question" data-type="single" data-answer="C">
+<div class="q-text">8. 如图所示，一个物体静止在水平地面上，受到一个与水平方向成$\theta$角斜向上的拉力$F$，物体仍保持静止。当$\theta$角增大时（$F$大小不变），物体所受的摩擦力$f$和支持力$N$的变化情况是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q8" value="A"> A. $f$增大，$N$减小</label>
+<label><input type="radio" name="q8" value="B"> B. $f$减小，$N$增大</label>
+<label><input type="radio" name="q8" value="C"> C. $f$减小，$N$减小</label>
+<label><input type="radio" name="q8" value="D"> D. $f$增大，$N$增大</label>
+</div>
+<div class="answer-reveal">答案：C（$f=F\cos\theta$随$\theta$增大而减小，$N=mg-F\sin\theta$也减小）</div>
+</div>
+
+<div id="q9" class="question" data-type="single" data-answer="B">
+<div class="q-text">9. 用两根轻绳吊起一重物，使重物保持静止。逐渐增大两绳之间的夹角，则每根绳的拉力（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q9" value="A"> A. 不变</label>
+<label><input type="radio" name="q9" value="B"> B. 逐渐增大</label>
+<label><input type="radio" name="q9" value="C"> C. 逐渐减小</label>
+<label><input type="radio" name="q9" value="D"> D. 先增大后减小</label>
+</div>
+<div class="answer-reveal">答案：B（合力$F=mg$不变，夹角增大→分力增大）</div>
+</div>
+
+<div id="q10" class="question" data-type="single" data-answer="A">
+<div class="q-text">10. 一物体同时受到同一平面内的三个共点力作用，下列几组力中合力可能为零的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q10" value="A"> A. 3N、4N、5N</label>
+<label><input type="radio" name="q10" value="B"> B. 2N、3N、6N</label>
+<label><input type="radio" name="q10" value="C"> C. 1N、2N、4N</label>
+<label><input type="radio" name="q10" value="D"> D. 5N、6N、12N</label>
+</div>
+<div class="answer-reveal">答案：A（3+4>5且|3-4|<5，可构成封闭三角形）</div>
+</div>
+
+<div class="section-title">二、多选题（共3题，每题4分，共12分，选对但不全得2分，选错0分）</div>
+
+<div id="q11" class="question" data-type="multi" data-answer='["A","C"]'>
+<div class="q-text">11. 关于平衡力和作用力与反作用力，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="checkbox" name="q11" value="A"> A. 平衡力作用在同一物体上，作用力与反作用力作用在两个不同物体上</label>
+<label><input type="checkbox" name="q11" value="B"> B. 平衡力是性质相同的力，作用力与反作用力是性质不同的力</label>
+<label><input type="checkbox" name="q11" value="C"> C. 平衡力的合力为零，作用力与反作用力的合力不为零</label>
+<label><input type="checkbox" name="q11" value="D"> D. 平衡力同时产生同时消失</label>
+</div>
+<div class="answer-reveal">答案：A、C</div>
+</div>
+
+<div id="q12" class="question" data-type="multi" data-answer='["A","B","D"]'>
+<div class="q-text">12. 关于力的合成与分解，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="checkbox" name="q12" value="A"> A. 力的合成遵守平行四边形定则</label>
+<label><input type="checkbox" name="q12" value="B"> B. 力的分解是力的合成的逆运算</label>
+<label><input type="checkbox" name="q12" value="C"> C. 一个力只能分解成两个分力</label>
+<label><input type="checkbox" name="q12" value="D"> D. 一个力分解成两个分力时，若已知两个分力的方向，则分解是唯一的</label>
+</div>
+<div class="answer-reveal">答案：A、B、D</div>
+</div>
+
+<div id="q13" class="question" data-type="multi" data-answer='["B","C"]'>
+<div class="q-text">13. 物体静止在斜面上，关于物体所受力的分解，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="checkbox" name="q13" value="A"> A. 重力可以分解为沿斜面向下的下滑力和对斜面的正压力</label>
+<label><input type="checkbox" name="q13" value="B"> B. 重力可以分解为沿斜面向下的分力和垂直于斜面向下的分力</label>
+<label><input type="checkbox" name="q13" value="C"> C. 物体所受静摩擦力等于重力沿斜面向下的分力</label>
+<label><input type="checkbox" name="q13" value="D"> D. 物体所受支持力等于物体受到的重力</label>
+</div>
+<div class="answer-reveal">答案：B、C</div>
+</div>
+
+<div class="section-title">三、填空题（共4题，每题4分，共16分）</div>
+
+<div id="q14" class="question" data-type="fill">
+<div class="q-text">14. 牛顿第三定律的内容：两个物体之间的作用力和反作用力总是大小______，方向______，作用在______直线上。</div>
+<p>（1）<input type="text" class="fill-in" id="q14a" style="width:60px"> &nbsp;（2）<input type="text" class="fill-in" id="q14b" style="width:60px"> &nbsp;（3）<input type="text" class="fill-in" id="q14c" style="width:50px"></p>
+<div class="answer-reveal">答案：相等；相反；同一</div>
+</div>
+
+<div id="q15" class="question" data-type="fill">
+<div class="q-text">15. 已知两个分力的大小分别为$F_1=6\text{N}$、$F_2=8\text{N}$，则它们合力的最大值______N，最小值______N。</div>
+<p><input type="text" class="fill-in" id="q15a" style="width:50px">N &nbsp;&nbsp; <input type="text" class="fill-in" id="q15b" style="width:50px">N</p>
+<div class="answer-reveal">答案：14；2</div>
+</div>
+
+<div id="q16" class="question" data-type="fill">
+<div class="q-text">16. 作用于同一点的两个力$F_1=4\text{N}$、$F_2=5\text{N}$，夹角为$90°$，则合力的大小为______N。</div>
+<p><input type="text" class="fill-in" id="q16a" style="width:60px">N</p>
+<div class="answer-reveal">答案：$\sqrt{41}$（约6.4N）</div>
+</div>
+
+<div id="q17" class="question" data-type="fill">
+<div class="q-text">17. 将一个$F=20\text{N}$的力分解为两个分力，其中一个分力$F_1$的方向与$F$成$30°$角，则另一分力$F_2$的最小值为______N。</div>
+<p><input type="text" class="fill-in" id="q17a" style="width:60px">N</p>
+<div class="answer-reveal">答案：10（$F_2\min=F\sin30°=20\times\frac12=10\text{N}$）</div>
+</div>
+
+<div class="section-title">四、解答题（共3题，第18题10分，第19题12分，第20题12分，共34分）</div>
+
+<div id="q18" class="question" data-type="essay">
+<div class="q-text">18.（10分）如图所示，质量为$m=5\text{kg}$的物体放在水平地面上，物体与地面间的动摩擦因数$\mu=0.2$。现用与水平方向成$\theta=37°$角斜向上的拉力$F$拉物体，使物体沿水平地面匀速运动。（$\sin37°=0.6,\cos37°=0.8,g=10\text{m/s}^2$）</p>
+<p>（1）画出物体的受力示意图；（2分）</p>
+<p>（2）求物体所受支持力$N$的大小；（4分）</p>
+<p>（3）求拉力$F$的大小。（4分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）物体受重力$mg$、支持力$N$、拉力$F$、摩擦力$f$四个力。<br>
+（2）竖直方向：$N+F\sin37°=mg$，$N=mg-F\sin37°=50-0.6F$<br>
+（3）水平方向：$F\cos37°=f=\mu N=0.2(50-0.6F)$<br>
+$0.8F=10-0.12F$，$0.92F=10$，$F\approx10.87\text{N}$<br>
+$N=50-0.6\times10.87\approx43.48\text{N}$
+</div>
+</div>
+
+<div id="q19" class="question" data-type="essay">
+<div class="q-text">19.（12分）如图所示，重力$G=100\text{N}$的物体通过两根轻绳$OA$、$OB$悬挂在天花板上，$OA$绳与竖直方向夹角$\theta=53°$，$OB$绳水平。（$\sin53°=0.8,\cos53°=0.6$）</p>
+<p>（1）求$OA$绳的拉力$F_A$大小；（4分）</p>
+<p>（2）求$OB$绳的拉力$F_B$大小；（4分）</p>
+<p>（3）若将$OB$绳剪断，求剪断瞬间物体的加速度大小。（4分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）结点$O$受力分析：$F_A\cos53°=G$，$F_A=\frac{G}{\cos53°}=\frac{100}{0.6}\approx166.67\text{N}$<br>
+（2）水平方向：$F_B=F_A\sin53°=166.67\times0.8\approx133.33\text{N}$<br>
+（3）剪断$OB$瞬间，$OA$绳拉力突变，物体沿圆弧运动。$mg\sin53°=ma$，$a=8\text{m/s}^2$
+</div>
+</div>
+
+<div id="q20" class="question" data-type="essay">
+<div class="q-text">20.（12分）两个共点力$F_1$和$F_2$的夹角为$\theta$，当$\theta=0°$时合力为$14\text{N}$，当$\theta=180°$时合力为$2\text{N}$。</p>
+<p>（1）求$F_1$和$F_2$的大小；（4分）</p>
+<p>（2）当$\theta=90°$时，求合力的大小；（4分）</p>
+<p>（3）当$\theta=120°$时，求合力的大小。（4分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）$\theta=0°$：$F_1+F_2=14$；$\theta=180°$：$|F_1-F_2|=2$<br>
+解得：$F_1=8\text{N},F_2=6\text{N}$（或$F_1=6\text{N},F_2=8\text{N}$）<br>
+（2）$\theta=90°$：$F=\sqrt{F_1^2+F_2^2}=\sqrt{64+36}=10\text{N}$<br>
+（3）$\theta=120°$：$F=\sqrt{F_1^2+F_2^2+2F_1F_2\cos120°}=\sqrt{64+36-48}=\sqrt{52}=2\sqrt{13}\approx7.21\text{N}$
+</div>
+</div>
+
+<div class="section-title">五、附加题（8分）</div>
+
+<div id="q21" class="question" data-type="essay">
+<div class="q-text">21.（8分）如图所示，质量为$m=3\text{kg}$的物体$A$放在倾角$\theta=37°$的固定斜面上，$A$与斜面间的动摩擦因数$\mu=0.5$。现用平行于斜面向上的拉力$F$拉$A$，使$A$沿斜面匀速上滑。（$\sin37°=0.6,\cos37°=0.8,g=10\text{m/s}^2$）</p>
+<p>（1）求$A$所受滑动摩擦力的大小；（4分）</p>
+<p>（2）求拉力$F$的大小。（4分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）$N=mg\cos37°=30\times0.8=24\text{N}$<br>
+$f=\mu N=0.5\times24=12\text{N}$<br>
+（2）匀速上滑：$F=mg\sin37°+f=30\times0.6+12=18+12=30\text{N}$
+</div>
+</div>
+
+<div class="btn-row no-print">
+<button class="btn btn-submit" onclick="gradeExam()">提交并评分</button>
+<button class="btn btn-answer" onclick="promptPassword()">显示答案</button>
+<button class="btn btn-clear" onclick="clearAnswers()">清除作答</button>
+<button class="btn btn-reset" onclick="resetAll()">重置所有</button>
+</div>
+
+<div id="scoreBox" class="score-box">
+<p>📊 成绩报告</p>
+<p>单选题：<span id="singleScore">0</span>/30分</p>
+<p>多选题：<span id="multiScore">0</span>/12分</p>
+<p>填空题：<span id="fillScore">0</span>/16分（建议自批）</p>
+<p style="font-size:18px;margin-top:6px">总成绩：<span class="big" id="finalScore">0</span>/100分</p>
+</div>
+
+</div>
+
+<script>
+const SINGLE_KEYS = {q1:'B',q2:'C',q3:'B',q4:'A',q5:'C',q6:'D',q7:'A',q8:'C',q9:'B',q10:'A'};
+const MULTI_KEYS = {q11:['A','C'],q12:['A','B','D'],q13:['B','C']};
+const FILL_KEYS = {q14a:'相等',q14b:'相反',q14c:'同一',q15a:'14',q15b:'2',q16a:'6.4',q17a:'10'};
+const FILL_ALT = {q14a:['相等','相同','等于'],q14b:['相反','反向'],q14c:['同一','同一条','一条'],q15a:['14','14.0'],q15b:['2','2.0'],q16a:['6.4','6.40','√41','41^(1/2)'],q17a:['10','10.0']};
+const STORAGE_KEY = 'physics_260803_answers';
+
+function saveAll(){
+  const d={};
+  document.querySelectorAll('input[type="radio"]:checked').forEach(i=>{d[i.name]=i.value});
+  document.querySelectorAll('input[type="checkbox"]').forEach(i=>{if(i.checked){const n=i.name;if(!d[n])d[n]=[];d[n].push(i.value)}});
+  document.querySelectorAll('.fill-in').forEach(i=>{d[i.id]=i.value});
+  document.querySelectorAll('textarea').forEach((t,i)=>{d['ta_'+i]=t.value});
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(d))}catch(e){}
+}
+
+function loadAll(){
+  try{
+    const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+    document.querySelectorAll('input[type="radio"]').forEach(i=>{if(d[i.name]===i.value)i.checked=true});
+    document.querySelectorAll('input[type="checkbox"]').forEach(i=>{if(d[i.name]&&d[i.name].includes(i.value))i.checked=true});
+    document.querySelectorAll('.fill-in').forEach(i=>{if(d[i.id])i.value=d[i.id]});
+    document.querySelectorAll('textarea').forEach((t,i)=>{if(d['ta_'+i])t.value=d['ta_'+i]});
+  }catch(e){}
+}
+
+document.addEventListener('change',saveAll);
+document.addEventListener('input',saveAll);
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();promptPassword()}
+});
+
+function promptPassword(){
+  const pwd=prompt('请输入密码查看答案（提示：2641）：');
+  if(pwd==='2641'){revealAnswers()}
+  else if(pwd!==null){alert('密码错误！')}
+}
+
+function revealAnswers(){
+  document.querySelectorAll('.answer-reveal').forEach(el=>el.classList.add('show'));
+}
+
+function gradeExam(){
+  let singleTotal=0,multiTotal=0,fillTotal=0;
+  // Grade single choice
+  Object.keys(SINGLE_KEYS).forEach(q=>{
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const qDiv=document.getElementById(q);
+    if(!qDiv)return;
+    const opts=qDiv.querySelectorAll('.options label');
+    opts.forEach(l=>l.classList.remove('correct','wrong'));
+    const isCorrect=sel&&sel.value===SINGLE_KEYS[q];
+    if(isCorrect){singleTotal+=3}
+    if(sel){sel.parentElement.classList.add(isCorrect?'correct':'wrong')}
+    // highlight correct answer
+    opts.forEach(l=>{
+      const i=l.querySelector('input');
+      if(i&&i.value===SINGLE_KEYS[q])l.style.fontWeight='bold';
+    });
+  });
+  document.getElementById('singleScore').textContent=singleTotal;
+
+  // Grade multi choice
+  Object.keys(MULTI_KEYS).forEach(q=>{
+    const checked=document.querySelectorAll(`input[name="${q}"]:checked`);
+    const selected=Array.from(checked).map(c=>c.value);
+    const correct=MULTI_KEYS[q];
+    const qDiv=document.getElementById(q);
+    if(!qDiv)return;
+    const opts=qDiv.querySelectorAll('.options label');
+    opts.forEach(l=>l.classList.remove('correct','wrong','partial'));
+    const hasWrong=selected.some(s=>!correct.includes(s));
+    const allCorrect=selected.length===correct.length&&!hasWrong;
+    if(!hasWrong&&selected.length>0&&!allCorrect){multiTotal+=2}
+    else if(allCorrect){multiTotal+=4;opts.forEach(l=>{const i=l.querySelector('input');if(i&&correct.includes(i.value))l.classList.add('correct')})}
+    checked.forEach(c=>{const l=c.closest('label');if(!correct.includes(c.value))l.classList.add('wrong');else if(!allCorrect)l.classList.add('partial')});
+    opts.forEach(l=>{const i=l.querySelector('input');if(i&&correct.includes(i.value))l.style.fontWeight='bold'});
+  });
+  document.getElementById('multiScore').textContent=multiTotal;
+
+  // Grade fill
+  Object.keys(FILL_KEYS).forEach(k=>{
+    const inp=document.getElementById(k);
+    if(!inp)return;
+    const val=inp.value.trim();
+    const alt=FILL_ALT[k]||[FILL_KEYS[k]];
+    const isCorrect=alt.some(a=>val===a||val.toLowerCase()===a.toLowerCase());
+    if(isCorrect)fillTotal+=4/Object.keys(FILL_KEYS).length|0;
+    inp.style.color=isCorrect?'#2e7d32':'';
+  });
+  document.getElementById('fillScore').textContent=fillTotal;
+  document.getElementById('finalScore').textContent=singleTotal+multiTotal+fillTotal;
+  document.getElementById('scoreBox').classList.add('show');
+  saveAll();
+}
+
+function clearAnswers(){
+  if(!confirm('确定要清空所有作答吗？'))return;
+  document.querySelectorAll('input[type="radio"]').forEach(i=>i.checked=false);
+  document.querySelectorAll('input[type="checkbox"]').forEach(i=>i.checked=false);
+  document.querySelectorAll('.fill-in').forEach(i=>i.value='');
+  document.querySelectorAll('textarea').forEach(i=>i.value='');
+  try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
+  document.getElementById('scoreBox').classList.remove('show');
+}
+
+function resetAll(){
+  clearAnswers();
+  document.querySelectorAll('.answer-reveal').forEach(el=>el.classList.remove('show'));
+  document.querySelectorAll('.options label').forEach(l=>{l.classList.remove('correct','wrong','partial');l.style.fontWeight=''});
+  document.querySelectorAll('.fill-in').forEach(i=>i.style.color='');
+  document.getElementById('singleScore').textContent='0';
+  document.getElementById('multiScore').textContent='0';
+  document.getElementById('fillScore').textContent='0';
+  document.getElementById('finalScore').textContent='0';
+}
+
+loadAll();
+</script>
+</body>
+</html>

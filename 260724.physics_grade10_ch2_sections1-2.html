@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一物理·必修第一册 第二章 2.1-2.2</title>
+<style>
+  /* ===== 全局重置 & 基础 ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "SimSun", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    line-height: 1.8;
+    font-size: 15px;
+    padding: 20px;
+  }
+
+  /* ===== 试卷容器 ===== */
+  .paper {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px 32px 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    border-radius: 2px;
+  }
+
+  /* ===== 页头 ===== */
+  .exam-header {
+    text-align: center;
+    border-bottom: 3px double #222;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+  }
+  .exam-header h1 {
+    font-size: 22px;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .exam-header .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .exam-header .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .exam-header .info-row span { display: inline-block; }
+  .exam-header .info-row .label { font-weight: 600; }
+  .exam-header .info-row .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1px solid #222;
+    margin: 0 4px;
+    padding: 0 8px;
+  }
+
+  /* ===== 通用标题 ===== */
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    padding: 4px 0 4px 12px;
+    border-left: 4px solid #1a5276;
+    background: #f7f9fc;
+  }
+  .section-title .score-hint {
+    font-weight: 400;
+    font-size: 13px;
+    color: #777;
+    margin-left: 8px;
+  }
+
+  /* ===== 题目布局 ===== */
+  .question { margin-bottom: 14px; }
+  .question .q-head {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .question .q-body { padding-left: 6px; }
+  .question .q-body p { margin-bottom: 4px; }
+
+  /* ===== 选项（单选 / 多选） ===== */
+  .options { list-style: none; padding-left: 20px; }
+  .options li { margin-bottom: 2px; }
+  .options li label {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    cursor: pointer;
+    padding: 1px 6px;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .options li label:hover { background: #eef4fa; }
+  .options li input[type="radio"],
+  .options li input[type="checkbox"] {
+    width: 15px; height: 15px;
+    margin-right: 4px;
+    accent-color: #1a5276;
+    cursor: pointer;
+  }
+
+  /* ===== 填空题 ===== */
+  .fillin { margin: 4px 0; }
+  .fillin input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #888;
+    width: 90px;
+    padding: 0 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background: transparent;
+    text-align: center;
+  }
+  .fillin input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: #1a5276;
+    border-bottom-width: 2px;
+  }
+  .fillin .blank-long {
+    display: inline-block;
+    min-width: 60px;
+    border-bottom: 1px solid #888;
+    margin: 0 4px;
+    padding: 0 6px;
+  }
+
+  /* ===== 解答题 ===== */
+  .calc-question .q-body { margin-bottom: 6px; }
+  .calc-question textarea {
+    width: 100%;
+    min-height: 80px;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    background: #fafcfe;
+  }
+  .calc-question textarea:focus {
+    border-color: #1a5276;
+    box-shadow: 0 0 0 2px rgba(26,82,118,0.12);
+    outline: none;
+  }
+  .calc-question .sub-q { margin: 6px 0 6px 16px; }
+  .calc-question .sub-q .sq-label { font-weight: 600; }
+
+  /* ===== SVG 简图 ===== */
+  .figure-container {
+    text-align: center;
+    margin: 8px 0;
+  }
+  .figure-container svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ===== 数据表格 ===== */
+  .data-table {
+    margin: 8px auto;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: center;
+  }
+  .data-table th, .data-table td {
+    border: 1px solid #999;
+    padding: 4px 12px;
+  }
+  .data-table th {
+    background: #eef4fa;
+    font-weight: 600;
+  }
+
+  /* ===== 参考答案区 ===== */
+  .answer-section {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 2px dashed #ccc;
+  }
+  .answer-section h2 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .toggle-answer-btn {
+    display: inline-block;
+    padding: 6px 22px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #1a5276;
+    background: #fff;
+    color: #1a5276;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+    margin-bottom: 10px;
+  }
+  .toggle-answer-btn:hover {
+    background: #1a5276;
+    color: #fff;
+  }
+  #answerContent {
+    background: #f7f9fc;
+    border: 1px solid #d5dfe8;
+    border-radius: 4px;
+    padding: 18px 22px;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  #answerContent .ans-block {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8ee;
+  }
+  #answerContent .ans-block:last-child { border-bottom: none; }
+  #answerContent .ans-q { font-weight: 600; color: #1a5276; }
+  #answerContent .ans-body { padding-left: 8px; }
+  #answerContent .ans-body .ans-key {
+    color: #c0392b;
+    font-weight: 600;
+  }
+  #answerContent .ans-body .ans-detail {
+    color: #444;
+    margin-top: 2px;
+  }
+
+  /* ===== 底部交卷 ===== */
+  .submit-bar {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #ccc;
+  }
+  .submit-bar button {
+    padding: 8px 36px;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    background: #1a5276;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .submit-bar button:hover { background: #0e3a55; }
+
+  /* ===== 右侧分数汇总（可选） ===== */
+  .score-summary {
+    position: fixed; right: 16px; top: 80px;
+    width: 170px;
+    background: #fff;
+    border: 1px solid #d5dfe8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: none;
+  }
+  .score-summary h3 { font-size: 13px; margin-bottom: 6px; }
+  .score-summary .ss-row {
+    display: flex; justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .score-summary .ss-total {
+    font-weight: 700; font-size: 14px; margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ===== 打印样式 ===== */
+  @page {
+    size: A4;
+    margin: 18mm 20mm 22mm;
+  }
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      font-size: 13.5px;
+    }
+    .paper {
+      max-width: 100%;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    .score-summary { display: none !important; }
+    .submit-bar { display: none !important; }
+    .toggle-answer-btn { display: none !important; }
+    #answerContent { display: block !important; }
+    .options li label:hover { background: transparent; }
+    textarea { border: 1px solid #ccc; background: #fafafa; }
+    .calc-question textarea { min-height: 60px; }
+    .exam-header .info-row .blank { border-bottom: 1px solid #000; }
+    .fillin input[type="text"] { border-bottom: 1px solid #000; }
+    .answer-section { border-top-color: #aaa; }
+    #answerContent { background: #fafafa; border-color: #ccc; }
+  }
+
+  /* ===== 移动端适配 ===== */
+  @media screen and (max-width: 640px) {
+    body { padding: 8px; }
+    .paper { padding: 14px 16px; }
+    .exam-header .info-row { flex-direction: column; align-items: center; }
+    .options { padding-left: 8px; }
+    .score-summary { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <!-- ======================== 页头 ======================== -->
+  <div class="exam-header">
+    <h1>高一物理·必修第一册 第二章</h1>
+    <div class="subtitle">2.1 实验：探究小车速度随时间变化的规律 + 2.2 速度与时间的关系</div>
+    <div class="info-row">
+      <span><span class="label">姓名：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">班级：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">学号：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">得分：</span><span class="blank">&nbsp;</span></span>
+    </div>
+    <div style="margin-top:6px; font-size:13px; color:#666;">
+      总分：100分 &nbsp;&nbsp;|&nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp;|&nbsp;&nbsp; 命题范围：人教版必修第一册第二章 2.1-2.2
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section-title">
+    一、单项选择题（共10题，每题3分，共30分）
+    <span class="score-hint">每题只有一个正确选项</span>
+  </div>
+
+  <!-- q1 -->
+  <div class="question" id="q1">
+    <div class="q-head">1.</div>
+    <div class="q-body">
+      <p>在"探究小车速度随时间变化的规律"实验中，使用的打点计时器是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A．电磁打点计时器，使用直流电源</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B．电磁打点计时器，使用交流电源</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C．电火花计时器，使用直流电源</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D．电火花计时器，使用交流电源</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q2 -->
+  <div class="question" id="q2">
+    <div class="q-head">2.</div>
+    <div class="q-body">
+      <p>在"探究小车速度随时间变化的规律"实验中，下列操作正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A．先释放小车，再接通电源</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B．先接通电源，再释放小车</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C．释放小车的同时接通电源</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D．以上操作都可以</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q3 -->
+  <div class="question" id="q3">
+    <div class="q-head">3.</div>
+    <div class="q-body">
+      <p>纸带上相邻两个计数点间还有4个点未画出，打点计时器频率为50Hz，则相邻计数点间的时间间隔为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A．0.02s</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B．0.04s</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C．0.08s</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D．0.10s</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q4 -->
+  <div class="question" id="q4">
+    <div class="q-head">4.</div>
+    <div class="q-body">
+      <p>关于匀变速直线运动的 \(v\!-\!t\) 图象，下列说法正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A．是一条平行于时间轴的直线</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B．是一条倾斜的直线</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C．是一条曲线</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D．是一条与时间轴重合的直线</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q5 -->
+  <div class="question" id="q5">
+    <div class="q-head">5.</div>
+    <div class="q-body">
+      <p>匀变速直线运动的速度公式 \(v = v_0 + at\) 中，\(v_0\) 表示（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A．末速度</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B．加速度</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C．初速度</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D．时间</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q6 -->
+  <div class="question" id="q6">
+    <div class="q-head">6.</div>
+    <div class="q-body">
+      <p>某物体做匀加速直线运动，初速度为 \(3\,\text{m/s}\)，加速度为 \(2\,\text{m/s}^2\)，则 \(2\,\text{s}\) 末的速度为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A．\(5\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B．\(6\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C．\(7\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D．\(10\,\text{m/s}\)</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q7 -->
+  <div class="question" id="q7">
+    <div class="q-head">7.</div>
+    <div class="q-body">
+      <p>在纸带数据处理中，用逐差法求加速度的主要目的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A．使计算更简单</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B．充分利用数据，减小偶然误差</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C．使结果更美观</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D．避免使用刻度尺</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q8 -->
+  <div class="question" id="q8">
+    <div class="q-head">8.</div>
+    <div class="q-body">
+      <p>某质点的 \(v\!-\!t\) 图象是一条过原点的倾斜直线，说明该质点做（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A．初速度为零的匀加速直线运动</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B．初速度不为零的匀加速直线运动</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C．匀速直线运动</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D．匀减速直线运动</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q9 -->
+  <div class="question" id="q9">
+    <div class="q-head">9.</div>
+    <div class="q-body">
+      <p>一物体做匀减速直线运动，初速度为 \(8\,\text{m/s}\)，加速度大小为 \(2\,\text{m/s}^2\)，则 \(3\,\text{s}\) 末的速度为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A．\(2\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B．\(4\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C．\(6\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D．\(14\,\text{m/s}\)</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q10 -->
+  <div class="question" id="q10">
+    <div class="q-head">10.</div>
+    <div class="q-body">
+      <p>在 \(v\!-\!t\) 图象中，图线的斜率表示（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A．位移</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B．速度</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C．加速度</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D．时间</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section-title">
+    二、多项选择题（共3题，每题4分，共12分）
+    <span class="score-hint">每题有多个正确选项，全部选对得4分，选对但不全得2分，有选错得0分</span>
+  </div>
+
+  <!-- q101 -->
+  <div class="question" id="q101">
+    <div class="q-head">11.（多选）</div>
+    <div class="q-body">
+      <p>在"探究小车速度随时间变化的规律"实验中，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q101" value="A"> A．打点计时器应使用交流电源</label></li>
+        <li><label><input type="checkbox" name="q101" value="B"> B．实验时应先释放小车，再接通电源</label></li>
+        <li><label><input type="checkbox" name="q101" value="C"> C．纸带应穿过限位孔，并放在复写纸下面</label></li>
+        <li><label><input type="checkbox" name="q101" value="D"> D．小车应靠近打点计时器放置</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q102 -->
+  <div class="question" id="q102">
+    <div class="q-head">12.（多选）</div>
+    <div class="q-body">
+      <p>关于匀变速直线运动的 \(v\!-\!t\) 图象，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q102" value="A"> A．图线的斜率表示加速度</label></li>
+        <li><label><input type="checkbox" name="q102" value="B"> B．图线在纵轴上的截距表示初速度</label></li>
+        <li><label><input type="checkbox" name="q102" value="C"> C．图线为倾斜直线时，表示物体做匀变速直线运动</label></li>
+        <li><label><input type="checkbox" name="q102" value="D"> D．图线为曲线时，表示物体做匀速直线运动</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- q103 -->
+  <div class="question" id="q103">
+    <div class="q-head">13.（多选）</div>
+    <div class="q-body">
+      <p>关于公式 \(v = v_0 + at\)，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q103" value="A"> A．适用于任何直线运动</label></li>
+        <li><label><input type="checkbox" name="q103" value="B"> B．只适用于匀变速直线运动</label></li>
+        <li><label><input type="checkbox" name="q103" value="C"> C．当 \(a\) 与 \(v_0\) 同向时，\(v\) 增大</label></li>
+        <li><label><input type="checkbox" name="q103" value="D"> D．当 \(a\) 与 \(v_0\) 反向时，\(v\) 一定减小</label></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section-title">
+    三、填空题（共6题，每题3分，共18分）
+  </div>
+
+  <!-- q11 -->
+  <div class="question" id="q11">
+    <div class="q-head">14.</div>
+    <div class="q-body">
+      <p>电磁打点计时器的工作频率为 50Hz，则打点周期为______s。</p>
+      <div class="fillin"><input type="text" id="fill_q11" maxlength="6" style="width:70px;"> s</div>
+    </div>
+  </div>
+
+  <!-- q12 -->
+  <div class="question" id="q12">
+    <div class="q-head">15.</div>
+    <div class="q-body">
+      <p>在纸带数据处理中，若相邻计数点间有4个点未画出，则相邻计数点间的时间间隔为______s。</p>
+      <div class="fillin"><input type="text" id="fill_q12" maxlength="6" style="width:70px;"> s</div>
+    </div>
+  </div>
+
+  <!-- q13 -->
+  <div class="question" id="q13">
+    <div class="q-head">16.</div>
+    <div class="q-body">
+      <p>某物体做匀加速直线运动，初速度 \(v_0 = 4\,\text{m/s}\)，加速度 \(a = 3\,\text{m/s}^2\)，则 \(3\,\text{s}\) 末的速度为______m/s。</p>
+      <div class="fillin"><input type="text" id="fill_q13" maxlength="4" style="width:60px;"> m/s</div>
+    </div>
+  </div>
+
+  <!-- q14 -->
+  <div class="question" id="q14">
+    <div class="q-head">17.</div>
+    <div class="q-body">
+      <p>匀变速直线运动的 \(v\!-\!t\) 图象中，图线的斜率等于物体的______。</p>
+      <div class="fillin"><input type="text" id="fill_q14" maxlength="8" style="width:90px;"></div>
+    </div>
+  </div>
+
+  <!-- q15 -->
+  <div class="question" id="q15">
+    <div class="q-head">18.</div>
+    <div class="q-body">
+      <p>某物体的速度随时间变化的关系为 \(v = 2 + 4t\)（国际单位制），则该物体的初速度为______m/s，加速度为______m/s²。</p>
+      <div class="fillin">\(v_0 =\) <input type="text" id="fill_q15a" maxlength="4" style="width:50px;"> m/s &nbsp; \(a =\) <input type="text" id="fill_q15b" maxlength="4" style="width:50px;"> m/s²</div>
+    </div>
+  </div>
+
+  <!-- q16 -->
+  <div class="question" id="q16">
+    <div class="q-head">19.</div>
+    <div class="q-body">
+      <p>在纸带数据处理中，某点的瞬时速度等于以该点为中间时刻的______段的平均速度。</p>
+      <div class="fillin"><input type="text" id="fill_q16" maxlength="8" style="width:90px;"></div>
+    </div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section-title">
+    四、解答题（共4题，共40分）
+    <span class="score-hint">请写出必要的文字说明和解题过程</span>
+  </div>
+
+  <!-- q17 -->
+  <div class="question calc-question" id="q17">
+    <div class="q-head">20.（10分）</div>
+    <div class="q-body">
+      <p>在"探究小车速度随时间变化的规律"实验中，某同学得到一条纸带，在纸带上每隔4个点取一个计数点，测得各相邻计数点间的距离如下表所示（打点计时器频率为 50Hz）：</p>
+      <div style="text-align:center; margin:8px 0;">
+        <table class="data-table">
+          <tr><th>计数点</th><th>0-1</th><th>1-2</th><th>2-3</th><th>3-4</th><th>4-5</th><th>5-6</th></tr>
+          <tr><td>距离/cm</td><td>2.50</td><td>3.50</td><td>4.50</td><td>5.50</td><td>6.50</td><td>7.50</td></tr>
+        </table>
+      </div>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求打点计时器的打点周期 \(T_0\) 和相邻计数点间的时间间隔 \(T\)；（2分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求打计数点 3 时的瞬时速度 \(v_3\)；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 用逐差法求小车的加速度 \(a\)。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- q18 -->
+  <div class="question calc-question" id="q18">
+    <div class="q-head">21.（10分）</div>
+    <div class="q-body">
+      <p>某物体做直线运动，其 \(v\!-\!t\) 图象如下图所示：</p>
+      <div class="figure-container">
+        <svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #d0d8e0; border-radius:4px; background:#fafcfe;">
+          <!-- 坐标轴 -->
+          <line x1="40" y1="170" x2="340" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="40" y1="170" x2="40" y2="20" stroke="#333" stroke-width="1.5"/>
+          <!-- 箭头 -->
+          <polygon points="335,170 340,170 338,165" fill="#333"/>
+          <polygon points="40,25 40,20 35,22" fill="#333"/>
+          <!-- 刻度 & 标签 -->
+          <text x="100" y="186" font-size="12" text-anchor="middle" fill="#333">2</text>
+          <text x="160" y="186" font-size="12" text-anchor="middle" fill="#333">4</text>
+          <text x="220" y="186" font-size="12" text-anchor="middle" fill="#333">6</text>
+          <text x="280" y="186" font-size="12" text-anchor="middle" fill="#333">8</text>
+          <text x="310" y="186" font-size="12" text-anchor="middle" fill="#333">t/s</text>
+          <text x="32" y="146" font-size="12" text-anchor="end" fill="#333">2</text>
+          <text x="32" y="110" font-size="12" text-anchor="end" fill="#333">4</text>
+          <text x="32" y="74" font-size="12" text-anchor="end" fill="#333">6</text>
+          <text x="32" y="38" font-size="12" text-anchor="end" fill="#333">8</text>
+          <text x="20" y="24" font-size="12" text-anchor="middle" fill="#333">v/(m·s⁻¹)</text>
+          <!-- 网格虚线 -->
+          <line x1="100" y1="170" x2="100" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="160" y1="170" x2="160" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="220" y1="170" x2="220" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="280" y1="170" x2="280" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="146" x2="340" y2="146" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="110" x2="340" y2="110" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="74" x2="340" y2="74" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="40" y1="38" x2="340" y2="38" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <!-- v-t 直线: (0,2) -> (8s,6) -->
+          <circle cx="40" cy="146" r="4" fill="#c0392b"/>
+          <circle cx="280" cy="74" r="4" fill="#c0392b"/>
+          <line x1="40" y1="146" x2="280" y2="74" stroke="#c0392b" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求物体的初速度 \(v_0\)；（2分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求物体的加速度 \(a\)；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 写出物体的速度随时间变化的关系式。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- q19 -->
+  <div class="question calc-question" id="q19">
+    <div class="q-head">22.（10分）</div>
+    <div class="q-body">
+      <p>一辆汽车以 \(12\,\text{m/s}\) 的速度在平直公路上匀速行驶，遇到紧急情况后以大小为 \(2\,\text{m/s}^2\) 的加速度刹车（做匀减速直线运动）。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求刹车后 \(3\,\text{s}\) 末的速度；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求刹车后 \(5\,\text{s}\) 末的速度；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求刹车后 \(7\,\text{s}\) 末的速度。（3分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- q20 -->
+  <div class="question calc-question" id="q20">
+    <div class="q-head">23.（10分）</div>
+    <div class="q-body">
+      <p>在"探究小车速度随时间变化的规律"实验中：</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 请将下列实验步骤按正确顺序排列（只填序号）：______（4分）<br>
+        <span style="padding-left:16px;">① 关闭电源，取下纸带</span><br>
+        <span style="padding-left:16px;">② 将小车停在靠近打点计时器处，接通电源后释放小车</span><br>
+        <span style="padding-left:16px;">③ 将打点计时器固定在长木板一端，连接好电路</span><br>
+        <span style="padding-left:16px;">④ 将纸带穿过限位孔，一端固定在小车后面</span><br>
+        <span style="padding-left:16px;">⑤ 换上新纸带，重复实验几次</span>
+      </div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 某次实验得到一条纸带，用刻度尺测量各计数点间的距离，通过计算得到各计数点的瞬时速度如下表。请根据表中数据在下面的坐标系中作出 \(v\!-\!t\) 图象，并判断小车做什么运动。（3分）</div>
+      <div style="text-align:center; margin:6px 0;">
+        <table class="data-table">
+          <tr><th>计数点</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+          <tr><td>\(v/(\text{m·s}^{-1})\)</td><td>0.20</td><td>0.31</td><td>0.42</td><td>0.53</td><td>0.64</td></tr>
+        </table>
+      </div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 根据第(2)问的 \(v\!-\!t\) 图象，求小车的加速度 \(a\) 和初速度 \(v_0\)。（3分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- ======================== 交卷按钮 ======================== -->
+  <div class="submit-bar">
+    <button onclick="submitExam()">提交试卷（Ctrl+Enter）</button>
+    <button onclick="clearAnswers()" style="background:#888; margin-left:8px;">清空答案</button>
+    <p style="margin-top:6px; font-size:12px; color:#999;">按下 Ctrl+Enter 也可提交</p>
+  </div>
+
+  <!-- ======================== 参考答案 ======================== -->
+  <div class="answer-section">
+    <h2>参考答案与解析</h2>
+    <button class="toggle-answer-btn" onclick="toggleAnswer()">显示答案</button>
+    <div id="answerContent" style="display:none;">
+
+      <!-- 单选题 -->
+      <div class="ans-block">
+        <div class="ans-q">一、单项选择题（每题3分）</div>
+        <div class="ans-body">
+          <p><span class="ans-key">1.【B】</span> 电磁打点计时器使用交流电源（6V以下），电火花计时器使用交流220V电源。本题未指明类型，但高中阶段常用电磁打点计时器，使用交流电源。</p>
+          <p><span class="ans-key">2.【B】</span> 实验时应先接通电源，待打点稳定后再释放小车，以保证打点清晰且充分利用纸带。</p>
+          <p><span class="ans-key">3.【D】</span> 打点周期 \(T_0 = 1/50 = 0.02\,\text{s}\)，相邻计数点间有4个点未画出，则 \(T = 5T_0 = 0.10\,\text{s}\)。</p>
+          <p><span class="ans-key">4.【B】</span> 匀变速直线运动的速度随时间均匀变化，\(v\!-\!t\) 图象是一条倾斜的直线。</p>
+          <p><span class="ans-key">5.【C】</span> 公式 \(v = v_0 + at\) 中，\(v_0\) 表示初速度（\(t=0\) 时的速度）。</p>
+          <p><span class="ans-key">6.【C】</span> \(v = v_0 + at = 3 + 2 \times 2 = 7\,\text{m/s}\)。</p>
+          <p><span class="ans-key">7.【B】</span> 逐差法（如 \(a = \frac{(x_4+x_5+x_6)-(x_1+x_2+x_3)}{9T^2}\)）充分利用了所有测量数据，可以有效减小偶然误差。</p>
+          <p><span class="ans-key">8.【A】</span> 过原点 \(\Rightarrow v_0 = 0\)，倾斜直线 \(\Rightarrow\) 匀变速，故为初速度为零的匀加速直线运动。</p>
+          <p><span class="ans-key">9.【A】</span> 取初速度方向为正，\(a = -2\,\text{m/s}^2\)，\(v = v_0 + at = 8 + (-2) \times 3 = 2\,\text{m/s}\)。</p>
+          <p><span class="ans-key">10.【C】</span> \(v\!-\!t\) 图象中，斜率 \(k = \frac{\Delta v}{\Delta t} = a\)，即加速度。</p>
+        </div>
+      </div>
+
+      <!-- 多选题 -->
+      <div class="ans-block">
+        <div class="ans-q">二、多项选择题（每题4分）</div>
+        <div class="ans-body">
+          <p><span class="ans-key">11.【A、C、D】</span> A正确，打点计时器使用交流电源。B错误，应先接通电源再释放小车。C正确，纸带应穿过限位孔并放在复写纸下面（电磁打点计时器）。D正确，小车应靠近打点计时器，以充分利用纸带。</p>
+          <p><span class="ans-key">12.【A、B、C】</span> A正确，斜率 \(k = \Delta v / \Delta t = a\)。B正确，纵截距对应 \(t=0\) 时的速度即初速度。C正确，倾斜直线表示速度均匀变化，即匀变速。D错误，曲线表示加速度在变化，不是匀速。</p>
+          <p><span class="ans-key">13.【B、C、D】</span> A错误B正确，\(v = v_0 + at\) 只适用于匀变速直线运动。C正确，\(a\) 与 \(v_0\) 同向时速度增加。D正确，\(a\) 与 \(v_0\) 反向时速度减小（先减速到零再反向加速，但速度大小先减小）。</p>
+        </div>
+      </div>
+
+      <!-- 填空题 -->
+      <div class="ans-block">
+        <div class="ans-q">三、填空题（每题3分）</div>
+        <div class="ans-body">
+          <p><span class="ans-key">14.【0.02】</span> \(T = 1/f = 1/50 = 0.02\,\text{s}\)。</p>
+          <p><span class="ans-key">15.【0.1】</span> 相邻计数点间有4个点未画出，则 \(T = 5 \times 0.02 = 0.1\,\text{s}\)。</p>
+          <p><span class="ans-key">16.【13】</span> \(v = v_0 + at = 4 + 3 \times 3 = 13\,\text{m/s}\)。</p>
+          <p><span class="ans-key">17.【加速度】</span> \(v\!-\!t\) 图线的斜率 \(k = \Delta v / \Delta t = a\)。</p>
+          <p><span class="ans-key">18.【2；4】</span> 对比 \(v = v_0 + at\) 与 \(v = 2 + 4t\)，得 \(v_0 = 2\,\text{m/s}\)，\(a = 4\,\text{m/s}^2\)。</p>
+          <p><span class="ans-key">19.【相邻】</span> 纸带数据处理中，某点的瞬时速度等于以该点为中间时刻的相邻一段位移的平均速度，即 \(v_n = \frac{x_n + x_{n+1}}{2T}\)。</p>
+        </div>
+      </div>
+
+      <!-- 解答题 -->
+      <div class="ans-block">
+        <div class="ans-q">四、解答题</div>
+        <div class="ans-body">
+          <p><span class="ans-key">20.（10分）</span></p>
+          <p style="padding-left:16px;">(1) 打点周期 \(T_0 = \frac{1}{f} = \frac{1}{50} = 0.02\,\text{s}\)（1分）<br>
+            相邻计数点间有4个点未画出，\(T = 5T_0 = 5 \times 0.02 = 0.10\,\text{s}\)（1分）</p>
+          <p style="padding-left:16px;">(2) \(v_3 = \frac{x_{3-4} + x_{4-5}}{2T} = \frac{(4.50 + 5.50) \times 10^{-2}}{2 \times 0.10} = \frac{0.10}{0.20} = 0.50\,\text{m/s}\)（4分）</p>
+          <p style="padding-left:16px;">(3) 逐差法：<br>
+            \(a = \frac{(x_{4-5}+x_{5-6}) - (x_{1-2}+x_{2-3})}{4T^2}\)<br>
+            \(= \frac{(5.50+6.50) - (2.50+3.50)}{4 \times 0.10^2} \times 10^{-2}\)<br>
+            \(= \frac{12.00 - 6.00}{4 \times 0.01} \times 10^{-2} = \frac{6.00}{0.04} \times 10^{-2} = 1.50\,\text{m/s}^2\)（4分）<br>
+            或 \(a = \frac{(x_{5-6}+x_{4-5}+x_{3-4}) - (x_{2-3}+x_{1-2}+x_{0-1})}{9T^2} = \frac{(6.50+5.50+4.50)-(3.50+2.50+2.50)}{9 \times 0.01} \times 10^{-2} = \frac{16.50-8.50}{0.09} \times 10^{-2} \approx 0.89\,\text{m/s}^2\)</p>
+
+          <p><span class="ans-key">21.（10分）</span></p>
+          <p style="padding-left:16px;">(1) 由图象可知，\(t=0\) 时 \(v = 2\,\text{m/s}\)，故初速度 \(v_0 = 2\,\text{m/s}\)（2分）</p>
+          <p style="padding-left:16px;">(2) 取图象上两点 \((0,2)\) 和 \((8,6)\)，<br>
+            加速度 \(a = \frac{\Delta v}{\Delta t} = \frac{6 - 2}{8 - 0} = \frac{4}{8} = 0.5\,\text{m/s}^2\)（4分）</p>
+          <p style="padding-left:16px;">(3) 速度随时间变化的关系式：\(v = v_0 + at = 2 + 0.5t\)（国际单位制）（4分）</p>
+
+          <p><span class="ans-key">22.（10分）</span></p>
+          <p style="padding-left:16px;">取初速度方向为正方向，\(v_0 = 12\,\text{m/s}\)，\(a = -2\,\text{m/s}^2\)。</p>
+          <p style="padding-left:16px;">(1) \(v_3 = v_0 + at = 12 + (-2) \times 3 = 12 - 6 = 6\,\text{m/s}\)（4分）</p>
+          <p style="padding-left:16px;">(2) \(v_5 = v_0 + at = 12 + (-2) \times 5 = 12 - 10 = 2\,\text{m/s}\)（3分）</p>
+          <p style="padding-left:16px;">(3) 先求刹车到停止所需时间：\(0 = 12 + (-2)t \Rightarrow t = 6\,\text{s}\)（1分）<br>
+            因 \(7\,\text{s} > 6\,\text{s}\)，汽车已在 \(6\,\text{s}\) 时停止，故 \(7\,\text{s}\) 末速度为 \(0\)（2分）</p>
+
+          <p><span class="ans-key">23.（10分）</span></p>
+          <p style="padding-left:16px;">(1) 正确顺序：③④②①⑤（4分）<br>
+            （先固定打点计时器并连接电路，再穿纸带，然后通电释放小车，最后断电取纸带，换新纸带重复实验）</p>
+          <p style="padding-left:16px;">(2) 以时间 \(t\) 为横轴、速度 \(v\) 为纵轴，描点作图（图略）。各点大致分布在一条直线上，说明小车做匀变速直线运动（3分）。</p>
+          <p style="padding-left:16px;">(3) 取图象上两点（如第1点和第5点），<br>
+            加速度 \(a = \frac{\Delta v}{\Delta t} = \frac{0.64 - 0.20}{(5-1) \times 0.1} = \frac{0.44}{0.4} = 1.1\,\text{m/s}^2\)（2分）<br>
+            将图线延长与纵轴相交，截距即为初速度 \(v_0 \approx 0.09\,\text{m/s}\)（1分）</p>
+        </div>
+      </div>
+
+    </div><!-- /answerContent -->
+  </div><!-- /answer-section -->
+
+</div><!-- /paper -->
+
+<!-- ======================== JavaScript ======================== -->
+<script>
+// ===== 答案自动缓存（防手机切后台丢失） =====
+const PAPER_ID = 'physics_grade10_ch2_s12';
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  // 单选/多选的选中状态
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  // 填空输入
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  // 解答题区域
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('.question, [data-qid]');
+    var key = parent ? (parent.id || parent.getAttribute('data-qid')) : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    // 恢复单选
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    // 恢复多选
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    // 恢复填空
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key);
+        if (!el) el = document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    // 恢复解答题
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('#' + key + ' textarea') || document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+  var scoreEl = document.getElementById('displayScore');
+  if (scoreEl) scoreEl.textContent = '______';
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+// 页面恢复 + 自动保存
+restoreAnswers();
+setupAutoSave();
+
+// ===== 参考答案密码锁 =====
+let answerUnlocked = false;
+
+function toggleAnswer() {
+  const content = document.getElementById('answerContent');
+  const btn = document.querySelector('.toggle-answer-btn');
+
+  if (answerUnlocked) {
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      btn.textContent = '隐藏答案';
+    } else {
+      content.style.display = 'none';
+      btn.textContent = '显示答案';
+    }
+    return;
+  }
+
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    answerUnlocked = true;
+    content.style.display = 'block';
+    btn.textContent = '隐藏答案';
+  } else if (pwd !== null) {
+    alert('密码错误，无法查看参考答案！');
+  }
+}
+
+// ===== Ctrl+Enter 提交 =====
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    submitExam();
+  }
+});
+
+// ===== 提交试卷（提示并滚动到顶部） =====
+function submitExam() {
+  saveAnswers();  // 提交前确保保存
+  // 收集单选题答案
+  const singleAns = {};
+  const singleKeys = { q1:'B', q2:'B', q3:'D', q4:'B', q5:'C', q6:'C', q7:'B', q8:'A', q9:'A', q10:'C' };
+  let singleScore = 0;
+  let singleResult = '';
+  for (let i = 1; i <= 10; i++) {
+    const name = 'q' + i;
+    const sel = document.querySelector('input[name="' + name + '"]:checked');
+    const userAns = sel ? sel.value : '未选';
+    const correct = singleKeys[name];
+    const isCorrect = (userAns === correct);
+    if (isCorrect) singleScore += 3;
+    singleResult += (i + '.' + userAns + (isCorrect ? '✓' : '✗(' + correct + ')') + ' ');
+  }
+
+  // 收集多选题答案
+  const multiKeys = { q101:['A','C','D'], q102:['A','B','C'], q103:['B','C','D'] };
+  let multiScore = 0;
+  let multiResult = '';
+  for (const name in multiKeys) {
+    const checks = document.querySelectorAll('input[name="' + name + '"]:checked');
+    const userVals = Array.from(checks).map(c => c.value).sort();
+    const correctVals = multiKeys[name].slice().sort();
+    const match = (userVals.length === correctVals.length && userVals.every((v,i) => v === correctVals[i]));
+    if (match) multiScore += 4;
+    else if (userVals.length > 0 && userVals.every(v => multiKeys[name].includes(v))) multiScore += 2;
+    multiResult += (name.replace('q','') + '.' + (userVals.join(',') || '未选') + (match ? '✓' : '') + ' ');
+  }
+
+  // 填空题（仅展示，不计分）
+  const fillIds = ['fill_q11','fill_q12','fill_q13','fill_q14','fill_q15a','fill_q15b','fill_q16'];
+  let fillResult = '';
+  fillIds.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) fillResult += (id + '=' + (el.value || '空') + ' ');
+  });
+
+  const totalScore = singleScore + multiScore;
+
+  alert(
+    '===== 提交成功 =====\n\n' +
+    '【单选题】' + singleScore + '/30分\n' + singleResult + '\n\n' +
+    '【多选题】' + multiScore + '/12分\n' + multiResult + '\n\n' +
+    '【填空题】（请对照答案自行批改）\n' + fillResult + '\n\n' +
+    '【当前总分】' + totalScore + '/100分（不含填空和解答题）\n\n' +
+    '参考答案已加密，请点击下方"显示答案"按钮查看。'
+  );
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<!-- ======================== MathJax 3 ======================== -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

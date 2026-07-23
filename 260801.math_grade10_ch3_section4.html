@@ -1,0 +1,1020 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楂樹竴鏁板路蹇呬慨绗竴鍐?绗笁绔?3.4 鍑芥暟鐨勫簲鐢?涓€) + 绗?绔犻鍨?/title>
+<!-- OMO_INTERNAL_INITIATOR -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] ,
+  processEscapes: true, tags: 'none' }, options: { ignoreHtmlClass: 'no-mathjax' }, svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'SimSun', 'Songti SC', 'STSong', serif;
+  background: #f0f2f5;
+  padding: 20px 0;
+}
+.container {
+  width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 25mm 20mm 20mm;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  min-height: 297mm;
+  position: relative;
+}
+/* ===== 鍙岀嚎椤靛ご ===== */
+.header {
+  text-align: center;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 3px double #222;
+  position: relative;
+}
+.header h1 {
+  font-size: 20pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+.header .sub {
+  font-size: 12pt;
+  color: #555;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.header .info-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5pt;
+  color: #333;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+.info-line span { display: inline-block; }
+/* ===== 钃濊壊宸﹁竟妗嗘爣棰?===== */
+.section-title {
+  font-size: 13pt;
+  font-weight: 700;
+  color: #1a3a5c;
+  border-left: 5px solid #1a73e8;
+  padding-left: 12px;
+  margin: 24px 0 14px 0;
+  line-height: 1.5;
+}
+.section-title .score-hint {
+  font-weight: 400;
+  font-size: 10.5pt;
+  color: #888;
+  margin-left: 10px;
+}
+/* ===== 棰樼洰 ===== */
+.q-block {
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+.q-text {
+  font-size: 11pt;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+.q-text .q-num {
+  font-weight: 700;
+  color: #1a3a5c;
+}
+.options {
+  padding-left: 28px;
+  margin: 4px 0 8px 0;
+}
+.options label {
+  display: inline-block;
+  margin-right: 18px;
+  font-size: 10.5pt;
+  line-height: 2;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.options label:hover { background: #e8f0fe; }
+.options label input { margin-right: 4px; }
+.fill-blank {
+  display: inline-block;
+  border: none;
+  border-bottom: 1.5px solid #555;
+  background: transparent;
+  font-family: inherit;
+  font-size: 10.5pt;
+  padding: 0 4px;
+  margin: 0 2px;
+  width: 120px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.fill-blank:focus { border-color: #1a73e8; }
+textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 10.5pt;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+textarea:focus { border-color: #1a73e8; }
+textarea.ta-answer { min-height: 60px; }
+/* ===== 绛旈鍖猴紙瑙ｇ瓟棰橈級 ===== */
+.answer-area {
+  margin: 6px 0 4px 28px;
+}
+.answer-area .label { font-size: 10pt; color: #666; margin-bottom: 4px; }
+/* ===== 鎸夐挳 ===== */
+.btn-row {
+  text-align: center;
+  margin: 30px 0 20px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 10px 36px;
+  font-family: inherit;
+  font-size: 12pt;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+.btn-primary { background: #1a73e8; color: #fff; }
+.btn-primary:hover { background: #1557b0; box-shadow: 0 2px 8px rgba(26,115,232,0.4); }
+.btn-secondary { background: #e8f0fe; color: #1a73e8; border: 1px solid #1a73e8; }
+.btn-secondary:hover { background: #d2e3fc; }
+.btn-danger { background: #ea4335; color: #fff; }
+.btn-danger:hover { background: #c62828; }
+/* ===== 鍒嗘暟 ===== */
+.score-box {
+  text-align: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 16px 0;
+  border: 1px solid #e0e0e0;
+}
+.score-box .big-score {
+  font-size: 28pt;
+  font-weight: 700;
+  color: #1a73e8;
+}
+.score-box .detail { font-size: 10.5pt; color: #666; margin-top: 6px; }
+/* ===== 绛旀 ===== */
+.answer-key {
+  display: none;
+  margin-top: 30px;
+  padding: 20px;
+  background: #fefce8;
+  border: 2px solid #e6c200;
+  border-radius: 8px;
+}
+.answer-key.visible { display: block; }
+.answer-key h2 {
+  font-size: 14pt;
+  color: #b8860b;
+  border-bottom: 2px solid #e6c200;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.answer-key .ak-item {
+  margin-bottom: 8px;
+  font-size: 10.5pt;
+  line-height: 1.7;
+}
+.answer-key .ak-item .ak-num {
+  font-weight: 700;
+  color: #8b6914;
+  display: inline-block;
+  min-width: 36px;
+}
+.answer-key .ak-solution {
+  margin: 6px 0 10px 36px;
+  padding: 10px 14px;
+  background: #fff9db;
+  border-left: 3px solid #e6c200;
+  border-radius: 0 4px 4px 0;
+  font-size: 10pt;
+  line-height: 1.8;
+}
+.correct-mark { color: #0d904f; font-weight: 700; }
+.wrong-mark { color: #d93025; font-weight: 700; }
+.partial-mark { color: #e37400; font-weight: 700; }
+/* ===== 棰樺彿寰芥爣 ===== */
+.q-badge {
+  display: inline-block;
+  background: #1a73e8;
+  color: #fff;
+  font-size: 9pt;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  line-height: 22px;
+  margin-right: 6px;
+}
+/* ===== 澶氶€夋爣璁?===== */
+.multi-hint {
+  font-size: 9pt;
+  color: #999;
+  margin-left: 8px;
+  font-weight: 400;
+}
+/* ===== 鎵撳嵃 ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .container { box-shadow: none; padding: 15mm 18mm; width: 100%; }
+  .btn-row { display: none; }
+  .answer-key { page-break-before: always; }
+  textarea { border: 1px solid #ccc; }
+}
+/* ===== 瀵嗙爜寮圭獥 ===== */
+.pwd-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+.pwd-overlay.visible { display: flex; }
+.pwd-dialog {
+  background: #fff;
+  padding: 30px 36px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  text-align: center;
+  max-width: 340px;
+  width: 90%;
+}
+.pwd-dialog h3 { font-size: 14pt; margin-bottom: 14px; color: #333; }
+.pwd-dialog input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14pt;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  outline: none;
+  font-family: inherit;
+  letter-spacing: 6px;
+}
+.pwd-dialog input:focus { border-color: #1a73e8; }
+.pwd-dialog .pwd-err { color: #d93025; font-size: 10pt; margin-top: 8px; display: none; }
+.pwd-dialog .pwd-err.visible { display: block; }
+.pwd-dialog .pwd-btns { margin-top: 16px; display: flex; gap: 10px; justify-content: center; }
+/* ===== 棰樼洰鍐呮爣璁?===== */
+.q-result {
+  font-size: 9.5pt;
+  margin-left: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+
+  <!-- ==================== 椤靛ご ==================== -->
+  <div class="header">
+    <h1>楂樹竴鏁板路蹇呬慨绗竴鍐?br>绗笁绔?3.4 鍑芥暟鐨勫簲鐢?涓€) + 绗?绔犻鍨?/h1>
+    <div class="sub">婊″垎 100 鍒?&nbsp;|&nbsp; 鏃堕棿 45 鍒嗛挓 &nbsp;|&nbsp; 鍛介鑼冨洿锛氬嚱鏁版ā鍨嬪疄闄呭簲鐢?路 鍑芥暟缁煎悎</div>
+    <div class="info-line">
+      <span>濮撳悕锛?u style="display:inline-block;width:80px;border-bottom:1px solid #999;">&nbsp;</u></span>
+      <span>鐝骇锛?u style="display:inline-block;width:80px;border-bottom:1px solid #999;">&nbsp;</u></span>
+      <span>寰楀垎锛?span id="displayScore" style="font-weight:700;color:#1a73e8;">鈥?/span></span>
+    </div>
+  </div>
+
+  <!-- ==================== 棰樺瀷缁撴瀯 ==================== -->
+  <p style="font-size:10pt;color:#666;text-align:center;margin-bottom:18px;">
+    涓€銆佸崟閫?10脳3=30 &nbsp;|&nbsp; 浜屻€佸閫?3脳4=12锛堥儴鍒?鍒嗭級&nbsp;|&nbsp;
+    涓夈€佸～绌?4脳4=16 &nbsp;|&nbsp; 鍥涖€佽В绛?3脳10=30 &nbsp;|&nbsp; 浜斻€侀檮鍔?12
+    &nbsp;鈫?nbsp; <strong>鎬诲垎 100</strong>
+  </p>
+
+  <!-- ============================================================ -->
+  <!-- 涓€銆佸崟閫夐 -->
+  <!-- ============================================================ -->
+  <div class="section-title">涓€銆佸崟閫夐 <span class="score-hint">锛堝叡10棰橈紝姣忛3鍒嗭紝鍏?0鍒嗭級</span></div>
+
+  <!-- Q1 -->
+  <div class="q-block" id="q1">
+    <div class="q-text">
+      <span class="q-num">1.</span>
+      鏌愬競鍑虹杞︽敹璐规爣鍑嗭細璧锋浠?鍏冿紙涓嶈秴杩? km锛夛紝瓒呰繃3 km鍚庢瘡鍗冪背鏀惰垂2.4鍏冿紙涓嶈冻1 km鎸? km璁★級銆傝琛岄┒璺▼涓?$x$ km锛?x>0$锛夛紝杞﹁垂涓?$y$ 鍏冿紝鍒?$y$ 鍏充簬 $x$ 鐨勫嚱鏁板叧绯诲紡涓猴紙 锛?    </div>
+    <div class="options" data-type="radio" data-q="1">
+      <label><input type="radio" name="q1" value="A"> A. $y = 8x\;(0<x\le3)$锛?y = 2.4x\;(x>3)$</label><br>
+      <label><input type="radio" name="q1" value="B"> B. $y = 8\;(0<x\le3)$锛?y = 8+2.4(x-3)\;(x>3)$</label><br>
+      <label><input type="radio" name="q1" value="C"> C. $y = 8\;(0<x\le3)$锛?y = 8+2.4x\;(x>3)$</label><br>
+      <label><input type="radio" name="q1" value="D"> D. $y = 8\;(0<x\le3)$锛?y = 2.4(x-3)\;(x>3)$</label>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block" id="q2">
+    <div class="q-text">
+      <span class="q-num">2.</span>
+      鏌愬晢鍝佽繘浠?0鍏?浠讹紝鎸?0鍏?浠跺嚭鍞椂姣忔湀鍙崠300浠躲€傝嫢姣忔彁浠?鍏冿紝鏈堥攢閲忓噺灏?0浠躲€傝浣挎湀鍒╂鼎鏈€澶э紝鍞环搴斾负锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="2">
+      <label><input type="radio" name="q2" value="A"> A. 60鍏?/label>
+      <label><input type="radio" name="q2" value="B"> B. 65鍏?/label>
+      <label><input type="radio" name="q2" value="C"> C. 70鍏?/label>
+      <label><input type="radio" name="q2" value="D"> D. 75鍏?/label>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block" id="q3">
+    <div class="q-text">
+      <span class="q-num">3.</span>
+      鍑芥暟 $f(x)=\sqrt{x+2}+\dfrac{1}{x-1}$ 鐨勫畾涔夊煙涓猴紙 锛?    </div>
+    <div class="options" data-type="radio" data-q="3">
+      <label><input type="radio" name="q3" value="A"> A. $[-2,+\infty)$</label>
+      <label><input type="radio" name="q3" value="B"> B. $(-\infty,1)\cup(1,+\infty)$</label>
+      <label><input type="radio" name="q3" value="C"> C. $[-2,1)\cup(1,+\infty)$</label>
+      <label><input type="radio" name="q3" value="D"> D. $(-2,1)\cup(1,+\infty)$</label>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block" id="q4">
+    <div class="q-text">
+      <span class="q-num">4.</span>
+      鍑芥暟 $f(x)=x^2-4x+5$ 鍦ㄥ尯闂?$[0,3]$ 涓婄殑鍊煎煙涓猴紙 锛?    </div>
+    <div class="options" data-type="radio" data-q="4">
+      <label><input type="radio" name="q4" value="A"> A. $[1,5]$</label>
+      <label><input type="radio" name="q4" value="B"> B. $[2,5]$</label>
+      <label><input type="radio" name="q4" value="C"> C. $[1,2]$</label>
+      <label><input type="radio" name="q4" value="D"> D. $[2,3]$</label>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-block" id="q5">
+    <div class="q-text">
+      <span class="q-num">5.</span>
+      鍑芥暟 $f(x)=2x+\dfrac{1}{x}$ 鍦?$(0,+\infty)$ 涓婄殑鍗曡皟鎬ф槸锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="5">
+      <label><input type="radio" name="q5" value="A"> A. 鍦?$(0,+\infty)$ 涓婂崟璋冮€掑</label><br>
+      <label><input type="radio" name="q5" value="B"> B. 鍦?$(0,+\infty)$ 涓婂崟璋冮€掑噺</label><br>
+      <label><input type="radio" name="q5" value="C"> C. 鍦?$(0,\frac12)$ 涓婇€掑噺锛屽湪 $(\frac12,+\infty)$ 涓婇€掑</label><br>
+      <label><input type="radio" name="q5" value="D"> D. 鍦?$(0,\frac{\sqrt2}{2})$ 涓婇€掑噺锛屽湪 $(\frac{\sqrt2}{2},+\infty)$ 涓婇€掑</label><br>
+      <label><input type="radio" name="q5" value="E"> E. 鍦?$(0,1)$ 涓婇€掑噺锛屽湪 $(1,+\infty)$ 涓婇€掑</label>
+    </div>
+  </div>
+  <!-- Note: Q5 has 5 options, that's fine -->
+
+  <!-- Q6 -->
+  <div class="q-block" id="q6">
+    <div class="q-text">
+      <span class="q-num">6.</span>
+      鍑芥暟 $f(x)=x^5+x^3$ 鐨勫鍋舵€ф槸锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="6">
+      <label><input type="radio" name="q6" value="A"> A. 濂囧嚱鏁?/label>
+      <label><input type="radio" name="q6" value="B"> B. 鍋跺嚱鏁?/label>
+      <label><input type="radio" name="q6" value="C"> C. 闈炲闈炲伓鍑芥暟</label>
+      <label><input type="radio" name="q6" value="D"> D. 鏃㈠鍙堝伓鍑芥暟</label>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-block" id="q7">
+    <div class="q-text">
+      <span class="q-num">7.</span>
+      鏌愮墿浣撴俯搴?$T$锛堚剝锛夐殢鏃堕棿 $t$锛坢in锛夌殑鍙樺寲婊¤冻 $T(t)=20+30\cdot 0.5^t$锛屽垯娓╁害浠?0鈩冮檷鍒?5鈩冩墍闇€鐨勬椂闂翠负锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="7">
+      <label><input type="radio" name="q7" value="A"> A. 1 min</label>
+      <label><input type="radio" name="q7" value="B"> B. 2 min</label>
+      <label><input type="radio" name="q7" value="C"> C. 3 min</label>
+      <label><input type="radio" name="q7" value="D"> D. 4 min</label>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-block" id="q8">
+    <div class="q-text">
+      <span class="q-num">8.</span>
+      宸茬煡 $f(x)=\begin{cases}x+2,&x\ge0\\ x^2,&x<0\end{cases}$锛屽垯 $f(f(-1))=$锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="8">
+      <label><input type="radio" name="q8" value="A"> A. 1</label>
+      <label><input type="radio" name="q8" value="B"> B. 3</label>
+      <label><input type="radio" name="q8" value="C"> C. 5</label>
+      <label><input type="radio" name="q8" value="D"> D. 9</label>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-block" id="q9">
+    <div class="q-text">
+      <span class="q-num">9.</span>
+      鐢ㄤ竴娈甸暱涓?0 m鐨勭绗嗗洿鎴愪竴涓煩褰㈣彍鍥紝瑕佷娇鑿滃洯闈㈢Н鏈€澶э紝鍒欑煩褰㈢殑涓€杈归暱搴斾负锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="9">
+      <label><input type="radio" name="q9" value="A"> A. 8 m</label>
+      <label><input type="radio" name="q9" value="B"> B. 9 m</label>
+      <label><input type="radio" name="q9" value="C"> C. 10 m</label>
+      <label><input type="radio" name="q9" value="D"> D. 12 m</label>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-block" id="q10">
+    <div class="q-text">
+      <span class="q-num">10.</span>
+      涓嬪垪鍑芥暟涓紝鏃㈡槸濂囧嚱鏁板張鍦?$(0,+\infty)$ 涓婂崟璋冮€掑鐨勬槸锛?锛?    </div>
+    <div class="options" data-type="radio" data-q="10">
+      <label><input type="radio" name="q10" value="A"> A. $f(x)=\dfrac1x$</label>
+      <label><input type="radio" name="q10" value="B"> B. $f(x)=x^2$</label>
+      <label><input type="radio" name="q10" value="C"> C. $f(x)=x^3$</label>
+      <label><input type="radio" name="q10" value="D"> D. $f(x)=|x|$</label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 浜屻€佸閫夐 -->
+  <!-- ============================================================ -->
+  <div class="section-title">浜屻€佸閫夐 <span class="score-hint">锛堝叡3棰橈紝姣忛4鍒嗭紝鍏?2鍒嗭紱鍏ㄩ儴閫夊寰?鍒嗭紝閮ㄥ垎閫夊寰?鍒嗭紝鏈夐€夐敊寰?鍒嗭級</span></div>
+
+  <!-- Q11 -->
+  <div class="q-block" id="q11">
+    <div class="q-text"><span class="q-num">11.</span> 鍏充簬鍑芥暟 $f(x)=x^2-2|x|$ 鐨勮娉曟纭殑鏄紙 <span class="multi-hint">澶氶€?/span> 锛?/div>
+    <div class="options" data-type="checkbox" data-q="11">
+      <label><input type="checkbox" name="q11" value="A"> A. $f(x)$ 鏄伓鍑芥暟</label>
+      <label><input type="checkbox" name="q11" value="B"> B. $f(x)$ 鍦?$(-\infty,-1)$ 涓婂崟璋冮€掑噺</label><br>
+      <label><input type="checkbox" name="q11" value="C"> C. $f(x)$ 鐨勬渶灏忓€间负 $-1$</label>
+      <label><input type="checkbox" name="q11" value="D"> D. 瀛樺湪 $x$ 浣垮緱 $f(x)>0$</label>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="q-block" id="q12">
+    <div class="q-text"><span class="q-num">12.</span> 鏌愬煄甯傚眳姘戠敤姘村疄琛岄樁姊按浠凤細鏈堢敤姘撮噺涓嶈秴杩? m鲁鏃舵寜2鍏?m鲁鏀惰垂锛岃秴杩? m鲁涓嶈秴杩?2 m鲁鐨勯儴鍒嗘寜3鍏?m鲁鏀惰垂锛岃秴杩?2 m鲁鐨勯儴鍒嗘寜5鍏?m鲁鏀惰垂銆備笅鍒楄娉曟纭殑鏄紙 <span class="multi-hint">澶氶€?/span> 锛?/div>
+    <div class="options" data-type="checkbox" data-q="12">
+      <label><input type="checkbox" name="q12" value="A"> A. 鐢ㄦ按4 m鲁鏃舵按璐逛负8鍏?/label>
+      <label><input type="checkbox" name="q12" value="B"> B. 鐢ㄦ按10 m鲁鏃舵按璐逛负24鍏?/label><br>
+      <label><input type="checkbox" name="q12" value="C"> C. 鐢ㄦ按15 m鲁鏃舵按璐逛负51鍏?/label>
+      <label><input type="checkbox" name="q12" value="D"> D. 鏈堟按璐?$y$锛堝厓锛変笌鐢ㄦ按閲?$x$锛坢鲁锛夌殑鍑芥暟涓哄垎娈靛嚱鏁?/label>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="q-block" id="q13">
+    <div class="q-text"><span class="q-num">13.</span> 涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?<span class="multi-hint">澶氶€?/span> 锛?/div>
+    <div class="options" data-type="checkbox" data-q="13">
+      <label><input type="checkbox" name="q13" value="A"> A. $f(x)=x^3$ 鏄鍑芥暟涓斿€煎煙涓?$\mathbb{R}$</label><br>
+      <label><input type="checkbox" name="q13" value="B"> B. $f(x)=x^2$ 鏄伓鍑芥暟涓斿€煎煙涓?$[0,+\infty)$</label><br>
+      <label><input type="checkbox" name="q13" value="C"> C. $f(x)=\dfrac1x$ 鏄鍑芥暟涓斿湪瀹氫箟鍩熷唴鍗曡皟閫掑噺</label><br>
+      <label><input type="checkbox" name="q13" value="D"> D. $f(x)=|x|$ 鏄伓鍑芥暟涓斿湪 $(0,+\infty)$ 涓婂崟璋冮€掑</label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 涓夈€佸～绌洪 -->
+  <!-- ============================================================ -->
+  <div class="section-title">涓夈€佸～绌洪 <span class="score-hint">锛堝叡4棰橈紝姣忛4鍒嗭紝鍏?6鍒嗭級</span></div>
+
+  <!-- Q14 -->
+  <div class="q-block" id="q14">
+    <div class="q-text">
+      <span class="q-num">14.</span>
+      鏌愬湴鍑虹杞︽敹璐癸細璧锋浠?鍏冿紙涓嶈秴杩? km锛夛紱瓒呰繃3 km涓嶈秴杩?0 km鐨勯儴鍒嗘瘡鍗冪背2鍏冿紱瓒呰繃10 km鐨勯儴鍒嗘瘡鍗冪背3鍏冦€傚垯褰?$x>10$ 鏃讹紝杞﹁垂 $y$锛堝厓锛変笌璺▼ $x$锛坘m锛夌殑鍑芥暟鍏崇郴寮忎负
+      $y=$ <input type="text" class="fill-blank" id="f14" data-answer="q14" style="width:140px;" autocomplete="off">.
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="q-block" id="q15">
+    <div class="q-text">
+      <span class="q-num">15.</span>
+      鏌愪骇鍝佸勾浜ч噺 $x$ 涓囦欢锛屾€绘垚鏈?$C(x)=200+10x+x^2$锛堜竾鍏冿級锛屾瘡浠跺敭浠?0鍏冦€傚勾鍒╂鼎鏈€澶ф椂锛屼骇閲?$x=$ <input type="text" class="fill-blank" id="f15" data-answer="q15" style="width:80px;" autocomplete="off"> 涓囦欢銆?    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="q-block" id="q16">
+    <div class="q-text">
+      <span class="q-num">16.</span>
+      鍑芥暟 $f(x)=x^2+2(a-1)x+4$ 鍦ㄥ尯闂?$(-\infty,3]$ 涓婂崟璋冮€掑噺锛屽垯 $a$ 鐨勫彇鍊艰寖鍥翠负
+      <input type="text" class="fill-blank" id="f16" data-answer="q16" style="width:120px;" autocomplete="off">.
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="q-block" id="q17">
+    <div class="q-text">
+      <span class="q-num">17.</span>
+      鑻ュ嚱鏁?$f(x)=x^3+(k-3)x^2+kx$ 鏄鍑芥暟锛屽垯 $k=$ <input type="text" class="fill-blank" id="f17" data-answer="q17" style="width:80px;" autocomplete="off">.
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 鍥涖€佽В绛旈 -->
+  <!-- ============================================================ -->
+  <div class="section-title">鍥涖€佽В绛旈 <span class="score-hint">锛堝叡3棰橈紝姣忛10鍒嗭紝鍏?0鍒嗭紱璇峰啓鍑哄繀瑕佺殑鏂囧瓧璇存槑鍜屾紨绠楁楠わ級</span></div>
+
+  <!-- Q18 -->
+  <div class="q-block" id="q18">
+    <div class="q-text"><span class="q-num">18.</span>锛?0鍒嗭級鏌愬競鍑虹杞︽敹璐规爣鍑嗗涓嬶細</div>
+    <div class="q-text" style="padding-left:28px;">
+      &bull; 璧锋浠?0鍏冿紙涓嶈秴杩? km锛夛紱<br>
+      &bull; 瓒呰繃3 km涓嶈秴杩?0 km鐨勯儴鍒嗭紝姣忓崈绫?鍏冿紱<br>
+      &bull; 瓒呰繃10 km鐨勯儴鍒嗭紝姣忓崈绫?鍏冦€?    </div>
+    <div class="q-text" style="padding-left:28px;">
+      锛?锛夋眰杞﹁垂 $y$锛堝厓锛変笌琛岄┒璺▼ $x$锛坘m锛夛紙$x>0$锛夌殑鍑芥暟鍏崇郴寮忥紱<br>
+      锛?锛夎嫢鐢蹭箼涓ゅ湴鐩歌窛25 km锛屾煇浜轰箻鍑虹杞︿粠鐢插湴鍒颁箼鍦帮紝搴斾粯杞﹁垂澶氬皯鍏冿紵<br>
+      锛?锛夎嫢鏌愪汉涔樿溅浠樿溅璐?1鍏冿紝姹傚叾琛岄┒璺▼銆?    </div>
+    <div class="answer-area">
+      <div class="label">瑙ｏ細</div>
+      <textarea class="ta-answer" id="t18" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋嬧€?></textarea>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="q-block" id="q19">
+    <div class="q-text"><span class="q-num">19.</span>锛?0鍒嗭級鏌愬晢鍦洪攢鍞竴绉嶈繘浠蜂负30鍏冪殑鍟嗗搧銆傚競鍦鸿皟鏌ュ彂鐜帮細</div>
+    <div class="q-text" style="padding-left:28px;">
+      褰撳敭浠蜂负40鍏冩椂锛屾瘡鏈堝彲鍞嚭600浠讹紱<br>
+      姣忔定浠?鍏冿紝鏈堥攢閲忓噺灏?0浠讹紱<br>
+      姣忛檷浠?鍏冿紝鏈堥攢閲忓鍔?0浠躲€?    </div>
+    <div class="q-text" style="padding-left:28px;">
+      璁惧敭浠蜂负 $x$ 鍏冿紙$x\ge30$锛夈€?br>
+      锛?锛夋眰鏈堝埄娑?$L(x)$ 鐨勫嚱鏁拌В鏋愬紡锛?br>
+      锛?锛夊敭浠峰畾涓哄灏戝厓鏃舵湀鍒╂鼎鏈€澶э紵鏈€澶ф湀鍒╂鼎鏄灏戯紵
+    </div>
+    <div class="answer-area">
+      <div class="label">瑙ｏ細</div>
+      <textarea class="ta-answer" id="t19" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋嬧€?></textarea>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="q-block" id="q20">
+    <div class="q-text"><span class="q-num">20.</span>锛?0鍒嗭級宸茬煡鍑芥暟 $f(x)=x^2+2ax+1$锛?a\in\mathbb{R}$锛夈€?/div>
+    <div class="q-text" style="padding-left:28px;">
+      锛?锛夎嫢 $f(x)$ 鍦ㄥ尯闂?$(-\infty,2]$ 涓婂崟璋冮€掑噺锛屾眰 $a$ 鐨勫彇鍊艰寖鍥达紱<br>
+      锛?锛夎嫢 $f(x)$ 鏄伓鍑芥暟锛屾眰 $a$ 鐨勫€硷紝骞跺啓鍑?$f(x)$ 鐨勫崟璋冮€掑鍖洪棿锛?br>
+      锛?锛夎嫢 $f(1)=4$锛屼笖 $f(x)$ 鍦?$[3,+\infty)$ 涓婂崟璋冮€掑锛屾眰 $a$ 鐨勫€煎強 $f(x)$ 鍦?$[-1,5]$ 涓婄殑鍊煎煙銆?    </div>
+    <div class="answer-area">
+      <div class="label">瑙ｏ細</div>
+      <textarea class="ta-answer" id="t20" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋嬧€?></textarea>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 浜斻€侀檮鍔犻 -->
+  <!-- ============================================================ -->
+  <div class="section-title">浜斻€侀檮鍔犻 <span class="score-hint">锛堟湰棰?2鍒嗭級</span></div>
+
+  <!-- Q21 -->
+  <div class="q-block" id="q21">
+    <div class="q-text"><span class="q-num">21.</span>锛?2鍒嗭級鏌愮鎶€鍏徃鐢熶骇涓€绉嶇數瀛愪骇鍝侊紝骞村浐瀹氭垚鏈负200涓囧厓锛屾瘡鐢熶骇1涓囦欢浜у搧闇€鍐嶆姇鍏?0涓囧厓銆傜粡甯傚満璋冪爺锛屽勾浜ч噺 $x$锛堜竾浠讹級涓庡敭浠?$p$锛堝厓/浠讹級婊¤冻鍏崇郴锛?p(x)=60-2x$锛?0<x\le30$锛夈€?/div>
+    <div class="q-text" style="padding-left:28px;">
+      锛?锛夋眰骞村埄娑?$L(x)$锛堜竾鍏冿級鍏充簬骞翠骇閲?$x$ 鐨勫嚱鏁拌В鏋愬紡锛?br>
+      锛?锛夊綋骞翠骇閲忎负澶氬皯涓囦欢鏃讹紝骞村埄娑︽渶澶э紵骞舵眰鍑烘渶澶у勾鍒╂鼎銆?    </div>
+    <div class="answer-area">
+      <div class="label">瑙ｏ細</div>
+      <textarea class="ta-answer" id="t21" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋嬧€?></textarea>
+    </div>
+  </div>
+
+  <!-- ==================== 鎸夐挳 ==================== -->
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="gradeTest()">馃搳 鎻愪氦鎵规敼</button>
+    <button class="btn btn-secondary" onclick="saveAnswers()">馃捑 淇濆瓨绛旀</button>
+    <button class="btn btn-secondary" onclick="loadAnswers()">馃搨 鎭㈠绛旀</button>
+    <button class="btn btn-danger" onclick="resetAll()">馃棏 娓呯┖绛旀</button>
+  </div>
+
+  <!-- ==================== 鎴愮哗鏄剧ず ==================== -->
+  <div class="score-box" id="scoreBox" style="display:none;">
+    <div>鎬诲垎</div>
+    <div class="big-score" id="finalScore">0</div>
+    <div class="detail" id="scoreDetail"></div>
+  </div>
+
+  <!-- ==================== 绛旀 ==================== -->
+  <div class="answer-key" id="answerKey">
+    <h2>馃攽 鍙傝€冪瓟妗堜笌瑙ｆ瀽锛堟寜 Ctrl+Enter 鍒囨崲鏄剧ず锛?/h2>
+
+    <!-- 鍗曢€?-->
+    <div class="ak-item"><span class="ak-num">1.</span> <strong>B</strong> 鈥?$y=8\;(0<x\le3)$锛?y=8+2.4(x-3)\;(x>3)$銆?/div>
+    <div class="ak-item"><span class="ak-num">2.</span> <strong>B</strong> 鈥?璁炬定浠?$x$ 鍏冿紝鍒╂鼎 $y=(20+x)(300-10x)=-10x^2+100x+6000$锛屽绉拌酱 $x=5$锛屽敭浠?$65$ 鍏冦€?/div>
+    <div class="ak-item"><span class="ak-num">3.</span> <strong>C</strong> 鈥?$x+2\ge0$ 涓?$x-1\neq0$ 鈫?$x\ge-2$ 涓?$x\neq1$銆?/div>
+    <div class="ak-item"><span class="ak-num">4.</span> <strong>A</strong> 鈥?$f(x)=(x-2)^2+1$锛?x=2$ 鏃跺彇鏈€灏忓€?$1$锛?x=0$ 鏃跺彇鏈€澶у€?$5$銆?/div>
+    <div class="ak-item"><span class="ak-num">5.</span> <strong>D</strong> 鈥?$f'(x)=2-\dfrac1{x^2}=0$ 鈫?$x=\dfrac{\sqrt2}{2}$锛涘湪 $(0,\frac{\sqrt2}{2})$ 涓?$f'(x)<0$锛?(\frac{\sqrt2}{2},+\infty)$ 涓?$f'(x)>0$銆?/div>
+    <div class="ak-item"><span class="ak-num">6.</span> <strong>A</strong> 鈥?$f(-x)=(-x)^5+(-x)^3=-(x^5+x^3)=-f(x)$銆?/div>
+    <div class="ak-item"><span class="ak-num">7.</span> <strong>A</strong> 鈥?浠?$20+30\cdot0.5^t=50$ 寰?$t=0$锛堣捣鐐癸級锛涗护 $20+30\cdot0.5^t=35$ 寰?$0.5^t=0.5$ 鈫?$t=1$銆?/div>
+    <div class="ak-item"><span class="ak-num">8.</span> <strong>B</strong> 鈥?$f(-1)=(-1)^2=1$锛?f(1)=1+2=3$銆?/div>
+    <div class="ak-item"><span class="ak-num">9.</span> <strong>C</strong> 鈥?璁鹃暱 $x$锛屽 $20-x$锛岄潰绉?$S=x(20-x)=-(x-10)^2+100$锛?x=10$ 鏃舵渶澶с€?/div>
+    <div class="ak-item"><span class="ak-num">10.</span> <strong>C</strong> 鈥?$f(x)=x^3$ 鏄鍑芥暟涓斿湪 $\mathbb{R}$ 涓婇€掑銆侫 鍦?$(0,+\infty)$ 閫掑噺锛孊銆丏 涓哄伓鍑芥暟銆?/div>
+
+    <!-- 澶氶€?-->
+    <div class="ak-item" style="margin-top:10px;"><span class="ak-num">11.</span> <strong>A銆丅銆丆銆丏</strong> 鈥?$f(x)=(|x|-1)^2-1$锛涘伓鍑芥暟 鉁擄紝$(-\infty,-1)$ 涓?$f(x)=x^2+2x$ 閫掑噺 鉁擄紝鏈€灏忓€?$-1$ 鉁擄紝$|x|>2$ 鏃?$f(x)>0$ 鉁撱€?/div>
+    <div class="ak-item"><span class="ak-num">12.</span> <strong>A銆丅銆丏</strong> 鈥?A: $4\times2=8$ 鉁擄紱B: $6\times2+4\times3=24$ 鉁擄紱C: $6\times2+6\times3+3\times5=45\neq51$ 鉁楋紱D: 纭负鍒嗘鍑芥暟 鉁撱€?/div>
+    <div class="ak-item"><span class="ak-num">13.</span> <strong>A銆丅銆丏</strong> 鈥?A: $x^3$ 濂囧嚱鏁板€煎煙 $\mathbb{R}$ 鉁擄紱B: $x^2$ 鍋跺嚱鏁板€煎煙 $[0,+\infty)$ 鉁擄紱C: $\frac1x$ 鍦ㄥ畾涔夊煙鍐呬笉鍗曡皟 鉁楋紱D: $|x|$ 鍋跺嚱鏁颁笖鍦?$(0,+\infty)$ 閫掑 鉁撱€?/div>
+
+    <!-- 濉┖ -->
+    <div class="ak-item" style="margin-top:10px;"><span class="ak-num">14.</span> <strong>$y=3x-8$</strong> 鈥?褰?$x>10$ 鏃讹紝$y=8+2\times7+3(x-10)=3x-8$銆?/div>
+    <div class="ak-item"><span class="ak-num">15.</span> <strong>$20$</strong> 鈥?$L(x)=50x-(200+10x+x^2)=-x^2+40x-200=-(x-20)^2+200$锛?x=20$ 鏃舵渶澶с€?/div>
+    <div class="ak-item"><span class="ak-num">16.</span> <strong>$a\le-2$</strong> 鈥?瀵圭О杞?$x=1-a$锛涢渶 $1-a\ge3$ 鈫?$a\le-2$銆?/div>
+    <div class="ak-item"><span class="ak-num">17.</span> <strong>$3$</strong> 鈥?$f(-x)=-x^3+(k-3)x^2-kx$锛?-f(x)=-x^3-(k-3)x^2-kx$锛涚敱 $f(-x)=-f(x)$ 寰?$2(k-3)x^2=0$ 鈫?$k=3$銆?/div>
+
+    <!-- 瑙ｇ瓟棰?-->
+    <div class="ak-item" style="margin-top:12px;">
+      <span class="ak-num">18.</span>锛?0鍒嗭級
+      <div class="ak-solution">
+        <strong>锛?锛?/strong> $y=\begin{cases}
+        10, & 0<x\le3,\\[4pt]
+        2x+4, & 3<x\le10,\\[4pt]
+        3x-6, & x>10.
+        \end{cases}$<br>
+        <strong>锛?锛?/strong> $x=25>10$锛?y=3\times25-6=69$锛堝厓锛夈€?br>
+        <strong>锛?锛?/strong> 浠?$3x-6=31$锛岃В寰?$x=\dfrac{37}{3}\approx12.33$锛坘m锛夈€?br>
+        <span style="color:#888;font-size:9pt;">璇勫垎锛氭瘡灏忛棶鍚?鍒?3鍒?3鍒嗭紝鍏崇郴寮忔纭粰婊″垎锛岃〃杈惧紡鏈夎閰屾儏鎵ｅ垎銆?/span>
+      </div>
+    </div>
+    <div class="ak-item">
+      <span class="ak-num">19.</span>锛?0鍒嗭級
+      <div class="ak-solution">
+        <strong>锛?锛?/strong> 閿€閲?$=600-20(x-40)=1400-20x$锛?x\ge30$ 涓?$1400-20x>0$ 鍗?$x<70$锛夈€?br>
+        $L(x)=(x-30)(1400-20x)=-20x^2+2000x-42000$锛?30\le x<70$銆?br>
+        <strong>锛?锛?/strong> $L(x)=-20(x-50)^2+8000$锛屽綋 $x=50$ 鏃讹紝$L_{\max}=8000$锛堝厓锛夈€?br>
+        绛旓細鍞环瀹氫负50鍏冩椂鏈堝埄娑︽渶澶э紝鏈€澶ф湀鍒╂鼎涓?000鍏冦€?br>
+        <span style="color:#888;font-size:9pt;">璇勫垎锛氳В鏋愬紡4鍒嗭紝閰嶆柟3鍒嗭紝缁撹3鍒嗐€?/span>
+      </div>
+    </div>
+    <div class="ak-item">
+      <span class="ak-num">20.</span>锛?0鍒嗭級
+      <div class="ak-solution">
+        <strong>锛?锛?/strong> 瀵圭О杞?$x=-a$锛岄渶 $-a\ge2$ 鈫?$a\le-2$銆傦紙3鍒嗭級<br>
+        <strong>锛?锛?/strong> $f(-x)=x^2-2ax+1=f(x)=x^2+2ax+1$ 鈫?$-2ax=2ax$ 鈫?$a=0$锛?鍒嗭級锛?f(x)=x^2+1$ 閫掑鍖洪棿涓?$[0,+\infty)$锛?鍒嗭級銆?br>
+        <strong>锛?锛?/strong> $f(1)=1+2a+1=4$ 鈫?$a=1$锛?鍒嗭級锛?f(x)=x^2+2x+1=(x+1)^2$锛屽绉拌酱 $x=-1\le3$锛屽湪 $[3,+\infty)$ 涓婇€掑锛?鍒嗭級锛涘湪 $[-1,5]$ 涓婏紝$f_{\min}=f(-1)=0$锛?f_{\max}=f(5)=36$锛屽€煎煙 $[0,36]$锛?鍒嗭級銆?br>
+        <span style="color:#888;font-size:9pt;">璇勫垎锛氭寜灏忛棶鍒嗗€肩粰鍒嗭紝鍏抽敭姝ラ缂烘紡閰屾儏鎵ｅ垎銆?/span>
+      </div>
+    </div>
+
+    <!-- 闄勫姞棰?-->
+    <div class="ak-item" style="margin-top:12px;">
+      <span class="ak-num">21.</span>锛?2鍒嗭級
+      <div class="ak-solution">
+        <strong>锛?锛?/strong> $L(x)=x\cdot(60-2x)-(200+10x)=-2x^2+50x-200$锛堜竾鍏冿級锛?0<x\le30$銆傦紙4鍒嗭級<br>
+        <strong>锛?锛?/strong> $L(x)=-2(x^2-25x+100)=-2\left[(x-12.5)^2-56.25\right]=-2(x-12.5)^2+112.5$銆傦紙4鍒嗭級<br>
+        褰?$x=12.5$锛堜竾浠讹級鏃讹紝$L_{\max}=112.5$锛堜竾鍏冿級銆傦紙4鍒嗭級<br>
+        绛旓細褰撳勾浜ч噺涓?2.5涓囦欢鏃讹紝骞村埄娑︽渶澶э紝鏈€澶у勾鍒╂鼎涓?12.5涓囧厓銆?br>
+        <span style="color:#888;font-size:9pt;">璇勫垎锛氳В鏋愬紡4鍒嗭紝閰嶆柟4鍒嗭紝缁撹4鍒嗐€?/span>
+      </div>
+    </div>
+
+  </div><!-- /answer-key -->
+
+  <p style="text-align:center;font-size:9pt;color:#aaa;margin-top:30px;">鈥?鏈嵎鐢辩郴缁熻嚜鍔ㄧ敓鎴愶紝鎸?Ctrl+Enter 鏌ョ湅绛旀 鈥?/p>
+</div>
+
+<!-- ==================== 瀵嗙爜寮圭獥 ==================== -->
+<div class="pwd-overlay" id="pwdOverlay">
+  <div class="pwd-dialog">
+    <h3>馃敀 璇疯緭鍏ョ瓟妗堝瘑鐮?/h3>
+    <input type="password" id="pwdInput" maxlength="10" placeholder="璇疯緭鍏ュ瘑鐮? autocomplete="off">
+    <div class="pwd-err" id="pwdErr">瀵嗙爜閿欒锛岃閲嶈瘯</div>
+    <div class="pwd-btns">
+      <button class="btn btn-primary" onclick="checkPassword()">纭</button>
+      <button class="btn btn-secondary" onclick="closePasswordDialog()">鍙栨秷</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<script>
+(function(){
+  'use strict';
+
+  /* ========================== 绛旀鏁版嵁 ========================== */
+  var CORRECT = {
+    // 鍗曢€?    1: 'B', 2: 'B', 3: 'C', 4: 'A', 5: 'D',
+    6: 'A', 7: 'A', 8: 'B', 9: 'C', 10: 'C',
+    // 澶氶€?(鏁扮粍)
+    11: ['A','B','C','D'],
+    12: ['A','B','D'],
+    13: ['A','B','D'],
+    // 濉┖
+    14: ['3x-8', '3x鈭?', '3x - 8', '3x 鈭?8'],
+    15: ['20'],
+    16: ['a鈮?2', 'a <= -2', 'a<-2', 'a < -2', 'a 鈮?-2', 'a 鈮?鈭?'],
+    17: ['3']
+  };
+
+  /* ========================== 鎵规敼 ========================== */
+  window.gradeTest = function() {
+    var total = 0;
+    var details = [];
+    var MAX_Q = 17; // 1-17 涓哄瑙傞
+
+    // ----- 鍗曢€?(1-10) -----
+    var singleScore = 3;
+    for (var i = 1; i <= 10; i++) {
+      var sel = document.querySelector('input[name="q'+i+'"]:checked');
+      var userVal = sel ? sel.value : null;
+      var correctVal = CORRECT[i];
+      var qId = 'q'+i;
+      var qBlock = document.getElementById(qId);
+      // 娓呴櫎鏃ф爣璁?      clearMark(qBlock);
+      if (userVal === correctVal) {
+        total += singleScore;
+        showMark(qBlock, '鉁?+'+singleScore, 'correct-mark');
+        details.push('绗?+i+'棰?鉁?(3鍒?');
+      } else if (userVal === null) {
+        showMark(qBlock, '鏈€?(0鍒?', 'wrong-mark');
+        details.push('绗?+i+'棰?鏈€?(0鍒?');
+      } else {
+        showMark(qBlock, '鉁?(0鍒?', 'wrong-mark');
+        details.push('绗?+i+'棰?鉁?閫?+userVal+' (0鍒?');
+      }
+    }
+
+    // ----- 澶氶€?(11-13) -----
+    for (var j = 11; j <= 13; j++) {
+      var checked = document.querySelectorAll('input[name="q'+j+'"]:checked');
+      var selected = [];
+      checked.forEach(function(cb){ selected.push(cb.value); });
+      var correct = CORRECT[j]; // array
+      var qBlock2 = document.getElementById('q'+j);
+      clearMark(qBlock2);
+
+      // 鍒ゆ柇閫昏緫
+      var hasWrong = selected.some(function(v){ return correct.indexOf(v) === -1; });
+      var allCorrect = selected.length === correct.length && !hasWrong;
+
+      if (selected.length === 0) {
+        showMark(qBlock2, '鏈€?(0鍒?', 'wrong-mark');
+        details.push('绗?+j+'棰?鏈€?(0鍒?');
+      } else if (hasWrong) {
+        showMark(qBlock2, '鏈夐€夐敊 (0鍒?', 'wrong-mark');
+        details.push('绗?+j+'棰?鏈夐€夐敊 (0鍒?');
+      } else if (allCorrect) {
+        total += 4;
+        showMark(qBlock2, '鉁?+4鍒?, 'correct-mark');
+        details.push('绗?+j+'棰?鉁?鍏ㄥ (4鍒?');
+      } else {
+        // 閮ㄥ垎閫夊锛堟棤閿欎絾鏈叏閫夛級
+        total += 2;
+        showMark(qBlock2, '閮ㄥ垎閫夊 +2鍒?, 'partial-mark');
+        details.push('绗?+j+'棰?閮ㄥ垎閫夊 (2鍒?');
+      }
+    }
+
+    // ----- 濉┖ (14-17) -----
+    var fillScore = 4;
+    for (var k = 14; k <= 17; k++) {
+      var input = document.getElementById('f'+k);
+      var userAns = input.value.trim();
+      var correctAns = CORRECT[k]; // array of acceptable answers
+      var qBlock3 = document.getElementById('q'+k);
+      clearMark(qBlock3);
+
+      // 鏍囧噯鍖栵細鍘荤┖鏍硷紝缁熶竴鍑忓彿
+      var norm = userAns.replace(/\s+/g, '');
+      var matched = correctAns.some(function(ca) {
+        var caNorm = ca.replace(/\s+/g, '');
+        // 澶勭悊 Unicode 鍑忓彿
+        caNorm = caNorm.replace(/鈭?g, '-');
+        norm = norm.replace(/鈭?g, '-');
+        return norm === caNorm;
+      });
+
+      if (userAns === '') {
+        showMark(qBlock3, '鏈～ (0鍒?', 'wrong-mark');
+        details.push('绗?+k+'棰?鏈～ (0鍒?');
+      } else if (matched) {
+        total += fillScore;
+        showMark(qBlock3, '鉁?+'+fillScore, 'correct-mark');
+        details.push('绗?+k+'棰?鉁?(4鍒?');
+      } else {
+        showMark(qBlock3, '鉁?(0鍒?', 'wrong-mark');
+        details.push('绗?+k+'棰?鉁?濉?'+userAns+'" (0鍒?');
+      }
+    }
+
+    // ----- 鏄剧ず鎬诲垎 -----
+    document.getElementById('finalScore').textContent = total + ' / 100';
+    document.getElementById('scoreDetail').textContent = details.join(' 锝?');
+    document.getElementById('scoreBox').style.display = 'block';
+    document.getElementById('displayScore').textContent = total + '鍒?;
+
+    // 淇濆瓨鍒?localStorage
+    saveAnswers();
+
+    // 婊氬姩鍒板垎鏁?    document.getElementById('scoreBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  /* 杈呭姪锛氭竻闄ゆ爣璁?*/
+  function clearMark(el) {
+    var old = el.querySelector('.q-result');
+    if (old) old.remove();
+    // 鎭㈠鑳屾櫙
+    el.style.backgroundColor = '';
+  }
+
+  /* 杈呭姪锛氭樉绀烘爣璁?*/
+  function showMark(el, text, cls) {
+    var span = document.createElement('span');
+    span.className = 'q-result ' + cls;
+    span.textContent = text;
+    el.appendChild(span);
+  }
+
+  /* ========================== localStorage ========================== */
+  var STORAGE_KEY = 'math260801_answers';
+
+  window.saveAnswers = function() {
+    var data = {};
+    // 鍗曢€?    for (var i = 1; i <= 10; i++) {
+      var sel = document.querySelector('input[name="q'+i+']:checked');
+      data['q'+i] = sel ? sel.value : '';
+    }
+    // 澶氶€?    for (var j = 11; j <= 13; j++) {
+      var checked = document.querySelectorAll('input[name="q'+j+']:checked');
+      var vals = [];
+      checked.forEach(function(cb){ vals.push(cb.value); });
+      data['q'+j] = vals;
+    }
+    // 濉┖
+    for (var k = 14; k <= 17; k++) {
+      data['q'+k] = document.getElementById('f'+k).value;
+    }
+    // 瑙ｇ瓟棰?& 闄勫姞棰?    for (var m = 18; m <= 21; m++) {
+      data['q'+m] = document.getElementById('t'+m).value;
+    }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      showToast('绛旀宸蹭繚瀛?鉁?);
+    } catch(e) {
+      showToast('淇濆瓨澶辫触锛?+e.message);
+    }
+  };
+
+  window.loadAnswers = function() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) { showToast('鏈壘鍒板凡淇濆瓨鐨勭瓟妗?); return; }
+      var data = JSON.parse(raw);
+      // 鍗曢€?      for (var i = 1; i <= 10; i++) {
+        var val = data['q'+i];
+        if (val) {
+          var radio = document.querySelector('input[name="q'+i+'"][value="'+val+'"]');
+          if (radio) radio.checked = true;
+        }
+      }
+      // 澶氶€?      for (var j = 11; j <= 13; j++) {
+        var vals = data['q'+j];
+        if (Array.isArray(vals)) {
+          vals.forEach(function(v) {
+            var cb = document.querySelector('input[name="q'+j+'"][value="'+v+'"]');
+            if (cb) cb.checked = true;
+          });
+        }
+      }
+      // 濉┖
+      for (var k = 14; k <= 17; k++) {
+        if (data['q'+k]) document.getElementById('f'+k).value = data['q'+k];
+      }
+      // 瑙ｇ瓟 & 闄勫姞
+      for (var m = 18; m <= 21; m++) {
+        if (data['q'+m]) document.getElementById('t'+m).value = data['q'+m];
+      }
+      showToast('绛旀宸叉仮澶?鉁?);
+      // 閲嶆柊娓叉煋 MathJax
+      if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+    } catch(e) {
+      showToast('鎭㈠澶辫触锛?+e.message);
+    }
+  };
+
+  window.resetAll = function() {
+    if (!confirm('纭畾瑕佹竻绌烘墍鏈夌瓟妗堝悧锛?)) return;
+    // 娓呯┖鍗曢€?    document.querySelectorAll('input[type="radio"]').forEach(function(el){ el.checked = false; });
+    // 娓呯┖澶氶€?    document.querySelectorAll('input[type="checkbox"]').forEach(function(el){ el.checked = false; });
+    // 娓呯┖濉┖
+    document.querySelectorAll('.fill-blank').forEach(function(el){ el.value = ''; });
+    // 娓呯┖瑙ｇ瓟
+    document.querySelectorAll('textarea').forEach(function(el){ el.value = ''; });
+    // 娓呴櫎鏍囪
+    document.querySelectorAll('.q-result').forEach(function(el){ el.remove(); });
+    document.querySelectorAll('.q-block').forEach(function(el){ el.style.backgroundColor = ''; });
+    // 闅愯棌鍒嗘暟
+    document.getElementById('scoreBox').style.display = 'none';
+    document.getElementById('displayScore').textContent = '鈥?;
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    showToast('宸叉竻绌烘墍鏈夌瓟妗?);
+  };
+
+  /* ========================== 绠€鍗?Toast ========================== */
+  function showToast(msg) {
+    var div = document.createElement('div');
+    div.textContent = msg;
+    div.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);' +
+      'background:#333;color:#fff;padding:10px 28px;border-radius:6px;font-size:11pt;' +
+      'z-index:1000;box-shadow:0 4px 14px rgba(0,0,0,0.2);transition:opacity 0.3s;';
+    document.body.appendChild(div);
+    setTimeout(function() {
+      div.style.opacity = '0';
+      setTimeout(function(){ div.remove(); }, 400);
+    }, 2000);
+  }
+
+  /* ========================== 瀵嗙爜淇濇姢 Ctrl+Enter ========================== */
+  var PASSWORD = '2641';
+
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.preventDefault();
+      openPasswordDialog();
+    }
+  });
+
+  window.openPasswordDialog = function() {
+    document.getElementById('pwdOverlay').classList.add('visible');
+    document.getElementById('pwdInput').value = '';
+    document.getElementById('pwdErr').classList.remove('visible');
+    setTimeout(function(){ document.getElementById('pwdInput').focus(); }, 100);
+  };
+
+  window.closePasswordDialog = function() {
+    document.getElementById('pwdOverlay').classList.remove('visible');
+  };
+
+  window.checkPassword = function() {
+    var pwd = document.getElementById('pwdInput').value;
+    if (pwd === PASSWORD) {
+      closePasswordDialog();
+      toggleAnswerKey();
+    } else {
+      document.getElementById('pwdErr').classList.add('visible');
+      document.getElementById('pwdInput').value = '';
+      document.getElementById('pwdInput').focus();
+    }
+  };
+
+  // 鍥炶溅閿湪瀵嗙爜妗嗗唴鎻愪氦
+  document.getElementById('pwdInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); checkPassword(); }
+  });
+
+  // 鐐瑰嚮閬僵鍏抽棴
+  document.getElementById('pwdOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePasswordDialog();
+  });
+
+  function toggleAnswerKey() {
+    var ak = document.getElementById('answerKey');
+    var isVisible = ak.classList.contains('visible');
+    if (isVisible) {
+      ak.classList.remove('visible');
+      showToast('绛旀宸查殣钘?);
+    } else {
+      ak.classList.add('visible');
+      showToast('绛旀宸叉樉绀?);
+      if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+    }
+  }
+
+  /* ========================== 鑷姩淇濆瓨 & 鎭㈠ ========================== */
+  // 椤甸潰鍔犺浇鏃惰嚜鍔ㄦ仮澶?  window.addEventListener('DOMContentLoaded', function() {
+    loadAnswers();
+  });
+
+  // 杈撳叆鏃惰嚜鍔ㄤ繚瀛?(闃叉姈)
+  var autoSaveTimer = null;
+  document.addEventListener('input', function() {
+    if (autoSaveTimer) clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(function() {
+      saveAnswers();
+    }, 800);
+  });
+
+  /* ========================== MathJax 閲嶇粯 ========================== */
+  // 姣忔鍔犺浇绛旀鍚庨渶瑕侀噸缁?  console.log('楂樹竴鏁板绗笁绔犳祴璇曞嵎宸插姞杞姐€傛寜 Ctrl+Enter 鏌ョ湅绛旀銆?);
+
+})();
+</script>
+</body>
+</html>
+

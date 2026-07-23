@@ -1,0 +1,1134 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楂樹竴鏁板绗竴绔?.1-1.5鍗曞厓娴嬭瘯鍗?/title>
+<style>
+/* ===== 鍏ㄥ眬閲嶇疆 & 瀛椾綋 ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: 'Times New Roman', SimSun, 'Songti SC', serif;
+  background: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  padding: 18mm 20mm 15mm 20mm;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* ===== 璇曞嵎澶撮儴 ===== */
+.paper-header {
+  text-align: center;
+  border-bottom: 3px double #333;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.paper-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'SimHei', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+.paper-header .sub-info {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+.paper-header .sub-info span {
+  margin: 0 12px;
+}
+.info-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  font-size: 14px;
+  margin-top: 8px;
+  padding: 0 10px;
+}
+.info-row label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.info-row input {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 2px 4px;
+  font-size: 14px;
+  font-family: inherit;
+  background: transparent;
+  width: 90px;
+}
+.info-row input.long { width: 130px; }
+
+/* ===== 棰樺瀷鏍囬 ===== */
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'SimHei', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  margin: 14px 0 8px 0;
+  padding: 4px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* ===== 閫夋嫨棰橀€氱敤 ===== */
+.choice-question {
+  margin: 8px 0;
+  padding-left: 4px;
+  page-break-inside: avoid;
+}
+.q-head {
+  font-weight: 700;
+  margin-right: 2px;
+}
+.q-text { line-height: 1.75; }
+.options {
+  margin: 3px 0 2px 22px;
+}
+.options label {
+  display: block;
+  line-height: 2;
+  cursor: pointer;
+  padding-left: 4px;
+}
+.options label input {
+  margin-right: 4px;
+  cursor: pointer;
+}
+.q-score {
+  float: right;
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+}
+
+/* ===== 濉┖棰?===== */
+.fill-question {
+  margin: 8px 0;
+  padding-left: 4px;
+  line-height: 2;
+  page-break-inside: avoid;
+}
+.fill-input {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 2px 4px;
+  font-size: 14px;
+  font-family: inherit;
+  background: transparent;
+  text-align: center;
+}
+
+/* ===== 瑙ｇ瓟棰?===== */
+.calc-question {
+  margin: 10px 0;
+  padding-left: 4px;
+  page-break-inside: avoid;
+}
+.calc-question .q-text { display: block; margin-bottom: 2px; }
+.calc-body {
+  margin: 2px 0 4px 22px;
+  line-height: 1.9;
+}
+.answer-area {
+  width: 100%;
+  min-height: 80px;
+  margin: 6px 0 2px 22px;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.7;
+  resize: vertical;
+  background: #fafafa;
+}
+.answer-area:focus { outline: none; border-color: #4a90d9; box-shadow: 0 0 4px rgba(74,144,217,0.3); }
+
+/* ===== 鎻愪氦鏍?===== */
+.submit-bar {
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
+}
+.submit-bar button {
+  padding: 10px 40px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'SimHei', 'Microsoft YaHei', sans-serif;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-submit {
+  background: #1a73e8;
+  color: #fff;
+}
+.btn-submit:hover { background: #1557b0; }
+.btn-submit:disabled { background: #999; cursor: not-allowed; }
+.btn-ref {
+  margin-left: 16px;
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #bbb !important;
+}
+.btn-ref:hover { background: #e0e0e0; }
+
+/* ===== 璇勫垎鍙嶉 ===== */
+.correct-highlight { background: #d4edda !important; border-radius: 2px; }
+.wrong-highlight { background: #f8d7da !important; border-radius: 2px; }
+.correct-answer-hint {
+  color: #155724;
+  font-size: 12px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+/* ===== 鎴愮哗寮圭獥 ===== */
+.score-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.score-overlay.show { display: flex; }
+.score-modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 40px;
+  width: 460px;
+  max-width: 94vw;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  position: relative;
+}
+.score-modal h2 {
+  text-align: center;
+  font-size: 22px;
+  font-family: 'SimHei', 'Microsoft YaHei', sans-serif;
+  margin-bottom: 16px;
+}
+.score-summary {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f0f7ff;
+  border-radius: 8px;
+}
+.score-summary .big-score {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a73e8;
+}
+.score-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.score-detail-table th, .score-detail-table td {
+  border: 1px solid #ddd;
+  padding: 5px 8px;
+  text-align: center;
+}
+.score-detail-table th {
+  background: #f5f5f5;
+  font-weight: 700;
+}
+.score-detail-table .status-correct { color: #155724; font-weight: 700; }
+.score-detail-table .status-wrong { color: #a94442; font-weight: 700; }
+.score-modal .close-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 32px;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  background: #1a73e8;
+  color: #fff;
+  cursor: pointer;
+}
+.score-modal .close-btn:hover { background: #1557b0; }
+
+/* ===== 鍙傝€冪瓟妗堝尯 ===== */
+.reference-answers {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  display: none;
+}
+.reference-answers.show { display: block; }
+.ref-title {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'SimHei', 'Microsoft YaHei', sans-serif;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+.ref-item {
+  margin: 4px 0;
+  line-height: 1.8;
+}
+.ref-answer {
+  color: #1a73e8;
+  font-weight: 700;
+}
+.ref-solution {
+  color: #555;
+  margin-left: 6px;
+  font-size: 13px;
+}
+
+/* ===== A4鎵撳嵃 ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .page {
+    width: 100%;
+    min-height: auto;
+    box-shadow: none;
+    margin: 0;
+    padding: 15mm 18mm 12mm 18mm;
+  }
+  .submit-bar, .score-overlay { display: none !important; }
+  .answer-area { border: 1px dashed #999; min-height: 60px; }
+  .fill-input { border-bottom: 1px solid #000; }
+  .reference-answers { display: none !important; }
+  .btn-ref { display: none !important; }
+  @page { size: A4; margin: 0; }
+}
+
+/* ===== 灏忓睆閫傞厤 ===== */
+@media screen and (max-width: 800px) {
+  .page {
+    width: 100%;
+    min-height: auto;
+    padding: 12px 16px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .info-row { flex-direction: column; gap: 6px; }
+  .info-row input, .info-row input.long { width: 140px; }
+  .score-modal { width: 96vw; padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ==================== 璇曞嵎澶撮儴 ==================== -->
+<div class="paper-header">
+  <h1>楂樹竴鏁板 绗竴绔?闆嗗悎涓庡父鐢ㄩ€昏緫鐢ㄨ 鍗曞厓娴嬭瘯鍗?/h1>
+  <div class="sub-info">
+    <span>馃摉 浜烘暀A鐗埪峰繀淇涓€鍐?/span>
+    <span>鈴?鑰冭瘯鏃堕棿锛?5鍒嗛挓</span>
+    <span>馃搳 婊″垎锛?00鍒?/span>
+  </div>
+  <div class="info-row">
+    <label>濮撳悕锛?input type="text" class="long" placeholder="璇峰～鍐欏鍚?></label>
+    <label>鐝骇锛?input type="text" style="width:80px;" placeholder="鐝骇"></label>
+    <label>瀛﹀彿锛?input type="text" style="width:80px;" placeholder="瀛﹀彿"></label>
+    <label>寰楀垎锛?input type="text" style="width:60px;" readonly></label>
+  </div>
+</div>
+
+<!-- ==================== 涓€銆佸崟閫夐 ==================== -->
+<div class="section-title">涓€銆佸崟閫夐锛堟湰棰樺叡8灏忛锛屾瘡灏忛4鍒嗭紝鍏?2鍒嗐€傚湪姣忓皬棰樼粰鍑虹殑鍥涗釜閫夐」涓紝鍙湁涓€椤规槸绗﹀悎棰樼洰瑕佹眰鐨勩€傦級</div>
+
+<!-- q1 -->
+<div class="choice-question" data-qid="q1" data-type="single" data-answer="C">
+  <span class="q-head">1.</span>
+  <span class="q-text">涓嬪垪鍚勭粍瀵硅薄鑳芥瀯鎴愰泦鍚堢殑鏄紙銆€锛?/span>
+  <div class="options" data-qid="q1">
+    <label><input type="radio" name="q1" value="A"> A锛庢墍鏈夐珮涓瓙鐨勪汉</label>
+    <label><input type="radio" name="q1" value="B"> B锛庢帴杩?鐨勬暟</label>
+    <label><input type="radio" name="q1" value="C"> C锛庝笉澶т簬3鐨勬墍鏈夎嚜鐒舵暟</label>
+    <label><input type="radio" name="q1" value="D"> D锛庡ソ鐪嬬殑鐢靛奖</label>
+  </div>
+</div>
+
+<!-- q2 -->
+<div class="choice-question" data-qid="q2" data-type="single" data-answer="B">
+  <span class="q-head">2.</span>
+  <span class="q-text">宸茬煡闆嗗悎 \(A = \{1, 2, 3\}\)锛屼笅鍒楀叧绯绘纭殑鏄紙銆€锛?/span>
+  <div class="options" data-qid="q2">
+    <label><input type="radio" name="q2" value="A"> A锛嶾(1 \notin A\)</label>
+    <label><input type="radio" name="q2" value="B"> B锛嶾(2 \in A\)</label>
+    <label><input type="radio" name="q2" value="C"> C锛嶾(4 \subseteq A\)</label>
+    <label><input type="radio" name="q2" value="D"> D锛嶾(\{2\} \in A\)</label>
+  </div>
+</div>
+
+<!-- q3 -->
+<div class="choice-question" data-qid="q3" data-type="single" data-answer="A">
+  <span class="q-head">3.</span>
+  <span class="q-text">闆嗗悎 \(\{x \in \mathbb{N} \mid x < 4\}\) 鐢ㄥ垪涓炬硶琛ㄧず涓猴紙銆€锛?/span>
+  <div class="options" data-qid="q3">
+    <label><input type="radio" name="q3" value="A"> A锛嶾(\{0, 1, 2, 3\}\)</label>
+    <label><input type="radio" name="q3" value="B"> B锛嶾(\{1, 2, 3\}\)</label>
+    <label><input type="radio" name="q3" value="C"> C锛嶾(\{0, 1, 2, 3, 4\}\)</label>
+    <label><input type="radio" name="q3" value="D"> D锛嶾(\{1, 2, 3, 4\}\)</label>
+  </div>
+</div>
+
+<!-- q4 -->
+<div class="choice-question" data-qid="q4" data-type="single" data-answer="D">
+  <span class="q-head">4.</span>
+  <span class="q-text">闆嗗悎 \(A = \{a, b, c\}\) 鐨勫瓙闆嗕釜鏁颁负锛堛€€锛?/span>
+  <div class="options" data-qid="q4">
+    <label><input type="radio" name="q4" value="A"> A锛?</label>
+    <label><input type="radio" name="q4" value="B"> B锛?</label>
+    <label><input type="radio" name="q4" value="C"> C锛?</label>
+    <label><input type="radio" name="q4" value="D"> D锛?</label>
+  </div>
+</div>
+
+<!-- q5 -->
+<div class="choice-question" data-qid="q5" data-type="single" data-answer="C">
+  <span class="q-head">5.</span>
+  <span class="q-text">宸茬煡闆嗗悎 \(A = \{1, 2, 3\}\)锛孿(B = \{2, 3, 4\}\)锛屽垯 \(A \cup B = \)锛堛€€锛?/span>
+  <div class="options" data-qid="q5">
+    <label><input type="radio" name="q5" value="A"> A锛嶾(\{2, 3\}\)</label>
+    <label><input type="radio" name="q5" value="B"> B锛嶾(\{1, 2, 3\}\)</label>
+    <label><input type="radio" name="q5" value="C"> C锛嶾(\{1, 2, 3, 4\}\)</label>
+    <label><input type="radio" name="q5" value="D"> D锛嶾(\{4\}\)</label>
+  </div>
+</div>
+
+<!-- q6 -->
+<div class="choice-question" data-qid="q6" data-type="single" data-answer="B">
+  <span class="q-head">6.</span>
+  <span class="q-text">宸茬煡闆嗗悎 \(A = \{1, 2, 3\}\)锛孿(B = \{2, 3, 4\}\)锛屽垯 \(A \cap B = \)锛堛€€锛?/span>
+  <div class="options" data-qid="q6">
+    <label><input type="radio" name="q6" value="A"> A锛嶾(\{1, 2, 3, 4\}\)</label>
+    <label><input type="radio" name="q6" value="B"> B锛嶾(\{2, 3\}\)</label>
+    <label><input type="radio" name="q6" value="C"> C锛嶾(\{1, 4\}\)</label>
+    <label><input type="radio" name="q6" value="D"> D锛嶾(\emptyset\)</label>
+  </div>
+</div>
+
+<!-- q7 -->
+<div class="choice-question" data-qid="q7" data-type="single" data-answer="A">
+  <span class="q-head">7.</span>
+  <span class="q-text">璁惧叏闆?\(U = \{1, 2, 3, 4, 5\}\)锛孿(A = \{1, 3, 5\}\)锛屽垯 \(\complement_U A = \)锛堛€€锛?/span>
+  <div class="options" data-qid="q7">
+    <label><input type="radio" name="q7" value="A"> A锛嶾(\{2, 4\}\)</label>
+    <label><input type="radio" name="q7" value="B"> B锛嶾(\{1, 3, 5\}\)</label>
+    <label><input type="radio" name="q7" value="C"> C锛嶾(\{2, 4, 5\}\)</label>
+    <label><input type="radio" name="q7" value="D"> D锛嶾(\emptyset\)</label>
+  </div>
+</div>
+
+<!-- q8 -->
+<div class="choice-question" data-qid="q8" data-type="single" data-answer="C">
+  <span class="q-head">8.</span>
+  <span class="q-text">"\(x > 2\)" 鏄?"\(x > 1\)" 鐨勶紙銆€锛?/span>
+  <div class="options" data-qid="q8">
+    <label><input type="radio" name="q8" value="A"> A锛庡厖鍒嗗繀瑕佹潯浠?/label>
+    <label><input type="radio" name="q8" value="B"> B锛庡繀瑕佷笉鍏呭垎鏉′欢</label>
+    <label><input type="radio" name="q8" value="C"> C锛庡厖鍒嗕笉蹇呰鏉′欢</label>
+    <label><input type="radio" name="q8" value="D"> D锛庢棦涓嶅厖鍒嗕篃涓嶅繀瑕佹潯浠?/label>
+  </div>
+</div>
+
+<!-- ==================== 浜屻€佸閫夐 ==================== -->
+<div class="section-title">浜屻€佸閫夐锛堟湰棰樺叡3灏忛锛屾瘡灏忛4鍒嗭紝鍏?2鍒嗐€傚湪姣忓皬棰樼粰鍑虹殑鍥涗釜閫夐」涓紝鏈夊椤圭鍚堥鐩姹傘€傚叏閮ㄩ€夊鐨勫緱4鍒嗭紝閮ㄥ垎閫夊鐨勫緱2鍒嗭紝鏈夐€夐敊鐨勫緱0鍒嗐€傦級</div>
+
+<!-- q101 -->
+<div class="choice-question" data-qid="q101" data-type="multi" data-answer='["A","B","C"]'>
+  <span class="q-head">9.锛堝閫夛級</span>
+  <span class="q-text">宸茬煡闆嗗悎 \(A = \{1, 2, 3\}\)锛孿(B = \{2, 3, 4\}\)锛屽垯涓嬪垪璇存硶姝ｇ‘鐨勬湁锛堛€€锛?/span>
+  <div class="options" data-qid="q101">
+    <label><input type="checkbox" name="q101" value="A"> A锛嶾(A \cap B = \{2, 3\}\)</label>
+    <label><input type="checkbox" name="q101" value="B"> B锛嶾(A \cup B = \{1, 2, 3, 4\}\)</label>
+    <label><input type="checkbox" name="q101" value="C"> C锛嶾(\{2\} \subseteq A\)</label>
+    <label><input type="checkbox" name="q101" value="D"> D锛嶾(4 \in A\)</label>
+  </div>
+</div>
+
+<!-- q102 -->
+<div class="choice-question" data-qid="q102" data-type="multi" data-answer='["A","B","C","D"]'>
+  <span class="q-head">10.锛堝閫夛級</span>
+  <span class="q-text">璁惧叏闆?\(U = \{1, 2, 3, 4\}\)锛孿(A = \{1, 2\}\)锛孿(B = \{2, 3\}\)锛屽垯涓嬪垪绛夊紡姝ｇ‘鐨勬湁锛堛€€锛?/span>
+  <div class="options" data-qid="q102">
+    <label><input type="checkbox" name="q102" value="A"> A锛嶾(\complement_U A = \{3, 4\}\)</label>
+    <label><input type="checkbox" name="q102" value="B"> B锛嶾(\complement_U B = \{1, 4\}\)</label>
+    <label><input type="checkbox" name="q102" value="C"> C锛嶾((\complement_U A) \cap (\complement_U B) = \{4\}\)</label>
+    <label><input type="checkbox" name="q102" value="D"> D锛嶾(\complement_U (A \cup B) = \{4\}\)</label>
+  </div>
+</div>
+
+<!-- q103 -->
+<div class="choice-question" data-qid="q103" data-type="multi" data-answer='["A","C"]'>
+  <span class="q-head">11.锛堝閫夛級</span>
+  <span class="q-text">涓嬪垪鍛介涓紝\(p\) 鏄?\(q\) 鐨勫厖鍒嗘潯浠剁殑鏈夛紙銆€锛?/span>
+  <div class="options" data-qid="q103">
+    <label><input type="checkbox" name="q103" value="A"> A锛嶾(p: x = 1\)锛孿(q: x^2 = 1\)</label>
+    <label><input type="checkbox" name="q103" value="B"> B锛嶾(p: x > 3\)锛孿(q: x > 5\)</label>
+    <label><input type="checkbox" name="q103" value="C"> C锛嶾(p:\) 鍥涜竟褰㈡槸姝ｆ柟褰紝\(q:\) 鍥涜竟褰㈡槸鐭╁舰</label>
+    <label><input type="checkbox" name="q103" value="D"> D锛嶾(p: x^2 = 4\)锛孿(q: x = 2\)</label>
+  </div>
+</div>
+
+<!-- ==================== 涓夈€佸～绌洪 ==================== -->
+<div class="section-title">涓夈€佸～绌洪锛堟湰棰樺叡6灏忛锛屾瘡灏忛3鍒嗭紝鍏?8鍒嗐€傦級</div>
+
+<!-- q11 -->
+<div class="fill-question" data-qid="q11">
+  <span class="q-head">12.</span>
+  <span class="q-text">宸茬煡闆嗗悎 \(A = \{1, a\}\)锛岃嫢 \(2 \in A\)锛屽垯 \(a = \)</span>
+  <input type="text" class="fill-input" data-answer="2" style="width:60px;">
+</div>
+
+<!-- q12 -->
+<div class="fill-question" data-qid="q12">
+  <span class="q-head">13.</span>
+  <span class="q-text">闆嗗悎 \(A = \{1, 2, 3\}\) 鐨勭湡瀛愰泦涓暟涓?/span>
+  <input type="text" class="fill-input" data-answer="7" style="width:60px;">
+</div>
+
+<!-- q13 -->
+<div class="fill-question" data-qid="q13">
+  <span class="q-head">14.</span>
+  <span class="q-text">璁惧叏闆?\(U = \{x \in \mathbb{N} \mid x \leq 5\}\)锛孿(A = \{1, 3, 5\}\)锛屽垯 \(\complement_U A = \)</span>
+  <input type="text" class="fill-input" data-answer="{0,2,4}" data-alt="0,2,4|{0, 2, 4}" style="width:100px;">
+</div>
+
+<!-- q14 -->
+<div class="fill-question" data-qid="q14">
+  <span class="q-head">15.</span>
+  <span class="q-text">璁?\(p: x > 1\)锛孿(q: x > 0\)锛屽垯 \(p\) 鏄?\(q\) 鐨?/span>
+  <input type="text" class="fill-input" data-answer="鍏呭垎涓嶅繀瑕? data-alt="鍏呭垎涓嶅繀瑕佹潯浠? style="width:120px;">
+  <span class="q-text">鏉′欢锛堝～"鍏呭垎涓嶅繀瑕?"蹇呰涓嶅厖鍒?"鍏呰""鏃笉鍏呭垎涔熶笉蹇呰"锛夈€?/span>
+</div>
+
+<!-- q15 -->
+<div class="fill-question" data-qid="q15">
+  <span class="q-head">16.</span>
+  <span class="q-text">鍛介 "\(\forall x \in \mathbb{R}, x^2 \geq 0\)" 鐨勫惁瀹氭槸</span>
+  <input type="text" class="fill-input" data-answer="鈭儀鈭圧,x虏<0" data-alt="瀛樺湪x鈭圧,浣垮緱x虏<0|鈭儀鈭圧,x虏<0" style="width:180px;">
+</div>
+
+<!-- q16 -->
+<div class="fill-question" data-qid="q16">
+  <span class="q-head">17.</span>
+  <span class="q-text">鍛介 "\(\exists x \in \mathbb{Z}, x^2 = 2\)" 鐨勫惁瀹氭槸</span>
+  <input type="text" class="fill-input" data-answer="鈭€x鈭圸,x虏鈮?" data-alt="鎵€鏈墄鈭圸,閮芥湁x虏鈮?|鈭€x鈭圸,x虏鈮?" style="width:180px;">
+</div>
+
+<!-- ==================== 鍥涖€佽В绛旈 ==================== -->
+<div class="section-title">鍥涖€佽В绛旈锛堟湰棰樺叡4灏忛锛屽叡38鍒嗐€傝В绛斿簲鍐欏嚭鏂囧瓧璇存槑銆佽瘉鏄庤繃绋嬫垨婕旂畻姝ラ銆傦級</div>
+
+<!-- q17 (8鍒? -->
+<div class="calc-question" data-qid="q17">
+  <span class="q-head">18.</span>
+  <span class="q-text">锛?鍒嗭級璁惧叏闆?\(U = \{1, 2, 3, 4, 5, 6, 7, 8\}\)锛孿(A = \{1, 3, 5, 7\}\)锛孿(B = \{2, 4, 6\}\)锛屾眰锛?/span>
+  <div class="calc-body">
+    (1) \(A \cup B\)锛孿(A \cap B\)锛?span style="float:right;">锛?鍒嗭級</span><br>
+    (2) \(\complement_U A\)锛孿(\complement_U B\)锛?span style="float:right;">锛?鍒嗭級</span><br>
+    (3) \((\complement_U A) \cap (\complement_U B)\)锛屽苟楠岃瘉寰仿锋懇鏍瑰畾寰嬨€?span style="float:right;">锛?鍒嗭級</span>
+  </div>
+  <textarea class="answer-area" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋?.."></textarea>
+</div>
+
+<!-- q18 (10鍒? -->
+<div class="calc-question" data-qid="q18">
+  <span class="q-head">19.</span>
+  <span class="q-text">锛?0鍒嗭級宸茬煡闆嗗悎 \(A = \{x \mid -2 \leq x \leq 5\}\)锛孿(B = \{x \mid m-1 \leq x \leq 2m+1\}\)锛屼笖 \(B \subseteq A\)锛屾眰瀹炴暟 \(m\) 鐨勫彇鍊艰寖鍥淬€?/span>
+  <textarea class="answer-area" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋?.." style="min-height:100px;"></textarea>
+</div>
+
+<!-- q19 (10鍒? -->
+<div class="calc-question" data-qid="q19">
+  <span class="q-head">20.</span>
+  <span class="q-text">锛?0鍒嗭級鍒ゆ柇涓嬪垪鍛介鐨勭湡鍋囷紝骞惰鏄庣悊鐢憋細</span>
+  <div class="calc-body">
+    (1) \(\forall x \in \mathbb{R}, x^2 + 1 > 0\)锛?span style="float:right;">锛?鍒嗭級</span><br>
+    (2) \(\exists x \in \mathbb{Q}, x^2 = 3\)锛?span style="float:right;">锛?鍒嗭級</span><br>
+    (3) \(\forall x \in \mathbb{Z}, x^2 > x\)銆?span style="float:right;">锛?鍒嗭級</span>
+  </div>
+  <textarea class="answer-area" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋?.." style="min-height:100px;"></textarea>
+</div>
+
+<!-- q20 (10鍒? -->
+<div class="calc-question" data-qid="q20">
+  <span class="q-head">21.</span>
+  <span class="q-text">锛?0鍒嗭級宸茬煡 \(p: x \in \{x \mid x^2 - 5x + 6 \leq 0\}\)锛孿(q: x \in \{x \mid m \leq x \leq m+2\}\)銆?/span>
+  <div class="calc-body">
+    (1) 褰?\(m = 2\) 鏃讹紝鍒ゆ柇 \(p\) 鏄?\(q\) 鐨勪粈涔堟潯浠讹紱<span style="float:right;">锛?鍒嗭級</span><br>
+    (2) 鑻?\(p\) 鏄?\(q\) 鐨勫厖鍒嗘潯浠讹紝姹傚疄鏁?\(m\) 鐨勫彇鍊艰寖鍥淬€?span style="float:right;">锛?鍒嗭級</span>
+  </div>
+  <textarea class="answer-area" placeholder="璇峰湪姝や功鍐欒В绛旇繃绋?.." style="min-height:100px;"></textarea>
+</div>
+
+<!-- ==================== 鎻愪氦鏍?==================== -->
+<div class="submit-bar">
+  <button class="btn-submit" onclick="submitPaper()">馃摑 鎻愪氦璇曞嵎</button>
+  <button class="btn-ref" onclick="toggleAnswer()">馃摉 鏌ョ湅鍙傝€冪瓟妗?/button>
+  <button class="btn-clear" onclick="clearAnswers()" style="background:#888; color:#fff; border:none; padding:10px 18px; border-radius:6px; cursor:pointer; font-size:15px; margin-left:8px;">馃棏锔?娓呯┖绛旀</button>
+</div>
+
+<!-- ==================== 鍙傝€冪瓟妗堝尯锛堥殣钘忥級 ==================== -->
+<div class="reference-answers" id="refAnswers">
+  <div class="ref-title">鍙傝€冪瓟妗?/div>
+
+  <div class="ref-item"><strong>涓€銆佸崟閫夐</strong></div>
+  <div class="ref-item">1. <span class="ref-answer">C</span></div>
+  <div class="ref-item">2. <span class="ref-answer">B</span></div>
+  <div class="ref-item">3. <span class="ref-answer">A</span> <span class="ref-solution">鈥?x鈭圢涓攛&lt;4锛寈=0,1,2,3</span></div>
+  <div class="ref-item">4. <span class="ref-answer">D</span> <span class="ref-solution">鈥?3鍏冮泦鍚堝瓙闆嗕釜鏁?2鲁=8</span></div>
+  <div class="ref-item">5. <span class="ref-answer">C</span></div>
+  <div class="ref-item">6. <span class="ref-answer">B</span></div>
+  <div class="ref-item">7. <span class="ref-answer">A</span></div>
+  <div class="ref-item">8. <span class="ref-answer">C</span> <span class="ref-solution">鈥?x&gt;2鈬抶&gt;1 鍏呭垎锛屽弽涔嬩笉鎴愮珛</span></div>
+
+  <div class="ref-item" style="margin-top:8px;"><strong>浜屻€佸閫夐</strong></div>
+  <div class="ref-item">9. <span class="ref-answer">A, B, C</span></div>
+  <div class="ref-item">10. <span class="ref-answer">A, B, C, D</span> <span class="ref-solution">鈥?鍧囨纭紱C涓嶥鐢卞痉路鎽╂牴瀹氬緥绛変环</span></div>
+  <div class="ref-item">11. <span class="ref-answer">A, C</span> <span class="ref-solution">鈥?A锛歺=1鈬抶虏=1锛汣锛氭鏂瑰舰鈬掔煩褰?/span></div>
+
+  <div class="ref-item" style="margin-top:8px;"><strong>涓夈€佸～绌洪</strong></div>
+  <div class="ref-item">12. <span class="ref-answer">2</span></div>
+  <div class="ref-item">13. <span class="ref-answer">7</span> <span class="ref-solution">鈥?2鲁鈭?=7</span></div>
+  <div class="ref-item">14. <span class="ref-answer">{0,2,4}</span> <span class="ref-solution">鈥?U={0,1,2,3,4,5}锛屽幓鎺堿={1,3,5}</span></div>
+  <div class="ref-item">15. <span class="ref-answer">鍏呭垎涓嶅繀瑕?/span></div>
+  <div class="ref-item">16. <span class="ref-answer">鈭儀鈭圧, x虏&lt;0</span></div>
+  <div class="ref-item">17. <span class="ref-answer">鈭€x鈭圸, x虏鈮?</span></div>
+
+  <div class="ref-item" style="margin-top:8px;"><strong>鍥涖€佽В绛旈</strong></div>
+  <div class="ref-item">
+    <strong>18.锛?鍒嗭級</strong>
+  </div>
+  <div class="ref-item" style="margin-left:10px;">
+    (1) \(A \cup B = \{1,2,3,4,5,6,7\}\)锛孿(A \cap B = \varnothing\)<br>
+    (2) \(\complement_U A = \{2,4,6,8\}\)锛孿(\complement_U B = \{1,3,5,7,8\}\)<br>
+    (3) \((\complement_U A) \cap (\complement_U B) = \{8\}\)锛?br>
+    楠岃瘉锛歕(A \cup B = \{1,2,3,4,5,6,7\}\)锛孿(\complement_U (A \cup B) = \{8\}\)锛?br>
+    鎵€浠?\((\complement_U A) \cap (\complement_U B) = \complement_U (A \cup B)\)锛屽痉路鎽╂牴瀹氬緥鎴愮珛銆?  </div>
+
+  <div class="ref-item" style="margin-top:6px;">
+    <strong>19.锛?0鍒嗭級</strong>
+  </div>
+  <div class="ref-item" style="margin-left:10px;">
+    鈶?褰?\(B = \varnothing\) 鏃讹紝\(m-1 > 2m+1\)锛岃В寰?\(m < -2\)锛?br>
+    鈶?褰?\(B \neq \varnothing\) 鏃讹紝
+    \[
+    \begin{cases}
+    m-1 \leq 2m+1 \\
+    m-1 \geq -2 \\
+    2m+1 \leq 5
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+    m \geq -2 \\
+    m \geq -1 \\
+    m \leq 2
+    \end{cases}
+    \Rightarrow -1 \leq m \leq 2
+    \]
+    缁间笂锛孿(m \in (-\infty, -2) \cup [-1, 2]\)銆?  </div>
+
+  <div class="ref-item" style="margin-top:6px;">
+    <strong>20.锛?0鍒嗭級</strong>
+  </div>
+  <div class="ref-item" style="margin-left:10px;">
+    (1) 鐪熷懡棰樸€傚洜涓?\(\forall x \in \mathbb{R}\)锛孿(x^2 \geq 0\)锛屾墍浠?\(x^2 + 1 \geq 1 > 0\)銆?br>
+    (2) 鍋囧懡棰樸€傚洜涓?\(x^2 = 3 \Rightarrow x = \pm \sqrt{3}\)锛孿(\sqrt{3}\) 涓嶆槸鏈夌悊鏁帮紝鎵€浠ヤ笉瀛樺湪鏈夌悊鏁?\(x\) 浣?\(x^2 = 3\)銆?br>
+    (3) 鍋囧懡棰樸€傚弽渚嬶細褰?\(x = 0\) 鏃讹紝\(0^2 = 0\)锛屼笉澶т簬 0锛涘綋 \(x = 1\) 鏃讹紝\(1^2 = 1\)锛屼笉澶т簬 1銆?  </div>
+
+  <div class="ref-item" style="margin-top:6px;">
+    <strong>21.锛?0鍒嗭級</strong>
+  </div>
+  <div class="ref-item" style="margin-left:10px;">
+    瑙?\(x^2 - 5x + 6 \leq 0\)锛屽緱 \((x-2)(x-3) \leq 0\)锛屽嵆 \(2 \leq x \leq 3\)銆?br>
+    鎵€浠?\(p\) 瀵瑰簲闆嗗悎 \(P = \{x \mid 2 \leq x \leq 3\}\)銆?br><br>
+    (1) 褰?\(m = 2\) 鏃讹紝\(q\) 瀵瑰簲闆嗗悎 \(Q = \{x \mid 2 \leq x \leq 4\}\)銆?br>
+    \(P \subseteq Q\)锛屾墍浠?\(p \Rightarrow q\) 浣?\(q \nRightarrow p\)锛屽嵆 \(p\) 鏄?\(q\) 鐨?<strong>鍏呭垎涓嶅繀瑕佹潯浠?/strong>銆?br><br>
+    (2) 鑻?\(p\) 鏄?\(q\) 鐨勫厖鍒嗘潯浠讹紝鍒?\(P \subseteq Q\)锛屽嵆
+    \[
+    \begin{cases}
+    m \leq 2 \\
+    m+2 \geq 3
+    \end{cases}
+    \Rightarrow
+    \begin{cases}
+    m \leq 2 \\
+    m \geq 1
+    \end{cases}
+    \Rightarrow 1 \leq m \leq 2
+    \]
+    鎵€浠ュ疄鏁?\(m\) 鐨勫彇鍊艰寖鍥存槸 \([1, 2]\)銆?  </div>
+</div>
+
+</div><!-- /.page -->
+
+<!-- ==================== 鎴愮哗寮圭獥 ==================== -->
+<div class="score-overlay" id="scoreOverlay">
+  <div class="score-modal">
+    <h2>馃搳 鎴愮哗鎶ュ憡</h2>
+    <div class="score-summary" id="scoreSummary">
+      寰楀垎锛?span class="big-score" id="earnedScore">0</span> / <span id="totalScore">100</span>
+      <br>
+      姝ｇ‘鐜囷細<span id="accuracy">0%</span>
+    </div>
+    <table class="score-detail-table" id="scoreTable">
+      <thead>
+        <tr><th>棰樺彿</th><th>棰樺瀷</th><th>浣犵殑绛旀</th><th>姝ｇ‘绛旀</th><th>鐘舵€?/th><th>寰楀垎</th></tr>
+      </thead>
+      <tbody id="scoreBody"></tbody>
+    </table>
+    <button class="close-btn" onclick="closeScore()">鍏抽棴</button>
+  </div>
+</div>
+
+<!-- ==================== MathJax ==================== -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+
+<!-- ==================== 璇勫垎寮曟搸 ==================== -->
+<script>
+// ===== 绛旀鑷姩缂撳瓨锛堥槻鎵嬫満鍒囧悗鍙颁涪澶憋級 =====
+var PAPER_ID = 'math_grade10_ch1_sections1-5';
+var STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('[data-qid]');
+    var key = parent ? parent.getAttribute('data-qid') : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key) || document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('纭畾瑕佹竻绌烘墍鏈夊凡濉啓鐨勭瓟妗堝悧锛熸鎿嶄綔涓嶅彲鎾ら攢锛?)) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+  document.getElementById('displayScore').textContent = '______';
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+restoreAnswers();
+setupAutoSave();
+
+// ===== 绛旀閰嶇疆 =====
+const ANSWER_KEY = {
+  q1: 'C', q2: 'B', q3: 'A', q4: 'D', q5: 'C', q6: 'B', q7: 'A', q8: 'C',
+  q101: ['A', 'B', 'C'],
+  q102: ['A', 'B', 'C', 'D'],
+  q103: ['A', 'C']
+};
+
+// 鍚勯鍨嬫瘡棰樺垎鍊?const SCORE_MAP = {
+  single: 4,   // 鍗曢€夐姣忛4鍒?  multi: 4,    // 澶氶€夐姣忛4鍒?  fill: 3,     // 濉┖棰樻瘡棰?鍒?  calc: { q17: 8, q18: 10, q19: 10, q20: 10 }
+};
+
+const QUESTION_LABELS = {
+  q1: '1', q2: '2', q3: '3', q4: '4', q5: '5', q6: '6', q7: '7', q8: '8',
+  q101: '9', q102: '10', q103: '11',
+  q11: '12', q12: '13', q13: '14', q14: '15', q15: '16', q16: '17',
+  q17: '18', q18: '19', q19: '20', q20: '21'
+};
+
+const QUESTION_TYPES = {
+  q1: 'single', q2: 'single', q3: 'single', q4: 'single', q5: 'single', q6: 'single', q7: 'single', q8: 'single',
+  q101: 'multi', q102: 'multi', q103: 'multi',
+  q11: 'fill', q12: 'fill', q13: 'fill', q14: 'fill', q15: 'fill', q16: 'fill',
+  q17: 'calc', q18: 'calc', q19: 'calc', q20: 'calc'
+};
+
+// ===== 宸ュ叿鍑芥暟 =====
+function normalizeStr(s) {
+  return s.trim().replace(/\s+/g, '');
+}
+
+function arraysEqual(a, b) {
+  if (a.length !== b.length) return false;
+  const sa = [...a].sort();
+  const sb = [...b].sort();
+  for (let i = 0; i < sa.length; i++) {
+    if (sa[i] !== sb[i]) return false;
+  }
+  return true;
+}
+
+// ===== 鏍稿績璇勫垎鍑芥暟 =====
+function gradePaper() {
+  let earned = 0;
+  let total = 0;
+  const details = [];
+
+  // 1. 璇勫垎鍗曢€夐
+  for (let i = 1; i <= 8; i++) {
+    const qid = 'q' + i;
+    const selected = document.querySelector('input[name="' + qid + '"]:checked');
+    const userAns = selected ? selected.value : '';
+    const correct = ANSWER_KEY[qid];
+    const isCorrect = userAns === correct;
+    const score = isCorrect ? SCORE_MAP.single : 0;
+    earned += score;
+    total += SCORE_MAP.single;
+    details.push({
+      label: QUESTION_LABELS[qid],
+      type: 'single',
+      user: userAns || '(鏈綔绛?',
+      correct: correct,
+      status: isCorrect ? 'correct' : 'wrong',
+      score: score
+    });
+  }
+
+  // 2. 璇勫垎澶氶€夐
+  const multiQids = ['q101', 'q102', 'q103'];
+  for (const qid of multiQids) {
+    const checked = document.querySelectorAll('input[name="' + qid + '"]:checked');
+    const userAns = Array.from(checked).map(cb => cb.value);
+    const correct = ANSWER_KEY[qid];
+    let score = 0;
+    let status = 'wrong';
+    if (userAns.length === 0) {
+      status = 'wrong';
+    } else {
+      const allCorrectSelected = correct.every(v => userAns.includes(v));
+      const hasWrong = userAns.some(v => !correct.includes(v));
+      if (allCorrectSelected && !hasWrong) {
+        score = SCORE_MAP.multi;  // 鍏ㄥ
+        status = 'correct';
+      } else if (!hasWrong) {
+        score = 2;  // 閮ㄥ垎閫夊
+        status = 'partial';
+      }
+    }
+    earned += score;
+    total += SCORE_MAP.multi;
+    details.push({
+      label: QUESTION_LABELS[qid],
+      type: 'multi',
+      user: userAns.length ? userAns.join(', ') : '(鏈綔绛?',
+      correct: correct.join(', '),
+      status: status,
+      score: score
+    });
+  }
+
+  // 3. 璇勫垎濉┖棰?  const fillQids = ['q11', 'q12', 'q13', 'q14', 'q15', 'q16'];
+  for (const qid of fillQids) {
+    const input = document.querySelector('.fill-question[data-qid="' + qid + '"] .fill-input');
+    const userAns = input ? normalizeStr(input.value) : '';
+    const correct = input ? normalizeStr(input.dataset.answer || '') : '';
+    const altRaw = input ? (input.dataset.alt || '') : '';
+    const alts = altRaw ? altRaw.split('|').map(s => normalizeStr(s)) : [];
+    const isCorrect = userAns === correct || alts.includes(userAns);
+    const score = isCorrect ? SCORE_MAP.fill : 0;
+    earned += score;
+    total += SCORE_MAP.fill;
+    details.push({
+      label: QUESTION_LABELS[qid],
+      type: 'fill',
+      user: input ? input.value : '(鏈綔绛?',
+      correct: input ? (input.dataset.answer || '') : '',
+      status: isCorrect ? 'correct' : 'wrong',
+      score: score
+    });
+  }
+
+  // 4. 瑙ｇ瓟棰橈紙涓嶈嚜鍔ㄨ瘎鍒嗭紝鏍囪"闇€浜哄伐鎵规敼"锛?  const calcQids = ['q17', 'q18', 'q19', 'q20'];
+  for (const qid of calcQids) {
+    const textarea = document.querySelector('.calc-question[data-qid="' + qid + '"] .answer-area');
+    const score = SCORE_MAP.calc[qid] || 0;
+    total += score;
+    details.push({
+      label: QUESTION_LABELS[qid],
+      type: 'calc',
+      user: textarea && textarea.value.trim() ? '(宸蹭綔绛?' : '(鏈綔绛?',
+      correct: '闇€浜哄伐鎵规敼',
+      status: 'pending',
+      score: '鈥?(' + score + '鍒?'
+    });
+  }
+
+  return { earned, total, details };
+}
+
+// ===== 鎻愪氦璇曞嵎 =====
+function submitPaper() {
+  saveAnswers();
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = '鈴?璇勫垎涓?..';
+
+  // 瑙﹀彂MathJax閲嶆柊娓叉煋锛堝鏋滄湁鍔ㄦ€佸唴瀹癸級
+  const result = gradePaper();
+  showScore(result);
+  highlightAnswers(result.details);
+
+  btn.textContent = '鉁?宸叉彁浜?;
+}
+
+// ===== 鏄剧ず鎴愮哗寮圭獥 =====
+function showScore(result) {
+  const overlay = document.getElementById('scoreOverlay');
+  document.getElementById('earnedScore').textContent = result.earned;
+  document.getElementById('totalScore').textContent = result.total;
+  const acc = result.total > 0 ? ((result.earned / result.total) * 100).toFixed(1) + '%' : '0%';
+  document.getElementById('accuracy').textContent = acc;
+
+  const tbody = document.getElementById('scoreBody');
+  tbody.innerHTML = '';
+  for (const d of result.details) {
+    const tr = document.createElement('tr');
+    let statusText = '';
+    let statusClass = '';
+    if (d.status === 'correct') {
+      statusText = '鉁?姝ｇ‘';
+      statusClass = 'status-correct';
+    } else if (d.status === 'wrong') {
+      statusText = '鉂?閿欒';
+      statusClass = 'status-wrong';
+    } else if (d.status === 'partial') {
+      statusText = '鈿狅笍 閮ㄥ垎姝ｇ‘';
+      statusClass = 'status-wrong';
+    } else {
+      statusText = '鈴?寰呮壒鏀?;
+      statusClass = '';
+    }
+    tr.innerHTML = `
+      <td>${d.label}</td>
+      <td>${d.type === 'single' ? '鍗曢€? : d.type === 'multi' ? '澶氶€? : d.type === 'fill' ? '濉┖' : '瑙ｇ瓟'}</td>
+      <td>${d.user}</td>
+      <td>${d.correct}</td>
+      <td class="${statusClass}">${statusText}</td>
+      <td>${d.score}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  overlay.classList.add('show');
+
+  // 鍦ㄥ緱鍒嗚緭鍏ユ爮鏄剧ず鎴愮哗
+  const scoreInput = document.querySelector('.info-row input[readonly]');
+  if (scoreInput) scoreInput.value = result.earned + '/' + result.total;
+}
+
+// ===== 鍏抽棴鎴愮哗寮圭獥 =====
+function closeScore() {
+  document.getElementById('scoreOverlay').classList.remove('show');
+}
+
+// ===== 楂樹寒姝ｈ =====
+function highlightAnswers(details) {
+  for (const d of details) {
+    if (d.type === 'single') {
+      const qid = Object.keys(QUESTION_LABELS).find(k => QUESTION_LABELS[k] === d.label);
+      if (!qid) continue;
+      const container = document.querySelector('.choice-question[data-qid="' + qid + '"]');
+      if (!container) continue;
+      const radios = container.querySelectorAll('input[type="radio"]');
+      radios.forEach(r => {
+        const parent = r.closest('label');
+        if (!parent) return;
+        if (r.checked && r.value === d.correct) {
+          parent.classList.add('correct-highlight');
+        } else if (r.checked && r.value !== d.correct) {
+          parent.classList.add('wrong-highlight');
+        }
+        // 濡傛灉閫夐敊浜嗭紝鍦ㄩ敊璇瓟妗堟梺鏍囨敞姝ｇ‘绛旀
+        if (d.status === 'wrong' && r.value === d.correct) {
+          const hint = parent.querySelector('.correct-answer-hint');
+          if (!hint) {
+            const el = document.createElement('span');
+            el.className = 'correct-answer-hint';
+            el.textContent = '鉁?姝ｇ‘绛旀';
+            parent.appendChild(el);
+          }
+        }
+      });
+    } else if (d.type === 'multi') {
+      const qid = Object.keys(QUESTION_LABELS).find(k => QUESTION_LABELS[k] === d.label);
+      if (!qid) continue;
+      const container = document.querySelector('.choice-question[data-qid="' + qid + '"]');
+      if (!container) continue;
+      const cbs = container.querySelectorAll('input[type="checkbox"]');
+      const correctArr = ANSWER_KEY[qid] || [];
+      cbs.forEach(cb => {
+        const parent = cb.closest('label');
+        if (!parent) return;
+        const isCorrectChoice = correctArr.includes(cb.value);
+        if (cb.checked && isCorrectChoice) {
+          parent.classList.add('correct-highlight');
+        } else if (cb.checked && !isCorrectChoice) {
+          parent.classList.add('wrong-highlight');
+        }
+        if (d.status === 'wrong' || d.status === 'partial') {
+          if (isCorrectChoice && !cb.checked) {
+            const hint = parent.querySelector('.correct-answer-hint');
+            if (!hint) {
+              const el = document.createElement('span');
+              el.className = 'correct-answer-hint';
+              el.textContent = '鉁?婕忛€?;
+              parent.appendChild(el);
+            }
+          }
+        }
+      });
+    } else if (d.type === 'fill') {
+      const qid = Object.keys(QUESTION_LABELS).find(k => QUESTION_LABELS[k] === d.label);
+      if (!qid) continue;
+      const input = document.querySelector('.fill-question[data-qid="' + qid + '"] .fill-input');
+      if (!input) continue;
+      if (d.status === 'correct') {
+        input.classList.add('correct-highlight');
+      } else {
+        input.classList.add('wrong-highlight');
+      }
+    }
+  }
+}
+
+// ===== 鍙傝€冪瓟妗堝瘑鐮侀攣 =====
+let answerUnlocked = false;
+
+// ===== 鍒囨崲鍙傝€冪瓟妗?=====
+function toggleAnswer() {
+  const ref = document.getElementById('refAnswers');
+  const btn = document.querySelector('.btn-ref');
+
+  // 濡傛灉宸茶В閿侊紝鐩存帴鍒囨崲
+  if (answerUnlocked) {
+    ref.classList.toggle('show');
+    btn.textContent = ref.classList.contains('show') ? '馃檲 闅愯棌鍙傝€冪瓟妗? : '馃摉 鏌ョ湅鍙傝€冪瓟妗?;
+    if (ref.classList.contains('show') && window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise([ref]);
+    }
+    return;
+  }
+
+  // 鏈В閿侊細寮瑰嚭瀵嗙爜妗?  const pwd = prompt('璇疯緭鍏ュ瘑鐮佹煡鐪嬪弬鑰冪瓟妗堬細');
+  if (pwd === '2641') {
+    answerUnlocked = true;
+    ref.classList.add('show');
+    btn.textContent = '馃檲 闅愯棌鍙傝€冪瓟妗?;
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise([ref]);
+    }
+  } else if (pwd !== null) {
+    alert('瀵嗙爜閿欒锛屾棤娉曟煡鐪嬪弬鑰冪瓟妗堬紒');
+  }
+}
+
+// ===== 閿洏蹇嵎閿細Enter鎻愪氦 =====
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') {
+    submitPaper();
+  }
+});
+</script>
+
+</body>
+</html>
+

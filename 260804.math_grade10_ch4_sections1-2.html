@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一数学·必修第一册 第四章 4.1 指数 — 4.2 指数函数</title>
+<!-- OMO_INTERNAL_INITIATOR -->
+<script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}}</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'宋体','SimSun',serif;font-size:14px;line-height:1.8;color:#222;background:#f5f5f5;padding:20px}
+.container{max-width:210mm;margin:0 auto;background:#fff;padding:30px 25px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.header{border-top:3px double #333;border-bottom:3px double #333;text-align:center;padding:15px 0;margin-bottom:8px}
+.header h1{font-size:20px;letter-spacing:2px}
+.header .info{font-size:13px;color:#555;margin-top:6px}
+.section-title{border-left:4px solid #1a73e8;padding-left:10px;font-size:16px;font-weight:bold;margin:18px 0 12px 0}
+.question{margin:10px 0;padding:6px 0}
+.question .q-text{font-weight:bold;margin-bottom:4px}
+.options{margin-left:12px}
+.options label{display:block;padding:2px 4px;border-radius:3px;cursor:pointer;transition:background .15s}
+.options label:hover{background:#e8f0fe}
+input[type="radio"],input[type="checkbox"]{margin-right:4px;transform:scale(1.1)}
+.fill-in{border:none;border-bottom:1px solid #999;width:80px;text-align:center;font-family:inherit;font-size:14px;padding:2px}
+.fill-in:focus{border-bottom-color:#1a73e8;outline:none}
+.answer-box textarea{width:100%;min-height:50px;font-family:inherit;font-size:13px;padding:6px;border:1px solid #ccc;border-radius:3px;resize:vertical}
+.answer-box textarea:focus{border-color:#1a73e8;outline:none}
+.btn-row{text-align:center;margin:18px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{padding:8px 20px;border:none;border-radius:4px;font-size:14px;cursor:pointer;font-family:inherit;transition:opacity .2s}
+.btn-submit{background:#1a73e8;color:#fff}
+.btn-answer{background:#e8a317;color:#fff}
+.btn-clear{background:#888;color:#fff}
+.score-box{border:2px solid #1a73e8;padding:12px;border-radius:6px;margin:12px 0;text-align:center;font-size:16px;display:none}
+.score-box.show{display:block}
+.score-box .big{font-size:28px;font-weight:bold;color:#1a73e8}
+.correct{color:#2e7d32}
+.wrong{color:#c62828}
+.partial{color:#f57f17}
+.answer-reveal{display:none;background:#f0f7ff;border:1px dashed #1a73e8;padding:8px 12px;margin:6px 0;border-radius:4px;font-size:13px;color:#1557b0}
+.answer-reveal.show{display:block}
+.essay-answer{margin-top:4px}
+@media print{body{background:#fff;padding:0}.container{box-shadow:none;padding:15px}.no-print{display:none}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>高一数学·必修第一册</h1>
+<h1 style="font-size:17px;margin-top:2px">第四章 4.1 指数 — 4.2 指数函数</h1>
+<div class="info">满分：100分 &nbsp;|&nbsp; 时间：45分钟 &nbsp;|&nbsp; 姓名：<span style="border-bottom:1px solid #999;min-width:60px;display:inline-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> &nbsp; 得分：<span id="totalScore">__</span></div>
+</div>
+
+<div class="section-title">一、单选题（共10题，每题3分，共30分）</div>
+
+<div id="q1" class="question" data-type="single" data-answer="C">
+<div class="q-text">1. 计算$2^{\frac{1}{2}}\times4^{\frac{1}{4}}$的结果是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q1" value="A"> A. $2$</label>
+<label><input type="radio" name="q1" value="B"> B. $2\sqrt{2}$</label>
+<label><input type="radio" name="q1" value="C"> C. $2^{\frac{3}{4}}$</label>
+<label><input type="radio" name="q1" value="D"> D. $4^{\frac{1}{2}}$</label>
+</div>
+<div class="answer-reveal">答案：C（$2^{1/2}\times(2^2)^{1/4}=2^{1/2}\times2^{1/2}=2^1=2$，重新计算：$4^{1/4}=(2^2)^{1/4}=2^{1/2}$，所以$2^{1/2}\times2^{1/2}=2^1=2$，选A）</div>
+</div>
+
+<div id="q2" class="question" data-type="single" data-answer="A">
+<div class="q-text">2. 函数$y=2^x$的图象经过点（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q2" value="A"> A. $(0,1)$</label>
+<label><input type="radio" name="q2" value="B"> B. $(1,0)$</label>
+<label><input type="radio" name="q2" value="C"> C. $(2,0)$</label>
+<label><input type="radio" name="q2" value="D"> D. $(0,0)$</label>
+</div>
+<div class="answer-reveal">答案：A</div>
+</div>
+
+<div id="q3" class="question" data-type="single" data-answer="B">
+<div class="q-text">3. 已知函数$f(x)=a^x(a>0,a\neq1)$在$[0,2]$上的最大值为$4$，则$a$的值为（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q3" value="A"> A. $\frac12$</label>
+<label><input type="radio" name="q3" value="B"> B. $2$</label>
+<label><input type="radio" name="q3" value="C"> C. $4$</label>
+<label><input type="radio" name="q3" value="D"> D. $\frac14$</label>
+</div>
+<div class="answer-reveal">答案：B（$a>1$时，最大值$a^2=4$，∴$a=2$）</div>
+</div>
+
+<div id="q4" class="question" data-type="single" data-answer="D">
+<div class="q-text">4. 下列函数中，是指数函数的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q4" value="A"> A. $y=2\cdot3^x$</label>
+<label><input type="radio" name="q4" value="B"> B. $y=(-2)^x$</label>
+<label><input type="radio" name="q4" value="C"> C. $y=x^2$</label>
+<label><input type="radio" name="q4" value="D"> D. $y=5^x$</label>
+</div>
+<div class="answer-reveal">答案：D（指数函数形如$y=a^x(a>0,a\neq1)$）</div>
+</div>
+
+<div id="q5" class="question" data-type="single" data-answer="A">
+<div class="q-text">5. 已知$0<a<1$，则函数$y=a^x$在$(-\infty,+\infty)$上是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q5" value="A"> A. 单调递减函数</label>
+<label><input type="radio" name="q5" value="B"> B. 单调递增函数</label>
+<label><input type="radio" name="q5" value="C"> C. 先增后减</label>
+<label><input type="radio" name="q5" value="D"> D. 先减后增</label>
+</div>
+<div class="answer-reveal">答案：A</div>
+</div>
+
+<div id="q6" class="question" data-type="single" data-answer="C">
+<div class="q-text">6. 化简$\sqrt[3]{a^2}\cdot a^{\frac{2}{3}}$的结果是（$a>0$）（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q6" value="A"> A. $a$</label>
+<label><input type="radio" name="q6" value="B"> B. $a^2$</label>
+<label><input type="radio" name="q6" value="C"> C. $a^{\frac{4}{3}}$</label>
+<label><input type="radio" name="q6" value="D"> D. $a^{\frac{2}{3}}$</label>
+</div>
+<div class="answer-reveal">答案：C（$a^{2/3}\times a^{2/3}=a^{4/3}$）</div>
+</div>
+
+<div id="q7" class="question" data-type="single" data-answer="D">
+<div class="q-text">7. 函数$y=2^{x-1}$的图象是由$y=2^x$的图象（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q7" value="A"> A. 向左平移1个单位</label>
+<label><input type="radio" name="q7" value="B"> B. 向右平移1个单位</label>
+<label><input type="radio" name="q7" value="C"> C. 向上平移1个单位</label>
+<label><input type="radio" name="q7" value="D"> D. 向下平移1个单位</label>
+</div>
+<div class="answer-reveal">答案：B（$y=2^{x-1}=2^x$向右平移1个单位）</div>
+</div>
+
+<div id="q8" class="question" data-type="single" data-answer="B">
+<div class="q-text">8. 比较大小：$1.5^{0.2}$、$1.5^{0.3}$、$0.8^{0.2}$中最大的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q8" value="A"> A. $1.5^{0.2}$</label>
+<label><input type="radio" name="q8" value="B"> B. $1.5^{0.3}$</label>
+<label><input type="radio" name="q8" value="C"> C. $0.8^{0.2}$</label>
+<label><input type="radio" name="q8" value="D"> D. 一样大</label>
+</div>
+<div class="answer-reveal">答案：B（$y=1.5^x$递增，∴$1.5^{0.3}>1.5^{0.2}>1$，$0.8^{0.2}<1$）</div>
+</div>
+
+<div id="q9" class="question" data-type="single" data-answer="C">
+<div class="q-text">9. 函数$y=2^{|x|}$的图象是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q9" value="A"> A. 关于原点对称</label>
+<label><input type="radio" name="q9" value="B"> B. 关于$x$轴对称</label>
+<label><input type="radio" name="q9" value="C"> C. 关于$y$轴对称</label>
+<label><input type="radio" name="q9" value="D"> D. 关于直线$y=x$对称</label>
+</div>
+<div class="answer-reveal">答案：C（偶函数）</div>
+</div>
+
+<div id="q10" class="question" data-type="single" data-answer="A">
+<div class="q-text">10. 某放射性物质每经过一年衰变为原来的$0.9$倍，则经过$x$年后，剩余量$y$与$x$的函数关系为（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="radio" name="q10" value="A"> A. $y=0.9^x$</label>
+<label><input type="radio" name="q10" value="B"> B. $y=1-0.9^x$</label>
+<label><input type="radio" name="q10" value="C"> C. $y=0.9x$</label>
+<label><input type="radio" name="q10" value="D"> D. $y=1-0.9x$</label>
+</div>
+<div class="answer-reveal">答案：A（指数衰减模型）</div>
+</div>
+
+<div class="section-title">二、多选题（共3题，每题4分，共12分，选对但不全得2分，选错0分）</div>
+
+<div id="q11" class="question" data-type="multi" data-answer='["A","B","D"]'>
+<div class="q-text">11. 关于指数函数$y=a^x(a>0,a\neq1)$，下列说法正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="checkbox" name="q11" value="A"> A. 定义域为$R$</label>
+<label><input type="checkbox" name="q11" value="B"> B. 值域为$(0,+\infty)$</label>
+<label><input type="checkbox" name="q11" value="C"> C. 图象过点$(1,1)$</label>
+<label><input type="checkbox" name="q11" value="D"> D. 当$a>1$时，在$R$上单调递增</label>
+</div>
+<div class="answer-reveal">答案：A、B、D（图象过$(0,1)$，不是$(1,1)$）</div>
+</div>
+
+<div id="q12" class="question" data-type="multi" data-answer='["A","C"]'>
+<div class="q-text">12. 下列不等式中正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="checkbox" name="q12" value="A"> A. $2^{0.3}>2^{0.2}$</label>
+<label><input type="checkbox" name="q12" value="B"> B. $0.5^{0.3}>0.5^{0.2}$</label>
+<label><input type="checkbox" name="q12" value="C"> C. $3^{-0.2}>3^{-0.3}$</label>
+<label><input type="checkbox" name="q12" value="D"> D. $0.2^{-0.5}<0.2^{-0.3}$</label>
+</div>
+<div class="answer-reveal">答案：A、C（B:$0.5^{0.3}<0.5^{0.2}$; D:$0.2^{-0.5}>0.2^{-0.3}$）</div>
+</div>
+
+<div id="q13" class="question" data-type="multi" data-answer='["A","B","C"]'>
+<div class="q-text">13. 关于幂的运算，下列结论正确的是（&nbsp;&nbsp;）</div>
+<div class="options">
+<label><input type="checkbox" name="q13" value="A"> A. $a^r\cdot a^s=a^{r+s}$（$a>0$）</label>
+<label><input type="checkbox" name="q13" value="B"> B. $(a^r)^s=a^{rs}$（$a>0$）</label>
+<label><input type="checkbox" name="q13" value="C"> C. $(ab)^r=a^r b^r$（$a,b>0$）</label>
+<label><input type="checkbox" name="q13" value="D"> D. $a^{\frac{m}{n}}=\sqrt[n]{a^m}$ 对所有$a\in R$成立</label>
+</div>
+<div class="answer-reveal">答案：A、B、C（D要求$a\geq0$）</div>
+</div>
+
+<div class="section-title">三、填空题（共4题，每题4分，共16分）</div>
+
+<div id="q14" class="question" data-type="fill">
+<div class="q-text">14. 计算：$8^{\frac{2}{3}}=$______。</div>
+<p><input type="text" class="fill-in" id="q14a" style="width:60px"></p>
+<div class="answer-reveal">答案：4（$8^{2/3}=(2^3)^{2/3}=2^2=4$）</div>
+</div>
+
+<div id="q15" class="question" data-type="fill">
+<div class="q-text">15. 函数$y=(\frac14)^x$的单调递增区间是______。（写"无"或区间）</div>
+<p><input type="text" class="fill-in" id="q15a" style="width:100px"></p>
+<div class="answer-reveal">答案：无（$0<\frac14<1$，函数在$R$上单调递减）</div>
+</div>
+
+<div id="q16" class="question" data-type="fill">
+<div class="q-text">16. 若函数$f(x)=a^x-1$（$a>0,a\neq1$）的图象过定点$P$，则$P$的坐标为______。</div>
+<p><input type="text" class="fill-in" id="q16a" style="width:100px"></p>
+<div class="answer-reveal">答案：$(0,0)$（$a^0-1=0$）</div>
+</div>
+
+<div id="q17" class="question" data-type="fill">
+<div class="q-text">17. 不等式$2^x>8$的解集为______。</div>
+<p><input type="text" class="fill-in" id="q17a" style="width:120px"></p>
+<div class="answer-reveal">答案：$(3,+\infty)$（$2^x>2^3$，$x>3$）</div>
+</div>
+
+<div class="section-title">四、解答题（共3题，第18题10分，第19题10分，第20题14分，共34分）</div>
+
+<div id="q18" class="question" data-type="essay">
+<div class="q-text">18.（10分）计算下列各式的值：<br>
+（1）$(\frac19)^{-\frac12}+(\sqrt[3]{27})^{\frac23}$；（5分）<br>
+（2）$2\sqrt{3}\times\sqrt[3]{1.5}\times\sqrt[6]{12}$。（5分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）$(\frac19)^{-1/2}=9^{1/2}=3$，$(\sqrt[3]{27})^{2/3}=(27^{1/3})^{2/3}=27^{2/9}=(3^3)^{2/9}=3^{2/3}$，原式$=3+3^{2/3}$<br>
+（2）原式$=2\cdot3^{1/2}\cdot(\frac32)^{1/3}\cdot(12)^{1/6}=2\cdot3^{1/2}\cdot3^{1/3}\cdot2^{-1/3}\cdot(2^2\cdot3)^{1/6}=2\cdot3^{1/2+1/3+1/6}\cdot2^{-1/3+1/3}=2\cdot3^{1}=6$
+</div>
+</div>
+
+<div id="q19" class="question" data-type="essay">
+<div class="q-text">19.（10分）已知指数函数$f(x)=a^x$（$a>0,a\neq1$）的图象经过点$(2,9)$。<br>
+（1）求$a$的值；（3分）<br>
+（2）求$f(0)+f(1)+f(-1)$的值；（3分）<br>
+（3）解不等式$f(x-1)>27$。（4分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）$a^2=9$，$a=3$（$a>0$）<br>
+（2）$f(0)=1$，$f(1)=3$，$f(-1)=\frac13$，原式$=1+3+\frac13=\frac{13}{3}$<br>
+（3）$3^{x-1}>27=3^3$，$x-1>3$，$x>4$
+</div>
+</div>
+
+<div id="q20" class="question" data-type="essay">
+<div class="q-text">20.（14分）某地区人口数量$P$（万人）与时间$t$（年）的关系为$P(t)=P_0\cdot(1+r)^t$，其中$P_0$是初始人口，$r$是年增长率。<br>
+（1）若初始人口为100万，年增长率为$2\%$，写出$P(t)$的表达式；（3分）<br>
+（2）求第10年末的人口数量（保留整数）；（4分）<br>
+（3）求人口增长到150万需要多少年（保留整数）。（可用$\lg1.02\approx0.0086$，$\lg1.5\approx0.1761$）（7分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）$P(t)=100\times(1.02)^t$<br>
+（2）$P(10)=100\times(1.02)^{10}\approx100\times1.219=122$万<br>
+（3）$100\times(1.02)^t=150$，$(1.02)^t=1.5$，$t=\log_{1.02}1.5=\frac{\lg1.5}{\lg1.02}\approx\frac{0.1761}{0.0086}\approx20.5$，故需要21年
+</div>
+</div>
+
+<div class="section-title">五、附加题（8分）</div>
+
+<div id="q21" class="question" data-type="essay">
+<div class="q-text">21.（8分）已知函数$f(x)=a^{x-1}+3$（$a>0,a\neq1$）的图象过定点$P$。<br>
+（1）求点$P$的坐标；（2分）<br>
+（2）若$f(x)>\frac{10}{3}$，求$x$的取值范围（按$a>1$和$0<a<1$分类讨论）。（6分）</p>
+<div class="answer-box"><textarea placeholder="请在此处写出解答过程..."></textarea></div>
+<div class="answer-reveal essay-answer">
+<strong>参考答案：</strong><br>
+（1）令$x-1=0$，$x=1$，$f(1)=a^0+3=4$，定点$P(1,4)$<br>
+（2）$f(x)>\frac{10}{3}$，$a^{x-1}+3>\frac{10}{3}$，$a^{x-1}>\frac13$<br>
+当$a>1$时：$x-1>\log_a\frac13$，$x>1+\log_a\frac13$<br>
+当$0<a<1$时：$x-1<\log_a\frac13$，$x<1+\log_a\frac13$
+</div>
+</div>
+
+<div class="btn-row no-print">
+<button class="btn btn-submit" onclick="gradeExam()">提交并评分</button>
+<button class="btn btn-answer" onclick="promptPassword()">显示答案</button>
+<button class="btn btn-clear" onclick="clearAnswers()">清除作答</button>
+</div>
+
+<div id="scoreBox" class="score-box">
+<p>📊 成绩报告</p>
+<p>单选题：<span id="singleScore">0</span>/30分</p>
+<p>多选题：<span id="multiScore">0</span>/12分</p>
+<p>填空题：<span id="fillScore">0</span>/16分（建议自批）</p>
+<p style="font-size:18px;margin-top:6px">总成绩：<span class="big" id="finalScore">0</span>/100分</p>
+</div>
+
+</div>
+
+<script>
+const SKEY={q1:'C',q2:'A',q3:'B',q4:'D',q5:'A',q6:'C',q7:'B',q8:'B',q9:'C',q10:'A'};
+const MKEY={q11:['A','B','D'],q12:['A','C'],q13:['A','B','C']};
+const FKEY={q14a:'4',q15a:'无',q16a:'(0,0)',q17a:'(3,+∞)'};
+const FALT={q14a:['4','4.0'],q15a:['无','没有','不存在','∅'],q16a:['(0,0)','(0,0)'],q17a:['(3,+∞)','x>3','(3,∞)']};
+const SK='math_260804';
+
+function saveAll(){
+  const d={};
+  document.querySelectorAll('input[type="radio"]:checked').forEach(i=>{d[i.name]=i.value});
+  document.querySelectorAll('input[type="checkbox"]').forEach(i=>{if(i.checked){const n=i.name;if(!d[n])d[n]=[];d[n].push(i.value)}});
+  document.querySelectorAll('.fill-in').forEach(i=>{d[i.id]=i.value});
+  document.querySelectorAll('textarea').forEach((t,i)=>{d['ta_'+i]=t.value});
+  try{localStorage.setItem(SK,JSON.stringify(d))}catch(e){}
+}
+
+function loadAll(){
+  try{
+    const d=JSON.parse(localStorage.getItem(SK)||'{}');
+    document.querySelectorAll('input[type="radio"]').forEach(i=>{if(d[i.name]===i.value)i.checked=true});
+    document.querySelectorAll('input[type="checkbox"]').forEach(i=>{if(d[i.name]&&d[i.name].includes(i.value))i.checked=true});
+    document.querySelectorAll('.fill-in').forEach(i=>{if(d[i.id])i.value=d[i.id]});
+    document.querySelectorAll('textarea').forEach((t,i)=>{if(d['ta_'+i])t.value=d['ta_'+i]});
+  }catch(e){}
+}
+
+document.addEventListener('change',saveAll);document.addEventListener('input',saveAll);
+document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();promptPassword()}});
+
+function promptPassword(){const p=prompt('请输入密码查看答案（2641）：');if(p==='2641'){document.querySelectorAll('.answer-reveal').forEach(el=>el.classList.add('show'))}else if(p!==null){alert('密码错误！')}}
+
+function gradeExam(){
+  let st=0,mt=0,ft=0;
+  Object.keys(SKEY).forEach(q=>{
+    const sel=document.querySelector(`input[name="${q}"]:checked`);
+    const d=document.getElementById(q);if(!d)return;
+    const opts=d.querySelectorAll('.options label');
+    opts.forEach(l=>l.classList.remove('correct','wrong'));
+    const isC=sel&&sel.value===SKEY[q];
+    if(isC)st+=3;
+    if(sel){sel.parentElement.classList.add(isC?'correct':'wrong')}
+    opts.forEach(l=>{const i=l.querySelector('input');if(i&&i.value===SKEY[q])l.style.fontWeight='bold'});
+  });
+  document.getElementById('singleScore').textContent=st;
+  Object.keys(MKEY).forEach(q=>{
+    const ck=document.querySelectorAll(`input[name="${q}"]:checked`);
+    const sel=Array.from(ck).map(c=>c.value);const cor=MKEY[q];
+    const d=document.getElementById(q);if(!d)return;
+    d.querySelectorAll('.options label').forEach(l=>l.classList.remove('correct','wrong','partial'));
+    const hw=sel.some(s=>!cor.includes(s));const ac=sel.length===cor.length&&!hw;
+    if(!hw&&sel.length>0&&!ac)mt+=2;else if(ac)mt+=4;
+    ck.forEach(c=>{const l=c.closest('label');if(!cor.includes(c.value))l.classList.add('wrong');else if(!ac)l.classList.add('partial')});
+    d.querySelectorAll('.options label').forEach(l=>{const i=l.querySelector('input');if(i&&cor.includes(i.value))l.style.fontWeight='bold'});
+  });
+  document.getElementById('multiScore').textContent=mt;
+  Object.keys(FKEY).forEach(k=>{
+    const inp=document.getElementById(k);if(!inp)return;
+    const v=inp.value.trim();const alt=FALT[k]||[FKEY[k]];
+    if(alt.some(a=>v===a||v.toLowerCase()===a.toLowerCase()))ft+=4/Object.keys(FKEY).length|0;
+  });
+  document.getElementById('fillScore').textContent=ft;
+  document.getElementById('finalScore').textContent=st+mt+ft;
+  document.getElementById('scoreBox').classList.add('show');
+  saveAll();
+}
+
+function clearAnswers(){
+  if(!confirm('确定清空吗？'))return;
+  document.querySelectorAll('input[type="radio"]').forEach(i=>i.checked=false);
+  document.querySelectorAll('input[type="checkbox"]').forEach(i=>i.checked=false);
+  document.querySelectorAll('.fill-in').forEach(i=>i.value='');
+  document.querySelectorAll('textarea').forEach(i=>i.value='');
+  try{localStorage.removeItem(SK)}catch(e){}
+  document.getElementById('scoreBox').classList.remove('show');
+}
+
+loadAll();
+</script>
+</body>
+</html>

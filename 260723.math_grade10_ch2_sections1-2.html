@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一数学·第二章（2.1-2.2）单元测试卷</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+(function() {
+  var cb = function() {
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+  };
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+  s.async = true; s.onload = cb;
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { document.head.appendChild(s); });
+  } else {
+    document.head.appendChild(s);
+  }
+})();
+</script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: '宋体', 'SimSun', 'Times New Roman', serif;
+  font-size: 14px; line-height: 1.8;
+  background: #f2f2f2; color: #222; padding: 20px;
+}
+.paper {
+  max-width: 210mm; margin: 0 auto;
+  background: #fff;
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.12);
+}
+/* ===== Header ===== */
+.header { text-align: center; margin-bottom: 18px; border-bottom: 2px solid #1a5276; padding-bottom: 14px; }
+.header h1 { font-size: 20px; font-family: '黑体','SimHei',sans-serif; color: #1a5276; letter-spacing: 1px; margin-bottom: 4px; }
+.header .sub { font-size: 13px; color: #555; }
+.header .info { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 10px; font-size: 14px; }
+.header .info label { display: inline-flex; align-items: center; gap: 4px; }
+.header .info input { border: none; border-bottom: 1px solid #888; width: 80px; padding: 2px 4px; font-size: 14px; font-family: inherit; background: transparent; outline: none; }
+.header .info input:focus { border-bottom-color: #1a5276; }
+/* ===== Sections ===== */
+.section { margin-bottom: 20px; }
+.section h2 { font-size: 15px; font-family: '黑体','SimHei',sans-serif; color: #1a5276; border-left: 4px solid #1a5276; padding-left: 10px; margin-bottom: 10px; }
+/* ===== Questions ===== */
+.question { margin: 10px 0 14px; padding: 6px 8px; border-radius: 4px; }
+.q-title { margin-bottom: 4px; }
+.question .option { display: block; padding-left: 1.8em; margin: 2px 0; cursor: pointer; }
+.question .option input { margin-right: 6px; cursor: pointer; }
+.question .option:hover { color: #1a5276; }
+/* ===== Fill-in ===== */
+.fill-question input[type="text"] {
+  border: none; border-bottom: 1px solid #666; width: 90px;
+  padding: 0 4px; font-size: 14px; font-family: inherit; text-align: center;
+  background: transparent; outline: none;
+}
+.fill-question input[type="text"]:focus { border-bottom-color: #1a5276; }
+.input-sm { width: 50px; }
+/* ===== Calc question ===== */
+.calc-question textarea {
+  width: 100%; min-height: 70px; margin-top: 6px;
+  padding: 6px 8px; border: 1px solid #bbb; border-radius: 4px;
+  font-family: inherit; font-size: 13px; resize: vertical;
+}
+.calc-question textarea:focus { border-color: #1a5276; outline: none; }
+.sub-q { margin: 6px 0 6px 20px; }
+/* ===== Submit bar ===== */
+.submit-bar { text-align: center; margin: 20px 0 10px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.btn { padding: 10px 22px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-family: inherit; }
+.btn-submit { background: #1a5276; color: #fff; }
+.btn-ref { background: #b8860b; color: #fff; }
+.btn-clear { background: #888; color: #fff; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+/* ===== Score overlay ===== */
+.score-overlay {
+  padding: 14px 18px; display: none; margin-top: 14px;
+  background: #f0f7ff; border: 2px solid #1a5276; border-radius: 8px;
+}
+.score-overlay.show { display: block; }
+.score-overlay h3 { color: #1a5276; margin-bottom: 8px; }
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+.score-item { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed #ddd; }
+.score-total { font-size: 18px; font-weight: bold; color: #1a5276; text-align: center; margin-top: 10px; }
+.detail-correct { color: #2e7d32; }
+.detail-wrong { color: #c62828; }
+.detail-partial { color: #f57f17; }
+.detail-unanswered { color: #e65100; }
+/* ===== Answer key ===== */
+.answer-section { display: none; margin-top: 20px; padding: 16px 18px; background: #f9f9f9; border: 1px solid #ccc; border-radius: 6px; }
+.answer-section h3 { margin-bottom: 10px; color: #1a5276; }
+.ans-item { margin: 4px 0; }
+.ans-key { font-weight: bold; color: #1a5276; }
+.ans-explain { color: #555; font-size: 13px; }
+/* ===== Mobile ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 10px; }
+  .paper { padding: 14px 16px; }
+  .header .info { flex-direction: column; gap: 6px; align-items: center; }
+  .score-grid { grid-template-columns: 1fr; }
+}
+/* ===== Print ===== */
+@media print {
+  .submit-bar, .btn, #scorePanel { display: none !important; }
+  body { background: #fff; padding: 0; }
+  .paper { box-shadow: none; padding: 0; }
+  .score-overlay { border: 1px solid #999; }
+  .answer-section { display: block !important; }
+  @page { size: A4; margin: 1.5cm; }
+}
+</style>
+</head>
+<body>
+<div class="paper">
+
+<div class="header">
+  <h1>高一数学·第二章单元测试卷</h1>
+  <div class="sub">2.1 等式性质与不等式性质 &nbsp;·&nbsp; 2.2 基本不等式</div>
+  <div class="info">
+    <label>姓名：<input type="text" id="studentName"></label>
+    <label>班级：<input type="text" id="studentClass"></label>
+    <label>学号：<input type="text" id="studentId"></label>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:4px;">总分：100分 &nbsp;|&nbsp; 考试时间：45分钟</div>
+</div>
+
+<!-- 一、单选题 -->
+<div class="section">
+<h2>一、单选题（6题，每题5分，共30分）</h2>
+
+<div class="question" data-qid="q1" data-type="single" data-answer="C">
+  <div class="q-title">1. 若 \(a > b\)，下列不等式一定成立的是（　）</div>
+  <label class="option"><input type="radio" name="q1" value="A"> A．\(a^2 > b^2\)</label>
+  <label class="option"><input type="radio" name="q1" value="B"> B．\(ac > bc\)</label>
+  <label class="option"><input type="radio" name="q1" value="C"> C．\(a + c > b + c\)</label>
+  <label class="option"><input type="radio" name="q1" value="D"> D．\(\dfrac{1}{a} < \dfrac{1}{b}\)</label>
+</div>
+
+<div class="question" data-qid="q2" data-type="single" data-answer="C">
+  <div class="q-title">2. 已知 \(a < b < 0\)，下列不等式成立的是（　）</div>
+  <label class="option"><input type="radio" name="q2" value="A"> A．\(a^2 < b^2\)</label>
+  <label class="option"><input type="radio" name="q2" value="B"> B．\(|a| < |b|\)</label>
+  <label class="option"><input type="radio" name="q2" value="C"> C．\(a^2 > b^2\)</label>
+  <label class="option"><input type="radio" name="q2" value="D"> D．\(\dfrac{1}{a} > \dfrac{1}{b}\)</label>
+</div>
+
+<div class="question" data-qid="q3" data-type="single" data-answer="A">
+  <div class="q-title">3. 不等式 \(x^2 - 5x + 6 > 0\) 的解集是（　）</div>
+  <label class="option"><input type="radio" name="q3" value="A"> A．\(\{x \mid x < 2 \text{ 或 } x > 3\}\)</label>
+  <label class="option"><input type="radio" name="q3" value="B"> B．\(\{x \mid 2 < x < 3\}\)</label>
+  <label class="option"><input type="radio" name="q3" value="C"> C．\(\{x \mid x < -3 \text{ 或 } x > -2\}\)</label>
+  <label class="option"><input type="radio" name="q3" value="D"> D．\(\{x \mid -3 < x < -2\}\)</label>
+</div>
+
+<div class="question" data-qid="q4" data-type="single" data-answer="D">
+  <div class="q-title">4. 若 \(a, b \in \mathbb{R}\)，且 \(a > b\)，则下列不等式恒成立的是（　）</div>
+  <label class="option"><input type="radio" name="q4" value="A"> A．\(a^2 > b^2\)</label>
+  <label class="option"><input type="radio" name="q4" value="B"> B．\(\dfrac{a}{b} > 1\)</label>
+  <label class="option"><input type="radio" name="q4" value="C"> C．\(\lg(a - b) > 0\)</label>
+  <label class="option"><input type="radio" name="q4" value="D"> D．\(\left(\dfrac{1}{2}\right)^a < \left(\dfrac{1}{2}\right)^b\)</label>
+</div>
+
+<div class="question" data-qid="q5" data-type="single" data-answer="B">
+  <div class="q-title">5. 已知 \(x > 2\)，函数 \(y = x + \dfrac{1}{x-2}\) 的最小值为（　）</div>
+  <label class="option"><input type="radio" name="q5" value="A"> A．2</label>
+  <label class="option"><input type="radio" name="q5" value="B"> B．4</label>
+  <label class="option"><input type="radio" name="q5" value="C"> C．6</label>
+  <label class="option"><input type="radio" name="q5" value="D"> D．8</label>
+</div>
+
+<div class="question" data-qid="q6" data-type="single" data-answer="B">
+  <div class="q-title">6. 若 \(a > 0, b > 0\)，且 \(\dfrac{1}{a} + \dfrac{1}{b} = 2\)，则 \(a + b\) 的最小值为（　）</div>
+  <label class="option"><input type="radio" name="q6" value="A"> A．1</label>
+  <label class="option"><input type="radio" name="q6" value="B"> B．2</label>
+  <label class="option"><input type="radio" name="q6" value="C"> C．3</label>
+  <label class="option"><input type="radio" name="q6" value="D"> D．4</label>
+</div>
+</div>
+
+<!-- 二、多选题 -->
+<div class="section">
+<h2>二、多选题（2题，每题5分，共10分）</h2>
+
+<div class="question" data-qid="q101" data-type="multi" data-answer='["B","D"]'>
+  <div class="q-title">7.（多选）下列命题正确的有（　）</div>
+  <label class="option"><input type="checkbox" name="q101" value="A"> A．若 \(a > b\)，则 \(ac^2 > bc^2\)</label>
+  <label class="option"><input type="checkbox" name="q101" value="B"> B．若 \(a > b > 0\)，则 \(\dfrac{1}{a} < \dfrac{1}{b}\)</label>
+  <label class="option"><input type="checkbox" name="q101" value="C"> C．若 \(a > b\)，\(c > d\)，则 \(a - c > b - d\)</label>
+  <label class="option"><input type="checkbox" name="q101" value="D"> D．若 \(a > b\)，则 \(a^3 > b^3\)</label>
+</div>
+
+<div class="question" data-qid="q102" data-type="multi" data-answer='["A","C","D"]'>
+  <div class="q-title">8.（多选）下列说法正确的有（　）</div>
+  <label class="option"><input type="checkbox" name="q102" value="A"> A．\(a^2 + b^2 \ge 2ab\) 对任意实数成立</label>
+  <label class="option"><input type="checkbox" name="q102" value="B"> B．\(\dfrac{a}{b} + \dfrac{b}{a} \ge 2\) 对任意非零实数成立</label>
+  <label class="option"><input type="checkbox" name="q102" value="C"> C．基本不等式 \(\sqrt{ab} \le \dfrac{a+b}{2}\) 要求 \(a,b \ge 0\)</label>
+  <label class="option"><input type="checkbox" name="q102" value="D"> D．当 \(x > 0\) 时，\(x + \dfrac{1}{x} \ge 2\)</label>
+</div>
+</div>
+
+<!-- 三、填空题 -->
+<div class="section">
+<h2>三、填空题（4题，每题5分，共20分）</h2>
+
+<div class="fill-question" data-qid="q11">
+  <div class="q-title">9. 不等式 \(|x - 3| < 5\) 的解集是 \(\)<input type="text" class="fill-input" data-answer="\{x \mid -2 < x < 8\}" data-alt="(-2,8)|{x|-2<x<8}" style="width:140px;">\(\)。</div>
+</div>
+
+<div class="fill-question" data-qid="q12">
+  <div class="q-title">10. 若 \(x > 0\)，函数 \(y = 2x + \dfrac{3}{x}\) 的最小值为 \(\)<input type="text" class="fill-input input-sm" data-answer="2\sqrt{6}" data-alt="2√6|2sqrt(6)" style="width:80px;">\(\)。</div>
+</div>
+
+<div class="fill-question" data-qid="q13">
+  <div class="q-title">11. 已知 \(a, b \in \mathbb{R}\)，且 \(a + b = 4\)，则 \(ab\) 的最大值为 \(\)<input type="text" class="fill-input input-sm" data-answer="4" style="width:50px;">\(\)。</div>
+</div>
+
+<div class="fill-question" data-qid="q14">
+  <div class="q-title">12. 不等式组 \(\begin{cases} x - 2 > 0 \\ x + 1 < 6 \end{cases}\) 的解集为 \(\)<input type="text" class="fill-input" data-answer="\{x \mid 2 < x < 5\}" data-alt="(2,5)|{x|2<x<5}" style="width:140px;">\(\)。</div>
+</div>
+</div>
+
+<!-- 四、解答题 -->
+<div class="section">
+<h2>四、解答题（4题，每题10分，共40分）</h2>
+
+<div class="calc-question" data-qid="q17">
+  <div class="q-title">13.（10分）解下列关于 \(x\) 的不等式：</div>
+  <div class="sub-q">(1) \(x^2 - 4x + 3 \le 0\) <span style="float:right;">（4分）</span></div>
+  <div class="sub-q">(2) \(-x^2 + x + 6 > 0\) <span style="float:right;">（6分）</span></div>
+  <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+</div>
+
+<div class="calc-question" data-qid="q18">
+  <div class="q-title">14.（10分）已知 \(a > 0, b > 0\)，且 \(a + b = 1\)，求 \(\dfrac{1}{a} + \dfrac{1}{b}\) 的最小值。</div>
+  <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+</div>
+
+<div class="calc-question" data-qid="q19">
+  <div class="q-title">15.（10分）已知 \(x > 0, y > 0\)，且 \(x + 2y = 8\)，求 \(xy\) 的最大值。</div>
+  <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+</div>
+
+<div class="calc-question" data-qid="q20">
+  <div class="q-title">16.（10分）证明：对于任意正实数 \(a, b\)，有 \(\dfrac{a}{b} + \dfrac{b}{a} \ge 2\)，并指出等号成立的条件。</div>
+  <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+</div>
+</div>
+
+<!-- 提交栏 -->
+<div class="submit-bar">
+  <button class="btn btn-submit" onclick="submitPaper()">提交试卷（Ctrl+Enter）</button>
+  <button class="btn btn-ref" onclick="toggleAnswer()">查看参考答案</button>
+  <button class="btn btn-clear" onclick="clearFromStorage()">清空答案</button>
+</div>
+
+<!-- 得分面板 -->
+<div class="score-overlay" id="scorePanel">
+  <h3>评分结果</h3>
+  <div class="score-grid" id="scoreDetail"></div>
+  <div class="score-total">总分：<span id="earnedScore">0</span> / <span id="totalScore">100</span></div>
+</div>
+
+<!-- 参考答案区 -->
+<div class="answer-section" id="answerSection">
+  <h3>参考答案</h3>
+  <div id="answerContent"></div>
+</div>
+
+</div><!-- /.paper -->
+
+<script>
+/* ===== CONFIG ===== */
+const PAPER_ID = 'math_grade10_ch2_sections1-2';
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+const PASSWORD = '2641';
+var unlocked = false;
+
+const SCORE_MAP = { single: 5, multi: 5, fill: 5, calc: { q17: 10, q18: 10, q19: 10, q20: 10 } };
+
+const QUESTION_LABELS = {
+  q1: '1', q2: '2', q3: '3', q4: '4', q5: '5', q6: '6',
+  q101: '7', q102: '8',
+  q11: '9', q12: '10', q13: '11', q14: '12',
+  q17: '13', q18: '14', q19: '15', q20: '16'
+};
+
+const QUESTION_TYPES = {
+  q1: 'single', q2: 'single', q3: 'single', q4: 'single', q5: 'single', q6: 'single',
+  q101: 'multi', q102: 'multi',
+  q11: 'fill', q12: 'fill', q13: 'fill', q14: 'fill',
+  q17: 'calc', q18: 'calc', q19: 'calc', q20: 'calc'
+};
+
+/* ===== ANSWER KEY ===== */
+const ANSWER_KEY = {
+  q1: 'C', q2: 'C', q3: 'A', q4: 'D', q5: 'B', q6: 'B',
+  q101: ['B','D'], q102: ['A','C','D']
+};
+
+const ANSWER_DETAILS = [
+  { id: 'q1', answer: 'C', analysis: '不等式两边加同数 \\(c\\)，不等号方向不变。A当\\(b<0\\)时不成立，B\\(c\\)符号不确定，D需\\(ab>0\\)才成立。' },
+  { id: 'q2', answer: 'C', analysis: '负数平方后绝对值大的反而大，\\(a^2 > b^2\\)。由\\(a<b<0\\)得\\(|a|>|b|\\)故A、B错，\\(\\frac{1}{a}>\\frac{1}{b}\\)故D错。' },
+  { id: 'q3', answer: 'A', analysis: '因式分解\\((x-2)(x-3)>0\\)，解得\\(x<2\\)或\\(x>3\\)。' },
+  { id: 'q4', answer: 'D', analysis: '指数函数\\(y=(\\frac12)^x\\)单调递减，故\\((\\frac12)^a<(\\frac12)^b\\)。A当\\(b<0\\)时不成立，B需同号，C需\\(a-b>1\\)。' },
+  { id: 'q5', answer: 'B', analysis: '\\(y=(x-2)+\\frac1{x-2}+2\\ge2\\sqrt{(x-2)\\cdot\\frac1{x-2}}+2=4\\)，当\\(x-2=1\\)即\\(x=3\\)时取等号。' },
+  { id: 'q6', answer: 'B', analysis: '\\(\\frac1a+\\frac1b=2\\)得\\(\\frac{a+b}{ab}=2\\)即\\(a+b=2ab\\)。由\\(ab\\le(\\frac{a+b}{2})^2\\)，代入得\\(a+b\\le\\frac{(a+b)^2}{2}\\)，解得\\(a+b\\ge2\\)。' },
+  { id: 'q101', answer: 'B, D', analysis: 'B：\\(a>b>0\\Rightarrow\\frac1a<\\frac1b\\)。D：\\(y=x^3\\)单调递增。A：\\(c=0\\)时不成立。C：反例\\(a=2,b=1,c=3,d=1\\)得\\(-1>-2\\)成立？不，实际上\\(a-c=2-3=-1,b-d=1-1=0\\)，\\(-1>0\\)不成立。' },
+  { id: 'q102', answer: 'A, C, D', analysis: 'A：完全平方公式\\((a-b)^2\\ge0\\)。C：基本不等式要求非负。D：\\(x+\\frac1x\\ge2\\sqrt{x\\cdot\\frac1x}=2\\)。B：\\(a,b\\)异号时不成立。' },
+  { id: 'q11', answer: '\\(\\{x\\mid-2<x<8\\}\\)', analysis: '\\(|x-3|<5\\Rightarrow-5<x-3<5\\Rightarrow-2<x<8\\)。' },
+  { id: 'q12', answer: '\\(2\\sqrt{6}\\)', analysis: '\\(2x+\\frac3x\\ge2\\sqrt{2x\\cdot\\frac3x}=2\\sqrt{6}\\)，当\\(2x=\\frac3x\\)即\\(x=\\frac{\\sqrt6}{2}\\)时取等号。' },
+  { id: 'q13', answer: '4', analysis: '\\(ab\\le(\\frac{a+b}{2})^2=(\\frac42)^2=4\\)，当\\(a=b=2\\)时取等号。' },
+  { id: 'q14', answer: '\\(\\{x\\mid2<x<5\\}\\)', analysis: '\\(x-2>0\\Rightarrow x>2\\)，\\(x+1<6\\Rightarrow x<5\\)，取交集得\\(2<x<5\\)。' },
+  { id: 'q17', answer: '(1) \\(\\{x\\mid1\\le x\\le3\\}\\)，(2)\\(\\{x\\mid-2<x<3\\}\\)', analysis: '(1)\\((x-1)(x-3)\\le0\\Rightarrow1\\le x\\le3\\)。(2)\\(-x^2+x+6>0\\Rightarrow x^2-x-6<0\\Rightarrow(x-3)(x+2)<0\\Rightarrow-2<x<3\\)。' },
+  { id: 'q18', answer: '4', analysis: '\\(\\frac1a+\\frac1b=\\frac{a+b}{ab}=\\frac1{ab}\\)。由\\(ab\\le(\\frac{a+b}{2})^2=\\frac14\\)，得\\(\\frac1{ab}\\ge4\\)，当\\(a=b=\\frac12\\)时取等号。' },
+  { id: 'q19', answer: '8', analysis: '\\(x+2y=8\\ge2\\sqrt{x\\cdot2y}=2\\sqrt{2xy}\\Rightarrow\\sqrt{2xy}\\le4\\Rightarrow xy\\le8\\)，当\\(x=2y\\)即\\(x=4,y=2\\)时取等号。' },
+  { id: 'q20', answer: '证明略', analysis: '\\(\\frac ab+\\frac ba\\ge2\\sqrt{\\frac ab\\cdot\\frac ba}=2\\)，当\\(\\frac ab=\\frac ba\\)即\\(a=b\\)时取等号。' }
+];
+
+/* ===== LOCAL STORAGE ===== */
+function saveToStorage() {
+  var d = {};
+  d.name = document.getElementById('studentName').value;
+  d.cls = document.getElementById('studentClass').value;
+  d.id = document.getElementById('studentId').value;
+  d.r = {}; d.c = {}; d.f = {}; d.a = {};
+  document.querySelectorAll('input[type="radio"]:checked').forEach(function(r) { d.r[r.name] = r.value; });
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(function(c) {
+    if (!d.c[c.name]) d.c[c.name] = [];
+    d.c[c.name].push(c.value);
+  });
+  document.querySelectorAll('.fill-input').forEach(function(f) {
+    var key = f.closest('[data-qid]') ? f.closest('[data-qid]').getAttribute('data-qid') : '';
+    if (!d.f[key]) d.f[key] = [];
+    d.f[key].push(f.value);
+  });
+  document.querySelectorAll('textarea').forEach(function(t) {
+    var p = t.closest('[data-qid]');
+    if (p) d.a[p.getAttribute('data-qid')] = t.value;
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch(e) {}
+}
+
+function loadFromStorage() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var d = JSON.parse(raw);
+    if (d.name) document.getElementById('studentName').value = d.name;
+    if (d.cls) document.getElementById('studentClass').value = d.cls;
+    if (d.id) document.getElementById('studentId').value = d.id;
+    if (d.r) Object.keys(d.r).forEach(function(n) {
+      var el = document.querySelector('input[type="radio"][name="' + n + '"][value="' + d.r[n] + '"]');
+      if (el) el.checked = true;
+    });
+    if (d.c) Object.keys(d.c).forEach(function(n) {
+      d.c[n].forEach(function(v) {
+        var el = document.querySelector('input[type="checkbox"][name="' + n + '"][value="' + v + '"]');
+        if (el) el.checked = true;
+      });
+    });
+    if (d.f) Object.keys(d.f).forEach(function(key) {
+      var inputs = document.querySelectorAll('[data-qid="' + key + '"] .fill-input');
+      inputs.forEach(function(inp, i) {
+        if (d.f[key][i]) inp.value = d.f[key][i];
+      });
+    });
+    if (d.a) Object.keys(d.a).forEach(function(key) {
+      var ta = document.querySelector('[data-qid="' + key + '"] textarea');
+      if (ta) ta.value = d.a[key];
+    });
+  } catch(e) {}
+}
+
+function clearFromStorage() {
+  if (!confirm('确定要清空所有已填答案吗？此操作不可撤销！')) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('.fill-input').forEach(function(f) { f.value = ''; });
+  document.querySelectorAll('textarea').forEach(function(t) { t.value = ''; });
+  document.getElementById('scorePanel').classList.remove('show');
+  document.getElementById('studentName').value = '';
+  document.getElementById('studentClass').value = '';
+  document.getElementById('studentId').value = '';
+}
+
+/* ===== AUTO SAVE ===== */
+document.addEventListener('change', function(e) {
+  if (e.target.matches('input[type="radio"], input[type="checkbox"], input[type="text"]')) saveToStorage();
+});
+document.addEventListener('input', function(e) {
+  if (e.target.matches('textarea')) saveToStorage();
+});
+
+/* ===== SCORING ===== */
+function arraysEqual(a, b) {
+  if (!a || !b || a.length !== b.length) return false;
+  var sa = a.slice().sort(); var sb = b.slice().sort();
+  return sa.every(function(v, i) { return v === sb[i]; });
+}
+
+function normalizeStr(s) {
+  return s.trim().replace(/\s+/g, '');
+}
+
+function submitPaper() {
+  saveToStorage();
+  document.querySelector('.btn-submit').disabled = true;
+  var result = gradePaper();
+  showScore(result);
+}
+
+function gradePaper() {
+  var earned = 0, total = 0;
+  var details = [];
+
+  // Single choice
+  document.querySelectorAll('[data-type="single"]').forEach(function(el) {
+    var qid = el.getAttribute('data-qid');
+    var ans = el.getAttribute('data-answer');
+    var sel = el.querySelector('input[type="radio"]:checked');
+    var score = SCORE_MAP.single || 5;
+    total += score;
+    var status = 'unanswered';
+    if (sel) {
+      status = (sel.value === ans) ? 'correct' : 'wrong';
+      if (status === 'correct') earned += score;
+    }
+    details.push({ qid: qid, label: QUESTION_LABELS[qid], type: 'single', status: status, score: status === 'correct' ? score : 0, max: score });
+  });
+
+  // Multi choice
+  document.querySelectorAll('[data-type="multi"]').forEach(function(el) {
+    var qid = el.getAttribute('data-qid');
+    var ans = JSON.parse(el.getAttribute('data-answer'));
+    var sel = el.querySelectorAll('input[type="checkbox"]:checked');
+    var vals = [];
+    sel.forEach(function(c) { vals.push(c.value); });
+    var score = SCORE_MAP.multi || 5;
+    total += score;
+    var status = 'unanswered';
+    if (vals.length > 0) {
+      if (arraysEqual(vals, ans)) { status = 'correct'; earned += score; }
+      else if (vals.every(function(v) { return ans.indexOf(v) >= 0; })) { status = 'partial'; earned += 2; }
+      else { status = 'wrong'; }
+    }
+    details.push({ qid: qid, label: QUESTION_LABELS[qid], type: 'multi', status: status, score: status === 'correct' ? score : (status === 'partial' ? 2 : 0), max: score });
+  });
+
+  // Fill questions
+  document.querySelectorAll('.fill-question').forEach(function(el) {
+    var qid = el.getAttribute('data-qid');
+    var inputs = el.querySelectorAll('.fill-input');
+    var score = SCORE_MAP.fill || 5;
+    total += score;
+    var qEarned = 0;
+    var allAns = [];
+    inputs.forEach(function(inp) {
+      var ans = inp.getAttribute('data-answer');
+      var alt = inp.getAttribute('data-alt');
+      var accepted = ans ? [ans] : [];
+      if (alt) { alt.split('|').forEach(function(a) { accepted.push(a); }); }
+      var val = normalizeStr(inp.value);
+      var ok = accepted.some(function(a) { return normalizeStr(a) === val; });
+      if (ok) qEarned += score / inputs.length;
+      allAns.push(ok);
+    });
+    earned += Math.round(qEarned * 100) / 100;
+    var status = allAns.every(function(v) { return v; }) ? 'correct' : (allAns.some(function(v) { return v; }) ? 'partial' : (el.querySelectorAll('.fill-input').length > 0 && Array.from(el.querySelectorAll('.fill-input')).some(function(i) { return i.value.trim(); }) ? 'wrong' : 'unanswered'));
+    details.push({ qid: qid, label: QUESTION_LABELS[qid], type: 'fill', status: status, score: Math.round(qEarned * 100) / 100, max: score });
+  });
+
+  // Calc questions
+  document.querySelectorAll('.calc-question').forEach(function(el) {
+    var qid = el.getAttribute('data-qid');
+    var scoreMap = SCORE_MAP.calc || {};
+    var score = scoreMap[qid] || 10;
+    total += score;
+    var ta = el.querySelector('textarea');
+    var status = (ta && ta.value.trim().length > 0) ? 'manual' : 'unanswered';
+    details.push({ qid: qid, label: QUESTION_LABELS[qid], type: 'calc', status: status, score: 0, max: score });
+  });
+
+  return { earned: earned, total: total, details: details };
+}
+
+function showScore(result) {
+  var el = document.getElementById('scoreDetail');
+  var html = '';
+  result.details.forEach(function(d) {
+    var cls = d.status === 'correct' ? 'detail-correct' : (d.status === 'partial' ? 'detail-partial' : (d.status === 'wrong' ? 'detail-wrong' : 'detail-unanswered'));
+    var txt = d.status === 'correct' ? '✓' : (d.status === 'partial' ? '○' : (d.status === 'wrong' ? '✗' : '—'));
+    html += '<div class="score-item ' + cls + '"><span>第' + d.label + '题 ' + txt + '</span><span>' + d.score + '/' + d.max + '</span></div>';
+  });
+  el.innerHTML = html;
+  document.getElementById('earnedScore').textContent = Math.round(result.earned * 100) / 100;
+  document.getElementById('totalScore').textContent = result.total;
+  document.getElementById('scorePanel').classList.add('show');
+}
+
+/* ===== ANSWER KEY DISPLAY ===== */
+function toggleAnswer() {
+  if (!unlocked) {
+    var pwd = prompt('请输入密码查看参考答案：');
+    if (pwd === PASSWORD) { unlocked = true; }
+    else if (pwd !== null) { alert('密码错误！'); return; }
+    else { return; }
+  }
+  var sec = document.getElementById('answerSection');
+  if (sec.style.display === 'block') { sec.style.display = 'none'; return; }
+  sec.style.display = 'block';
+  renderAnswerDetails();
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderAnswerDetails() {
+  var container = document.getElementById('answerContent');
+  var html = '';
+  ANSWER_DETAILS.forEach(function(item) {
+    html += '<div class="ans-item"><span class="ans-key">' + escapeHtml(QUESTION_LABELS[item.id] + '. ' + item.answer) + '</span>';
+    if (item.analysis) html += '<br><span class="ans-explain">' + escapeHtml(item.analysis) + '</span>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+}
+
+/* ===== KEYBOARD SHORTCUT ===== */
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); submitPaper(); }
+});
+
+/* ===== INIT ===== */
+loadFromStorage();
+if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+</script>
+
+</body>
+</html>

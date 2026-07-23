@@ -98,7 +98,7 @@ const QUESTION_TYPES = {
 <input type="text" class="fill-input" data-answer="糖原" data-alt="肝糖原|肌糖原">
 ```
 
-**经验**：不要忽略近似答案的可能性（如"斐林"和"斐林试剂"），尤其生物/化学学科。
+**经验**：不要忽略近似答案的可能性（如全称与简称、带单位与不带单位等），尤其理科科目。
 
 ### 4. 解答题命名与计分
 
@@ -334,30 +334,30 @@ document.addEventListener('keydown', function(e) {
 
 ### 12. 一题多空（填空题多个输入框）
 
-化学/生物学科经常有"将____逐滴加入____中，继续煮沸至____"这种一题多空。每个空各占一个 `fill-input`，分别配 `data-answer` 和 `data-alt`。
+同一道填空题可能有多个空白（如"方程为 \(y = \_\_x + \_\_\)"）。每个空各占一个 `fill-input`，分别配 `data-answer` 和 `data-alt`。
 
 ```html
 <div class="fill-question" data-qid="q11">
-  15. Fe(OH)₃胶体的制备方法：向
-  <input type="text" class="fill-input input-sm" data-answer="沸水" style="width:50px;">
-  中逐滴加入
-  <input type="text" class="fill-input" data-answer="FeCl₃饱和" data-alt="FeCl₃饱和溶液|饱和FeCl₃|饱和氯化铁" style="width:100px;">
-  溶液，继续煮沸至溶液呈红褐色，停止加热。
+  15. 方程为 \(y = 
+  <input type="text" class="fill-input input-sm" data-answer="2" style="width:40px;">
+  x +
+  <input type="text" class="fill-input input-sm" data-answer="3" style="width:40px;">
+  。
 </div>
 ```
 
-**经验**：评分引擎遍历 `fill-question` 下的所有 `fill-input` 逐个评分，每个空独立计分。分值为 `SCORE_MAP.fill` × 该题空数。例如一题2空，每空3分则该题6分。
+**经验**：评分引擎遍历 `fill-question` 下的所有 `fill-input` 逐个评分，每个空独立计分。分值为 `SCORE_MAP.fill` × 该题空数。
 
 **注意填空输入框宽度**：
 | class | 宽度 | 适用场景 |
 |-------|------|---------|
-| `fill-input`（默认）| 80px | 一般术语 |
-| `input-sm` | 50px | 元素符号、数字、字母 |
-| `input-long` | 120px | 长句子 |
+| `fill-input`（默认）| 80px | 一般术语、短句 |
+| `input-sm` | 50px | 数字、字母、符号 |
+| `input-long` | 120px | 较长表达式或名称 |
 
 ### 13. 解答题内嵌自动评分（calc-question 混合模式）
 
-部分解答题中某些小问可以用输入框自动评分（如化学中的"氧化剂：____ 还原剂：____"，或计算题中的"加速度 = ____ m/s²"），其余小问仍需人工评阅。
+部分解答题中某些小问可以用输入框自动评分（如计算题中填入数值、名称等），其余小问仍需人工评阅。
 
 实现方式：在 `calc-question` 里混用 `<input>` + `<textarea>`。评分引擎会：
 - 扫描 `calc-question` 内带 `data-answer` 的 `<input>` → 自动评分
@@ -366,42 +366,49 @@ document.addEventListener('keydown', function(e) {
 ```html
 <div class="calc-question" data-qid="q19">
   <span class="q-head">22.（10分）</span>
-  <span class="q-text">用双线桥法分析氧化还原反应：</span>
-  <div class="q-text" style="font-size:16px; text-align:center; margin:8px 0;">
-    \(2KMnO₄ + 16HCl = 2KCl + 2MnCl₂ + 5Cl₂↑ + 8H₂O\)
-  </div>
+  <span class="q-text">已知函数 \(f(x) = x^2 + 2x - 3\)，求：</span>
   <div style="margin:2px 0 4px 22px;">
-    (1) 用双线桥标出电子转移方向和数目；<span style="float:right;">（5分）</span><br>
-    (2) 氧化剂：<input type="text" class="fill-input input-sm" data-answer="KMnO₄" style="width:70px;">
-       还原剂：<input type="text" class="fill-input input-sm" data-answer="HCl" style="width:70px;">
-       <span style="float:right;">（2分）</span><br>
-    (3) 转移电子的物质的量：<input type="text" class="fill-input input-sm" data-answer="5" style="width:50px;"> mol
-       <span style="float:right;">（3分）</span>
+    (1) 求顶点坐标；（写出解题过程）<span style="float:right;">（5分）</span><br>
+    (2) 对称轴方程：\(x = \) <input type="text" class="fill-input input-sm" data-answer="-1" style="width:40px;"><span style="float:right;">（2分）</span><br>
+    (3) 与 \(y\) 轴交点：\((0, \) <input type="text" class="fill-input input-sm" data-answer="-3" style="width:40px;">\()\) <span style="float:right;">（3分）</span>
   </div>
-  <textarea class="answer-area" placeholder="请在此书写(1)的双线桥分析过程..."></textarea>
+  <textarea class="answer-area" placeholder="请在此书写(1)的解题过程..."></textarea>
 </div>
 ```
 
 **关键**：calc-question 内的 `<input>` 必须带 `data-answer` 属性，评分引擎按 name/qid 不匹配的方式单独处理，与外面的填空题互通评分逻辑。
 
-### 14. MathJax 化学式/离子符号规范
+### 14. MathJax 公式书写规范（各学科通用）
 
-化学试卷中的元素符号、离子、化学式、反应式均用 MathJax 渲染。常用写法：
+所有学科试卷均用 MathJax 3 渲染公式。各学科常用写法：
 
-| 显示效果 | 写法 | 说明 |
-|---------|------|------|
-| \(Fe^{3+}\) | `\(Fe^{3+}\)` | 离子：元素 + 上标电荷 |
-| \(CO_3^{2-}\) | `\(CO_3^{2-}\)` | 多原子离子：下标+上标 |
-| \(H_2O\) | `\(H_2O\)` | 分子式：下标 |
-| \(2KMnO₄\) | `\(2KMnO₄\)` | 带系数：直接写 |
-| \(H_2SO_4\) | `\(H_2SO_4\)` | 酸：下标数字 |
-| \(CO_2↑\) | `\(CO_2↑\)` | 气体符号 |
-| \(BaSO_4↓\) | `\(BaSO_4↓\)` | 沉淀符号 |
-| \(⇌\) | `\(\rightleftharpoons\)` | 可逆反应箭头 |
-| \(→(△)→\) | `\(\xrightarrow{\triangle}\)` | 加热条件 |
-| \(2H⁺ + CO_3^{2-} = CO_2↑ + H_2O\) | `\(2H⁺ + CO_3^{2-} = CO_2↑ + H_2O\)` | 完整离子方程式 |
+**数学/物理：**
+| 显示效果 | 写法 |
+|---------|------|
+| \(x^2 + y^2 = z^2\) | `\(x^2 + y^2 = z^2\)` |
+| \(\frac{a}{b}\) | `\(\frac{a}{b}\)` |
+| \(\sqrt{x^2 + 1}\) | `\(\sqrt{x^2 + 1}\)` |
+| \(x_1, x_2\) | `\(x_1, x_2\)` |
+| \(\alpha + \beta = \pi\) | `\(\alpha + \beta = \pi\)` |
+| \(\bar{v} = \Delta x / \Delta t\) | `\(\bar{v} = \Delta x / \Delta t\)` |
+| \(a = \frac{\Delta v}{\Delta t}\) | `\(a = \frac{\Delta v}{\Delta t}\)` |
 
-**经验**：MathJax 中 `=` 自动渲染为等号，`−`（减号）和 `–`（短横线）不同，推荐用 `-`（连字符）保证一致性。上标电荷用 `^{n+}` / `^{n-}`，下标用 `_{n}`。
+**化学/生物：**
+| 显示效果 | 写法 |
+|---------|------|
+| \(H_2O\) | `\(H_2O\)` |
+| \(Fe^{3+}\) | `\(Fe^{3+}\)` |
+| \(CO_3^{2-}\) | `\(CO_3^{2-}\)` |
+| \(2H⁺ + CO_3^{2-} = CO_2↑ + H_2O\) | `\(2H⁺ + CO_3^{2-} = CO_2↑ + H_2O\)` |
+| \(C_6H_{12}O_6\) | `\(C_6H_{12}O_6\)` |
+| \(→(△)→\) | `\(\xrightarrow{\triangle}\)` |
+| \(⇌\) | `\(\rightleftharpoons\)` |
+
+**通用原则**：
+- 上标用 `^{...}`，下标用 `_{...}`
+- 多字符上下标需用花括号包裹，如 `^{2-}`、`_{12}`
+- 行内公式用 `\(...\)`，独立行公式用 `\[...\]`
+- `=` 自动渲染为等号，不用转义
 
 ## 快速上手
 
@@ -413,7 +420,7 @@ document.addEventListener('keydown', function(e) {
 task(
   category="unspecified-high",
   load_skills=["create-test-paper"],
-  prompt="在项目根目录创建一份高一物理第二章的交互试卷，文件名为 physics_grade10_ch2_sections2-1-2-3.html..."
+  prompt="在项目根目录创建一份高一X学科第X章的交互试卷，文件名为 subject_gradeX_chX.html..."
 )
 ```
 
@@ -553,17 +560,6 @@ const ANSWER_KEY = {
 </html>
 ```
 
-## 已生成试卷清单（实战验证）
-
-| 文件 | 内容 | 题量 |
-|------|------|------|
-| `math_grade10_ch1_sections1-5.html` | 高一数学·集合与常用逻辑用语 | 8单选+3多选+6填空+4解答（100分） |
-| `bio_grade10_ch2_sections1-3.html` | 高一生物·组成细胞的分子 | 12单选+3多选+6填空+4解答（100分） |
-| `physics_grade10_ch1.html` | 高一物理·运动的描述 | 10单选+3多选+6填空+4解答（100分） |
-| `chem_grade10_ch1.html` | 高一化学·物质及其变化 | 10单选+3多选+6填空+4解答（100分） |
-
-> 新建试卷时，可直接参考上述文件的源码结构。
-
 ## A4 打印
 
 试卷已内置打印样式：
@@ -581,20 +577,130 @@ const ANSWER_KEY = {
 
 ## MathJax 公式
 
-试卷使用 MathJax 3 渲染 LaTeX 公式，已包含 CDN：
+试卷使用 MathJax 3 (tex-svg.js) 渲染 LaTeX 公式。
+
+### 正确方案（动态加载，最可靠）
 
 ```html
 <script>
-MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
-  svg: { fontCache: 'global' },
-  options: { enableMenu: false }
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
 };
+(function() {
+  // 在 onload 中调用 typesetPromise, 确保 MathJax 加载完成后再排版
+  var callback = function() {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise();
+    }
+  };
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+  s.async = true;
+  s.onload = callback;
+  // DOM 就绪后才插入脚本，避免在解析完成前加载
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { document.head.appendChild(s); });
+  } else {
+    document.head.appendChild(s);
+  }
+})();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 ```
 
-行内公式用 `\(...\)`，行间公式用 `\[...\]`。MathJax 加载需要 1-3 秒，页面加载后自动渲染。
+### ⚠️ 反斜杠数量规则（极易翻车）
+
+**核心矛盾**：HTML 中 `\` 无转义含义，JavaScript 字符串中 `\` 是转义符。
+
+| 位置 | 书写方式 | 示例（得到 `\(a+b\)`） |
+|------|---------|----------------------|
+| **HTML 正文**（`<div>`、`<label>` 等标签内容） | **单反斜杠** | `<div>\(a+b\)</div>` |
+| **JavaScript 字符串常量**（`ANSWER_DETAILS` 中的 `'...'`） | **双反斜杠** | `'\\\\(a+b\\\\)'` → JS 求值后变成 `\(a+b\)` |
+| MathJax `inlineMath` / `displayMath` 配置 | **双反斜杠**（JS 字符串） | `['\\\\(', '\\\\)']` |
+
+> ⭐ **"HTML 正文写双反斜杠"是最常见的隐蔽错误**。文件重建/拷贝时，`\(` 容易变成 `\\(`（双反斜杠），浏览器 DOM 中产生两个 `\` 字符，MathJax 的 `\(` 无法匹配 → 公式以原文显示。
+
+**排查口诀**：
+- HTML 内容 → 数 `\(` = 1 个 `\`
+- JS 字符串 → 数 `'\\('` = 2 个 `\`
+- 肉眼检查：在浏览器 DevTools Elements 面板选中文本，看 DOM 里是 `\(` 还是 `\\(`。
+
+### ⚠️ innerHTML + LaTeX 内容中的 `<` `>` 转义
+
+当通过 `element.innerHTML = text` 插入含 LaTeX 的字符串时，**`<` 和 `>` 会被浏览器 HTML 解析器误判为标签**。
+
+典型受害场景：
+```javascript
+// ❌ 危险：-2<x<3 中的 <x 被解析为 HTML 标签
+html += '<span class="ans-explain">' + item.analysis + '</span>';
+```
+
+`<x` 紧随 `<` 的是字母，HTML5 解析器认为「开始标签」→ 吞掉后续内容。
+
+**必须在 innerHTML 之前对 `<` `>` 做 HTML 实体转义**：
+
+```javascript
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+// ✅ 安全
+html += '<span class="ans-explain">' + escapeHtml(item.analysis) + '</span>';
+```
+
+原理：浏览器解析 `&lt;` → DOM 文本节点中的 `<`，MathJax 读取文本节点时看到正确的 LaTeX `-2<x<3`，正常渲染。
+
+### ⚠️ 动态内容顺序：先显示，再 MathJax typeset
+
+动态插入含 `\(...\)` 的内容后，必须先将容器设为可见，再调用 `MathJax.typesetPromise()`：
+
+```javascript
+// ✅ 正确顺序
+sec.style.display = 'block';                   // ① 先显示
+container.innerHTML = html;                     // ② 插入内容
+MathJax.typesetPromise();                       // ③ 再排版
+```
+
+如果元素处于 `display: none` 状态，MathJax 排版的结果可能为零尺寸或异常。
+
+### ⚠️ 常见错误（逐一排查清单）
+
+| # | 错误写法 | 后果 | 正确做法 |
+|---|---------|------|---------|
+| 1 | HTML 正文用双反斜杠 `\\(a+b\\)` | DOM 出现两个 `\`，MathJax 不识别 | HTML 正文一律单反斜杠 `\(a+b\)` |
+| 2 | `script async` 或 `script defer` | 依赖浏览器时序，不确定性大，部分环境下 `\(` 不渲染 | **动态加载 + onload 回调**（见上方方案） |
+| 3 | 裸 `MathJax = {...}` | 某些浏览器不保证挂载到 window | `window.MathJax = {...}` |
+| 4 | 缺少 `processEscapes: true` | `\(` 中的反斜杠被误解为转义符 → 显示原文 | 始终设置 |
+| 5 | `processHtmlClass: 'has-mathjax'` | ⭐ MathJax 只处理带此 class 的元素，内容无该类 → 全部不渲染 | **禁止设置** `processHtmlClass` |
+| 6 | `integrity="sha384-..."` | CDN 文件更新后 hash 不匹配 → 浏览器静默拒绝加载脚本 → `\(` 原文显示 | **不加** `integrity` 属性 |
+| 7 | innerHTML 中 LaTeX 含 `<` `>` 未转义 | `<x` 被 HTML 解析器当标签 → DOM 混乱，内容缺失 | 用 `escapeHtml()` 先转义 |
+| 8 | hidden 容器中调用 `typesetPromise` | MathJax 排版结果零尺寸 | 先 `display: block` 再 `typesetPromise` |
+
+> ⭐ **#1 和 #5 是最隐蔽的根因**。#5 是子代理复制配置时带入，#1 是文件重建/拷贝时 `\(` 变成了 `\\(`。排查时从 #1 到 #8 逐一核对。
+
+### 备用触发（防漏）
+
+在页面底部 init 区域也加上 `typesetPromise` 调用（冗余触发，时序不确定时兜底）：
+
+```javascript
+// 在 loadFromStorage(); setupAutoSave(); 等初始化代码之后
+if (window.MathJax && MathJax.typesetPromise) {
+  MathJax.typesetPromise();
+}
+```
+
+### 书写语法
+
+行内公式用 `\(...\)`，行间公式用 `\[...\]`。
 
 ## 自定义模板
 
@@ -623,13 +729,13 @@ document.querySelectorAll('.judge-question').forEach(function(el) {
 task(
   category="unspecified-high",
   load_skills=["create-test-paper"],
-  prompt="在项目根目录创建一份高一化学第一章1.1-1.3的交互试卷..."
+  prompt="在项目根目录创建一份某学科某章节的交互试卷..."
 )
 
 // 在现有试卷基础上修改
 task(
   category="quick",
   load_skills=["create-test-paper"],
-  prompt="修改 math_grade10_ch1_sections1-5.html，把第5题选项D改为正确答案，更新data-answer和参考答案区。"
+  prompt="修改某个试卷文件.html，把第5题选项D改为正确答案，更新data-answer和参考答案区。"
 )
 ```

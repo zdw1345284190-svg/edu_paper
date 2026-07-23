@@ -410,6 +410,98 @@ document.addEventListener('keydown', function(e) {
 - 行内公式用 `\(...\)`，独立行公式用 `\[...\]`
 - `=` 自动渲染为等号，不用转义
 
+### 15. 几何题配图：内联 SVG（实战经验）
+
+几何题中写到"如图"就必须有图。**用纯内联 SVG，不依赖外部图片文件**——学生双击 HTML 即开即用，不存在加载失败。
+
+#### 原则
+
+- 全部内联 `<svg>`，零外部依赖
+- 图放在题干与选项之间，居中显示
+- 用 `stroke`/`fill` 控制线条颜色，角度标记用红色（`#c62828`）区分
+- 标注字母用 `<text>` 元素，字号 11-13
+- 角度弧线用小段 `<path>` 模拟，足够表达题意即可
+
+#### 示例 1：轴对称图形判断题（Q15）
+
+每选项旁配小图，对比识别对称性。对称轴用红色虚线。
+
+```html
+<div class="options">
+  <label style="display:flex;align-items:center;gap:8px;">
+    <input type="radio" name="q15" value="A">
+    <span>A.</span>
+    <svg width="56" height="36" viewBox="0 0 56 36">
+      <polygon points="8,4 50,4 48,32 6,32" fill="none" stroke="#555" stroke-width="1.5"/>
+    </svg>
+    <span>平行四边形</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:8px;">
+    <input type="radio" name="q15" value="B">
+    <span>B.</span>
+    <svg width="56" height="36" viewBox="0 0 56 36">
+      <polygon points="6,4 50,4 54,32 2,32" fill="none" stroke="#555" stroke-width="1.5"/>
+      <!-- 对称轴虚线 -->
+      <line x1="28" y1="4" x2="28" y2="32" stroke="#c62828" stroke-width="1" stroke-dasharray="4,3"/>
+    </svg>
+    <span>等腰梯形</span>
+  </label>
+</div>
+```
+
+#### 示例 2：平行线+截线（Q30）
+
+两道平行线 a、b 加一条斜截线，标记 ∠1、∠2。
+
+```html
+<svg width="170" height="88" viewBox="0 0 170 88">
+  <!-- 平行线 a -->
+  <line x1="5" y1="18" x2="165" y2="18" stroke="#333" stroke-width="2"/>
+  <text x="168" y="22" font-size="12" font-style="italic">a</text>
+  <!-- 平行线 b -->
+  <line x1="5" y1="68" x2="165" y2="68" stroke="#333" stroke-width="2"/>
+  <text x="168" y="72" font-size="12" font-style="italic">b</text>
+  <!-- 截线 -->
+  <line x1="30" y1="5" x2="140" y2="80" stroke="#333" stroke-width="1.5"/>
+  <!-- ∠1 标记 -->
+  <text x="58" y="16" font-size="11" fill="#c62828">1</text>
+  <!-- ∠2 标记 -->
+  <text x="107" y="72" font-size="11" fill="#c62828">2</text>
+</svg>
+```
+
+#### 示例 3：折线平行线综合（Q32）
+
+AB ∥ CD，点 E 在中间用两条线段连接。
+
+```html
+<svg width="220" height="115" viewBox="0 0 220 115">
+  <line x1="10" y1="22" x2="210" y2="22" stroke="#333" stroke-width="2"/>
+  <text x="40" y="16" font-size="13" font-weight="bold">A</text>
+  <text x="185" y="16" font-size="13" font-weight="bold">B</text>
+  <line x1="10" y1="92" x2="210" y2="92" stroke="#333" stroke-width="2"/>
+  <text x="40" y="86" font-size="13" font-weight="bold">C</text>
+  <text x="185" y="86" font-size="13" font-weight="bold">D</text>
+  <line x1="45" y1="22" x2="110" y2="52" stroke="#333" stroke-width="1.5"/>
+  <line x1="45" y1="92" x2="110" y2="52" stroke="#333" stroke-width="1.5"/>
+  <circle cx="110" cy="52" r="2.5" fill="#333"/>
+  <text x="113" y="57" font-size="13" font-weight="bold">E</text>
+  <text x="55" y="18" font-size="11" fill="#c62828">110°</text>
+  <text x="55" y="104" font-size="11" fill="#c62828">120°</text>
+</svg>
+```
+
+#### 画图口诀
+
+| 图形 | 关键字 | 用法 |
+|------|--------|------|
+| 多边形 | `<polygon points="x1,y1 x2,y2 ..."/>` | 平行四边形、三角形、梯形 |
+| 直线 | `<line x1 y1 x2 y2/>` | 平行线、截线、对称轴 |
+| 虚线 | `stroke-dasharray="4,3"` | 对称轴、辅助线 |
+| 点 | `<circle cx cy r/>` | 交点、顶点 |
+| 标注 | `<text x y>` | 字母、角度值 |
+| 红色 | `stroke="#c62828" fill="#c62828"` | 角度标记、关键标注 |
+
 ## 快速上手
 
 ### Step 1 — 准备模板

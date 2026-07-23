@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一生物·人教版必修1·第二章2.4-2.5测试卷</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: '宋体', 'SimSun', 'Times New Roman', serif;
+  font-size: 14px; line-height: 1.8;
+  background: #f2f2f2; color: #222; padding: 20px;
+}
+.paper {
+  max-width: 210mm; margin: 0 auto;
+  background: #fff;
+  padding: 18mm 16mm;
+  box-shadow: 0 2px 12px rgba(0,0,0,.12);
+  position: relative;
+}
+/* ===== Header ===== */
+.header { text-align: center; margin-bottom: 18px; border-bottom: 2px solid #1a5276; padding-bottom: 14px; }
+.header h1 { font-size: 20px; font-family: '黑体','SimHei',sans-serif; color: #1a5276; letter-spacing: 1px; margin-bottom: 4px; }
+.header .sub { font-size: 13px; color: #555; }
+.header .info { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-top: 10px; font-size: 14px; }
+.header .info label { display: inline-flex; align-items: center; gap: 4px; }
+.header .info input { border: none; border-bottom: 1px solid #888; width: 80px; padding: 2px 4px; font-size: 14px; font-family: inherit; background: transparent; outline: none; }
+.header .info input:focus { border-bottom-color: #1a5276; }
+/* ===== Sections ===== */
+.section { margin-bottom: 20px; }
+.section h2 { font-size: 15px; font-family: '黑体','SimHei',sans-serif; color: #1a5276; border-left: 4px solid #1a5276; padding-left: 10px; margin-bottom: 10px; }
+/* ===== Questions ===== */
+.question { margin: 10px 0 14px; padding: 6px 8px; border-radius: 4px; transition: background .2s; }
+.q-title { margin-bottom: 4px; }
+.question .option { display: block; padding-left: 1.8em; margin: 2px 0; cursor: pointer; }
+.question .option input { margin-right: 6px; cursor: pointer; }
+.question .option:hover { color: #1a5276; }
+/* ===== Fill-in ===== */
+.fill-question input[type="text"] {
+  border: none; border-bottom: 1px solid #666; width: 90px;
+  padding: 0 4px; font-size: 14px; font-family: inherit; text-align: center;
+  background: transparent; outline: none;
+}
+.fill-question input[type="text"]:focus { border-bottom-color: #1a5276; border-bottom-width: 2px; }
+/* ===== Calculation ===== */
+.calc-question textarea {
+  width: 100%; min-height: 90px; margin-top: 6px;
+  padding: 8px 10px; font-size: 13px; font-family: inherit; line-height: 1.6;
+  border: 1px solid #bbb; border-radius: 4px; resize: vertical; outline: none;
+  background: #fcfcfc;
+}
+.calc-question textarea:focus { border-color: #1a5276; box-shadow: 0 0 3px rgba(26,82,118,.2); }
+.calc-question .sub-q { margin: 4px 0; padding-left: 0; }
+/* ===== Buttons ===== */
+.actions { text-align: center; margin: 22px 0 14px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.actions button {
+  padding: 8px 28px; font-size: 15px; font-family: '黑体','SimHei',sans-serif;
+  border: 1px solid #1a5276; border-radius: 4px; cursor: pointer;
+  background: #fff; color: #1a5276; transition: all .2s;
+}
+.actions button.primary { background: #1a5276; color: #fff; }
+.actions button.primary:hover { background: #154360; }
+.actions button:hover { background: #eaf2f8; }
+.actions button.primary:hover { background: #154360; color: #fff; }
+.actions button.danger { border-color: #c0392b; color: #c0392b; }
+.actions button.danger:hover { background: #fdedec; }
+/* ===== Score Panel ===== */
+#scorePanel {
+  display: none; margin: 16px 0; padding: 14px 18px;
+  border: 2px solid #1a5276; border-radius: 6px; background: #f0f8ff;
+}
+#scorePanel h3 { font-size: 15px; color: #1a5276; margin-bottom: 6px; font-family: '黑体','SimHei',sans-serif; }
+#scorePanel table { width: 100%; border-collapse: collapse; font-size: 13px; }
+#scorePanel td { padding: 4px 10px; }
+#scorePanel .label { text-align: right; width: 100px; }
+#scorePanel .value { font-weight: bold; }
+#scorePanel .total { font-size: 15px; color: #1a5276; }
+/* ===== Answer Key ===== */
+#answerSection {
+  display: none; margin: 18px 0; padding: 14px 18px;
+  border: 2px dashed #c0392b; border-radius: 6px; background: #fffdf5;
+}
+#answerSection h2 { font-size: 16px; color: #c0392b; font-family: '黑体','SimHei',sans-serif; border-bottom: 1px solid #e0c0b0; padding-bottom: 4px; margin-bottom: 10px; }
+#answerSection h3 { font-size: 14px; color: #1a5276; margin: 10px 0 4px; font-family: '黑体','SimHei',sans-serif; }
+#answerSection .ans-item { margin: 3px 0; padding: 2px 0; font-size: 13px; }
+#answerSection .ans-item .ans-key { color: #c0392b; font-weight: bold; }
+#answerSection .ans-item .ans-explain { color: #555; }
+/* ===== Result markers ===== */
+.question.correct { border-left: 4px solid #27ae60; }
+.question.wrong { border-left: 4px solid #e74c3c; }
+.question.unanswered { border-left: 4px solid #f39c12; }
+/* ===== Print ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper { max-width: none; padding: 0; box-shadow: none; margin: 0; }
+  .actions, .unlock-btn-area, #scorePanel { display: none !important; }
+  #answerSection { display: block !important; border: 1px solid #ccc; }
+  .question { break-inside: avoid; }
+  .section { break-inside: auto; }
+  @page { size: A4; margin: 2cm; }
+}
+/* ===== Mobile ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 8px; }
+  .paper { padding: 10px 12px; }
+  .header .info { flex-direction: column; align-items: center; gap: 6px; }
+  .question .option { padding-left: .8em; }
+  .fill-question input[type="text"] { width: 70px; }
+}
+/* ===== Utility ===== */
+.text-center { text-align: center; }
+.mt-8 { margin-top: 8px; }
+.mb-8 { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div class="paper" id="paper">
+
+  <!-- ===== Header ===== -->
+  <div class="header">
+    <h1>高一生物·人教版必修1·第二章 2.4-2.5 测试卷</h1>
+    <div class="sub">总分：<strong>100分</strong> ｜ 考试时间：<strong>45分钟</strong></div>
+    <div class="info">
+      <label>姓名：<input type="text" id="stName" data-info="name" autocomplete="off"></label>
+      <label>班级：<input type="text" id="stClass" data-info="class" autocomplete="off"></label>
+      <label>学号：<input type="text" id="stId" data-info="id" autocomplete="off"></label>
+    </div>
+  </div>
+
+  <!-- ===== Score Panel ===== -->
+  <div id="scorePanel">
+    <h3>📊 成绩报告</h3>
+    <table>
+      <tr><td class="label">单选题</td><td class="value" id="scoreSingle">0 / 30</td></tr>
+      <tr><td class="label">多选题</td><td class="value" id="scoreMulti">0 / 12</td></tr>
+      <tr><td class="label">填空题</td><td class="value" id="scoreFill">0 / 12</td></tr>
+      <tr><td class="label">解答题</td><td class="value" style="color:#888;">-- / 46（待批改）</td></tr>
+      <tr style="border-top:1px solid #1a5276;"><td class="label total">客观题总分</td><td class="value total" id="scoreTotal">0 / 54</td></tr>
+    </table>
+    <p style="font-size:12px;color:#888;margin-top:6px;">解答题由教师批改，此处仅统计客观题得分。</p>
+  </div>
+
+  <!-- ===== 一、单选题 ===== -->
+  <div class="section">
+    <h2>一、单选题（每题3分，共30分）</h2>
+
+    <!-- q1 -->
+    <div class="question" data-qid="q1" data-type="single" data-answer="B">
+      <div class="q-title">1. 组成蛋白质的基本单位是（　）</div>
+      <label class="option"><input type="radio" name="q1" value="A"> A．核苷酸</label>
+      <label class="option"><input type="radio" name="q1" value="B"> B．氨基酸</label>
+      <label class="option"><input type="radio" name="q1" value="C"> C．葡萄糖</label>
+      <label class="option"><input type="radio" name="q1" value="D"> D．脂肪酸</label>
+    </div>
+
+    <!-- q2 -->
+    <div class="question" data-qid="q2" data-type="single" data-answer="B">
+      <div class="q-title">2. 人体细胞中不能合成的必需氨基酸有（　）</div>
+      <label class="option"><input type="radio" name="q2" value="A"> A．5种</label>
+      <label class="option"><input type="radio" name="q2" value="B"> B．8种</label>
+      <label class="option"><input type="radio" name="q2" value="C"> C．12种</label>
+      <label class="option"><input type="radio" name="q2" value="D"> D．20种</label>
+    </div>
+
+    <!-- q3 -->
+    <div class="question" data-qid="q3" data-type="single" data-answer="D">
+      <div class="q-title">3. 氨基酸的结构通式中，决定氨基酸种类的是（　）</div>
+      <label class="option"><input type="radio" name="q3" value="A"> A．\( \text{—NH}_2 \)</label>
+      <label class="option"><input type="radio" name="q3" value="B"> B．\( \text{—COOH} \)</label>
+      <label class="option"><input type="radio" name="q3" value="C"> C．\( \text{—H} \)</label>
+      <label class="option"><input type="radio" name="q3" value="D"> D．\( \text{—R基} \)</label>
+    </div>
+
+    <!-- q4 -->
+    <div class="question" data-qid="q4" data-type="single" data-answer="A">
+      <div class="q-title">4. 两个氨基酸分子脱水缩合形成的化合物称为（　）</div>
+      <label class="option"><input type="radio" name="q4" value="A"> A．二肽</label>
+      <label class="option"><input type="radio" name="q4" value="B"> B．三肽</label>
+      <label class="option"><input type="radio" name="q4" value="C"> C．多肽</label>
+      <label class="option"><input type="radio" name="q4" value="D"> D．蛋白质</label>
+    </div>
+
+    <!-- q5 -->
+    <div class="question" data-qid="q5" data-type="single" data-answer="B">
+      <div class="q-title">5. 已知某蛋白质由 \(n\) 个氨基酸、\(m\) 条肽链组成，则该蛋白质含有的肽键数为（　）</div>
+      <label class="option"><input type="radio" name="q5" value="A"> A．\( n + m \)</label>
+      <label class="option"><input type="radio" name="q5" value="B"> B．\( n - m \)</label>
+      <label class="option"><input type="radio" name="q5" value="C"> C．\( n \)</label>
+      <label class="option"><input type="radio" name="q5" value="D"> D．\( m \)</label>
+    </div>
+
+    <!-- q6 -->
+    <div class="question" data-qid="q6" data-type="single" data-answer="D">
+      <div class="q-title">6. 蛋白质分子结构具有多样性的原因不包括（　）</div>
+      <label class="option"><input type="radio" name="q6" value="A"> A．氨基酸的种类不同</label>
+      <label class="option"><input type="radio" name="q6" value="B"> B．氨基酸的数目不同</label>
+      <label class="option"><input type="radio" name="q6" value="C"> C．氨基酸的排列顺序不同</label>
+      <label class="option"><input type="radio" name="q6" value="D"> D．氨基酸的化学元素组成不同</label>
+    </div>
+
+    <!-- q7 -->
+    <div class="question" data-qid="q7" data-type="single" data-answer="C">
+      <div class="q-title">7. 下列属于蛋白质功能的是（　）</div>
+      <label class="option"><input type="radio" name="q7" value="A"> A．携带遗传信息</label>
+      <label class="option"><input type="radio" name="q7" value="B"> B．作为主要的能源物质</label>
+      <label class="option"><input type="radio" name="q7" value="C"> C．运输氧气（血红蛋白）</label>
+      <label class="option"><input type="radio" name="q7" value="D"> D．作为细胞膜的基本骨架</label>
+    </div>
+
+    <!-- q8 -->
+    <div class="question" data-qid="q8" data-type="single" data-answer="B">
+      <div class="q-title">8. 组成核酸的基本单位是（　）</div>
+      <label class="option"><input type="radio" name="q8" value="A"> A．氨基酸</label>
+      <label class="option"><input type="radio" name="q8" value="B"> B．核苷酸</label>
+      <label class="option"><input type="radio" name="q8" value="C"> C．五碳糖</label>
+      <label class="option"><input type="radio" name="q8" value="D"> D．含氮碱基</label>
+    </div>
+
+    <!-- q9 -->
+    <div class="question" data-qid="q9" data-type="single" data-answer="A">
+      <div class="q-title">9. DNA与RNA在化学组成上的主要区别是（　）</div>
+      <label class="option"><input type="radio" name="q9" value="A"> A．五碳糖和碱基不同</label>
+      <label class="option"><input type="radio" name="q9" value="B"> B．元素组成不同</label>
+      <label class="option"><input type="radio" name="q9" value="C"> C．在细胞中的分布不同</label>
+      <label class="option"><input type="radio" name="q9" value="D"> D．空间结构不同</label>
+    </div>
+
+    <!-- q10 -->
+    <div class="question" data-qid="q10" data-type="single" data-answer="B">
+      <div class="q-title">10. 真核细胞中，DNA主要分布在（　）</div>
+      <label class="option"><input type="radio" name="q10" value="A"> A．细胞质</label>
+      <label class="option"><input type="radio" name="q10" value="B"> B．细胞核</label>
+      <label class="option"><input type="radio" name="q10" value="C"> C．核糖体</label>
+      <label class="option"><input type="radio" name="q10" value="D"> D．线粒体</label>
+    </div>
+  </div>
+
+  <!-- ===== 二、多选题 ===== -->
+  <div class="section">
+    <h2>二、多选题（每题4分，共12分。全对4分，部分选对2分，有错选0分）</h2>
+
+    <!-- q101 -->
+    <div class="question" data-qid="q101" data-type="multi" data-answer='["A","B","D"]'>
+      <div class="q-title">11.（多选）下列关于蛋白质的叙述，正确的有（　）</div>
+      <label class="option"><input type="checkbox" name="q101" value="A"> A．蛋白质是生命活动的主要承担者</label>
+      <label class="option"><input type="checkbox" name="q101" value="B"> B．蛋白质结构的多样性与肽链的空间结构有关</label>
+      <label class="option"><input type="checkbox" name="q101" value="C"> C．蛋白质变性后不能与双缩脲试剂发生紫色反应</label>
+      <label class="option"><input type="checkbox" name="q101" value="D"> D．所有蛋白质都含C、H、O、N四种元素</label>
+    </div>
+
+    <!-- q102 -->
+    <div class="question" data-qid="q102" data-type="multi" data-answer='["A","B","C","D"]'>
+      <div class="q-title">12.（多选）下列关于肽键和脱水缩合的叙述，正确的有（　）</div>
+      <label class="option"><input type="checkbox" name="q102" value="A"> A．肽键的数目等于脱去的水分子数</label>
+      <label class="option"><input type="checkbox" name="q102" value="B"> B．\(n\) 个氨基酸形成的 \(m\) 条肽链中，肽键数为 \(n-m\)</label>
+      <label class="option"><input type="checkbox" name="q102" value="C"> C．一个氨基酸的 \( \text{—COOH} \) 与另一个氨基酸的 \( \text{—NH}_2 \) 反应形成肽键</label>
+      <label class="option"><input type="checkbox" name="q102" value="D"> D．肽键的化学键可表示为 \( \text{—NH—CO—} \)</label>
+    </div>
+
+    <!-- q103 -->
+    <div class="question" data-qid="q103" data-type="multi" data-answer='["A","B","C"]'>
+      <div class="q-title">13.（多选）下列关于核酸的叙述，正确的有（　）</div>
+      <label class="option"><input type="checkbox" name="q103" value="A"> A．核酸的基本单位是核苷酸</label>
+      <label class="option"><input type="checkbox" name="q103" value="B"> B．DNA含有的碱基有A、T、C、G</label>
+      <label class="option"><input type="checkbox" name="q103" value="C"> C．RNA含有的碱基有A、U、C、G</label>
+      <label class="option"><input type="checkbox" name="q103" value="D"> D．DNA和RNA都含有核糖</label>
+    </div>
+  </div>
+
+  <!-- ===== 三、填空题 ===== -->
+  <div class="section">
+    <h2>三、填空题（每空2分，共12分）</h2>
+
+    <!-- q11 -->
+    <div class="question fill-question" data-qid="q11" data-type="fill">
+      <div class="q-title">14. 氨基酸的结构通式中，决定氨基酸种类的是
+        <input type="text" data-qid="q11" data-answer="R基" data-alt="R基团|R基" style="width:70px;">（填基团名称）。</div>
+    </div>
+
+    <!-- q12 -->
+    <div class="question fill-question" data-qid="q12" data-type="fill">
+      <div class="q-title">15. 肽键的化学结构简式可表示为
+        <input type="text" data-qid="q12" data-answer="—CO—NH—" data-alt="-CO-NH-|—NH—CO—|-NH-CO-" style="width:100px;">。</div>
+    </div>
+
+    <!-- q13 -->
+    <div class="question fill-question" data-qid="q13" data-type="fill">
+      <div class="q-title">16. 某蛋白质由 \(n\) 个氨基酸形成2条肽链，则该蛋白质含有的肽键数为
+        <input type="text" data-qid="q13" data-answer="n−2" data-alt="n-2" style="width:70px;">。</div>
+    </div>
+
+    <!-- q14 -->
+    <div class="question fill-question" data-qid="q14" data-type="fill">
+      <div class="q-title">17. 组成DNA的五碳糖是
+        <input type="text" data-qid="q14" data-answer="脱氧核糖" style="width:90px;">（填名称）。</div>
+    </div>
+
+    <!-- q15 -->
+    <div class="question fill-question" data-qid="q15" data-type="fill">
+      <div class="q-title">18. 在DNA中，与腺嘌呤(A)配对的碱基是
+        <input type="text" data-qid="q15" data-answer="T" data-alt="胸腺嘧啶" style="width:50px;">（填字母）。</div>
+    </div>
+
+    <!-- q16 -->
+    <div class="question fill-question" data-qid="q16" data-type="fill">
+      <div class="q-title">19. 核酸的基本组成单位是
+        <input type="text" data-qid="q16" data-answer="核苷酸" style="width:80px;">。</div>
+    </div>
+  </div>
+
+  <!-- ===== 四、解答题 ===== -->
+  <div class="section">
+    <h2>四、解答题（共46分）</h2>
+
+    <!-- q17 -->
+    <div class="question calc-question" data-qid="q17" data-type="calc">
+      <div class="q-title">20.（10分）一个氨基酸分子中：</div>
+      <div class="sub-q">(1) 写出氨基酸结构通式中各部分的名称：①______（与中心C原子相连的基团）、②______、③______、④______。（4分）</div>
+      <div class="sub-q">(2) 不同氨基酸的区别在于______（填序号）不同。（2分）</div>
+      <div class="sub-q">(3) 若该氨基酸的R基为 \( \text{—CH}_3 \)，写出该氨基酸的分子式。（4分）</div>
+      <textarea data-qid="q17" placeholder="请写出完整的解答过程……"></textarea>
+    </div>
+
+    <!-- q18 -->
+    <div class="question calc-question" data-qid="q18" data-type="calc">
+      <div class="q-title">21.（12分）已知某蛋白质分子由3条多肽链组成，共含有200个氨基酸，每个氨基酸的平均相对分子质量为128。请回答：</div>
+      <div class="sub-q">(1) 该蛋白质分子合成的方式是______，形成的肽键数为______，脱去的水分子数为______。（4分）</div>
+      <div class="sub-q">(2) 该蛋白质分子中至少含有游离的氨基______个，游离的羧基______个。（2分）</div>
+      <div class="sub-q">(3) 该蛋白质分子的相对分子质量是多少？（写出计算过程）（6分）</div>
+      <textarea data-qid="q18" placeholder="请写出完整的解答过程……"></textarea>
+    </div>
+
+    <!-- q19 -->
+    <div class="question calc-question" data-qid="q19" data-type="calc">
+      <div class="q-title">22.（12分）现有两条多肽链，分别由10个氨基酸和15个氨基酸组成，请回答：</div>
+      <div class="sub-q">(1) 这两条多肽链中分别含有多少个肽键？（4分）</div>
+      <div class="sub-q">(2) 如果每个氨基酸的平均相对分子质量为120，则这两条多肽链的相对分子质量共为多少？（4分）</div>
+      <div class="sub-q">(3) 这两条多肽链彻底水解需要消耗多少个水分子？（4分）</div>
+      <textarea data-qid="q19" placeholder="请写出完整的解答过程……"></textarea>
+    </div>
+
+    <!-- q20 -->
+    <div class="question calc-question" data-qid="q20" data-type="calc">
+      <div class="q-title">23.（12分）请回答下列关于DNA与RNA区别的问题：</div>
+      <div class="sub-q">(1) DNA的中文全称是______，RNA的中文全称是______。（4分）</div>
+      <div class="sub-q">(2) DNA含有的碱基是______（填字母四种），RNA含有的碱基是______（填字母四种）。（4分）</div>
+      <div class="sub-q">(3) DNA主要分布在细胞的______中，RNA主要分布在细胞的______中。（4分）</div>
+      <textarea data-qid="q20" placeholder="请写出完整的解答过程……"></textarea>
+    </div>
+  </div>
+
+  <!-- ===== Actions ===== -->
+  <div class="actions">
+    <button class="primary" onclick="submitPaper()">提交答案</button>
+    <button class="danger" onclick="clearAll()">清空答案</button>
+  </div>
+  <p class="text-center" style="font-size:12px;color:#999;">按 <kbd>Ctrl</kbd>+<kbd>Enter</kbd> 快速提交</p>
+
+  <!-- ===== Unlock Button ===== -->
+  <div class="unlock-btn-area text-center mt-8">
+    <button onclick="unlockAnswers()" style="padding:6px 20px;font-size:13px;border:1px solid #c0392b;border-radius:4px;cursor:pointer;background:#fff;color:#c0392b;">🔒 查看参考答案（需密码）</button>
+  </div>
+
+  <!-- ===== Answer Key ===== -->
+  <div id="answerSection">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <h2 style="margin:0;border:none;">📖 参考答案与详细解析</h2>
+      <button onclick="lockAnswers()" style="padding:4px 14px;font-size:12px;border:1px solid #888;border-radius:4px;cursor:pointer;background:#fff;color:#555;">隐藏答案</button>
+    </div>
+
+    <!-- 单选题 -->
+    <h3>一、单选题</h3>
+    <div class="ans-item"><span class="ans-key">1. B</span> <span class="ans-explain">氨基酸是蛋白质的基本单位，核苷酸是核酸的基本单位。</span></div>
+    <div class="ans-item"><span class="ans-key">2. B</span> <span class="ans-explain">人体内有20种氨基酸，其中8种必需氨基酸人体不能合成，需从食物中获取。</span></div>
+    <div class="ans-item"><span class="ans-key">3. D</span> <span class="ans-explain">R基的不同决定氨基酸的种类不同。</span></div>
+    <div class="ans-item"><span class="ans-key">4. A</span> <span class="ans-explain">两个氨基酸脱水缩合形成二肽，三个形成三肽。</span></div>
+    <div class="ans-item"><span class="ans-key">5. B</span> <span class="ans-explain">肽键数 = 脱去水分子数 = 氨基酸数 − 肽链数 = \(n - m\)。</span></div>
+    <div class="ans-item"><span class="ans-key">6. D</span> <span class="ans-explain">所有氨基酸都至少含C、H、O、N元素，元素组成相同。多样性原因：种类、数目、排列顺序、空间结构。</span></div>
+    <div class="ans-item"><span class="ans-key">7. C</span> <span class="ans-explain">血红蛋白运输O₂。DNA携带遗传信息，糖类是主要能源物质，磷脂构成细胞膜基本骨架。</span></div>
+    <div class="ans-item"><span class="ans-key">8. B</span> <span class="ans-explain">核苷酸是核酸的基本单位，含氮碱基+五碳糖+磷酸组成核苷酸。</span></div>
+    <div class="ans-item"><span class="ans-key">9. A</span> <span class="ans-explain">DNA含脱氧核糖和T，RNA含核糖和U。元素组成都是C、H、O、N、P。</span></div>
+    <div class="ans-item"><span class="ans-key">10. B</span> <span class="ans-explain">DNA主要分布在细胞核，少量在线粒体和叶绿体中。</span></div>
+
+    <!-- 多选题 -->
+    <h3>二、多选题</h3>
+    <div class="ans-item"><span class="ans-key">11. A, B, D</span> <span class="ans-explain">A对，蛋白质是生命活动的主要承担者。B对，空间结构是蛋白质多样性的原因之一。C错，蛋白质变性后肽键不断裂，仍能与双缩脲试剂发生紫色反应。D对，蛋白质至少含C、H、O、N。</span></div>
+    <div class="ans-item"><span class="ans-key">12. A, B, C, D</span> <span class="ans-explain">A对，一个肽键形成脱一分子水。B对，肽键数 = \(n-m\)。C对。D对，肽键可表示为 \( \text{—CO—NH—} \) 或 \( \text{—NH—CO—} \)。</span></div>
+    <div class="ans-item"><span class="ans-key">13. A, B, C</span> <span class="ans-explain">A对。B对。C对。D错，DNA含脱氧核糖，RNA含核糖。</span></div>
+
+    <!-- 填空题 -->
+    <h3>三、填空题</h3>
+    <div class="ans-item"><span class="ans-key">14. R基（R基团）</span> <span class="ans-explain">约20种氨基酸的区别在于R基的不同。</span></div>
+    <div class="ans-item"><span class="ans-key">15. \( \text{—CO—NH—} \)（或 \( \text{—NH—CO—} \)）</span> <span class="ans-explain">肽键是一个氨基酸的 \( \text{—COOH} \) 与另一个氨基酸的 \( \text{—NH}_2 \) 脱水缩合形成的。</span></div>
+    <div class="ans-item"><span class="ans-key">16. \( n-2 \)</span> <span class="ans-explain">肽键数 = \(n - m = n - 2\)，至少游离氨基数 = 肽链数 = 2。</span></div>
+    <div class="ans-item"><span class="ans-key">17. 脱氧核糖</span> <span class="ans-explain">DNA含脱氧核糖，RNA含核糖。</span></div>
+    <div class="ans-item"><span class="ans-key">18. T（胸腺嘧啶）</span> <span class="ans-explain">DNA中A=T，C≡G。</span></div>
+    <div class="ans-item"><span class="ans-key">19. 核苷酸</span> <span class="ans-explain">核苷酸 = 含氮碱基 + 五碳糖 + 磷酸。</span></div>
+
+    <!-- 解答题 -->
+    <h3>四、解答题</h3>
+    <div class="ans-item"><span class="ans-key">20.（10分）</span></div>
+    <div class="ans-item" style="padding-left:1em;">(1) ① \( \text{—NH}_2 \)（氨基）、② \( \text{—H} \)（氢原子）、③ \( \text{—COOH} \)（羧基）、④ \( \text{—R基} \)（4分，每空1分）</div>
+    <div class="ans-item" style="padding-left:1em;">(2) ④（2分）</div>
+    <div class="ans-item" style="padding-left:1em;">(3) \( \text{C}_3\text{H}_7\text{O}_2\text{N} \)（或分子式为C₃H₇O₂N，4分；中心C₂H₃O₂N + 甲基CH₃）</div>
+
+    <div class="ans-item"><span class="ans-key">21.（12分）</span></div>
+    <div class="ans-item" style="padding-left:1em;">(1) 脱水缩合（1分）；197（2分，200−3=197）；197（1分）</div>
+    <div class="ans-item" style="padding-left:1em;">(2) 3（1分）；3（1分）</div>
+    <div class="ans-item" style="padding-left:1em;">(3) 蛋白质相对分子质量 = \(200 \times 128 - 18 \times (200 - 3)\)（3分）</div>
+    <div class="ans-item" style="padding-left:1em;">&emsp;= \(25600 - 3546\)（2分）= \(22054\)（1分）</div>
+
+    <div class="ans-item"><span class="ans-key">22.（12分）</span></div>
+    <div class="ans-item" style="padding-left:1em;">(1) 第一条肽键数 = 10 − 1 = 9（2分）；第二条肽键数 = 15 − 1 = 14（2分）</div>
+    <div class="ans-item" style="padding-left:1em;">(2) \((10 + 15) \times 120 - 18 \times (9 + 14)\)（2分）= \(3000 - 414 = 2586\)（2分）</div>
+    <div class="ans-item" style="padding-left:1em;">(3) 彻底水解需要的水分子数 = 肽键总数 = \(9 + 14 = 23\)（4分）</div>
+
+    <div class="ans-item"><span class="ans-key">23.（12分）</span></div>
+    <div class="ans-item" style="padding-left:1em;">(1) 脱氧核糖核酸（2分）；核糖核酸（2分）</div>
+    <div class="ans-item" style="padding-left:1em;">(2) A、T、C、G（2分）；A、U、C、G（2分）</div>
+    <div class="ans-item" style="padding-left:1em;">(3) 细胞核（2分，答细胞核及线粒体叶绿体也可）；细胞质（2分）</div>
+  </div>
+
+</div><!-- /paper -->
+
+<script>
+/* ==========================================================
+   评分引擎配置
+   ========================================================== */
+const PAPER_ID = 'bio_grade10_ch2_sections4-5';
+
+const ANSWER_KEY = {
+  single: {
+    q1:'B', q2:'B', q3:'D', q4:'A', q5:'B',
+    q6:'D', q7:'C', q8:'B', q9:'A', q10:'B'
+  },
+  multi: {
+    q101:['A','B','D'],
+    q102:['A','B','C','D'],
+    q103:['A','B','C']
+  },
+  fill: {
+    q11:'R基',
+    q12:'—CO—NH—',
+    q13:'n−2',
+    q14:'脱氧核糖',
+    q15:'T',
+    q16:'核苷酸'
+  }
+};
+
+const SCORE_MAP = {
+  single: { q1:3, q2:3, q3:3, q4:3, q5:3, q6:3, q7:3, q8:3, q9:3, q10:3 },
+  multi:  { q101:4, q102:4, q103:4 },
+  fill:   { q11:2, q12:2, q13:2, q14:2, q15:2, q16:2 },
+  calc:   { q17:10, q18:12, q19:12, q20:12 }
+};
+
+const QUESTION_TYPES = {
+  q1:'single', q2:'single', q3:'single', q4:'single', q5:'single',
+  q6:'single', q7:'single', q8:'single', q9:'single', q10:'single',
+  q101:'multi', q102:'multi', q103:'multi',
+  q11:'fill', q12:'fill', q13:'fill', q14:'fill', q15:'fill', q16:'fill',
+  q17:'calc', q18:'calc', q19:'calc', q20:'calc'
+};
+
+const QUESTION_LABELS = {
+  q1:'1', q2:'2', q3:'3', q4:'4', q5:'5',
+  q6:'6', q7:'7', q8:'8', q9:'9', q10:'10',
+  q101:'11', q102:'12', q103:'13',
+  q11:'14', q12:'15', q13:'16', q14:'17', q15:'18', q16:'19',
+  q17:'20', q18:'21', q19:'22', q20:'23'
+};
+
+/* ==========================================================
+   存储管理
+   ========================================================== */
+function loadCache() {
+  try { return JSON.parse(localStorage.getItem(PAPER_ID)) || {}; } catch(e) { return {}; }
+}
+function saveCache(data) {
+  try { localStorage.setItem(PAPER_ID, JSON.stringify(data)); } catch(e) {}
+}
+
+/* ==========================================================
+   答案存取
+   ========================================================== */
+function saveAnswer(qid, value) {
+  const data = loadCache();
+  data[qid] = value;
+  saveCache(data);
+}
+
+function restoreAll() {
+  const data = loadCache();
+  // Student info
+  document.querySelectorAll('[data-info]').forEach(function(el) {
+    var key = el.getAttribute('data-info');
+    if (data['_info_' + key]) el.value = data['_info_' + key];
+  });
+  // Single & Multi
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function(el) {
+    var name = el.name;
+    if (name && data[name] !== undefined) {
+      if (Array.isArray(data[name])) {
+        el.checked = data[name].indexOf(el.value) !== -1;
+      } else {
+        el.checked = (el.value === data[name]);
+      }
+    }
+  });
+  // Fill-in
+  document.querySelectorAll('.fill-question input[type="text"]').forEach(function(el) {
+    var qid = el.getAttribute('data-qid');
+    if (qid && data[qid] !== undefined) el.value = data[qid];
+  });
+  // Calc
+  document.querySelectorAll('.calc-question textarea').forEach(function(el) {
+    var qid = el.getAttribute('data-qid');
+    if (qid && data[qid] !== undefined) el.value = data[qid];
+  });
+}
+
+/* ==========================================================
+   事件监听：自动保存
+   ========================================================== */
+function setupAutoSave() {
+  // Student info
+  document.querySelectorAll('[data-info]').forEach(function(el) {
+    el.addEventListener('change', function() {
+      var data = loadCache();
+      data['_info_' + this.getAttribute('data-info')] = this.value;
+      saveCache(data);
+    });
+  });
+  // Radio / Checkbox
+  document.addEventListener('change', function(e) {
+    var target = e.target;
+    if (target.type === 'radio') {
+      var data = loadCache();
+      data[target.name] = target.value;
+      saveCache(data);
+    } else if (target.type === 'checkbox') {
+      var data = loadCache();
+      var name = target.name;
+      var checked = document.querySelectorAll('input[name="' + name + '"]:checked');
+      data[name] = Array.from(checked).map(function(cb) { return cb.value; });
+      saveCache(data);
+    }
+  });
+  // Text inputs & textareas (debounced)
+  var debounceTimer = null;
+  document.addEventListener('input', function(e) {
+    if (e.target.tagName === 'INPUT' && e.target.type === 'text' && e.target.closest('.fill-question')) {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() {
+        var data = loadCache();
+        data[e.target.getAttribute('data-qid')] = e.target.value;
+        saveCache(data);
+      }, 400);
+    }
+    if (e.target.tagName === 'TEXTAREA') {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() {
+        var data = loadCache();
+        data[e.target.getAttribute('data-qid')] = e.target.value;
+        saveCache(data);
+      }, 400);
+    }
+  });
+}
+
+/* ==========================================================
+   评分函数
+   ========================================================== */
+function gradeSingle(qid) {
+  var qDiv = document.querySelector('.question[data-qid="' + qid + '"]');
+  if (!qDiv) return { score: 0, max: 3, status: 'unanswered' };
+  var selected = qDiv.querySelector('input[type="radio"]:checked');
+  if (!selected) return { score: 0, max: 3, status: 'unanswered' };
+  var correct = selected.value === ANSWER_KEY.single[qid];
+  return { score: correct ? 3 : 0, max: 3, status: correct ? 'correct' : 'wrong' };
+}
+
+function gradeMulti(qid) {
+  var qDiv = document.querySelector('.question[data-qid="' + qid + '"]');
+  if (!qDiv) return { score: 0, max: 4, status: 'unanswered' };
+  var checked = qDiv.querySelectorAll('input[type="checkbox"]:checked');
+  var selected = Array.from(checked).map(function(cb) { return cb.value; }).sort();
+  var correct = ANSWER_KEY.multi[qid].slice().sort();
+  if (selected.length === 0) return { score: 0, max: 4, status: 'unanswered' };
+  // Exact match
+  if (selected.length === correct.length && selected.every(function(v,i) { return v === correct[i]; })) {
+    return { score: 4, max: 4, status: 'correct' };
+  }
+  // Partial: all selected are in correct set, at least one selected
+  var isSubset = selected.every(function(v) { return correct.indexOf(v) !== -1; });
+  if (isSubset && selected.length > 0) return { score: 2, max: 4, status: 'partial' };
+  // Wrong
+  return { score: 0, max: 4, status: 'wrong' };
+}
+
+function gradeFill(qid) {
+  var input = document.querySelector('.fill-question input[data-qid="' + qid + '"]');
+  if (!input) return { score: 0, max: 2, status: 'unanswered' };
+  var val = input.value.trim();
+  if (!val) return { score: 0, max: 2, status: 'unanswered' };
+  var answer = input.getAttribute('data-answer') || ANSWER_KEY.fill[qid];
+  var altStr = input.getAttribute('data-alt') || '';
+  // Normalize
+  function norm(s) { return s.replace(/[\u2212\u2013\u2014-]/g, '-').replace(/\s+/g, '').toLowerCase(); }
+  var nVal = norm(val);
+  var nAns = norm(answer);
+  if (nVal === nAns) return { score: 2, max: 2, status: 'correct' };
+  // Try alts
+  if (altStr) {
+    var alts = altStr.split('|');
+    for (var i = 0; i < alts.length; i++) {
+      if (norm(alts[i]) === nVal) return { score: 2, max: 2, status: 'correct' };
+    }
+  }
+  return { score: 0, max: 2, status: 'wrong' };
+}
+
+/* ==========================================================
+   提交
+   ========================================================== */
+function submitPaper() {
+  var totalScore = 0, totalMax = 0;
+  var singleScore = 0, singleMax = 0;
+  var multiScore = 0, multiMax = 0;
+  var fillScore = 0, fillMax = 0;
+
+  // Clear previous markers
+  document.querySelectorAll('.question').forEach(function(el) {
+    el.classList.remove('correct','wrong','unanswered','partial');
+  });
+
+  // Grade single
+  for (var qid in ANSWER_KEY.single) {
+    var result = gradeSingle(qid);
+    var qDiv = document.querySelector('.question[data-qid="' + qid + '"]');
+    if (qDiv) qDiv.classList.add(result.status);
+    singleScore += result.score;
+    singleMax += result.max;
+  }
+
+  // Grade multi
+  for (var qid in ANSWER_KEY.multi) {
+    var result = gradeMulti(qid);
+    var qDiv = document.querySelector('.question[data-qid="' + qid + '"]');
+    if (qDiv) qDiv.classList.add(result.status);
+    multiScore += result.score;
+    multiMax += result.max;
+  }
+
+  // Grade fill
+  for (var qid in ANSWER_KEY.fill) {
+    var result = gradeFill(qid);
+    var qDiv = document.querySelector('.question[data-qid="' + qid + '"]');
+    if (qDiv) qDiv.classList.add(result.status);
+    fillScore += result.score;
+    fillMax += result.max;
+  }
+
+  totalScore = singleScore + multiScore + fillScore;
+  totalMax = singleMax + multiMax + fillMax;
+
+  // Show score panel
+  document.getElementById('scoreSingle').textContent = singleScore + ' / ' + singleMax;
+  document.getElementById('scoreMulti').textContent = multiScore + ' / ' + multiMax;
+  document.getElementById('scoreFill').textContent = fillScore + ' / ' + fillMax;
+  document.getElementById('scoreTotal').textContent = totalScore + ' / ' + totalMax;
+  document.getElementById('scorePanel').style.display = 'block';
+
+  // Scroll to score
+  document.getElementById('scorePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ==========================================================
+   清空
+   ========================================================== */
+function clearAll() {
+  if (!confirm('确定要清空所有答案吗？')) return;
+  localStorage.removeItem(PAPER_ID);
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function(el) { el.checked = false; });
+  document.querySelectorAll('.fill-question input[type="text"], .calc-question textarea').forEach(function(el) { el.value = ''; });
+  document.querySelectorAll('[data-info]').forEach(function(el) { el.value = ''; });
+  document.getElementById('scorePanel').style.display = 'none';
+  document.querySelectorAll('.question').forEach(function(el) {
+    el.classList.remove('correct','wrong','unanswered','partial');
+  });
+}
+
+/* ==========================================================
+   密码锁
+   ========================================================== */
+function unlockAnswers() {
+  var pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    document.getElementById('answerSection').style.display = 'block';
+  } else if (pwd !== null) {
+    alert('密码错误！');
+  }
+}
+function lockAnswers() {
+  document.getElementById('answerSection').style.display = 'none';
+}
+
+/* ==========================================================
+   Ctrl+Enter
+   ========================================================== */
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    submitPaper();
+  }
+});
+
+/* ==========================================================
+   初始化
+   ========================================================== */
+document.addEventListener('DOMContentLoaded', function() {
+  restoreAll();
+  setupAutoSave();
+  // 冗余触发 MathJax 重新排版，确保所有 \(...\) 被处理
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+  }
+});
+</script>
+
+</body>
+</html>

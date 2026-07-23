@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一生物 第三章 3.1-3.2 单元检测</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "SimSun", "宋体", "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #222;
+  background: #f5f5f5;
+  padding: 20px;
+}
+.paper-container {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  min-height: 297mm;
+  position: relative;
+}
+.paper-header {
+  text-align: center;
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+.paper-header h1 { font-size: 22px; margin-bottom: 5px; }
+.paper-header h2 { font-size: 16px; font-weight: normal; margin-bottom: 10px; }
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 10px 0;
+  font-size: 15px;
+}
+.info-row label { display: inline-flex; align-items: center; gap: 5px; }
+.info-row input { border: none; border-bottom: 1px solid #333; padding: 2px 5px; font-size: 14px; width: 120px; background: transparent; }
+.score-summary { text-align: right; font-size: 15px; margin: 10px 0; padding: 5px 0; border-bottom: 1px solid #999; }
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 18px 0 10px 0;
+  padding: 5px 10px;
+  background: #e8f0fe;
+  border-left: 4px solid #1a73e8;
+}
+.choice-question, .fill-question, .calc-question {
+  margin: 12px 0;
+  padding: 6px 10px;
+  border-left: 3px solid transparent;
+}
+.choice-question.correct { border-left-color: #4caf50; background: #f0faf0; }
+.choice-question.wrong { border-left-color: #f44336; background: #fef0f0; }
+.fill-question.correct { border-left-color: #4caf50; background: #f0faf0; }
+.fill-question.wrong { border-left-color: #f44336; background: #fef0f0; }
+.q-head { font-weight: bold; margin-right: 4px; }
+.q-text { }
+.options { margin: 6px 0 4px 22px; }
+.options label { display: block; margin: 3px 0; cursor: pointer; }
+.options input { margin-right: 6px; }
+.fill-input { border: none; border-bottom: 1px solid #666; padding: 2px 4px; font-size: 14px; font-family: inherit; text-align: center; }
+.fill-input:focus { outline: none; border-bottom-color: #1a73e8; }
+.answer-area {
+  width: 100%;
+  min-height: 60px;
+  margin: 6px 0;
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+.answer-area:focus { outline: none; border-color: #1a73e8; }
+.submit-area { text-align: center; margin: 30px 0 20px; }
+.submit-btn {
+  padding: 12px 40px;
+  font-size: 18px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.submit-btn:hover { background: #1557b0; }
+.score-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+.score-modal.show { display: flex; }
+.score-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 40px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.score-card h2 { font-size: 24px; margin-bottom: 10px; }
+.score-number { font-size: 48px; font-weight: bold; color: #1a73e8; margin: 10px 0; }
+.score-detail { font-size: 14px; color: #666; margin: 8px 0; }
+.score-btn {
+  margin: 8px 6px;
+  padding: 8px 24px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.score-btn-primary { background: #1a73e8; color: #fff; }
+.score-btn-secondary { background: #e8e8e8; color: #333; }
+.score-btn-primary:hover { background: #1557b0; }
+.score-btn-secondary:hover { background: #d0d0d0; }
+.answer-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px solid #333;
+}
+#answerContent { display: none; }
+.answer-section h2 { font-size: 18px; margin-bottom: 15px; }
+.answer-item { margin: 8px 0; padding: 6px 10px; background: #f9f9f9; border-left: 3px solid #999; }
+.answer-item .ans-key { font-weight: bold; color: #1a73e8; }
+.answer-item .ans-detail { color: #555; margin-top: 3px; font-size: 13px; }
+.correct-mark { color: #4caf50; font-weight: bold; }
+.wrong-mark { color: #f44336; font-weight: bold; }
+table.data-table { border-collapse: collapse; margin: 8px 0; width: 100%; }
+table.data-table th, table.data-table td { border: 1px solid #666; padding: 6px 10px; text-align: center; }
+table.data-table th { background: #e8f0fe; }
+.sub-question { margin: 4px 0; }
+.sub-question .sub-label { font-weight: bold; }
+.score-tag { float: right; color: #888; font-size: 13px; }
+/* ===== 手机端适配 ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 8px; }
+  .paper-container { padding: 14px 16px; box-shadow: none; min-height: auto; }
+  .info-row { flex-direction: column; gap: 6px; align-items: center; }
+  .paper-header h1 { font-size: 18px; }
+  .options { margin-left: 0.5em; }
+  .submit-btn { padding: 10px 20px; font-size: 14px; }
+}
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper-container { box-shadow: none; padding: 15mm 20mm; max-width: none; }
+  .submit-area, .score-modal, .toggle-answer-btn { display: none !important; }
+  .answer-section { display: block !important; }
+  .fill-input { border-bottom: 1px solid #000; background: transparent; }
+  .answer-area { border: 1px solid #000; }
+  .choice-question, .fill-question { break-inside: avoid; }
+  .no-print { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="paper-container" id="paper">
+
+  <!-- ===== 试卷头部 ===== -->
+  <div class="paper-header">
+    <h1>高一生物·单元检测</h1>
+    <h2>人教版必修1 第三章 第1-2节（3.1 细胞膜 + 3.2 细胞器）</h2>
+    <div class="info-row">
+      <label>姓名：<input type="text" id="studentName" placeholder="请输入姓名"></label>
+      <label>班级：<input type="text" id="studentClass" placeholder="请输入班级"></label>
+      <label>学号：<input type="text" id="studentId" placeholder="请输入学号"></label>
+    </div>
+    <div class="score-summary">
+      总分：100分 &nbsp;&nbsp; 单选题：36分 &nbsp;&nbsp; 多选题：12分 &nbsp;&nbsp; 填空题：12分 &nbsp;&nbsp; 解答题：40分
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 一、单选题（12题，每题3分，共36分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">一、单选题（本大题共12小题，每题3分，共36分。每题只有一个选项符合题意。）</div>
+
+  <!-- q1 -->
+  <div class="choice-question" data-qid="q1" data-type="single" data-answer="B">
+    <span class="q-head">1.</span>
+    <span class="q-text">组成细胞膜的主要成分是（　）</span>
+    <div class="options" data-qid="q1">
+      <label><input type="radio" name="q1" value="A"> A．磷脂和糖类</label>
+      <label><input type="radio" name="q1" value="B"> B．磷脂和蛋白质</label>
+      <label><input type="radio" name="q1" value="C"> C．蛋白质和核酸</label>
+      <label><input type="radio" name="q1" value="D"> D．糖类和核酸</label>
+    </div>
+  </div>
+
+  <!-- q2 -->
+  <div class="choice-question" data-qid="q2" data-type="single" data-answer="B">
+    <span class="q-head">2.</span>
+    <span class="q-text">提出细胞膜流动镶嵌模型的科学家是（　）</span>
+    <div class="options" data-qid="q2">
+      <label><input type="radio" name="q2" value="A"> A．施莱登和施旺</label>
+      <label><input type="radio" name="q2" value="B"> B．辛格和尼科尔森</label>
+      <label><input type="radio" name="q2" value="C"> C．沃森和克里克</label>
+      <label><input type="radio" name="q2" value="D"> D．虎克</label>
+    </div>
+  </div>
+
+  <!-- q3 -->
+  <div class="choice-question" data-qid="q3" data-type="single" data-answer="A">
+    <span class="q-head">3.</span>
+    <span class="q-text">构成细胞膜基本骨架的是（　）</span>
+    <div class="options" data-qid="q3">
+      <label><input type="radio" name="q3" value="A"> A．磷脂双分子层</label>
+      <label><input type="radio" name="q3" value="B"> B．蛋白质分子</label>
+      <label><input type="radio" name="q3" value="C"> C．糖蛋白</label>
+      <label><input type="radio" name="q3" value="D"> D．胆固醇</label>
+    </div>
+  </div>
+
+  <!-- q4 -->
+  <div class="choice-question" data-qid="q4" data-type="single" data-answer="C">
+    <span class="q-head">4.</span>
+    <span class="q-text">细胞膜上糖蛋白（糖被）的主要功能是（　）</span>
+    <div class="options" data-qid="q4">
+      <label><input type="radio" name="q4" value="A"> A．控制物质进出</label>
+      <label><input type="radio" name="q4" value="B"> B．催化化学反应</label>
+      <label><input type="radio" name="q4" value="C"> C．识别作用</label>
+      <label><input type="radio" name="q4" value="D"> D．能量转换</label>
+    </div>
+  </div>
+
+  <!-- q5 -->
+  <div class="choice-question" data-qid="q5" data-type="single" data-answer="B">
+    <span class="q-head">5.</span>
+    <span class="q-text">细胞膜的功能特点是（　）</span>
+    <div class="options" data-qid="q5">
+      <label><input type="radio" name="q5" value="A"> A．流动性</label>
+      <label><input type="radio" name="q5" value="B"> B．选择透过性</label>
+      <label><input type="radio" name="q5" value="C"> C．全透性</label>
+      <label><input type="radio" name="q5" value="D"> D．信息传递</label>
+    </div>
+  </div>
+
+  <!-- q6 -->
+  <div class="choice-question" data-qid="q6" data-type="single" data-answer="B">
+    <span class="q-head">6.</span>
+    <span class="q-text">被称为细胞"动力车间"的细胞器是（　）</span>
+    <div class="options" data-qid="q6">
+      <label><input type="radio" name="q6" value="A"> A．叶绿体</label>
+      <label><input type="radio" name="q6" value="B"> B．线粒体</label>
+      <label><input type="radio" name="q6" value="C"> C．核糖体</label>
+      <label><input type="radio" name="q6" value="D"> D．高尔基体</label>
+    </div>
+  </div>
+
+  <!-- q7 -->
+  <div class="choice-question" data-qid="q7" data-type="single" data-answer="B">
+    <span class="q-head">7.</span>
+    <span class="q-text">光合作用的场所是（　）</span>
+    <div class="options" data-qid="q7">
+      <label><input type="radio" name="q7" value="A"> A．线粒体</label>
+      <label><input type="radio" name="q7" value="B"> B．叶绿体</label>
+      <label><input type="radio" name="q7" value="C"> C．高尔基体</label>
+      <label><input type="radio" name="q7" value="D"> D．内质网</label>
+    </div>
+  </div>
+
+  <!-- q8 -->
+  <div class="choice-question" data-qid="q8" data-type="single" data-answer="A">
+    <span class="q-head">8.</span>
+    <span class="q-text">蛋白质合成的场所是（　）</span>
+    <div class="options" data-qid="q8">
+      <label><input type="radio" name="q8" value="A"> A．核糖体</label>
+      <label><input type="radio" name="q8" value="B"> B．内质网</label>
+      <label><input type="radio" name="q8" value="C"> C．高尔基体</label>
+      <label><input type="radio" name="q8" value="D"> D．溶酶体</label>
+    </div>
+  </div>
+
+  <!-- q9 -->
+  <div class="choice-question" data-qid="q9" data-type="single" data-answer="C">
+    <span class="q-head">9.</span>
+    <span class="q-text">对来自内质网的蛋白质进行加工、分类、包装的细胞器是（　）</span>
+    <div class="options" data-qid="q9">
+      <label><input type="radio" name="q9" value="A"> A．核糖体</label>
+      <label><input type="radio" name="q9" value="B"> B．内质网</label>
+      <label><input type="radio" name="q9" value="C"> C．高尔基体</label>
+      <label><input type="radio" name="q9" value="D"> D．液泡</label>
+    </div>
+  </div>
+
+  <!-- q10 -->
+  <div class="choice-question" data-qid="q10" data-type="single" data-answer="C">
+    <span class="q-head">10.</span>
+    <span class="q-text">与动物细胞有丝分裂有关的细胞器是（　）</span>
+    <div class="options" data-qid="q10">
+      <label><input type="radio" name="q10" value="A"> A．线粒体</label>
+      <label><input type="radio" name="q10" value="B"> B．高尔基体</label>
+      <label><input type="radio" name="q10" value="C"> C．中心体</label>
+      <label><input type="radio" name="q10" value="D"> D．核糖体</label>
+    </div>
+  </div>
+
+  <!-- q11 -->
+  <div class="choice-question" data-qid="q11" data-type="single" data-answer="C">
+    <span class="q-head">11.</span>
+    <span class="q-text">被称为"消化车间"的细胞器是（　）</span>
+    <div class="options" data-qid="q11">
+      <label><input type="radio" name="q11" value="A"> A．内质网</label>
+      <label><input type="radio" name="q11" value="B"> B．高尔基体</label>
+      <label><input type="radio" name="q11" value="C"> C．溶酶体</label>
+      <label><input type="radio" name="q11" value="D"> D．液泡</label>
+    </div>
+  </div>
+
+  <!-- q12 -->
+  <div class="choice-question" data-qid="q12" data-type="single" data-answer="A">
+    <span class="q-head">12.</span>
+    <span class="q-text">下列细胞器中，同时含有DNA的是（　）</span>
+    <div class="options" data-qid="q12">
+      <label><input type="radio" name="q12" value="A"> A．线粒体和叶绿体</label>
+      <label><input type="radio" name="q12" value="B"> B．核糖体和中心体</label>
+      <label><input type="radio" name="q12" value="C"> C．内质网和高尔基体</label>
+      <label><input type="radio" name="q12" value="D"> D．液泡和溶酶体</label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 二、多选题（3题，每题4分，共12分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">二、多选题（本大题共3小题，每题4分，共12分。每题有2-3个正确选项，全对得4分，部分选对得2分，有错选得0分。）</div>
+
+  <!-- q101 -->
+  <div class="choice-question" data-qid="q101" data-type="multi" data-answer='["A","C","D"]'>
+    <span class="q-head">13.（多选）</span>
+    <span class="q-text">下列关于细胞膜功能的叙述，正确的有（　）</span>
+    <div class="options" data-qid="q101">
+      <label><input type="checkbox" name="q101" value="A"> A．将细胞与外界环境分隔开</label>
+      <label><input type="checkbox" name="q101" value="B"> B．是细胞代谢的主要场所</label>
+      <label><input type="checkbox" name="q101" value="C"> C．控制物质进出细胞</label>
+      <label><input type="checkbox" name="q101" value="D"> D．进行细胞间的信息传递</label>
+    </div>
+  </div>
+
+  <!-- q102 -->
+  <div class="choice-question" data-qid="q102" data-type="multi" data-answer='["A","B"]'>
+    <span class="q-head">14.（多选）</span>
+    <span class="q-text">下列细胞器中，具有双层膜结构的有（　）</span>
+    <div class="options" data-qid="q102">
+      <label><input type="checkbox" name="q102" value="A"> A．线粒体</label>
+      <label><input type="checkbox" name="q102" value="B"> B．叶绿体</label>
+      <label><input type="checkbox" name="q102" value="C"> C．内质网</label>
+      <label><input type="checkbox" name="q102" value="D"> D．中心体</label>
+    </div>
+  </div>
+
+  <!-- q103 -->
+  <div class="choice-question" data-qid="q103" data-type="multi" data-answer='["A","B","C"]'>
+    <span class="q-head">15.（多选）</span>
+    <span class="q-text">关于细胞骨架的叙述，正确的有（　）</span>
+    <div class="options" data-qid="q103">
+      <label><input type="checkbox" name="q103" value="A"> A．由蛋白质纤维组成的网架结构</label>
+      <label><input type="checkbox" name="q103" value="B"> B．维持细胞的形态</label>
+      <label><input type="checkbox" name="q103" value="C"> C．支持细胞的运动</label>
+      <label><input type="checkbox" name="q103" value="D"> D．参与细胞分裂中细胞板的形成</label>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 三、填空题（6题，每空2分，共12分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">三、填空题（本大题共6小题，每空2分，共12分）</div>
+
+  <!-- 16 -->
+  <div class="fill-question" data-qid="f1">
+    <span class="q-head">16.</span>
+    <span class="q-text">细胞膜的基本骨架是 </span>
+    <input type="text" class="fill-input" id="f_16" data-answer="磷脂双分子层" style="width:100px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- 17 -->
+  <div class="fill-question" data-qid="f2">
+    <span class="q-head">17.</span>
+    <span class="q-text">细胞膜的结构特点是 </span>
+    <input type="text" class="fill-input" id="f_17" data-answer="流动性" style="width:80px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- 18 -->
+  <div class="fill-question" data-qid="f3">
+    <span class="q-head">18.</span>
+    <span class="q-text">被称为"动力车间"的细胞器是 </span>
+    <input type="text" class="fill-input" id="f_18" data-answer="线粒体" style="width:80px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- 19 -->
+  <div class="fill-question" data-qid="f4">
+    <span class="q-head">19.</span>
+    <span class="q-text">蛋白质合成的场所是 </span>
+    <input type="text" class="fill-input" id="f_19" data-answer="核糖体" style="width:80px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- 20 -->
+  <div class="fill-question" data-qid="f5">
+    <span class="q-head">20.</span>
+    <span class="q-text">与动物细胞有丝分裂有关的细胞器是 </span>
+    <input type="text" class="fill-input" id="f_20" data-answer="中心体" style="width:80px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- 21 -->
+  <div class="fill-question" data-qid="f6">
+    <span class="q-head">21.</span>
+    <span class="q-text">被称为"消化车间"的细胞器是 </span>
+    <input type="text" class="fill-input" id="f_21" data-answer="溶酶体" style="width:80px;">
+    <span class="q-text">。</span>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 四、解答题（4题，共40分） -->
+  <!-- ============================================================ -->
+  <div class="section-title">四、解答题（本大题共4小题，共40分）</div>
+
+  <!-- 22（10分） -->
+  <div class="calc-question" data-qid="q17">
+    <span class="q-head">22.（10分）</span>
+    <span class="q-text">细胞膜是细胞的重要结构，请回答以下有关细胞膜的问题：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <div class="sub-question">(1) 细胞膜的主要组成成分有哪些？（3分）</div>
+      <div class="sub-question">(2) 流动镶嵌模型的基本内容是什么？请简述磷脂双分子层与蛋白质的位置关系。（4分）</div>
+      <div class="sub-question">(3) 细胞膜具有哪些主要功能？请列出三点。（3分）</div>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- 23（10分） -->
+  <div class="calc-question" data-qid="q18">
+    <span class="q-head">23.（10分）</span>
+    <span class="q-text">请将下列细胞器的结构特点（双层膜/单层膜/无膜）与其主要功能填写在下表中：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <table class="data-table">
+        <tr><th>细胞器名称</th><th>结构特点（膜层数）</th><th>主要功能</th></tr>
+        <tr>
+          <td>线粒体</td>
+          <td><input type="text" class="fill-input" id="f_23a" data-answer="双层膜" style="width:90px;"></td>
+          <td><input type="text" class="fill-input" id="f_23b" data-answer="有氧呼吸的主要场所" data-alt="有氧呼吸|有氧呼吸主要场所" style="width:150px;"></td>
+        </tr>
+        <tr>
+          <td>叶绿体</td>
+          <td><input type="text" class="fill-input" id="f_23c" data-answer="双层膜" style="width:90px;"></td>
+          <td>光合作用的场所</td>
+        </tr>
+        <tr>
+          <td>核糖体</td>
+          <td><input type="text" class="fill-input" id="f_23d" data-answer="无膜" style="width:90px;"></td>
+          <td><input type="text" class="fill-input" id="f_23e" data-answer="蛋白质合成" data-alt="蛋白质合成场所|合成蛋白质" style="width:150px;"></td>
+        </tr>
+        <tr>
+          <td>中心体</td>
+          <td><input type="text" class="fill-input" id="f_23f" data-answer="无膜" style="width:90px;"></td>
+          <td><input type="text" class="fill-input" id="f_23g" data-answer="与有丝分裂有关" data-alt="有丝分裂" style="width:150px;"></td>
+        </tr>
+      </table>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- 24（10分） -->
+  <div class="calc-question" data-qid="q19">
+    <span class="q-head">24.（10分）</span>
+    <span class="q-text">下图是动植物细胞亚显微结构对比的相关问题，请回答：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <div class="sub-question">(1) 植物细胞具有而动物细胞不具有的细胞器有 ______ 和 ______。<span style="float:right;">（4分）</span></div>
+      <div class="sub-question">(2) 动物细胞和低等植物细胞具有而高等植物细胞不具有的细胞器是 ______。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(3) 动植物细胞中都有但功能可能不同的细胞器是什么？在植物细胞中它有什么特殊作用？<span style="float:right;">（4分）</span></div>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+  <!-- 25（10分） -->
+  <div class="calc-question" data-qid="q20">
+    <span class="q-head">25.（10分）</span>
+    <span class="q-text">分泌蛋白（如胰岛素）的合成与运输需要多种细胞器的参与。请回答：</span>
+    <div style="margin:8px 0 4px 22px;">
+      <div class="sub-question">(1) 分泌蛋白在 ______（细胞器）上合成，进入 ______ 进行初步加工，再运输到 ______ 进一步加工包装，最后通过细胞膜分泌到细胞外。<span style="float:right;">（6分）</span></div>
+      <div class="sub-question">(2) 整个过程主要由 ______（细胞器）提供能量。<span style="float:right;">（2分）</span></div>
+      <div class="sub-question">(3) 该过程体现了细胞器之间的什么关系？<span style="float:right;">（2分）</span></div>
+    </div>
+    <textarea class="answer-area" placeholder="请在此书写解答过程..."></textarea>
+  </div>
+
+<!-- ===== 提交按钮 ===== -->
+  <div style="text-align:center; margin:30px 0 20px;">
+    <button class="submit-btn" onclick="submitPaper()">提交试卷</button>
+    <button class="submit-btn" onclick="clearAnswers()" style="background:#888; margin-left:10px;">清空答案</button>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 参考答案区 -->
+  <!-- ============================================================ -->
+  <div class="answer-section" id="answerSection">
+    <h2>参考答案与解析</h2>
+    <button class="toggle-answer-btn score-btn score-btn-secondary" onclick="toggleAnswer()">显示答案</button>
+
+    <div id="answerContent">
+      <h3 style="margin-top:15px;">一、单选题</h3>
+      <div class="answer-item"><strong>1.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：细胞膜主要由磷脂（约50%）和蛋白质（约40%）组成，此外还含有少量糖类。</span></div>
+      <div class="answer-item"><strong>2.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：1972年辛格和尼科尔森提出了流动镶嵌模型，施莱登和施旺提出细胞学说，沃森和克里克提出DNA双螺旋结构。</span></div>
+      <div class="answer-item"><strong>3.</strong> 答案：<span class="ans-key">A</span><br><span class="ans-detail">解析：磷脂双分子层构成细胞膜的基本骨架，蛋白质分子镶嵌或贯穿在其中。</span></div>
+      <div class="answer-item"><strong>4.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：细胞膜上的糖蛋白（糖被）具有识别作用，参与细胞间的信息传递。</span></div>
+      <div class="answer-item"><strong>5.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：细胞膜的结构特点是流动性，功能特点是选择透过性。流动性是选择透过性的基础。</span></div>
+      <div class="answer-item"><strong>6.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：线粒体是有氧呼吸的主要场所，为细胞生命活动提供能量，被称为"动力车间"。</span></div>
+      <div class="answer-item"><strong>7.</strong> 答案：<span class="ans-key">B</span><br><span class="ans-detail">解析：叶绿体是光合作用的场所，被称为"养料制造厂"和"能量转换站"，植物细胞特有。</span></div>
+      <div class="answer-item"><strong>8.</strong> 答案：<span class="ans-key">A</span><br><span class="ans-detail">解析：核糖体是蛋白质合成的场所，由rRNA和蛋白质组成，是无膜结构的细胞器。</span></div>
+      <div class="answer-item"><strong>9.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：高尔基体对来自内质网的蛋白质进行加工、分类和包装。在植物细胞中与细胞壁形成有关。</span></div>
+      <div class="answer-item"><strong>10.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：中心体与动物细胞和低等植物细胞的有丝分裂有关，由两个相互垂直的中心粒组成。</span></div>
+      <div class="answer-item"><strong>11.</strong> 答案：<span class="ans-key">C</span><br><span class="ans-detail">解析：溶酶体含有多种水解酶，能消化分解衰老、损伤的细胞器以及侵入细胞的异物，被称为"消化车间"。</span></div>
+      <div class="answer-item"><strong>12.</strong> 答案：<span class="ans-key">A</span><br><span class="ans-detail">解析：线粒体和叶绿体都含有少量DNA和RNA，是半自主性细胞器。核糖体含rRNA，但不含DNA。</span></div>
+
+      <h3 style="margin-top:15px;">二、多选题</h3>
+      <div class="answer-item"><strong>13.</strong> 答案：<span class="ans-key">A、C、D</span><br><span class="ans-detail">解析：细胞代谢的主要场所是细胞质基质，不是细胞膜，B错误。细胞膜的功能包括：将细胞与外界环境分隔开（边界）、控制物质进出细胞、进行细胞间的信息传递。</span></div>
+      <div class="answer-item"><strong>14.</strong> 答案：<span class="ans-key">A、B</span><br><span class="ans-detail">解析：双层膜细胞器：线粒体、叶绿体；单层膜细胞器：内质网、高尔基体、液泡、溶酶体；无膜细胞器：核糖体、中心体。</span></div>
+      <div class="answer-item"><strong>15.</strong> 答案：<span class="ans-key">A、B、C</span><br><span class="ans-detail">解析：细胞骨架由蛋白质纤维组成，维持细胞形态、支持细胞运动和分裂。细胞板的形成与高尔基体有关，不是细胞骨架的功能，D错误。</span></div>
+
+      <h3 style="margin-top:15px;">三、填空题</h3>
+      <div class="answer-item"><strong>16.</strong> 答案：<span class="ans-key">磷脂双分子层</span><br><span class="ans-detail">解析：磷脂双分子层构成细胞膜的基本骨架，具有流动性。</span></div>
+      <div class="answer-item"><strong>17.</strong> 答案：<span class="ans-key">流动性</span><br><span class="ans-detail">解析：细胞膜的结构特点是流动性（如变形虫的变形运动、细胞融合），功能特点是选择透过性。</span></div>
+      <div class="answer-item"><strong>18.</strong> 答案：<span class="ans-key">线粒体</span><br><span class="ans-detail">解析：线粒体通过有氧呼吸为生命活动提供能量，被称为"动力车间"。</span></div>
+      <div class="answer-item"><strong>19.</strong> 答案：<span class="ans-key">核糖体</span><br><span class="ans-detail">解析：核糖体是蛋白质合成的场所，分为游离核糖体和附着核糖体（附着在内质网上）。</span></div>
+      <div class="answer-item"><strong>20.</strong> 答案：<span class="ans-key">中心体</span><br><span class="ans-detail">解析：中心体存在于动物细胞和低等植物细胞中，与有丝分裂中纺锤体的形成有关。</span></div>
+      <div class="answer-item"><strong>21.</strong> 答案：<span class="ans-key">溶酶体</span><br><span class="ans-detail">解析：溶酶体内含多种水解酶，能分解衰老、损伤的细胞器，吞噬并杀死侵入细胞的病毒或细菌。</span></div>
+
+      <h3 style="margin-top:15px;">四、解答题</h3>
+      <div class="answer-item"><strong>22.（10分）</strong><br>
+        <span class="ans-detail">(1) 细胞膜的主要组成成分：磷脂（约50%）、蛋白质（约40%）和少量糖类。（3分）<br>
+        (2) 流动镶嵌模型：磷脂双分子层构成膜的基本骨架，蛋白质分子镶嵌或贯穿在磷脂双分子层中；细胞膜具有一定的流动性；膜表面糖蛋白具有识别作用。（4分）<br>
+        (3) 细胞膜的主要功能：①将细胞与外界环境分隔开（边界作用）；②控制物质进出细胞；③进行细胞间的信息传递（信息交流）。（3分）</span>
+      </div>
+      <div class="answer-item"><strong>23.（10分）</strong><br>
+        <table class="data-table" style="width:auto;">
+          <tr><th>细胞器名称</th><th>结构特点（膜层数）</th><th>主要功能</th></tr>
+          <tr><td>线粒体</td><td>双层膜</td><td>有氧呼吸的主要场所</td></tr>
+          <tr><td>叶绿体</td><td>双层膜</td><td>光合作用的场所</td></tr>
+          <tr><td>核糖体</td><td>无膜</td><td>蛋白质合成</td></tr>
+          <tr><td>中心体</td><td>无膜</td><td>与有丝分裂有关</td></tr>
+        </table>
+        <span class="ans-detail">解析：按膜层数分类：双层膜（线粒体、叶绿体）、单层膜（内质网、高尔基体、液泡、溶酶体）、无膜（核糖体、中心体）。</span>
+      </div>
+      <div class="answer-item"><strong>24.（10分）</strong><br>
+        <span class="ans-detail">(1) 叶绿体；液泡（4分，顺序可换）<br>
+        (2) 中心体（2分）<br>
+        (3) 高尔基体（2分）。在植物细胞中，高尔基体与细胞壁的形成有关（2分）。<br>
+        解析：动植物细胞共有的细胞器：线粒体、内质网、高尔基体、核糖体、溶酶体等。植物特有：叶绿体、液泡。动物特有：中心体（但低等植物细胞也有）。</span>
+      </div>
+      <div class="answer-item"><strong>25.（10分）</strong><br>
+        <span class="ans-detail">(1) 核糖体；内质网；高尔基体；细胞膜（6分）<br>
+        (2) 线粒体（2分）<br>
+        (3) 体现了细胞器之间的协调配合（或分工合作/紧密联系）。（2分）<br>
+        解析：分泌蛋白的合成与运输过程：核糖体→内质网（初步加工）→高尔基体（进一步加工包装）→细胞膜（分泌出胞），整个过程由线粒体供能。内质网和高尔基体通过囊泡运输联系。</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end paper-container -->
+
+<!-- ===== 成绩弹窗 ===== -->
+<div class="score-modal" id="scoreModal">
+  <div class="score-card">
+    <h2>📝 成绩报告</h2>
+    <div class="score-number" id="scoreDisplay">0</div>
+    <div style="font-size:16px; color:#666;">总分：100分</div>
+    <div class="score-detail" id="scoreDetail"></div>
+    <div style="margin-top:15px;">
+      <button class="score-btn score-btn-primary" onclick="closeScore()">关闭</button>
+      <button class="score-btn score-btn-secondary" onclick="toggleAnswer(); closeScore();">查看答案</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== 答案自动缓存（防手机切后台丢失） =====
+var PAPER_ID = 'bio_grade10_ch3_sections1-2';
+var STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('[data-qid]');
+    var key = parent ? parent.getAttribute('data-qid') : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key) || document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+restoreAnswers();
+setupAutoSave();
+if (window.MathJax && MathJax.typesetPromise) {
+  MathJax.typesetPromise();
+}
+
+// ===== 答案配置 =====
+const ANSWER_KEY = {
+  q1: 'B', q2: 'B', q3: 'A', q4: 'C', q5: 'B', q6: 'B', q7: 'B', q8: 'A', q9: 'C', q10: 'C', q11: 'C', q12: 'A',
+  q101: ['A','C','D'], q102: ['A','B'], q103: ['A','B','C']
+};
+
+// ===== 评分引擎 =====
+function submitPaper() {
+  saveAnswers();
+  const result = gradePaper();
+  showScore(result);
+}
+
+function gradePaper() {
+  let totalScore = 0;
+  let details = [];
+  let singleCorrect = 0, singleTotal = 12;
+  let multiCorrect = 0, multiPartial = 0, multiTotal = 3;
+  let fillScore = 0, fillTotal = 0;
+
+  // 1. 评分单选题 (data-type="single")
+  document.querySelectorAll('.choice-question[data-type="single"]').forEach(function(q) {
+    const qid = q.dataset.qid;
+    const correctAnswer = ANSWER_KEY[qid];
+    if (!correctAnswer) return;
+    const selected = q.querySelector('input[type="radio"]:checked');
+    const userAnswer = selected ? selected.value : '';
+    const isCorrect = (userAnswer === correctAnswer);
+    if (isCorrect) { totalScore += 3; details.push(qid + ': 正确 ✓ (+3分)'); }
+    else { details.push(qid + ': 错误 ✗ (你的答案: ' + (userAnswer || '未作答') + ', 正确答案: ' + correctAnswer + ')'); }
+    // 视觉反馈
+    q.classList.remove('correct','wrong');
+    q.classList.add(isCorrect ? 'correct' : 'wrong');
+    q.querySelectorAll('input[type="radio"]').forEach(function(r) {
+      r.disabled = true;
+      if (r.value === correctAnswer) r.parentElement.style.color = '#4caf50';
+      else if (r.checked && r.value !== correctAnswer) r.parentElement.style.color = '#f44336';
+    });
+  });
+
+  // 2. 评分多选题
+  document.querySelectorAll('.choice-question[data-type="multi"]').forEach(function(q) {
+    const qid = q.dataset.qid;
+    const correctArr = ANSWER_KEY[qid];
+    if (!correctArr) return;
+    const checked = q.querySelectorAll('input[type="checkbox"]:checked');
+    const userArr = Array.from(checked).map(function(c) { return c.value; });
+    const correctSet = new Set(correctArr);
+    const userSet = new Set(userArr);
+    // 检查是否有错选
+    let hasWrong = false;
+    userArr.forEach(function(v) { if (!correctSet.has(v)) hasWrong = true; });
+    let isFullCorrect = false, isPartial = false;
+    if (!hasWrong && userArr.length > 0) {
+      if (userArr.length === correctArr.length && userArr.every(function(v) { return correctSet.has(v); })) {
+        isFullCorrect = true;
+        totalScore += 4;
+        details.push(qid + ': 全对 ✓ (+4分)');
+      } else {
+        isPartial = true;
+        totalScore += 2;
+        details.push(qid + ': 部分正确 (+2分)');
+      }
+    } else if (hasWrong) {
+      details.push(qid + ': 有错选 (+0分)');
+    } else {
+      details.push(qid + ': 未作答 (+0分)');
+    }
+    q.classList.remove('correct','wrong');
+    if (isFullCorrect) q.classList.add('correct');
+    else if (userArr.length > 0) q.classList.add('wrong');
+    q.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+      c.disabled = true;
+      if (correctArr.indexOf(c.value) >= 0) c.parentElement.style.color = '#4caf50';
+      else if (c.checked) c.parentElement.style.color = '#f44336';
+    });
+  });
+
+  // 3. 评分填空题
+  document.querySelectorAll('.fill-input').forEach(function(inp) {
+    const answer = inp.dataset.answer;
+    const altStr = inp.dataset.alt;
+    const alts = altStr ? altStr.split('|') : [];
+    const userVal = inp.value.trim();
+    const isCorrect = (userVal === answer) || alts.some(function(a) { return userVal === a; });
+    if (isCorrect) { totalScore += 2; fillScore += 2; }
+    fillTotal += 2;
+    inp.style.borderBottomColor = isCorrect ? '#4caf50' : (userVal ? '#f44336' : '#999');
+    inp.style.borderBottomWidth = '2px';
+  });
+
+  // 4. 解答题标记
+  document.querySelectorAll('.calc-question').forEach(function(q) {
+    details.push(q.dataset.qid + ': 需人工批改');
+  });
+
+  return { total: totalScore, details: details };
+}
+
+function showScore(result) {
+  document.getElementById('scoreDisplay').textContent = result.total + '分';
+  let detailHtml = '';
+  result.details.forEach(function(d) {
+    detailHtml += '<div>' + d + '</div>';
+  });
+  document.getElementById('scoreDetail').innerHTML = detailHtml;
+  document.getElementById('scoreModal').classList.add('show');
+}
+
+function closeScore() {
+  document.getElementById('scoreModal').classList.remove('show');
+}
+
+// ===== 参考答案密码锁 =====
+var answerUnlocked = false;
+
+function toggleAnswer() {
+  var content = document.getElementById('answerContent');
+  var btn = document.querySelector('.toggle-answer-btn');
+
+  // 如果已解锁，直接切换
+  if (answerUnlocked) {
+    if (content.style.display === 'none') {
+      content.style.display = 'block';
+      btn.textContent = '隐藏答案';
+    } else {
+      content.style.display = 'none';
+      btn.textContent = '显示答案';
+    }
+    return;
+  }
+
+  // 未解锁：弹出密码框
+  var pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    answerUnlocked = true;
+    content.style.display = 'block';
+    btn.textContent = '隐藏答案';
+  } else if (pwd !== null) {
+    alert('密码错误，无法查看参考答案！');
+  }
+}
+</script>
+
+</body>
+</html>

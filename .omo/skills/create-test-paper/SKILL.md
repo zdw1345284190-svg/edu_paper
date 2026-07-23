@@ -702,6 +702,217 @@ if (window.MathJax && MathJax.typesetPromise) {
 
 行内公式用 `\(...\)`，行间公式用 `\[...\]`。
 
+## file:// 本地调试避坑指南（实战）
+
+学生/家长通常**双击 HTML 文件在浏览器直接打开**（file:// 协议），而不是通过服务器部署。这种场景下存在一系列独特的兼容陷阱。
+
+### 硬排查流程
+
+当本地打开后出现「按钮没反应」「弹窗不出现」「JS 不执行」时：
+
+```
+1. F12 Console → 有报错吗？
+   ├─ 有 → 根据报错定位
+   └─ 没有 → 继续
+2. 事件绑了吗？ → 检查是否用了 DOMContentLoaded 但 script 在 body 底部
+3. 用了 prompt/alert/confirm 吗？ → file:// 下浏览器可能拦截 → 换自定义 Modal
+4. 用了 inline onclick 吗？ → 换 addEventListener
+5. localStorage 报错了吗？ → 加 try/catch
+6. CDN 资源（MathJax）加载失败了吗？ → 需要网络
+```
+
+---
+
+### 坑 1：DOMContentLoaded 陷阱（最常见的「按钮没反应」根因）
+
+**根因**：`<script>` 放在 `</body>` 末尾时，浏览器已解析完 DOM 并触发了 `DOMContentLoaded`。之后再 `addEventListener('DOMContentLoaded', ...)` 捕获不到已过去的事件 → 回调永不执行 → 所有按钮都没绑上事件。
+
+```html
+<body>
+  <button id="btn">点击</button>
+  <script>
+    // ❌ script 在 body 底部，DOMContentLoaded 早已触发，此回调永不执行！
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('btn').addEventListener('click', handler);
+    });
+  </script>
+</body>
+```
+
+**正确做法**：脚本在 body 底部 → 直接绑定，别包 DOMContentLoaded。
+
+```html
+<body>
+  <button id="btn">点击</button>
+  <script>
+    // ✅ DOM 已就绪，直接绑定即可
+    document.getElementById('btn').addEventListener('click', handler);
+  </script>
+</body>
+```
+
+> **口诀**：脚本在 body 底 → 别包 DOMContentLoaded；脚本在 head 里 → 必须包。
+
+---
+
+### 坑 2：prompt / alert / confirm 不工作
+
+**根因**：`file://` 协议下浏览器可能对原生弹窗静默拦截（Chrome/Edge 部分版本不报错也不弹窗）。
+
+**表现**：调用 `prompt()` 无弹窗、无报错、Console 干净。
+
+**方案**：全部用自定义 HTML Modal 替代。
+
+```html
+<!-- 密码弹窗 -->
+<div id="pwdModal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <div class="modal-header">🔒 请输入密码</div>
+    <div class="modal-body">
+      <input type="password" id="pwdInput" placeholder="请输入密码...">
+      <p id="pwdError" style="display:none;color:red;font-size:12px;">❌ 密码错误</p>
+    </div>
+    <div class="modal-footer">
+      <button id="pwdConfirm">确认</button>
+      <button id="pwdCancel">取消</button>
+    </div>
+  </div>
+</div>
+```
+
+```css
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,.45); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-box {
+  background: #fff; border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25); width: 380px; max-width: 90vw;
+}
+.modal-header { padding: 14px 20px; background: #1a237e; color: #fff; font-weight: bold; }
+.modal-body { padding: 18px 20px; }
+.modal-input { width: 100%; padding: 10px; font-size: 16px; border: 2px solid #ccc; border-radius: 4px; }
+.modal-footer { padding: 10px 20px 16px; display: flex; gap: 10px; justify-content: flex-end; }
+```
+
+```javascript
+// 显示/关闭弹窗
+function showPwdModal() {
+  document.getElementById('pwdModal').style.display = 'flex';
+  document.getElementById('pwdInput').focus();
+}
+function closePwdModal() {
+  document.getElementById('pwdModal').style.display = 'none';
+  document.getElementById('pwdInput').value = '';
+  document.getElementById('pwdError').style.display = 'none';
+}
+
+// 确认
+document.getElementById('pwdConfirm').addEventListener('click', function() {
+  if (document.getElementById('pwdInput').value === '2641') {
+    // 密码正确
+    closePwdModal();
+  } else {
+    document.getElementById('pwdError').style.display = 'block';
+  }
+});
+document.getElementById('pwdCancel').addEventListener('click', closePwdModal);
+
+// 回车确认
+document.getElementById('pwdInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('pwdConfirm').click();
+});
+
+// 点击遮罩关闭
+document.getElementById('pwdModal').addEventListener('click', function(e) {
+  if (e.target === e.currentTarget) closePwdModal();
+});
+```
+
+| 原生方法 | 替代方案 |
+|---------|---------|
+| `prompt('密码:')` | 自定义 Modal + `<input type="password">` |
+| `alert('错误!')` | Modal 内红色文字 + 关闭按钮（或用 inline error） |
+| `confirm('确定?')` | 自定义 Modal + 确定/取消按钮 |
+
+---
+
+### 坑 3：inline onclick 不触发
+
+**根因**：`file://` 下部分浏览器的安全策略限制 inline event handlers。
+
+```html
+<!-- ❌ file:// 下可能不触发 -->
+<button onclick="promptPassword()">显示答案</button>
+```
+
+**方案**：全部改 `addEventListener`。
+
+```html
+<!-- ✅ 给 id，JS 绑定 -->
+<button id="btnAnswer">显示答案</button>
+
+<script>
+document.getElementById('btnAnswer').addEventListener('click', showPwdModal);
+</script>
+```
+
+---
+
+### 坑 4：localStorage 异常
+
+**根因**：隐私模式、存储满、部分移动端 WebView 下 `localStorage` 抛异常。
+
+**方案**：所有 `localStorage` 操作必须 `try/catch` 包裹。
+
+```javascript
+function saveAnswers() {
+  // ...收集数据...
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    // ...恢复数据...
+  } catch(e) {}
+}
+```
+
+---
+
+### 坑 5：MathJax CDN 加载失败
+
+**根因**：`file://` 下加载 HTTPS CDN 资源时，CORS 策略可能拦截。
+
+**表现**：公式显示为原始 LaTeX 代码（`\(x^2\)` 而非数学符号）。
+
+```javascript
+// ✅ 加载失败时显示友好提示
+var script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+script.async = true;
+script.onerror = function() {
+  document.getElementById('mathjax-warning').style.display = 'block';
+};
+document.head.appendChild(script);
+```
+
+---
+
+### 创建试卷时的快速检查清单
+
+- [ ] 无 inline `onclick` — 全部用 `addEventListener`
+- [ ] 无 `prompt()` / `alert()` / `confirm()` — 全部用自定义 Modal
+- [ ] 脚本在 body 底部 → **不**用 DOMContentLoaded 包装按钮绑定
+- [ ] 所有 `localStorage` 操作包裹 `try/catch`
+- [ ] 核心功能（评分、模态框）不依赖 CDN
+- [ ] Modal 支持 Enter 确认、点击遮罩关闭
+- [ ] 打印时 Modal 隐藏（`@media print { .modal-overlay { display:none!important } }`）
+
 ## 自定义模板
 
 ### 修改分值

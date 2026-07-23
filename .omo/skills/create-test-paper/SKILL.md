@@ -502,6 +502,90 @@ AB ∥ CD，点 E 在中间用两条线段连接。
 | 标注 | `<text x y>` | 字母、角度值 |
 | 红色 | `stroke="#c62828" fill="#c62828"` | 角度标记、关键标注 |
 
+### 16. 评分视觉反馈：仅题号色点（实战经验）
+
+提交评分后要给学生视觉反馈，但**不能直接显示正确答案**（否则错题重做毫无意义）。正确答案应通过独立的「显示答案」按钮查看。
+
+#### 设计原则
+
+- 只标对错，不揭示正确答案
+- 仅题号前加 ● 色点，不做整块背景高亮（太刺眼）
+- 绿点 = 答对，橙点 = 答错或未答（都是扣分项，同色）
+
+#### CSS（仅两行）
+
+```css
+/* 题号前加色点，用 ::before 伪元素 */
+div[id^="q"].grade-correct > .q-text::before {
+  content: "●"; color: #66bb6a; margin-right: 4px; font-size: 11px;
+}
+div[id^="q"].grade-wrong > .q-text::before {
+  content: "●"; color: #ffab91; margin-right: 4px; font-size: 11px;
+}
+```
+
+#### JS 高亮函数
+
+```javascript
+function highlightAnswers() {
+  // ① 先清除所有旧标记
+  document.querySelectorAll('.grade-correct,.grade-wrong').forEach(function(el) {
+    el.classList.remove('grade-correct','grade-wrong');
+  });
+
+  // ② 工具函数
+  var SKEY = { q1:'C', q2:'A', /* ... */ };           // 单选答案
+  var FKEY  = { q6a:'19', q6b:'3/4', /* ... */ };     // 填空答案
+  var FALT  = { q6a:['19'], q6b:['3/4','0.75'] };    // 填空备选
+
+  function isSingleOk(qId) {                           // 单选是否答对
+    var sel = document.querySelector('input[name="'+qId+'"]:checked');
+    return sel && sel.value === SKEY[qId];
+  }
+  function isFillOk(k) {                              // 单个填空是否答对
+    var inp = document.getElementById(k);
+    if (!inp) return false;
+    var v = inp.value.trim();
+    if (v === '') return false;
+    var alt = FALT[k] || [FKEY[k]];
+    return alt.some(function(x) { return v === x || v.toLowerCase() === x.toLowerCase(); });
+  }
+  function mark(qId, ok) {                            // 给题号标记
+    var div = document.getElementById(qId);
+    if (div) div.classList.add(ok ? 'grade-correct' : 'grade-wrong');
+  }
+
+  // ③ 单选题
+  ['q1','q2','q3',/*...*/].forEach(function(q) { mark(q, isSingleOk(q)); });
+
+  // ④ 填空题（多空全对才算绿点）
+  function markMulti(qId, blanks) {
+    mark(qId, blanks.every(function(k) { return isFillOk(k); }));
+  }
+  markMulti('q6', ['q6a','q6b']);
+  markMulti('q16',['q16a','q16b','q16c','q16d']);
+
+  // ⑤ 解答题（≥10字符算已作答，仅供参考）
+  function markTA(qId) {
+    var div = document.getElementById(qId);
+    if (!div) return;
+    var ta = div.querySelector('textarea');
+    mark(qId, ta && ta.value.trim().length >= 10);
+  }
+  markTA('q25');
+  markTA('q32');
+}
+```
+
+#### 关键决策
+
+| 决策 | 理由 |
+|------|------|
+| 不止显示正确答案 | 错题重做需要自己找答案，正确选项通过「显示答案」按钮查看 |
+| 未答 = 错题同色 | 都是扣分项，学生应一眼看到哪些题丢了分 |
+| 多空填空全对才绿 | 一道题部分对也算答错，橙点提醒回头检查 |
+| 仅题号色点、不标选项 | 不干扰原文排版，打印友好，不剧透正确答案 |
+
 ## 快速上手
 
 ### Step 1 — 准备模板

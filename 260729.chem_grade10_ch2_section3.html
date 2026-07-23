@@ -1,0 +1,1105 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楂樹竴鍖栧路蹇呬慨绗竴鍐?绗簩绔?2.3 鐗╄川鐨勯噺</title>
+<script>
+window.MathJax = {
+  tex: {
+    packages: {'[+]': ['mhchem']},
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' },
+  options: { enableMenu: false }
+};
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: '瀹嬩綋', 'SimSun', serif;
+  background: #e8e8e8;
+  color: #1a1a1a;
+  padding: 20px;
+}
+.paper {
+  width: 210mm;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 35px 45px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  min-height: 297mm;
+}
+.header {
+  text-align: center;
+  border-top: 3px double #222;
+  border-bottom: 3px double #222;
+  padding: 14px 0 12px 0;
+  margin-bottom: 18px;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.header .subtitle {
+  font-size: 14px;
+  color: #444;
+}
+.header .subtitle span {
+  margin: 0 15px;
+}
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 8px 0 12px 0;
+  border-bottom: 1px dashed #aaa;
+  margin-bottom: 16px;
+}
+.info-bar .name-field {
+  display: inline-flex;
+  align-items: center;
+}
+.info-bar .name-field span {
+  margin-right: 4px;
+}
+.info-bar .name-field .line {
+  display: inline-block;
+  width: 80px;
+  border-bottom: 1px solid #333;
+}
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  border-left: 4px solid #2b7bbe;
+  padding-left: 10px;
+  margin: 22px 0 12px 0;
+  color: #1a3a5c;
+  line-height: 1.6;
+}
+.section-title .pt {
+  font-size: 13px;
+  font-weight: normal;
+  color: #666;
+  margin-left: 6px;
+}
+.question {
+  margin: 14px 0;
+  padding-left: 6px;
+  line-height: 1.9;
+  font-size: 15px;
+}
+.question .q-text {
+  margin-bottom: 6px;
+}
+.question .q-text .q-label {
+  font-weight: bold;
+  margin-right: 4px;
+}
+.options {
+  padding-left: 22px;
+  margin: 4px 0;
+}
+.options label {
+  display: inline-block;
+  margin-right: 18px;
+  cursor: pointer;
+  padding: 2px 6px 2px 2px;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.options label:hover {
+  background: #eef4fb;
+}
+.options label.wrong-answer {
+  background: #ffe0e0;
+  text-decoration: line-through;
+  color: #c00;
+}
+.options label.correct-answer {
+  background: #dff0d8;
+  color: #1a6b1a;
+}
+.options input[type="radio"],
+.options input[type="checkbox"] {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.options.multi label {
+  display: block;
+  margin-bottom: 2px;
+}
+.fill-blank {
+  display: inline-block;
+  border: none;
+  border-bottom: 1px solid #555;
+  width: 100px;
+  padding: 0 4px;
+  font-size: 14px;
+  font-family: inherit;
+  text-align: center;
+  background: transparent;
+  margin: 0 2px;
+}
+.fill-blank.show-answer {
+  border-bottom-color: #2b7bbe;
+  color: #1a6b1a;
+}
+.fill-blank.wrong {
+  border-bottom-color: #c00;
+  color: #c00;
+  background: #fff0f0;
+}
+.fill-group {
+  margin: 6px 0 6px 22px;
+}
+.fill-group .fill-item {
+  margin: 4px 0;
+}
+.calc-box {
+  margin: 6px 0 6px 22px;
+}
+.calc-box textarea {
+  width: 100%;
+  min-height: 70px;
+  padding: 8px 10px;
+  font-family: '瀹嬩綋', 'SimSun', serif;
+  font-size: 14px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  resize: vertical;
+  background: #fafafa;
+}
+.calc-box textarea:focus {
+  border-color: #2b7bbe;
+  outline: none;
+  background: #fff;
+}
+.answer-reveal {
+  display: none;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: #f5f8fc;
+  border-left: 3px solid #2b7bbe;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #1a3a5c;
+  line-height: 1.8;
+}
+.answer-reveal.show {
+  display: block;
+}
+.answer-reveal .step {
+  margin: 2px 0;
+}
+.answer-reveal .step-label {
+  font-weight: bold;
+  color: #2b7bbe;
+}
+.score-bar {
+  background: #f0f4f8;
+  border: 1px solid #d0d8e0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: 14px;
+}
+.score-bar .score-item {
+  display: flex;
+  align-items: center;
+}
+.score-bar .score-item .label {
+  color: #555;
+  margin-right: 4px;
+}
+.score-bar .score-item .value {
+  font-weight: bold;
+  font-size: 16px;
+  color: #1a3a5c;
+}
+.score-bar .score-item .value.highlight {
+  color: #2b7bbe;
+}
+.submit-area {
+  text-align: center;
+  margin: 25px 0 10px 0;
+  padding-top: 18px;
+  border-top: 1px dashed #ccc;
+}
+.submit-area .hint {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 10px;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 36px;
+  font-size: 16px;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #2b7bbe;
+  color: #fff;
+  transition: background 0.2s;
+  letter-spacing: 2px;
+}
+.btn:hover { background: #1f5f96; }
+.btn:active { background: #15466e; }
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.show {
+  display: flex;
+}
+.modal-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 28px 36px;
+  width: 360px;
+  max-width: 90%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  text-align: center;
+}
+.modal-box h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #1a3a5c;
+}
+.modal-box .pw-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 18px;
+  font-family: inherit;
+  border: 2px solid #d0d8e0;
+  border-radius: 5px;
+  text-align: center;
+  letter-spacing: 6px;
+  margin-bottom: 16px;
+  outline: none;
+}
+.modal-box .pw-input:focus {
+  border-color: #2b7bbe;
+}
+.modal-box .pw-error {
+  color: #c00;
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: none;
+}
+.modal-box .pw-error.show {
+  display: block;
+}
+.modal-box .btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.modal-box .btn-group .btn {
+  padding: 8px 24px;
+  font-size: 14px;
+}
+.modal-box .btn-group .btn-cancel {
+  background: #999;
+}
+.modal-box .btn-group .btn-cancel:hover {
+  background: #777;
+}
+.footer-note {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper { box-shadow: none; padding: 20px 30px; }
+  .score-bar { display: none; }
+  .submit-area { display: none; }
+  .modal-overlay { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="paper" id="testPaper">
+  <!-- HEADER -->
+  <div class="header">
+    <h1>楂樹竴鍖栧路蹇呬慨绗竴鍐?/h1>
+    <div class="subtitle">
+      <span>绗簩绔?2.3 鐗╄川鐨勯噺</span>
+      <span>婊″垎锛?00鍒?/span>
+      <span>鏃堕棿锛?5鍒嗛挓</span>
+    </div>
+  </div>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div>濮撳悕锛?span class="line"></span></div>
+    <div>鐝骇锛?span class="line"></span></div>
+    <div>寰楀垎锛?span id="totalScoreDisplay">___</span></div>
+  </div>
+
+  <!-- SCORE BAR -->
+  <div class="score-bar" id="scoreBar">
+    <div class="score-item"><span class="label">鍗曢€夐</span><span class="value" id="scoreSingle">0</span><span class="label">/36</span></div>
+    <div class="score-item"><span class="label">澶氶€夐</span><span class="value" id="scoreMulti">0</span><span class="label">/12</span></div>
+    <div class="score-item"><span class="label">濉┖棰?/span><span class="value" id="scoreFill">0</span><span class="label">/16</span></div>
+    <div class="score-item"><span class="label">璁＄畻棰?/span><span class="value" id="scoreCalc">0</span><span class="label">/36</span></div>
+    <div class="score-item"><span class="label" style="font-weight:bold;">鎬诲垎</span><span class="value highlight" id="scoreTotal">0</span><span class="label">/100</span></div>
+  </div>
+
+  <!-- ==================== 涓€銆佸崟閫夐 ==================== -->
+  <div class="section-title">涓€銆佸崟閫夐锛堝叡12灏忛锛屾瘡灏忛3鍒嗭紝鍏?6鍒嗐€傛瘡灏忛鍙湁涓€涓€夐」绗﹀悎棰樻剰銆傦級</div>
+
+  <!-- Q1 -->
+  <div class="question" id="q1">
+    <div class="q-text"><span class="q-label">1.</span>涓嬪垪鍙欒堪姝ｇ‘鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q1" data-type="single">
+      <label><input type="radio" name="q1" value="0"> A. 鎽╁皵鏄浗闄呭崟浣嶅埗涓竷涓熀鏈墿鐞嗛噺涔嬩竴</label>
+      <label><input type="radio" name="q1" value="1"> B. 鐗╄川鐨勯噺鏄〃绀哄惈鏈変竴瀹氭暟鐩矑瀛愮殑闆嗗悎浣?/label>
+      <label><input type="radio" name="q1" value="2"> C. 1 mol 浠讳綍鐗╄川閮藉惈鏈夌害 $6.02 \times 10^{23}$ 涓師瀛?/label>
+      <label><input type="radio" name="q1" value="3"> D. 鐗╄川鐨勯噺鏄浗闄呭崟浣嶅埗涓竷涓熀鏈墿鐞嗛噺涔嬩竴</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q1">
+      <strong>绛旀锛欴</strong><br>
+      A閿欒锛氭懇灏旀槸鐗╄川鐨勯噺鐨勫崟浣嶏紝涓嶆槸鍩烘湰鐗╃悊閲忥紱B閿欒锛氱墿璐ㄧ殑閲忔槸鐗╃悊閲忥紝涓嶆槸闆嗗悎浣擄紱C閿欒锛? mol 浠讳綍鐗╄川鍚湁鐨勭矑瀛愭暟绾︿负 $6.02 \times 10^{23}$锛屼絾涓嶄竴瀹氭槸鍘熷瓙锛堝 $\ce{O2}$ 鍚垎瀛愶級銆?    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question" id="q2">
+    <div class="q-text"><span class="q-label">2.</span>璁?$N_{\ce{A}}$ 琛ㄧず闃夸紡鍔犲痉缃楀父鏁扮殑鍊硷紝涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q2" data-type="single">
+      <label><input type="radio" name="q2" value="0"> A. 1 mol $\ce{O2}$ 鍚湁鐨勭數瀛愭暟涓?$16N_{\ce{A}}$</label>
+      <label><input type="radio" name="q2" value="1"> B. 鏍囧噯鐘跺喌涓嬶紝22.4 L $\ce{H2O}$ 鍚湁鐨勫垎瀛愭暟涓?$N_{\ce{A}}$</label>
+      <label><input type="radio" name="q2" value="2"> C. 1 L 1 mol/L $\ce{NaCl}$ 婧舵恫涓惈鏈?$N_{\ce{A}}$ 涓?$\ce{Na+}$</label>
+      <label><input type="radio" name="q2" value="3"> D. 1 mol $\ce{Fe}$ 涓庤冻閲?$\ce{Cl2}$ 鍙嶅簲锛岃浆绉荤數瀛愭暟涓?$2N_{\ce{A}}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q2">
+      <strong>绛旀锛欳</strong><br>
+      A閿欒锛?涓?$\ce{O2}$ 鍚?6涓數瀛愶紝1 mol $\ce{O2}$ 鍚?$16N_{\ce{A}}$ 涓數瀛愶紱B閿欒锛氭爣鍑嗙姸鍐典笅 $\ce{H2O}$ 涓洪潪姘旀€侊紱C姝ｇ‘锛?n(\ce{Na+}) = 1\ \text{L} \times 1\ \text{mol/L} = 1\ \text{mol}$锛汥閿欒锛?\ce{Fe} \to \ce{Fe^{3+}}$锛岃浆绉?$3N_{\ce{A}}$ 涓數瀛愩€?    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question" id="q3">
+    <div class="q-text"><span class="q-label">3.</span>涓嬪垪鐗╄川涓紝鎽╁皵璐ㄩ噺鏈€澶х殑鏄紙 锛?/div>
+    <div class="options" data-q="q3" data-type="single">
+      <label><input type="radio" name="q3" value="0"> A. $\ce{H2O}$</label>
+      <label><input type="radio" name="q3" value="1"> B. $\ce{CO2}$</label>
+      <label><input type="radio" name="q3" value="2"> C. $\ce{H2SO4}$</label>
+      <label><input type="radio" name="q3" value="3"> D. $\ce{NaOH}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q3">
+      <strong>绛旀锛欳</strong><br>
+      $M(\ce{H2O}) = 18\ \text{g/mol}$锛?M(\ce{CO2}) = 44\ \text{g/mol}$锛?M(\ce{H2SO4}) = 98\ \text{g/mol}$锛?M(\ce{NaOH}) = 40\ \text{g/mol}$銆?br>
+      $\ce{H2SO4}$ 鐨勬懇灏旇川閲忔渶澶с€?    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question" id="q4">
+    <div class="q-text"><span class="q-label">4.</span>鏍囧噯鐘跺喌涓嬶紝涓嬪垪鐗╄川涓綋绉渶澶х殑鏄紙 锛?/div>
+    <div class="options" data-q="q4" data-type="single">
+      <label><input type="radio" name="q4" value="0"> A. 1 g $\ce{H2}$</label>
+      <label><input type="radio" name="q4" value="1"> B. 1 g $\ce{O2}$</label>
+      <label><input type="radio" name="q4" value="2"> C. 1 g $\ce{CO2}$</label>
+      <label><input type="radio" name="q4" value="3"> D. 1 g $\ce{H2O}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q4">
+      <strong>绛旀锛欰</strong><br>
+      鏍囧噯鐘跺喌涓嬶紝姘斾綋浣撶Н $V = n \times 22.4\ \text{L/mol}$锛?n = m/M$銆傚悓璐ㄩ噺鏃讹紝鎽╁皵璐ㄩ噺瓒婂皬锛岀墿璐ㄧ殑閲忚秺澶э紝浣撶Н瓒婂ぇ銆?br>
+      $M(\ce{H2}) = 2\ \text{g/mol}$ 鏈€灏忥紝鏁?$n(\ce{H2})$ 鏈€澶э紝$V(\ce{H2})$ 鏈€澶с€?\ce{H2O}$ 鍦ㄦ爣鍑嗙姸鍐典笅涓洪潪姘旀€侊紝浣撶Н鏈€灏忋€?    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question" id="q5">
+    <div class="q-text"><span class="q-label">5.</span>璁?$N_{\ce{A}}$ 涓洪樋浼忓姞寰风綏甯告暟鐨勫€硷紝涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q5" data-type="single">
+      <label><input type="radio" name="q5" value="0"> A. 鏍囧噯鐘跺喌涓嬶紝22.4 L $\ce{CCl4}$ 涓惈鏈夌殑鍒嗗瓙鏁颁负 $N_{\ce{A}}$</label>
+      <label><input type="radio" name="q5" value="1"> B. 0.1 mol/L $\ce{Na2SO4}$ 婧舵恫涓紝$\ce{Na+}$ 鏁扮洰涓?$0.2N_{\ce{A}}$</label>
+      <label><input type="radio" name="q5" value="2"> C. 1 mol $\ce{Cl2}$ 涓庤冻閲?$\ce{Fe}$ 鍙嶅簲锛岃浆绉荤數瀛愭暟涓?$2N_{\ce{A}}$</label>
+      <label><input type="radio" name="q5" value="3"> D. 甯告俯甯稿帇涓嬶紝16 g $\ce{O3}$ 涓惈鏈夌殑姘у師瀛愭暟涓?$N_{\ce{A}}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q5">
+      <strong>绛旀锛欴</strong><br>
+      A閿欒锛?\ce{CCl4}$ 鍦ㄦ爣鍑嗙姸鍐典笅涓烘恫浣擄紝涓嶆槸姘斾綋锛汢閿欒锛氭棤婧舵恫浣撶Н锛屾棤娉曡绠楃瀛愭暟鐩紱C閿欒锛?\ce{Cl2} \to 2\ce{Cl-}$锛岃浆绉?$2N_{\ce{A}}$ 涓數瀛愶紙姝ｇ‘琛ㄨ堪搴斾负 $2N_{\ce{A}}$锛夛紱D姝ｇ‘锛?n(\ce{O3}) = \frac{16}{48} = \frac{1}{3}\ \text{mol}$锛?n(\ce{O}) = \frac{1}{3} \times 3 = 1\ \text{mol}$锛屽嵆 $N_{\ce{A}}$ 涓哀鍘熷瓙銆?    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question" id="q6">
+    <div class="q-text"><span class="q-label">6.</span>璁?$N_{\ce{A}}$ 涓洪樋浼忓姞寰风綏甯告暟鐨勫€硷紝涓嬪垪鍙欒堪閿欒鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q6" data-type="single">
+      <label><input type="radio" name="q6" value="0"> A. 1 mol $\ce{Na2O2}$ 涓庤冻閲?$\ce{H2O}$ 鍙嶅簲锛岃浆绉荤數瀛愭暟涓?$N_{\ce{A}}$</label>
+      <label><input type="radio" name="q6" value="1"> B. 鏍囧噯鐘跺喌涓嬶紝2.24 L $\ce{CO2}$ 涓惈鏈夌殑姘у師瀛愭暟涓?$0.2N_{\ce{A}}$</label>
+      <label><input type="radio" name="q6" value="2"> C. 1 L 0.5 mol/L $\ce{H2SO4}$ 婧舵恫涓紝$\ce{H+}$ 鏁扮洰涓?$N_{\ce{A}}$</label>
+      <label><input type="radio" name="q6" value="3"> D. 甯告俯甯稿帇涓嬶紝1.12 L $\ce{O2}$ 涓惈鏈夌殑鍒嗗瓙鏁颁负 $0.05N_{\ce{A}}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q6">
+      <strong>绛旀锛欴</strong><br>
+      A姝ｇ‘锛?\ce{2Na2O2 + 2H2O -> 4NaOH + O2 ^}$锛?\ce{Na2O2}$ 涓璒涓?1浠凤紝姝у寲涓?浠峰拰-2浠凤紝1 mol $\ce{Na2O2}$ 杞Щ1 mol鐢靛瓙锛汢姝ｇ‘锛?n(\ce{CO2}) = 2.24/22.4 = 0.1\ \text{mol}$锛?n(\ce{O}) = 0.2\ \text{mol}$锛汣姝ｇ‘锛?n(\ce{H+}) = 0.5 \times 2 \times 1 = 1\ \text{mol}$锛?br>
+      D閿欒锛氬父娓╁父鍘嬩笅姘斾綋鎽╁皵浣撶Н涓嶆槸22.4 L/mol锛屼笉鑳界敤璇ユ暟鍊艰绠椼€?    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question" id="q7">
+    <div class="q-text"><span class="q-label">7.</span>璁?$N_{\ce{A}}$ 涓洪樋浼忓姞寰风綏甯告暟鐨勫€硷紝涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q7" data-type="single">
+      <label><input type="radio" name="q7" value="0"> A. 0.1 mol $\ce{N2}$ 涓?0.3 mol $\ce{H2}$ 鍏呭垎鍙嶅簲锛岀敓鎴?$\ce{NH3}$ 鍒嗗瓙鏁颁负 $0.2N_{\ce{A}}$</label>
+      <label><input type="radio" name="q7" value="1"> B. 1 L 0.1 mol/L $\ce{CH3COOH}$ 婧舵恫涓紝$\ce{H+}$ 鏁扮洰涓?$0.1N_{\ce{A}}$</label>
+      <label><input type="radio" name="q7" value="2"> C. 1 mol $\ce{Na}$ 涓庤冻閲?$\ce{O2}$ 鍙嶅簲鐢熸垚 $\ce{Na2O2}$锛岃浆绉荤數瀛愭暟涓?$N_{\ce{A}}$</label>
+      <label><input type="radio" name="q7" value="3"> D. 鏍囧噯鐘跺喌涓嬶紝2.24 L 涔欓唶涓惈鏈夌殑鍒嗗瓙鏁颁负 $0.1N_{\ce{A}}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q7">
+      <strong>绛旀锛欳</strong><br>
+      A閿欒锛?\ce{N2 + 3H2 <=> 2NH3}$ 涓哄彲閫嗗弽搴旓紝涓嶈兘杩涜鍒板簳锛汢閿欒锛?\ce{CH3COOH}$ 涓哄急閰革紝閮ㄥ垎鐢电锛汣姝ｇ‘锛?\ce{Na} \to \ce{Na+}$锛? mol Na 澶卞幓1 mol鐢靛瓙锛汥閿欒锛氫箼閱囧湪鏍囧噯鐘跺喌涓嬩负娑蹭綋锛屼笉鏄皵浣撱€?    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question" id="q8">
+    <div class="q-text"><span class="q-label">8.</span>涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q8" data-type="single">
+      <label><input type="radio" name="q8" value="0"> A. 1 mol $\ce{O2}$ 鐨勮川閲忎负 32 g/mol</label>
+      <label><input type="radio" name="q8" value="1"> B. 32 g $\ce{O2}$ 涓惈鏈夌殑鍒嗗瓙鏁扮害涓?$6.02 \times 10^{23}$</label>
+      <label><input type="radio" name="q8" value="2"> C. $\ce{O2}$ 鐨勬懇灏旇川閲忎负 32 g</label>
+      <label><input type="radio" name="q8" value="3"> D. 1 mol $\ce{O2}$ 鐨勪綋绉竴瀹氫负 22.4 L</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q8">
+      <strong>绛旀锛欱</strong><br>
+      A閿欒锛氳川閲忕殑鍗曚綅涓?g锛屼笉鏄?g/mol锛汢姝ｇ‘锛?n(\ce{O2}) = 32/32 = 1\ \text{mol}$锛屽垎瀛愭暟 $= N_{\ce{A}} \approx 6.02 \times 10^{23}$锛汣閿欒锛氭懇灏旇川閲忕殑鍗曚綅涓?g/mol锛汥閿欒锛氫綋绉彈娓╁害鍜屽帇寮哄奖鍝嶏紝涓嶄竴瀹氫负22.4 L銆?    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question" id="q9">
+    <div class="q-text"><span class="q-label">9.</span>灏?4 g $\ce{NaOH}$ 鍥轰綋婧朵簬姘撮厤鎴?100 mL 婧舵恫锛岃婧舵恫涓?$\ce{NaOH}$ 鐨勭墿璐ㄧ殑閲忔祿搴︿负锛?锛?/div>
+    <div class="options" data-q="q9" data-type="single">
+      <label><input type="radio" name="q9" value="0"> A. 0.1 mol/L</label>
+      <label><input type="radio" name="q9" value="1"> B. 0.5 mol/L</label>
+      <label><input type="radio" name="q9" value="2"> C. 1.0 mol/L</label>
+      <label><input type="radio" name="q9" value="3"> D. 4.0 mol/L</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q9">
+      <strong>绛旀锛欳</strong><br>
+      $n(\ce{NaOH}) = \dfrac{4\ \text{g}}{40\ \text{g/mol}} = 0.1\ \text{mol}$<br>
+      $c(\ce{NaOH}) = \dfrac{0.1\ \text{mol}}{0.1\ \text{L}} = 1.0\ \text{mol/L}$
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="question" id="q10">
+    <div class="q-text"><span class="q-label">10.</span>閰嶅埗 500 mL 0.1 mol/L $\ce{Na2CO3}$ 婧舵恫锛屾纭殑鎿嶄綔椤哄簭鏄紙 锛?/div>
+    <div class="options" data-q="q10" data-type="single">
+      <label><input type="radio" name="q10" value="0"> A. 璁＄畻鈫掔О閲忊啋婧惰В鈫掔Щ娑测啋瀹氬鈫掓礂娑も啋鎽囧寑</label>
+      <label><input type="radio" name="q10" value="1"> B. 璁＄畻鈫掔О閲忊啋婧惰В鈫掔Щ娑测啋娲楁钉鈫掑畾瀹光啋鎽囧寑</label>
+      <label><input type="radio" name="q10" value="2"> C. 璁＄畻鈫掔О閲忊啋婧惰В鈫掓礂娑も啋绉绘恫鈫掑畾瀹光啋鎽囧寑</label>
+      <label><input type="radio" name="q10" value="3"> D. 绉伴噺鈫掕绠椻啋婧惰В鈫掔Щ娑测啋娲楁钉鈫掑畾瀹光啋鎽囧寑</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q10">
+      <strong>绛旀锛欱</strong><br>
+      姝ｇ‘椤哄簭锛氳绠椻啋绉伴噺鈫掓憾瑙ｏ紙鍐峰嵈鑷冲娓╋級鈫掔Щ娑诧紙杞Щ鍒板閲忕摱锛夆啋娲楁钉锛堟礂娑ょ儳鏉拰鐜荤拑妫掞紝娲楁钉娑叉敞鍏ュ閲忕摱锛夆啋瀹氬鈫掓憞鍖€銆?br>
+      A閿欒锛氬畾瀹瑰湪娲楁钉涔嬪墠锛汣閿欒锛氭礂娑ゅ湪绉绘恫涔嬪墠锛汥閿欒锛氳绠楀湪绉伴噺涔嬪墠銆?    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="question" id="q11">
+    <div class="q-text"><span class="q-label">11.</span>閰嶅埗涓€瀹氱墿璐ㄧ殑閲忔祿搴︾殑婧舵恫鏃讹紝涓嬪垪鎿嶄綔浣挎墍閰嶆憾娑叉祿搴﹀亸楂樼殑鏄紙 锛?/div>
+    <div class="options" data-q="q11" data-type="single">
+      <label><input type="radio" name="q11" value="0"> A. 瀹氬鏃朵刊瑙嗗埢搴︾嚎</label>
+      <label><input type="radio" name="q11" value="1"> B. 鏈礂娑ょ儳鏉拰鐜荤拑妫?/label>
+      <label><input type="radio" name="q11" value="2"> C. 鎽囧寑鍚庢恫闈綆浜庡埢搴︾嚎锛屽啀鍔犳按鑷冲埢搴︾嚎</label>
+      <label><input type="radio" name="q11" value="3"> D. 鐢ㄦ墭鐩樺ぉ骞崇О閲忔椂锛屽乏鐮佸彸鐗╋紙浣跨敤浜嗘父鐮侊級</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q11">
+      <strong>绛旀锛欰</strong><br>
+      A姝ｇ‘锛氫刊瑙嗗鑷村疄闄呬綋绉亸灏忥紝鏍规嵁 $c = n/V$锛?V$ 鍋忓皬锛?c$ 鍋忛珮锛?br>
+      B閿欒锛氭湭娲楁钉瀵艰嚧婧惰川鎹熷け锛?n$ 鍋忓皬锛?c$ 鍋忎綆锛汣閿欒锛氳ˉ鍔犳按浣?$V$ 鍋忓ぇ锛?c$ 鍋忎綆锛汥閿欒锛氬乏鐮佸彸鐗╀娇绉伴噺鐨勬憾璐ㄨ川閲忓亸灏忥紙浣跨敤浜嗘父鐮侊級锛?n$ 鍋忓皬锛?c$ 鍋忎綆銆?    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="question" id="q12">
+    <div class="q-text"><span class="q-label">12.</span>璁?$N_{\ce{A}}$ 涓洪樋浼忓姞寰风綏甯告暟鐨勫€硷紝涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?锛?/div>
+    <div class="options" data-q="q12" data-type="single">
+      <label><input type="radio" name="q12" value="0"> A. 0.1 mol $\ce{Na2CO3.10H2O}$ 鏅朵綋涓惈鏈夌殑 $\ce{CO3^{2-}}$ 鏁扮洰涓?$0.1N_{\ce{A}}$</label>
+      <label><input type="radio" name="q12" value="1"> B. 1 L 0.1 mol/L $\ce{NaHCO3}$ 婧舵恫涓紝$\ce{HCO3-}$ 鏁扮洰涓?$0.1N_{\ce{A}}$</label>
+      <label><input type="radio" name="q12" value="2"> C. 鏍囧噯鐘跺喌涓嬶紝22.4 L 鑻腑鍚湁鐨勫垎瀛愭暟涓?$N_{\ce{A}}$</label>
+      <label><input type="radio" name="q12" value="3"> D. 0.1 mol/L $\ce{AlCl3}$ 婧舵恫涓紝$\ce{Cl-}$ 鏁扮洰涓?$0.3N_{\ce{A}}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q12">
+      <strong>绛旀锛欰</strong><br>
+      A姝ｇ‘锛氭櫠浣撲腑 $\ce{CO3^{2-}}$ 涓嶆按瑙ｏ紝$n(\ce{CO3^{2-}}) = 0.1\ \text{mol}$锛汢閿欒锛?\ce{HCO3-}$ 鍦ㄦ憾娑蹭腑鏃㈢數绂诲張姘磋В锛屾暟鐩皬浜?$0.1N_{\ce{A}}$锛汣閿欒锛氳嫰鍦ㄦ爣鍑嗙姸鍐典笅涓烘恫浣擄紝涓嶆槸姘斾綋锛汥閿欒锛氭棤婧舵恫浣撶Н锛屾棤娉曡绠椼€?    </div>
+  </div>
+
+  <!-- ==================== 浜屻€佸閫夐 ==================== -->
+  <div class="section-title">浜屻€佸閫夐锛堝叡3灏忛锛屾瘡灏忛4鍒嗭紝鍏?2鍒嗐€傛瘡灏忛鏈夊涓€夐」绗﹀悎棰樻剰锛屽叏閮ㄩ€夊寰?鍒嗭紝閫夊浣嗕笉鍏ㄥ緱2鍒嗭紝鏈夐€夐敊寰?鍒嗐€傦級</div>
+
+  <!-- Q13 -->
+  <div class="question" id="q13">
+    <div class="q-text"><span class="q-label">13.</span>閰嶅埗涓€瀹氱墿璐ㄧ殑閲忔祿搴︾殑 $\ce{NaOH}$ 婧舵恫鏃讹紝涓嬪垪浠櫒涓笉闇€瑕佺敤鍒扮殑鏄紙 锛夛紙澶氶€夛級</div>
+    <div class="options multi" data-q="q13" data-type="multi" data-answer='[1,3]'>
+      <label><input type="checkbox" name="q13" value="0"> A. 鎵樼洏澶╁钩</label>
+      <label><input type="checkbox" name="q13" value="1"> B. 鍦嗗簳鐑х摱</label>
+      <label><input type="checkbox" name="q13" value="2"> C. 瀹归噺鐡?/label>
+      <label><input type="checkbox" name="q13" value="3"> D. 婕忔枟</label>
+      <label><input type="checkbox" name="q13" value="4"> E. 鑳跺ご婊寸</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q13">
+      <strong>绛旀锛欱銆丏</strong><br>
+      閰嶅埗涓€瀹氱墿璐ㄧ殑閲忔祿搴︽憾娑叉墍闇€浠櫒锛氭墭鐩樺ぉ骞筹紙绉伴噺锛夈€佺儳鏉紙婧惰В锛夈€佺幓鐠冩锛堟悈鎷?寮曟祦锛夈€佸閲忕摱锛堝畾瀹癸級銆佽兌澶存淮绠★紙瀹氬锛夈€侀噺绛掞紙閲忓彇姘达級銆?br>
+      鍦嗗簳鐑х摱鍜屾紡鏂椾笉闇€瑕佷娇鐢ㄣ€?    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="question" id="q14">
+    <div class="q-text"><span class="q-label">14.</span>璁?$N_{\ce{A}}$ 涓洪樋浼忓姞寰风綏甯告暟鐨勫€硷紝涓嬪垪璇存硶閿欒鐨勬槸锛?锛夛紙澶氶€夛級</div>
+    <div class="options multi" data-q="q14" data-type="multi" data-answer='[0,3]'>
+      <label><input type="checkbox" name="q14" value="0"> A. 0.1 mol/L $\ce{Na2CO3}$ 婧舵恫涓紝$\ce{Na+}$ 鏁扮洰涓?$0.2N_{\ce{A}}$</label>
+      <label><input type="checkbox" name="q14" value="1"> B. 鏍囧噯鐘跺喌涓嬶紝11.2 L 姘︽皵鍚湁鐨勫師瀛愭暟涓?$0.5N_{\ce{A}}$</label>
+      <label><input type="checkbox" name="q14" value="2"> C. 1 mol $\ce{Cl2}$ 涓庤冻閲?$\ce{NaOH}$ 婧舵恫鍙嶅簲锛岃浆绉荤數瀛愭暟涓?$N_{\ce{A}}$</label>
+      <label><input type="checkbox" name="q14" value="3"> D. 0.1 mol $\ce{H2}$ 鍜?0.1 mol $\ce{I2}$ 鍏呭垎鍙嶅簲鍚庯紝$\ce{HI}$ 鍒嗗瓙鏁颁负 $0.2N_{\ce{A}}$</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q14">
+      <strong>绛旀锛欰銆丏</strong><br>
+      A閿欒锛氭棤婧舵恫浣撶Н锛屾棤娉曡绠楃瀛愭暟鐩紱B姝ｇ‘锛氭唉姘斾负鍗曞師瀛愬垎瀛愶紝$n(\ce{He}) = 11.2/22.4 = 0.5\ \text{mol}$锛屽師瀛愭暟涓?$0.5N_{\ce{A}}$锛汣姝ｇ‘锛?\ce{Cl2 + 2NaOH -> NaCl + NaClO + H2O}$锛孋l 鍙戠敓姝у寲锛? mol $\ce{Cl2}$ 杞Щ1 mol鐢靛瓙锛汥閿欒锛?\ce{H2 + I2 <=> 2HI}$ 涓哄彲閫嗗弽搴旓紝涓嶈兘瀹屽叏杞寲銆?    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="question" id="q15">
+    <div class="q-text"><span class="q-label">15.</span>涓嬪垪璇存硶姝ｇ‘鐨勬槸锛?锛夛紙澶氶€夛級</div>
+    <div class="options multi" data-q="q15" data-type="multi" data-answer='[0,1,2]'>
+      <label><input type="checkbox" name="q15" value="0"> A. 1 mol $\ce{H2O}$ 鐨勮川閲忎负 18 g</label>
+      <label><input type="checkbox" name="q15" value="1"> B. $\ce{H2O}$ 鐨勬懇灏旇川閲忎负 18 g路mol$^{-1}$</label>
+      <label><input type="checkbox" name="q15" value="2"> C. 18 g $\ce{H2O}$ 涓惈鏈夌殑鍒嗗瓙鏁扮害涓?$6.02 \times 10^{23}$</label>
+      <label><input type="checkbox" name="q15" value="3"> D. 1 mol $\ce{H2O}$ 鐨勪綋绉害涓?22.4 L</label>
+    </div>
+    <div class="answer-reveal" id="reveal-q15">
+      <strong>绛旀锛欰銆丅銆丆</strong><br>
+      A姝ｇ‘锛?m(\ce{H2O}) = 1\ \text{mol} \times 18\ \text{g/mol} = 18\ \text{g}$锛汢姝ｇ‘锛氭懇灏旇川閲忓崟浣嶄负 g/mol锛汣姝ｇ‘锛?n(\ce{H2O}) = 18/18 = 1\ \text{mol}$锛屽垎瀛愭暟 $= N_{\ce{A}}$锛汥閿欒锛氭爣鍑嗙姸鍐典笅姘翠负娑蹭綋鎴栧浐浣擄紝涓嶉€傜敤姘斾綋鎽╁皵浣撶Н銆?    </div>
+  </div>
+
+  <!-- ==================== 涓夈€佸～绌洪 ==================== -->
+  <div class="section-title">涓夈€佸～绌洪锛堝叡4灏忛锛屾瘡灏忛4鍒嗭紝鍏?6鍒嗐€傦級</div>
+
+  <!-- Q16 -->
+  <div class="question" id="q16">
+    <div class="q-text"><span class="q-label">16.</span>锛?鍒嗭級濉┖锛?/div>
+    <div class="fill-group">
+      <div class="fill-item">
+        (1) 0.5 mol $\ce{H2SO4}$ 涓惈鏈?<input class="fill-blank" id="fill16_1" data-answers='["2"]' data-points="1.5" type="text" placeholder="___"> mol O 鍘熷瓙锛屽惈鏈?<input class="fill-blank" id="fill16_2" data-answers='["1"]' data-points="0.5" type="text" placeholder="___"> mol H 鍘熷瓙銆?      </div>
+      <div class="fill-item">
+        (2) 鍚?0.4 mol $\ce{Al^{3+}}$ 鐨?$\ce{Al2(SO4)3}$ 涓紝$\ce{SO4^{2-}}$ 鐨勭墿璐ㄧ殑閲忎负 <input class="fill-blank" id="fill16_3" data-answers='["0.6"]' data-points="2" type="text" placeholder="___"> mol銆?      </div>
+    </div>
+    <div class="answer-reveal" id="reveal-q16">
+      <strong>绛旀锛?/strong><br>
+      (1) $n(\ce{O}) = 0.5 \times 4 = 2\ \text{mol}$锛?n(\ce{H}) = 0.5 \times 2 = 1\ \text{mol}$<br>
+      (2) $n(\ce{Al^{3+}}) : n(\ce{SO4^{2-}}) = 2 : 3$锛?n(\ce{SO4^{2-}}) = 0.4 \times \dfrac{3}{2} = 0.6\ \text{mol}$
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="question" id="q17">
+    <div class="q-text"><span class="q-label">17.</span>锛?鍒嗭級閰嶅埗 100 mL 1.00 mol/L $\ce{NaCl}$ 婧舵恫锛?/div>
+    <div class="fill-group">
+      <div class="fill-item">
+        (1) 闇€瑕佺О閲?$\ce{NaCl}$ 鍥轰綋 <input class="fill-blank" id="fill17_1" data-answers='["5.85"]' data-points="2" type="text" placeholder="___"> g銆傦紙$M(\ce{NaCl}) = 58.5\ \text{g/mol}$锛?      </div>
+      <div class="fill-item">
+        (2) 鑻ュ疄楠屼腑鏈礂娑ょ儳鏉拰鐜荤拑妫掞紝鎵€閰嶆憾娑叉祿搴?<input class="fill-blank" id="fill17_2" data-answers='["鍋忎綆"]' data-points="2" type="text" placeholder="___">锛堝～"鍋忛珮""鍋忎綆""鏃犲奖鍝?锛夈€?      </div>
+    </div>
+    <div class="answer-reveal" id="reveal-q17">
+      <strong>绛旀锛?/strong><br>
+      (1) $n(\ce{NaCl}) = 0.1\ \text{L} \times 1.00\ \text{mol/L} = 0.1\ \text{mol}$锛?m(\ce{NaCl}) = 0.1 \times 58.5 = 5.85\ \text{g}$<br>
+      (2) 鍋忎綆锛堟湭娲楁钉瀵艰嚧閮ㄥ垎婧惰川娈嬬暀鍦ㄧ儳鏉拰鐜荤拑妫掍笂锛?n$ 鍋忓皬锛?c$ 鍋忎綆锛?    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="question" id="q18">
+    <div class="q-text"><span class="q-label">18.</span>锛?鍒嗭級濉┖锛?/div>
+    <div class="fill-group">
+      <div class="fill-item">
+        (1) 鏍囧噯鐘跺喌涓嬶紝4.48 L $\ce{CH4}$ 鐨勭墿璐ㄧ殑閲忎负 <input class="fill-blank" id="fill18_1" data-answers='["0.2"]' data-points="1" type="text" placeholder="___"> mol锛屽惈鏈?<input class="fill-blank" id="fill18_2" data-answers='["0.8NA","0.8N_A","4.816e23","4.816脳10^23","4.816脳10虏鲁"]' data-points="1.5" type="text" placeholder="___"> 涓阿鍘熷瓙銆?      </div>
+      <div class="fill-item">
+        (2) 鏍囧噯鐘跺喌涓嬶紝2.24 L $\ce{CO2}$ 涓?<input class="fill-blank" id="fill18_3" data-answers='["3.2"]' data-points="1.5" type="text" placeholder="___"> g $\ce{O2}$ 鎵€鍚殑姘у師瀛愭暟鐩稿悓銆?      </div>
+    </div>
+    <div class="answer-reveal" id="reveal-q18">
+      <strong>绛旀锛?/strong><br>
+      (1) $n(\ce{CH4}) = 4.48/22.4 = 0.2\ \text{mol}$锛?n(\ce{H}) = 0.2 \times 4 = 0.8\ \text{mol}$锛?\ce{H}$ 鍘熷瓙鏁?$= 0.8N_{\ce{A}} \approx 4.816 \times 10^{23}$<br>
+      (2) $n(\ce{CO2}) = 2.24/22.4 = 0.1\ \text{mol}$锛?n(\ce{O}) = 0.2\ \text{mol}$锛岄渶 $n(\ce{O2}) = 0.1\ \text{mol}$锛?m(\ce{O2}) = 0.1 \times 32 = 3.2\ \text{g}$
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="question" id="q19">
+    <div class="q-text"><span class="q-label">19.</span>锛?鍒嗭級鍦ㄩ厤鍒朵竴瀹氱墿璐ㄧ殑閲忔祿搴︽憾娑茬殑瀹為獙涓細</div>
+    <div class="fill-group">
+      <div class="fill-item">
+        (1) 瀹氬鏃朵刊瑙嗗埢搴︾嚎锛屾墍閰嶆憾娑叉祿搴?<input class="fill-blank" id="fill19_1" data-answers='["鍋忛珮"]' data-points="2" type="text" placeholder="___">锛堝～"鍋忛珮""鍋忎綆""鏃犲奖鍝?锛夈€?      </div>
+      <div class="fill-item">
+        (2) 鐢ㄦ墭鐩樺ぉ骞崇О閲忔椂宸︾爜鍙崇墿锛堜娇鐢ㄤ簡娓哥爜锛夛紝鎵€閰嶆憾娑叉祿搴?<input class="fill-blank" id="fill19_2" data-answers='["鍋忎綆"]' data-points="2" type="text" placeholder="___">銆?      </div>
+    </div>
+    <div class="answer-reveal" id="reveal-q19">
+      <strong>绛旀锛?/strong><br>
+      (1) 鍋忛珮锛堜刊瑙?$\to V$ 鍋忓皬 $\to c$ 鍋忛珮锛?br>
+      (2) 鍋忎綆锛堝乏鐮佸彸鐗╀笖鐢ㄤ簡娓哥爜锛屽疄闄呯О閲忚川閲?$= m_{\text{鐮濈爜}} - m_{\text{娓哥爜}}$锛屾憾璐ㄨ川閲忓亸灏?$\to n$ 鍋忓皬 $\to c$ 鍋忎綆锛?    </div>
+  </div>
+
+  <!-- ==================== 鍥涖€佽绠楅 ==================== -->
+  <div class="section-title">鍥涖€佽绠楅锛堝叡3灏忛锛屾瘡灏忛12鍒嗭紝鍏?6鍒嗐€傞』鍐欏嚭蹇呰鐨勮绠楄繃绋嬨€傦級</div>
+
+  <!-- Q20 -->
+  <div class="question" id="q20">
+    <div class="q-text"><span class="q-label">20.</span>锛?2鍒嗭級鐜版湁鏍囧噯鐘跺喌涓?6.72 L $\ce{HCl}$ 姘斾綋锛岃璁＄畻锛?/div>
+    <div class="calc-box">
+      <div class="fill-item">(1) 璇ユ皵浣撶殑鐗╄川鐨勯噺锛涳紙3鍒嗭級</div>
+      <div class="fill-item">(2) 璇ユ皵浣撶殑璐ㄩ噺锛涳紙3鍒嗭級</div>
+      <div class="fill-item">(3) 灏嗚姘斾綋婧朵簬姘撮厤鎴?500 mL 鐩愰吀锛屾墍寰楃洂閰哥殑鐗╄川鐨勯噺娴撳害锛涳紙3鍒嗭級</div>
+      <div class="fill-item">(4) 璇ユ皵浣撲腑鍚湁 $\ce{HCl}$ 鍒嗗瓙鐨勬暟鐩€傦紙3鍒嗭級</div>
+      <textarea id="calc20" placeholder="璇峰湪姝ゅ啓鍑鸿绠楄繃绋?.." rows="6"></textarea>
+    </div>
+    <div class="answer-reveal" id="reveal-q20">
+      <div class="step"><span class="step-label">瑙ｏ細</span></div>
+      <div class="step">(1) $n(\ce{HCl}) = \dfrac{V}{V_m} = \dfrac{6.72\ \text{L}}{22.4\ \text{L/mol}} = 0.3\ \text{mol}$</div>
+      <div class="step">(2) $m(\ce{HCl}) = n \times M = 0.3\ \text{mol} \times 36.5\ \text{g/mol} = 10.95\ \text{g}$</div>
+      <div class="step">(3) $c(\ce{HCl}) = \dfrac{n}{V} = \dfrac{0.3\ \text{mol}}{0.5\ \text{L}} = 0.6\ \text{mol/L}$</div>
+      <div class="step">(4) $N(\ce{HCl}) = n \times N_{\ce{A}} = 0.3 \times 6.02 \times 10^{23} = 1.806 \times 10^{23}$锛堜釜锛?/div>
+    </div>
+  </div>
+
+  <!-- Q21 -->
+  <div class="question" id="q21">
+    <div class="q-text"><span class="q-label">21.</span>锛?2鍒嗭級瀹為獙瀹ら渶瑕侀厤鍒?500 mL 0.2 mol/L $\ce{Na2CO3}$ 婧舵恫锛岃鍥炵瓟锛?/div>
+    <div class="calc-box">
+      <div class="fill-item">(1) 闇€瑕佺О閲?$\ce{Na2CO3}$ 鐨勮川閲忎负澶氬皯鍏嬶紵锛?M(\ce{Na2CO3}) = 106\ \text{g/mol}$锛夛紙4鍒嗭級</div>
+      <div class="fill-item">(2) 绠€杩伴厤鍒舵楠や腑"绉绘恫"鍜?瀹氬"鐨勫叿浣撴搷浣溿€傦紙4鍒嗭級</div>
+      <div class="fill-item">(3) 瀹氬鍚庢憞鍖€鏃跺彂鐜版恫闈綆浜庡埢搴︾嚎锛屽張琛ュ姞灏戦噺姘磋嚦鍒诲害绾匡紝瀵瑰疄楠岀粨鏋滄湁浣曞奖鍝嶏紵绠€杩板師鍥犮€傦紙4鍒嗭級</div>
+      <textarea id="calc21" placeholder="璇峰湪姝ゅ啓鍑鸿绠楄繃绋嬪拰绛旀..." rows="6"></textarea>
+    </div>
+    <div class="answer-reveal" id="reveal-q21">
+      <div class="step"><span class="step-label">瑙ｏ細</span></div>
+      <div class="step">(1) $n(\ce{Na2CO3}) = c \times V = 0.2\ \text{mol/L} \times 0.5\ \text{L} = 0.1\ \text{mol}$</div>
+      <div class="step">$m(\ce{Na2CO3}) = n \times M = 0.1 \times 106 = 10.6\ \text{g}$锛?鍒嗭級</div>
+      <div class="step">(2) 绉绘恫锛氬皢鍐峰嵈鑷冲娓╃殑婧舵恫鐢ㄧ幓鐠冩寮曟祦锛岃浆绉昏嚦 500 mL 瀹归噺鐡朵腑銆傦紙2鍒嗭級</div>
+      <div class="step">瀹氬锛氬悜瀹归噺鐡朵腑鍔犳按鑷宠窛鍒诲害绾?1~2 cm 澶勶紝鏀圭敤鑳跺ご婊寸閫愭淮婊村姞锛岀洿鑷冲嚬娑查潰鏈€浣庡涓庡埢搴︾嚎鐩稿垏銆傦紙2鍒嗭級</div>
+      <div class="step">(3) 鎵€閰嶆憾娑叉祿搴﹀亸浣庛€傦紙2鍒嗭級</div>
+      <div class="step">鍘熷洜锛氳ˉ鍔犳按浣挎憾娑叉€讳綋绉亸澶э紝鏍规嵁 $c = n/V$锛?n$ 涓嶅彉锛?V$ 鍋忓ぇ锛屾晠 $c$ 鍋忎綆銆傦紙2鍒嗭級</div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="question" id="q22">
+    <div class="q-text"><span class="q-label">22.</span>锛?2鍒嗭級灏?2.3 g 閲戝睘閽犳斁鍏ヨ冻閲忔按涓畬鍏ㄥ弽搴斻€傝鍥炵瓟锛?/div>
+    <div class="calc-box">
+      <div class="fill-item">(1) 鍐欏嚭鍙嶅簲鐨勫寲瀛︽柟绋嬪紡銆傦紙2鍒嗭級</div>
+      <div class="fill-item">(2) 鐢熸垚鐨勬皵浣撳湪鏍囧噯鐘跺喌涓嬬殑浣撶Н涓哄灏戝崌锛燂紙5鍒嗭級</div>
+      <div class="fill-item">(3) 鑻ュ皢鍙嶅簲鍚庣殑婧舵恫鍏ㄩ儴杞Щ鍒扮儳鏉腑锛屽姞姘寸█閲婅嚦 500 mL锛屾墍寰?$\ce{NaOH}$ 婧舵恫鐨勭墿璐ㄧ殑閲忔祿搴︿负澶氬皯锛燂紙5鍒嗭級</div>
+      <textarea id="calc22" placeholder="璇峰湪姝ゅ啓鍑鸿绠楄繃绋?.." rows="6"></textarea>
+    </div>
+    <div class="answer-reveal" id="reveal-q22">
+      <div class="step"><span class="step-label">瑙ｏ細</span></div>
+      <div class="step">(1) $\ce{2Na + 2H2O -> 2NaOH + H2 ^}$锛?鍒嗭級</div>
+      <div class="step">(2) $n(\ce{Na}) = \dfrac{2.3\ \text{g}}{23\ \text{g/mol}} = 0.1\ \text{mol}$锛?鍒嗭級</div>
+      <div class="step">鏍规嵁鍖栧鏂圭▼寮忥細$2\ce{Na} \sim 1\ce{H2}$</div>
+      <div class="step">$n(\ce{H2}) = \dfrac{0.1}{2} = 0.05\ \text{mol}$锛?鍒嗭級</div>
+      <div class="step">$V(\ce{H2}) = 0.05 \times 22.4 = 1.12\ \text{L}$锛?鍒嗭級</div>
+      <div class="step">(3) 鏍规嵁鍖栧鏂圭▼寮忥細$2\ce{Na} \sim 2\ce{NaOH}$</div>
+      <div class="step">$n(\ce{NaOH}) = n(\ce{Na}) = 0.1\ \text{mol}$锛?鍒嗭級</div>
+      <div class="step">$c(\ce{NaOH}) = \dfrac{0.1\ \text{mol}}{0.5\ \text{L}} = 0.2\ \text{mol/L}$锛?鍒嗭級</div>
+    </div>
+  </div>
+
+  <!-- SUBMIT AREA -->
+  <div class="submit-area">
+    <div class="hint">鎸?<strong>Ctrl + Enter</strong> 鎻愪氦绛斿嵎锛堥渶杈撳叆瀵嗙爜鏌ョ湅绛旀鍜屽緱鍒嗭級</div>
+    <button class="btn" id="submitBtn">鎻愪氦绛斿嵎</button>
+  </div>
+
+  <div class="footer-note">楂樹竴鍖栧路蹇呬慨绗竴鍐?绗簩绔?2.3 鐗╄川鐨勯噺 娴嬭瘯鍗?/div>
+</div>
+
+<!-- PASSWORD MODAL -->
+<div class="modal-overlay" id="pwModal">
+  <div class="modal-box">
+    <h3>璇疯緭鍏ュ瘑鐮佹煡鐪嬬瓟妗?/h3>
+    <input class="pw-input" id="pwInput" type="password" placeholder="瀵嗙爜" maxlength="10">
+    <div class="pw-error" id="pwError">瀵嗙爜閿欒锛岃閲嶈瘯</div>
+    <div class="btn-group">
+      <button class="btn btn-cancel" id="pwCancel">鍙栨秷</button>
+      <button class="btn" id="pwConfirm">纭</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===================== ANSWER KEY =====================
+  var ANSWER_KEY = {
+    q1: { type: 'single', answer: '3', points: 3 },
+    q2: { type: 'single', answer: '2', points: 3 },
+    q3: { type: 'single', answer: '2', points: 3 },
+    q4: { type: 'single', answer: '0', points: 3 },
+    q5: { type: 'single', answer: '3', points: 3 },
+    q6: { type: 'single', answer: '3', points: 3 },
+    q7: { type: 'single', answer: '2', points: 3 },
+    q8: { type: 'single', answer: '1', points: 3 },
+    q9: { type: 'single', answer: '2', points: 3 },
+    q10: { type: 'single', answer: '1', points: 3 },
+    q11: { type: 'single', answer: '0', points: 3 },
+    q12: { type: 'single', answer: '0', points: 3 },
+    q13: { type: 'multi', answer: ['1','3'], points: 4 },
+    q14: { type: 'multi', answer: ['0','3'], points: 4 },
+    q15: { type: 'multi', answer: ['0','1','2'], points: 4 }
+  };
+
+  var FILL_KEY = {
+    fill16_1: { answers: ['2'], points: 1.5 },
+    fill16_2: { answers: ['1'], points: 0.5 },
+    fill16_3: { answers: ['0.6'], points: 2 },
+    fill17_1: { answers: ['5.85'], points: 2 },
+    fill17_2: { answers: ['鍋忎綆'], points: 2 },
+    fill18_1: { answers: ['0.2'], points: 1 },
+    fill18_2: { answers: ['0.8NA','0.8N_A','4.816e23','4.816脳10^23','4.816脳10虏鲁'], points: 1.5 },
+    fill18_3: { answers: ['3.2'], points: 1.5 },
+    fill19_1: { answers: ['鍋忛珮'], points: 2 },
+    fill19_2: { answers: ['鍋忎綆'], points: 2 }
+  };
+
+  var STORAGE_KEY = 'chem_test_260729';
+
+  // ===================== STATE =====================
+  var answersRevealed = false;
+
+  // ===================== LOCAL STORAGE =====================
+  function saveState() {
+    var data = {};
+    // single & multi
+    var sel = document.querySelectorAll('.options[data-q] input:checked');
+    sel.forEach(function(inp) {
+      var q = inp.closest('.options').getAttribute('data-q');
+      if (!data[q]) data[q] = [];
+      data[q].push(inp.value);
+    });
+    // fill-in
+    document.querySelectorAll('.fill-blank').forEach(function(el) {
+      data[el.id] = el.value;
+    });
+    // calc textareas
+    document.querySelectorAll('.calc-box textarea').forEach(function(el) {
+      data[el.id] = el.value;
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      Object.keys(data).forEach(function(key) {
+        var val = data[key];
+        if (key.indexOf('fill') === 0 || key.indexOf('calc') === 0) {
+          var el = document.getElementById(key);
+          if (el) el.value = Array.isArray(val) ? val[0] : val;
+        } else {
+          // single/multi
+          var opts = document.querySelector('.options[data-q="' + key + '"]');
+          if (!opts) return;
+          var vals = Array.isArray(val) ? val : [val];
+          vals.forEach(function(v) {
+            var inp = opts.querySelector('input[value="' + v.replace(/"/g,'\\"') + '"]');
+            if (inp) inp.checked = true;
+          });
+        }
+      });
+    } catch(e) {}
+  }
+
+  // ===================== GRADING =====================
+  function gradeSingle(qId, selected) {
+    var key = ANSWER_KEY[qId];
+    if (!key) return { score: 0, correct: false };
+    var correct = selected.length === 1 && selected[0] === key.answer;
+    return { score: correct ? key.points : 0, correct: correct };
+  }
+
+  function gradeMulti(qId, selected) {
+    var key = ANSWER_KEY[qId];
+    if (!key) return { score: 0, correct: false };
+    var correctSet = key.answer.slice().sort();
+    var selectedSet = selected.slice().sort();
+    var exactMatch = correctSet.length === selectedSet.length &&
+      correctSet.every(function(v, i) { return v === selectedSet[i]; });
+    if (exactMatch) return { score: key.points, correct: true, partial: false };
+    // partial: no wrong answer, at least one correct
+    var hasWrong = selected.some(function(v) { return correctSet.indexOf(v) === -1; });
+    if (!hasWrong && selected.length > 0) return { score: 2, correct: false, partial: true };
+    return { score: 0, correct: false, partial: false };
+  }
+
+  function gradeFill(fillId, inputVal) {
+    var key = FILL_KEY[fillId];
+    if (!key) return { score: 0, correct: false };
+    var val = inputVal.trim();
+    if (val === '') return { score: 0, correct: false };
+
+    // try exact match
+    for (var i = 0; i < key.answers.length; i++) {
+      if (val === key.answers[i]) {
+        return { score: key.points, correct: true };
+      }
+    }
+
+    // try numeric comparison
+    var numVal = parseFloat(val);
+    if (!isNaN(numVal)) {
+      for (var j = 0; j < key.answers.length; j++) {
+        var numAns = parseFloat(key.answers[j]);
+        if (!isNaN(numAns) && Math.abs(numVal - numAns) < 0.01) {
+          return { score: key.points, correct: true };
+        }
+      }
+    }
+
+    // try case-insensitive
+    var valLower = val.toLowerCase();
+    for (var k = 0; k < key.answers.length; k++) {
+      if (valLower === key.answers[k].toLowerCase()) {
+        return { score: key.points, correct: true };
+      }
+    }
+
+    return { score: 0, correct: false };
+  }
+
+  function calcScore() {
+    var singleScore = 0, multiScore = 0, fillScore = 0;
+
+    // Grade single choice
+    Object.keys(ANSWER_KEY).forEach(function(qId) {
+      if (ANSWER_KEY[qId].type !== 'single') return;
+      var opts = document.querySelector('.options[data-q="' + qId + '"]');
+      if (!opts) return;
+      var selected = [];
+      opts.querySelectorAll('input:checked').forEach(function(inp) {
+        selected.push(inp.value);
+      });
+      var result = gradeSingle(qId, selected);
+      singleScore += result.score;
+    });
+
+    // Grade multi choice
+    Object.keys(ANSWER_KEY).forEach(function(qId) {
+      if (ANSWER_KEY[qId].type !== 'multi') return;
+      var opts = document.querySelector('.options[data-q="' + qId + '"]');
+      if (!opts) return;
+      var selected = [];
+      opts.querySelectorAll('input:checked').forEach(function(inp) {
+        selected.push(inp.value);
+      });
+      var result = gradeMulti(qId, selected);
+      multiScore += result.score;
+    });
+
+    // Grade fill-in
+    Object.keys(FILL_KEY).forEach(function(fillId) {
+      var el = document.getElementById(fillId);
+      if (!el) return;
+      var result = gradeFill(fillId, el.value);
+      fillScore += result.score;
+    });
+
+    return {
+      single: singleScore,
+      multi: multiScore,
+      fill: fillScore,
+      calc: 0,
+      total: singleScore + multiScore + fillScore
+    };
+  }
+
+  function updateScoreDisplay() {
+    var scores = calcScore();
+    document.getElementById('scoreSingle').textContent = scores.single;
+    document.getElementById('scoreMulti').textContent = scores.multi;
+    document.getElementById('scoreFill').textContent = scores.fill;
+    document.getElementById('scoreCalc').textContent = scores.calc;
+    document.getElementById('scoreTotal').textContent = scores.total;
+    document.getElementById('totalScoreDisplay').textContent = scores.total;
+  }
+
+  // ===================== REVEAL ANSWERS =====================
+  function revealAnswers() {
+    if (answersRevealed) return;
+    answersRevealed = true;
+
+    // Show all answer-reveal blocks
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
+
+    // Show fill-in correct answers
+    Object.keys(FILL_KEY).forEach(function(fillId) {
+      var el = document.getElementById(fillId);
+      if (!el) return;
+      var key = FILL_KEY[fillId];
+      var val = el.value.trim();
+      var result = gradeFill(fillId, val);
+      if (result.correct) {
+        el.classList.add('show-answer');
+      } else {
+        el.classList.add('wrong');
+        // show expected answer as placeholder
+        var expected = key.answers[0];
+        if (key.answers.length > 1 && key.answers[0].indexOf('NA') >= 0) {
+          expected = key.answers[0];
+        }
+        el.title = '姝ｇ‘绛旀锛? + expected;
+      }
+    });
+
+    // Highlight options for single/multi
+    Object.keys(ANSWER_KEY).forEach(function(qId) {
+      var key = ANSWER_KEY[qId];
+      var opts = document.querySelector('.options[data-q="' + qId + '"]');
+      if (!opts) return;
+      var labels = opts.querySelectorAll('label');
+      labels.forEach(function(label) {
+        var inp = label.querySelector('input');
+        if (!inp) return;
+        if (key.type === 'single') {
+          if (inp.value === key.answer) {
+            label.classList.add('correct-answer');
+          } else if (inp.checked) {
+            label.classList.add('wrong-answer');
+          }
+        } else if (key.type === 'multi') {
+          var isCorrect = key.answer.indexOf(inp.value) !== -1;
+          if (isCorrect) {
+            label.classList.add('correct-answer');
+          } else if (inp.checked) {
+            label.classList.add('wrong-answer');
+          }
+        }
+      });
+    });
+
+    // Disable all inputs
+    document.querySelectorAll('.options input, .fill-blank, .calc-box textarea').forEach(function(el) {
+      el.disabled = true;
+    });
+
+    updateScoreDisplay();
+    saveState();
+  }
+
+  // ===================== PASSWORD MODAL =====================
+  var PASSWORD = '2641';
+
+  function showPasswordModal() {
+    document.getElementById('pwModal').classList.add('show');
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwError').classList.remove('show');
+    document.getElementById('pwInput').focus();
+  }
+
+  function hidePasswordModal() {
+    document.getElementById('pwModal').classList.remove('show');
+  }
+
+  function checkPassword() {
+    var pw = document.getElementById('pwInput').value;
+    if (pw === PASSWORD) {
+      hidePasswordModal();
+      revealAnswers();
+    } else {
+      document.getElementById('pwError').classList.add('show');
+      document.getElementById('pwInput').focus();
+      document.getElementById('pwInput').select();
+    }
+  }
+
+  // ===================== EVENT LISTENERS =====================
+
+  // Auto-save on input change
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('.options input, .fill-blank')) {
+      saveState();
+      if (answersRevealed) updateScoreDisplay();
+      else updateScoreDisplay();
+    }
+  });
+
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('.fill-blank, .calc-box textarea')) {
+      saveState();
+      updateScoreDisplay();
+    }
+  });
+
+  // Ctrl+Enter
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      if (answersRevealed) return;
+      showPasswordModal();
+    }
+  });
+
+  // Submit button
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    if (answersRevealed) return;
+    showPasswordModal();
+  });
+
+  // Password modal
+  document.getElementById('pwConfirm').addEventListener('click', checkPassword);
+  document.getElementById('pwCancel').addEventListener('click', hidePasswordModal);
+  document.getElementById('pwInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      checkPassword();
+    }
+  });
+
+  // ===================== INIT =====================
+  loadState();
+  updateScoreDisplay();
+
+  // Re-render MathJax after page load
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+  }
+
+  // Listen for MathJax re-render after reveal
+  var origReveal = revealAnswers;
+  revealAnswers = function() {
+    origReveal();
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise();
+    }
+  };
+
+  // Also update score when inputs change
+  document.querySelectorAll('.options input').forEach(function(el) {
+    el.addEventListener('change', function() { updateScoreDisplay(); });
+  });
+
+  console.log('鍖栧娴嬭瘯鍗峰凡鍔犺浇銆傛寜涓?Ctrl+Enter 鎻愪氦锛堝瘑鐮侊細2641锛?);
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</body>
+</html>

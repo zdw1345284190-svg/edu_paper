@@ -1,0 +1,702 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楂樹竴鍖栧路蹇呬慨绗竴鍐?绗笁绔?3.1 閾佸強鍏跺寲鍚堢墿</title>
+<!-- OMO_INTERNAL_INITIATOR -->
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'瀹嬩綋','SimSun',serif;background:#f5f5f5;color:#222;font-size:14px;line-height:1.7}
+.container{width:210mm;margin:20px auto;background:#fff;padding:30px 35px;box-shadow:0 2px 12px rgba(0,0,0,.12);min-height:297mm}
+/* ===== 鍙岀嚎椤靛ご ===== */
+.header{border-top:3px double #222;border-bottom:3px double #222;padding:16px 0 12px;text-align:center;margin-bottom:22px}
+.header h1{font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:4px}
+.header .sub{font-size:14px;color:#444;margin-top:4px}
+.header .info{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;color:#555;border-top:1px dashed #ccc;padding-top:8px}
+/* ===== 钃濊壊宸﹁竟妗嗘爣棰?===== */
+.section-title{border-left:4px solid #1a56db;padding:6px 0 6px 14px;margin:22px 0 12px;font-size:16px;font-weight:700;color:#1a3a7a;background:#f0f4ff}
+.section-title .score{font-weight:400;font-size:13px;color:#666;margin-left:6px}
+/* ===== 棰樼洰 ===== */
+.question{margin:14px 0;padding:8px 4px 8px 20px;border-bottom:1px dotted #e0e0e0}
+.question:last-child{border-bottom:none}
+.q-num{font-weight:700;color:#1a3a7a}
+.q-text{margin:4px 0 6px}
+.options{display:flex;flex-wrap:wrap;gap:4px 10px;margin:4px 0 2px}
+.options.col2{display:grid;grid-template-columns:1fr 1fr}
+.opt{display:flex;align-items:baseline;gap:4px;padding:2px 6px 2px 2px;border-radius:4px;transition:background .15s;cursor:pointer;user-select:none}
+.opt:hover{background:#f5f8ff}
+.opt input{width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px}
+.opt label{cursor:pointer;flex:1}
+.opt .lbl{display:inline-block;min-width:18px;font-weight:600}
+.fill-input{display:inline-block;border:none;border-bottom:1px solid #888;background:transparent;padding:2px 6px;margin:0 4px;min-width:120px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.fill-input:focus{border-color:#1a56db}
+.fill-box{margin:6px 0}
+.fill-box label{display:block;margin:3px 0}
+.calc-box{margin:10px 0;padding:8px 12px;background:#fafbfc;border-left:3px solid #d0d7de;border-radius:0 4px 4px 0}
+.calc-box textarea{width:100%;min-height:72px;padding:8px 10px;border:1px solid #ccc;border-radius:4px;font-size:13px;font-family:inherit;resize:vertical;outline:none;transition:border-color .2s}
+.calc-box textarea:focus{border-color:#1a56db}
+.calc-sub{color:#555;margin:4px 0;font-size:13px}
+.action-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:24px 0 12px;padding:14px 18px;background:#f8f9fb;border:1px solid #e0e4ea;border-radius:6px}
+.action-bar button{padding:7px 22px;border:none;border-radius:4px;font-size:14px;font-family:inherit;cursor:pointer;transition:background .2s}
+.btn-submit{background:#1a56db;color:#fff}
+.btn-submit:hover{background:#1648c0}
+.btn-reset{background:#e5e7eb;color:#333}
+.btn-reset:hover{background:#d1d5db}
+.score-display{font-size:16px;font-weight:700;color:#1a3a7a;margin-left:auto}
+.score-detail{font-size:13px;font-weight:400;color:#555;margin-left:8px}
+.feedback{margin:4px 0 2px;font-size:13px}
+.feedback.correct{color:#16a34a}
+.feedback.wrong{color:#dc2626}
+.feedback.partial{color:#d97706}
+.opt.correct-opt{background:#dcfce7!important}
+.opt.wrong-opt{background:#fee2e2!important}
+.opt.missed-opt{background:#fef9c3!important}
+.answer-reveal{display:none;margin:6px 0 2px;padding:6px 12px;background:#f0f7ff;border-left:3px solid #1a56db;border-radius:0 4px 4px 0;font-size:13px;color:#1a3a7a}
+.answer-reveal.show{display:block}
+.answer-reveal strong{color:#b91c1c}
+.answer-reveal .eq-block{display:block;margin:4px 0 2px 8px}
+.pwd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:999;justify-content:center;align-items:center}
+.pwd-overlay.show{display:flex}
+.pwd-box{background:#fff;padding:24px 30px;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.2);text-align:center;max-width:340px}
+.pwd-box p{margin-bottom:12px;font-size:15px}
+.pwd-box input{padding:6px 12px;font-size:16px;border:1px solid #ccc;border-radius:4px;width:120px;text-align:center;font-family:inherit;outline:none}
+.pwd-box input:focus{border-color:#1a56db}
+.pwd-box .btns{margin-top:14px;display:flex;gap:10px;justify-content:center}
+.pwd-box .btns button{padding:6px 20px;border:none;border-radius:4px;font-size:14px;font-family:inherit;cursor:pointer}
+.pwd-box .btns .ok{background:#1a56db;color:#fff}
+.pwd-box .btns .ok:hover{background:#1648c0}
+.pwd-box .btns .cancel{background:#e5e7eb;color:#333}
+.pwd-box .btns .cancel:hover{background:#d1d5db}
+.pwd-box .err{color:#dc2626;font-size:13px;margin-top:6px;display:none}
+.status-bar{text-align:center;font-size:12px;color:#999;margin-top:18px;padding-top:10px;border-top:1px solid #e5e5e5}
+@media print{body{background:#fff}.container{box-shadow:none;margin:0;padding:20px}.action-bar{display:none}.status-bar{display:none}.pwd-overlay{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+
+<!-- ============ 椤靛ご ============ -->
+<div class="header">
+  <h1>楂樹竴鍖栧路蹇呬慨绗竴鍐?/h1>
+  <div class="sub">绗笁绔?閾?閲戝睘鏉愭枡 路 3.1 閾佸強鍏跺寲鍚堢墿</div>
+  <div class="info">
+    <span>婊″垎锛?strong>100鍒?/strong></span>
+    <span>鏃堕棿锛?strong>45鍒嗛挓</strong></span>
+    <span>鍛介鑼冨洿锛氶搧鍙婂叾鍖栧悎鐗?/span>
+  </div>
+</div>
+
+<div style="font-size:13px;color:#555;text-align:center;margin-bottom:16px;padding:6px;background:#f8f9fb;border-radius:4px">
+  鍗曢€?12脳3=36鍒?&nbsp;|&nbsp; 澶氶€?3脳4=12鍒嗭紙閫夊涓嶅叏寰?鍒嗭級&nbsp;|&nbsp; 濉┖ 4脳4=16鍒?&nbsp;|&nbsp; 璁＄畻 3脳12=36鍒?</div>
+
+<!-- ============================================================ -->
+<!-- 涓€銆佸崟閫夐 -->
+<!-- ============================================================ -->
+<div class="section-title">涓€銆佸崟閫夐锛堝叡12棰橈紝姣忛3鍒嗭紝鍏?6鍒嗭級<span class="score">姣忛鍙湁涓€涓纭€夐」</span></div>
+
+<div class="question" data-q="q1" data-type="choice" data-answer="C">
+  <div class="q-text"><span class="q-num">1.</span> 涓嬪垪鐗╄川涓紝閾佸厓绱犲彧鍏锋湁姘у寲鎬х殑鏄紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q1" id="q1_a" value="A"><label for="q1_a"><span class="lbl">A.</span> Fe</label></div>
+    <div class="opt"><input type="radio" name="q1" id="q1_b" value="B"><label for="q1_b"><span class="lbl">B.</span> FeO</label></div>
+    <div class="opt"><input type="radio" name="q1" id="q1_c" value="C"><label for="q1_c"><span class="lbl">C.</span> \(\ce{Fe2O3}\)</label></div>
+    <div class="opt"><input type="radio" name="q1" id="q1_d" value="D"><label for="q1_d"><span class="lbl">D.</span> \(\ce{Fe3O4}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q1"></div>
+  <div class="answer-reveal" id="ans-q1">绛旀锛?strong>C</strong>銆€Fe鈧侽鈧冧腑閾佷负+3浠凤紙鏈€楂樹环鎬侊級锛屽彧鏈夋哀鍖栨€с€?/div>
+</div>
+
+<div class="question" data-q="q2" data-type="choice" data-answer="C">
+  <div class="q-text"><span class="q-num">2.</span> 閾佷笌涓嬪垪鐗╄川鍙嶅簲锛岃兘鐢熸垚 \(\ce{Fe^{3+}}\) 鐨勬槸锛?&nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q2" id="q2_a" value="A"><label for="q2_a"><span class="lbl">A.</span> 绋€鐩愰吀</label></div>
+    <div class="opt"><input type="radio" name="q2" id="q2_b" value="B"><label for="q2_b"><span class="lbl">B.</span> \(\ce{CuSO4}\) 婧舵恫</label></div>
+    <div class="opt"><input type="radio" name="q2" id="q2_c" value="C"><label for="q2_c"><span class="lbl">C.</span> 姘皵</label></div>
+    <div class="opt"><input type="radio" name="q2" id="q2_d" value="D"><label for="q2_d"><span class="lbl">D.</span> 绋€纭吀</label></div>
+  </div>
+  <div class="feedback" id="fb-q2"></div>
+  <div class="answer-reveal" id="ans-q2">绛旀锛?strong>C</strong>銆€\(\ce{2Fe + 3Cl2 ->[鐐圭噧] 2FeCl3}\)锛孋l鈧備负寮烘哀鍖栧墏銆?/div>
+</div>
+
+<div class="question" data-q="q3" data-type="choice" data-answer="B">
+  <div class="q-text"><span class="q-num">3.</span> 涓嬪垪鍖栧悎鐗╀腑锛屼笉鑳界敱鍗曡川鐩存帴鍖栧悎鐢熸垚鐨勬槸锛?&nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q3" id="q3_a" value="A"><label for="q3_a"><span class="lbl">A.</span> \(\ce{Fe3O4}\)</label></div>
+    <div class="opt"><input type="radio" name="q3" id="q3_b" value="B"><label for="q3_b"><span class="lbl">B.</span> \(\ce{FeCl2}\)</label></div>
+    <div class="opt"><input type="radio" name="q3" id="q3_c" value="C"><label for="q3_c"><span class="lbl">C.</span> \(\ce{FeCl3}\)</label></div>
+    <div class="opt"><input type="radio" name="q3" id="q3_d" value="D"><label for="q3_d"><span class="lbl">D.</span> \(\ce{FeS}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q3"></div>
+  <div class="answer-reveal" id="ans-q3">绛旀锛?strong>B</strong>銆€Fe涓嶤l鈧傜洿鎺ュ寲鍚堢敓鎴怓eCl鈧冿紝涓嶴鐢熸垚FeS锛屼笌O鈧傜敓鎴怓e鈧僌鈧勩€?/div>
+</div>
+
+<div class="question" data-q="q4" data-type="choice" data-answer="D">
+  <div class="q-text"><span class="q-num">4.</span> 鏃㈣兘閴村埆 \(\ce{Fe^{2+}}\) 鍙堣兘閴村埆 \(\ce{Fe^{3+}}\) 鐨勮瘯鍓傛槸锛?&nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q4" id="q4_a" value="A"><label for="q4_a"><span class="lbl">A.</span> KSCN 婧舵恫</label></div>
+    <div class="opt"><input type="radio" name="q4" id="q4_b" value="B"><label for="q4_b"><span class="lbl">B.</span> NaOH 婧舵恫</label></div>
+    <div class="opt"><input type="radio" name="q4" id="q4_c" value="C"><label for="q4_c"><span class="lbl">C.</span> 绋€鐩愰吀</label></div>
+    <div class="opt"><input type="radio" name="q4" id="q4_d" value="D"><label for="q4_d"><span class="lbl">D.</span> 浠ヤ笂涓ょ鍧囧彲</label></div>
+  </div>
+  <div class="feedback" id="fb-q4"></div>
+  <div class="answer-reveal" id="ans-q4">绛旀锛?strong>D</strong>銆€KSCN锛欶e鲁鈦烘樉琛€绾㈣壊锛汵aOH锛欶e鲁鈦衡啋绾㈣鈫擄紝Fe虏鈦衡啋鐧解啌鈫掔伆缁库啋绾㈣銆?/div>
+</div>
+
+<div class="question" data-q="q5" data-type="choice" data-answer="A">
+  <div class="q-text"><span class="q-num">5.</span> 閾佷笌姘磋捀姘斿弽搴旂殑鍖栧鏂圭▼寮忔纭殑鏄紙 &nbsp;锛?/div>
+  <div class="options col2">
+    <div class="opt"><input type="radio" name="q5" id="q5_a" value="A"><label for="q5_a"><span class="lbl">A.</span> \(\ce{3Fe + 4H2O(g) -> Fe3O4 + 4H2}\)</label></div>
+    <div class="opt"><input type="radio" name="q5" id="q5_b" value="B"><label for="q5_b"><span class="lbl">B.</span> \(\ce{Fe + H2O(g) -> FeO + H2}\)</label></div>
+    <div class="opt"><input type="radio" name="q5" id="q5_c" value="C"><label for="q5_c"><span class="lbl">C.</span> \(\ce{2Fe + 3H2O(g) -> Fe2O3 + 3H2}\)</label></div>
+    <div class="opt"><input type="radio" name="q5" id="q5_d" value="D"><label for="q5_d"><span class="lbl">D.</span> \(\ce{Fe + 2H2O(g) -> Fe(OH)2 + H2}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q5"></div>
+  <div class="answer-reveal" id="ans-q5">绛旀锛?strong>A</strong>銆€\(\ce{3Fe + 4H2O(g) ->[\text{楂樻俯}] Fe3O4 + 4H2}\)</div>
+</div>
+
+<div class="question" data-q="q6" data-type="choice" data-answer="A">
+  <div class="q-text"><span class="q-num">6.</span> 灏?\(\ce{FeCl2}\) 婧舵恫婊村叆 \(\ce{NaOH}\) 婧舵恫涓紝鏈€缁堣瀵熷埌鐨勭幇璞℃槸锛?&nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q6" id="q6_a" value="A"><label for="q6_a"><span class="lbl">A.</span> 鐢熸垚绾㈣鑹叉矇娣€</label></div>
+    <div class="opt"><input type="radio" name="q6" id="q6_b" value="B"><label for="q6_b"><span class="lbl">B.</span> 鐢熸垚鐧借壊娌夋穩</label></div>
+    <div class="opt"><input type="radio" name="q6" id="q6_c" value="C"><label for="q6_c"><span class="lbl">C.</span> 鐢熸垚榛戣壊娌夋穩</label></div>
+    <div class="opt"><input type="radio" name="q6" id="q6_d" value="D"><label for="q6_d"><span class="lbl">D.</span> 鏃犳槑鏄惧彉鍖?/label></div>
+  </div>
+  <div class="feedback" id="fb-q6"></div>
+  <div class="answer-reveal" id="ans-q6">绛旀锛?strong>A</strong>銆€Fe虏鈦?2OH鈦烩啋Fe(OH)鈧傗啌鐧解啋鐏扮豢鈫扚e(OH)鈧冣啌绾㈣锛堟渶缁堬級銆?/div>
+</div>
+
+<div class="question" data-q="q7" data-type="choice" data-answer="D">
+  <div class="q-text"><span class="q-num">7.</span> 鍏充簬 \(\ce{Fe(OH)2}\) 鍜?\(\ce{Fe(OH)3}\) 鐨勮娉曢敊璇殑鏄紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q7" id="q7_a" value="A"><label for="q7_a"><span class="lbl">A.</span> 閮芥槸涓嶆憾鎬х⒈</label></div>
+    <div class="opt"><input type="radio" name="q7" id="q7_b" value="B"><label for="q7_b"><span class="lbl">B.</span> 閮借兘涓庣洂閰稿弽搴?/label></div>
+    <div class="opt"><input type="radio" name="q7" id="q7_c" value="C"><label for="q7_c"><span class="lbl">C.</span> Fe(OH)鈧?鍦ㄧ┖姘斾腑鏄撹姘у寲</label></div>
+    <div class="opt"><input type="radio" name="q7" id="q7_d" value="D"><label for="q7_d"><span class="lbl">D.</span> Fe(OH)鈧?鏄櫧鑹叉矇娣€</label></div>
+  </div>
+  <div class="feedback" id="fb-q7"></div>
+  <div class="answer-reveal" id="ans-q7">绛旀锛?strong>D</strong>銆€Fe(OH)鈧冧负绾㈣鑹叉矇娣€锛孎e(OH)鈧備负鐧借壊娌夋穩銆?/div>
+</div>
+
+<div class="question" data-q="q8" data-type="choice" data-answer="B">
+  <div class="q-text"><span class="q-num">8.</span> 鍚?\(\ce{FeCl3}\) 婧舵恫涓姞鍏ヨ繃閲忛搧绮夛紝鍏呭垎鍙嶅簲鍚庤繃婊わ紝婊ゆ恫涓殑閲戝睘闃崇瀛愭槸锛?&nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q8" id="q8_a" value="A"><label for="q8_a"><span class="lbl">A.</span> \(\ce{Fe^{3+}}\)</label></div>
+    <div class="opt"><input type="radio" name="q8" id="q8_b" value="B"><label for="q8_b"><span class="lbl">B.</span> \(\ce{Fe^{2+}}\)</label></div>
+    <div class="opt"><input type="radio" name="q8" id="q8_c" value="C"><label for="q8_c"><span class="lbl">C.</span> \(\ce{Fe^{3+}}\) 鍜?\(\ce{Fe^{2+}}\)</label></div>
+    <div class="opt"><input type="radio" name="q8" id="q8_d" value="D"><label for="q8_d"><span class="lbl">D.</span> \(\ce{Cu^{2+}}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q8"></div>
+  <div class="answer-reveal" id="ans-q8">绛旀锛?strong>B</strong>銆€\(\ce{2Fe^{3+} + Fe -> 3Fe^{2+}}\)锛孎e杩囬噺鏃禙e鲁鈦哄畬鍏ㄨ杩樺師銆?/div>
+</div>
+
+<div class="question" data-q="q9" data-type="choice" data-answer="D">
+  <div class="q-text"><span class="q-num">9.</span> 涓嬪垪绂诲瓙鏂圭▼寮忎功鍐欎笉姝ｇ‘鐨勬槸锛?&nbsp;锛?/div>
+  <div class="options col2">
+    <div class="opt"><input type="radio" name="q9" id="q9_a" value="A"><label for="q9_a"><span class="lbl">A.</span> \(\ce{Fe + 2H+ -> Fe^{2+} + H2 ^}\)</label></div>
+    <div class="opt"><input type="radio" name="q9" id="q9_b" value="B"><label for="q9_b"><span class="lbl">B.</span> \(\ce{2Fe^{2+} + Cl2 -> 2Fe^{3+} + 2Cl^-}\)</label></div>
+    <div class="opt"><input type="radio" name="q9" id="q9_c" value="C"><label for="q9_c"><span class="lbl">C.</span> \(\ce{Fe(OH)3 + 3H+ -> Fe^{3+} + 3H2O}\)</label></div>
+    <div class="opt"><input type="radio" name="q9" id="q9_d" value="D"><label for="q9_d"><span class="lbl">D.</span> \(\ce{Fe + Fe^{3+} -> 2Fe^{2+}}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q9"></div>
+  <div class="answer-reveal" id="ans-q9">绛旀锛?strong>D</strong>銆€鏈厤骞筹紝姝ｇ‘涓?\(\ce{Fe + 2Fe^{3+} -> 3Fe^{2+}}\)銆?/div>
+</div>
+
+<div class="question" data-q="q10" data-type="choice" data-answer="B">
+  <div class="q-text"><span class="q-num">10.</span> 鍦ㄧ┖姘斾腑鍔犲己鐑?\(\ce{Fe(OH)2}\)锛屾渶缁堝緱鍒扮殑鍥轰綋浜х墿鏄紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q10" id="q10_a" value="A"><label for="q10_a"><span class="lbl">A.</span> \(\ce{FeO}\)</label></div>
+    <div class="opt"><input type="radio" name="q10" id="q10_b" value="B"><label for="q10_b"><span class="lbl">B.</span> \(\ce{Fe2O3}\)</label></div>
+    <div class="opt"><input type="radio" name="q10" id="q10_c" value="C"><label for="q10_c"><span class="lbl">C.</span> \(\ce{Fe3O4}\)</label></div>
+    <div class="opt"><input type="radio" name="q10" id="q10_d" value="D"><label for="q10_d"><span class="lbl">D.</span> \(\ce{Fe}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q10"></div>
+  <div class="answer-reveal" id="ans-q10">绛旀锛?strong>B</strong>銆€\(\ce{4Fe(OH)2 + O2 ->[鈻砞 2Fe2O3 + 4H2O}\)</div>
+</div>
+
+<div class="question" data-q="q11" data-type="choice" data-answer="C">
+  <div class="q-text"><span class="q-num">11.</span> 灏嗛搧绮夋姇鍏ヤ笅鍒楁憾娑蹭腑锛屾憾娑茶川閲忓鍔犱絾鏃犳皵浣撴斁鍑虹殑鏄紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q11" id="q11_a" value="A"><label for="q11_a"><span class="lbl">A.</span> \(\ce{CuCl2}\) 婧舵恫</label></div>
+    <div class="opt"><input type="radio" name="q11" id="q11_b" value="B"><label for="q11_b"><span class="lbl">B.</span> 绋€鐩愰吀</label></div>
+    <div class="opt"><input type="radio" name="q11" id="q11_c" value="C"><label for="q11_c"><span class="lbl">C.</span> \(\ce{FeCl3}\) 婧舵恫</label></div>
+    <div class="opt"><input type="radio" name="q11" id="q11_d" value="D"><label for="q11_d"><span class="lbl">D.</span> \(\ce{AgNO3}\) 婧舵恫</label></div>
+  </div>
+  <div class="feedback" id="fb-q11"></div>
+  <div class="answer-reveal" id="ans-q11">绛旀锛?strong>C</strong>銆€\(\ce{Fe + 2FeCl3 -> 3FeCl2}\)锛孎e婧惰В璐ㄩ噺澧炲姞涓旀棤姘斾綋锛汚鏋愬嚭Cu璐ㄩ噺鍑忓皯锛孊鏈塇鈧傦紝D鏋愬嚭Ag璐ㄩ噺鍑忓皯銆?/div>
+</div>
+
+<div class="question" data-q="q12" data-type="choice" data-answer="C">
+  <div class="q-text"><span class="q-num">12.</span> 涓嬪垪杞寲涓嶈兘閫氳繃涓€姝ュ弽搴斿疄鐜扮殑鏄紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="radio" name="q12" id="q12_a" value="A"><label for="q12_a"><span class="lbl">A.</span> Fe 鈫?\(\ce{FeCl3}\)</label></div>
+    <div class="opt"><input type="radio" name="q12" id="q12_b" value="B"><label for="q12_b"><span class="lbl">B.</span> Fe 鈫?\(\ce{Fe3O4}\)</label></div>
+    <div class="opt"><input type="radio" name="q12" id="q12_c" value="C"><label for="q12_c"><span class="lbl">C.</span> Fe 鈫?\(\ce{Fe(OH)3}\)</label></div>
+    <div class="opt"><input type="radio" name="q12" id="q12_d" value="D"><label for="q12_d"><span class="lbl">D.</span> \(\ce{FeCl2}\) 鈫?Fe</label></div>
+  </div>
+  <div class="feedback" id="fb-q12"></div>
+  <div class="answer-reveal" id="ans-q12">绛旀锛?strong>C</strong>銆€Fe涓嶈兘涓€姝ョ敓鎴怓e(OH)鈧冿紱A锛欶e+Cl鈧傗啋FeCl鈧冿紱B锛欶e+O鈧傞珮娓┾啋Fe鈧僌鈧勶紱D锛欶eCl鈧?Zn鈫扚e+ZnCl鈧傘€?/div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 浜屻€佸閫夐 -->
+<!-- ============================================================ -->
+<div class="section-title">浜屻€佸閫夐锛堝叡3棰橈紝姣忛4鍒嗭紝鍏?2鍒嗭級<span class="score">閫夊浣嗕笉鍏ㄥ緱2鍒嗭紝鏈夐敊閫夊緱0鍒?/span></div>
+
+<div class="question" data-q="q13" data-type="multi" data-answer='["B","C","D"]'>
+  <div class="q-text"><span class="q-num">13.</span> 涓嬪垪鍏充簬閾佸強鍏跺寲鍚堢墿鐨勮娉曟纭殑鏈夛紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="checkbox" name="q13" id="q13_a" value="A"><label for="q13_a"><span class="lbl">A.</span> \(\ce{Fe3O4}\) 鏄孩妫曡壊绮夋湯</label></div>
+    <div class="opt"><input type="checkbox" name="q13" id="q13_b" value="B"><label for="q13_b"><span class="lbl">B.</span> FeO 涓嶇ǔ瀹氾紝鍦ㄧ┖姘斾腑鍙楃儹浼氳繘涓€姝ヨ姘у寲</label></div>
+    <div class="opt"><input type="checkbox" name="q13" id="q13_c" value="C"><label for="q13_c"><span class="lbl">C.</span> \(\ce{Fe(OH)2}\) 鍦ㄧ┖姘斾腑鏀剧疆鏈€缁堣浆鍖栦负 \(\ce{Fe(OH)3}\)</label></div>
+    <div class="opt"><input type="checkbox" name="q13" id="q13_d" value="D"><label for="q13_d"><span class="lbl">D.</span> 閽㈡槸涓€绉嶉搧纰冲悎閲?/label></div>
+  </div>
+  <div class="feedback" id="fb-q13"></div>
+  <div class="answer-reveal" id="ans-q13">绛旀锛?strong>B銆丆銆丏</strong>銆€Fe鈧僌鈧勪负榛戣壊鍥轰綋锛孉閿欍€?/div>
+</div>
+
+<div class="question" data-q="q14" data-type="multi" data-answer='["B","C"]'>
+  <div class="q-text"><span class="q-num">14.</span> 涓嬪垪鍙嶅簲涓紝浣撶幇 \(\ce{Fe^{3+}}\) 鍏锋湁姘у寲鎬х殑鏄紙 &nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="checkbox" name="q14" id="q14_a" value="A"><label for="q14_a"><span class="lbl">A.</span> \(\ce{FeCl3 + 3KSCN -> Fe(SCN)3 + 3KCl}\)</label></div>
+    <div class="opt"><input type="checkbox" name="q14" id="q14_b" value="B"><label for="q14_b"><span class="lbl">B.</span> \(\ce{2FeCl3 + Fe -> 3FeCl2}\)</label></div>
+    <div class="opt"><input type="checkbox" name="q14" id="q14_c" value="C"><label for="q14_c"><span class="lbl">C.</span> \(\ce{2FeCl3 + Cu -> 2FeCl2 + CuCl2}\)</label></div>
+    <div class="opt"><input type="checkbox" name="q14" id="q14_d" value="D"><label for="q14_d"><span class="lbl">D.</span> \(\ce{FeCl3 + 3NaOH -> Fe(OH)3 v + 3NaCl}\)</label></div>
+  </div>
+  <div class="feedback" id="fb-q14"></div>
+  <div class="answer-reveal" id="ans-q14">绛旀锛?strong>B銆丆</strong>銆€A涓虹粶鍚堝弽搴旓紝D涓哄鍒嗚В鍙嶅簲锛汢銆丆涓璅e鲁鈦衡啋Fe虏鈦猴紝鍖栧悎浠烽檷浣庢樉姘у寲鎬с€?/div>
+</div>
+
+<div class="question" data-q="q15" data-type="multi" data-answer='["B","C"]'>
+  <div class="q-text"><span class="q-num">15.</span> 涓嬪垪鎿嶄綔涓紝鑳芥楠屾煇婧舵恫涓惈鏈?\(\ce{Fe^{2+}}\) 鐨勬槸锛?&nbsp;锛?/div>
+  <div class="options">
+    <div class="opt"><input type="checkbox" name="q15" id="q15_a" value="A"><label for="q15_a"><span class="lbl">A.</span> 鐩存帴鍔?KSCN 婧舵恫锛岃瀵熼鑹?/label></div>
+    <div class="opt"><input type="checkbox" name="q15" id="q15_b" value="B"><label for="q15_b"><span class="lbl">B.</span> 鍏堝姞 KSCN 鏃犳槑鏄惧彉鍖栵紝鍐嶅姞姘按鍙樼孩</label></div>
+    <div class="opt"><input type="checkbox" name="q15" id="q15_c" value="C"><label for="q15_c"><span class="lbl">C.</span> 鍔?NaOH 婧舵恫锛岃瀵熸矇娣€棰滆壊鍙樺寲</label></div>
+    <div class="opt"><input type="checkbox" name="q15" id="q15_d" value="D"><label for="q15_d"><span class="lbl">D.</span> 鍔犵█鐩愰吀锛岃瀵熸槸鍚︽湁姘旀场</label></div>
+  </div>
+  <div class="feedback" id="fb-q15"></div>
+  <div class="answer-reveal" id="ans-q15">绛旀锛?strong>B銆丆</strong>銆€A鍙楠孎e鲁鈦猴紱B涓篎e虏鈦虹壒寰佹楠屾硶锛汣涓璅e虏鈦衡啋鐧解啌鈫掔伆缁库啋绾㈣銆?/div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 涓夈€佸～绌洪 -->
+<!-- ============================================================ -->
+<div class="section-title">涓夈€佸～绌洪锛堝叡4棰橈紝姣忛4鍒嗭紝鍏?6鍒嗭級</div>
+
+<div class="question" data-q="q16" data-type="fill">
+  <div class="q-text"><span class="q-num">16.</span> 閾佷笌姘皵鍦ㄧ偣鐕冩潯浠朵笅鍙嶅簲鐨勫寲瀛︽柟绋嬪紡涓?    <span class="fill-wrap"><input type="text" class="fill-input" id="q16_eq" placeholder="鍐欏寲瀛︽柟绋嬪紡" style="min-width:220px"></span>锛?    鍙嶅簲涓隘姘旇〃鐜?<span class="fill-wrap"><input type="text" class="fill-input" id="q16_prop" placeholder="濉€ц川" style="min-width:80px"></span> 鎬с€?  </div>
+  <div class="feedback" id="fb-q16"></div>
+  <div class="answer-reveal" id="ans-q16">绛旀锛歕(\ce{2Fe + 3Cl2 ->[鐐圭噧] 2FeCl3}\)锛涙隘姘旇〃鐜?strong>姘у寲</strong>鎬с€?/div>
+</div>
+
+<div class="question" data-q="q17" data-type="fill">
+  <div class="q-text"><span class="q-num">17.</span> \(\ce{Fe3O4}\) 涓庤冻閲忕洂閰稿弽搴旂殑鍖栧鏂圭▼寮忎负
+    <span class="fill-wrap"><input type="text" class="fill-input" id="q17_eq" placeholder="鍐欏寲瀛︽柟绋嬪紡" style="min-width:300px"></span>銆?  </div>
+  <div class="feedback" id="fb-q17"></div>
+  <div class="answer-reveal" id="ans-q17">绛旀锛歕(\ce{Fe3O4 + 8HCl -> 2FeCl3 + FeCl2 + 4H2O}\)</div>
+</div>
+
+<div class="question" data-q="q18" data-type="fill">
+  <div class="q-text"><span class="q-num">18.</span> 鍚?\(\ce{FeCl2}\) 婧舵恫涓淮鍔?\(\ce{NaOH}\) 婧舵恫锛屽厛鐢熸垚
+    <span class="fill-wrap"><input type="text" class="fill-input" id="q18_c1" placeholder="棰滆壊" style="min-width:60px"></span> 鑹叉矇娣€锛?    闅忓悗鍙樹负 <span class="fill-wrap"><input type="text" class="fill-input" id="q18_c2" placeholder="棰滆壊" style="min-width:70px"></span> 鑹诧紝
+    鏈€缁堝彉涓?<span class="fill-wrap"><input type="text" class="fill-input" id="q18_c3" placeholder="棰滆壊" style="min-width:70px"></span> 鑹层€?  </div>
+  <div class="feedback" id="fb-q18"></div>
+  <div class="answer-reveal" id="ans-q18">绛旀锛?strong>鐧?/strong>鑹?鈫?<strong>鐏扮豢</strong>鑹?鈫?<strong>绾㈣</strong>鑹层€俓(\ce{4Fe(OH)2 + O2 + 2H2O -> 4Fe(OH)3}\)</div>
+</div>
+
+<div class="question" data-q="q19" data-type="fill">
+  <div class="q-text"><span class="q-num">19.</span> 鐢?KSCN 婧舵恫妫€楠?\(\ce{Fe^{3+}}\) 鐨勭瀛愭柟绋嬪紡涓?    <span class="fill-wrap"><input type="text" class="fill-input" id="q19_eq" placeholder="鍐欑瀛愭柟绋嬪紡" style="min-width:220px"></span>锛?    鐜拌薄鏄憾娑插彉涓?<span class="fill-wrap"><input type="text" class="fill-input" id="q19_color" placeholder="棰滆壊" style="min-width:80px"></span> 鑹层€?  </div>
+  <div class="feedback" id="fb-q19"></div>
+  <div class="answer-reveal" id="ans-q19">绛旀锛歕(\ce{Fe^{3+} + 3SCN- -> Fe(SCN)3}\)锛涙憾娑插彉涓?strong>琛€绾㈣壊</strong>銆?/div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 鍥涖€佽绠楅 -->
+<!-- ============================================================ -->
+<div class="section-title">鍥涖€佽绠楅锛堝叡3棰橈紝姣忛12鍒嗭紝鍏?6鍒嗭級<span class="score">椤诲啓鍑哄繀瑕佺殑鏂囧瓧璇存槑鍜岃绠楄繃绋?/span></div>
+
+<div class="question" data-q="q20" data-type="calc">
+  <div class="q-text"><span class="q-num">20.</span>锛?2鍒嗭級灏?5.6 g 閾佺矇鍔犲叆鍒?100 mL 0.50 mol/L \(\ce{FeCl3}\) 婧舵恫涓紝鍏呭垎鍙嶅簲鍚庯紝婧舵恫浣撶Н鍙樺寲蹇界暐涓嶈銆傛淮鍔?KSCN 婧舵恫锛屾棤鏄庢樉鍙樺寲銆?/div>
+  <div class="calc-box">
+    <div class="calc-sub">锛?锛夛紙3鍒嗭級鍐欏嚭鍙戠敓鍙嶅簲鐨勭瀛愭柟绋嬪紡銆?/div>
+    <textarea class="fill-input" id="q20a" placeholder="鍐欏湪姝ゅ鈥? style="min-height:48px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙4鍒嗭級閫氳繃璁＄畻鍒ゆ柇鍙嶅簲鐗╂槸鍚﹀畬鍏ㄥ弽搴斻€?/div>
+    <textarea class="fill-input" id="q20b" placeholder="鍐欏湪姝ゅ鈥? style="min-height:56px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙5鍒嗭級姹傚弽搴斿悗婧舵恫涓?\(\ce{Fe^{2+}}\) 鐨勭墿璐ㄧ殑閲忔祿搴︺€?/div>
+    <textarea class="fill-input" id="q20c" placeholder="鍐欏湪姝ゅ鈥? style="min-height:56px"></textarea>
+  </div>
+  <div class="answer-reveal" id="ans-q20">
+    <strong>銆愮瓟妗堛€?/strong>
+    <div class="eq-block">锛?锛塡(\ce{2Fe^{3+} + Fe -> 3Fe^{2+}}\) 鈥︹€︹€︹€︹€?3鍒?/div>
+    <div class="eq-block">锛?锛塡(n(\ce{Fe})=\frac{5.6}{56}=0.10\ \text{mol}\) 鈥?1鍒?br>
+      \(n(\ce{Fe^{3+}})=0.50\times0.100=0.050\ \text{mol}\) 鈥?1鍒?br>
+      鏍规嵁绂诲瓙鏂圭▼寮忥紝0.050 mol Fe鲁鈦?闇€娑堣€?0.025 mol Fe锛屽疄闄?Fe 涓?0.10 mol &gt; 0.025 mol锛屾晠 Fe 杩囬噺锛孎e鲁鈦?瀹屽叏鍙嶅簲銆?鈥?2鍒?/div>
+    <div class="eq-block">锛?锛夌敓鎴?\(n(\ce{Fe^{2+}})=0.050\times\frac{3}{2}=0.075\ \text{mol}\) 鈥?3鍒?br>
+      \(c(\ce{Fe^{2+}})=\frac{0.075}{0.100}=0.75\ \text{mol/L}\) 鈥?2鍒?/div>
+  </div>
+</div>
+
+<div class="question" data-q="q21" data-type="calc">
+  <div class="q-text"><span class="q-num">21.</span>锛?2鍒嗭級灏嗕竴瀹氶噺鐨?\(\ce{Fe2O3}\) 涓庤冻閲忕洂閰稿弽搴旓紝鍚戞墍寰楁憾娑蹭腑鍔犲叆瓒抽噺閾佺矇锛屽厖鍒嗗弽搴斿悗杩囨护銆傚皢婊ゆ恫钂稿共寰楀埌 \(\ce{FeCl2路xH2O}\) 鏅朵綋銆傚凡鐭ユ渶缁堝緱鍒?0.20 mol \(\ce{Fe^{2+}}\)銆?/div>
+  <div class="calc-box">
+    <div class="calc-sub">锛?锛夛紙3鍒嗭級鍐欏嚭 \(\ce{Fe2O3}\) 涓庣洂閰稿弽搴旂殑鍖栧鏂圭▼寮忋€?/div>
+    <textarea class="fill-input" id="q21a" placeholder="鍐欏湪姝ゅ鈥? style="min-height:48px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙3鍒嗭級鍐欏嚭 \(\ce{Fe^{3+}}\) 涓?Fe 鍙嶅簲鐨勭瀛愭柟绋嬪紡銆?/div>
+    <textarea class="fill-input" id="q21b" placeholder="鍐欏湪姝ゅ鈥? style="min-height:48px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙6鍒嗭級姹傚師 \(\ce{Fe2O3}\) 鐨勭墿璐ㄧ殑閲忓強璐ㄩ噺銆?/div>
+    <textarea class="fill-input" id="q21c" placeholder="鍐欏湪姝ゅ鈥? style="min-height:56px"></textarea>
+  </div>
+  <div class="answer-reveal" id="ans-q21">
+    <strong>銆愮瓟妗堛€?/strong>
+    <div class="eq-block">锛?锛塡(\ce{Fe2O3 + 6HCl -> 2FeCl3 + 3H2O}\) 鈥︹€︹€︹€︹€?3鍒?/div>
+    <div class="eq-block">锛?锛塡(\ce{2Fe^{3+} + Fe -> 3Fe^{2+}}\) 鈥︹€︹€︹€︹€?3鍒?/div>
+    <div class="eq-block">锛?锛夌敱锛?锛夌煡 1 mol Fe鈧侽鈧?鐢熸垚 2 mol Fe鲁鈦?鈥?1鍒?br>
+      鐢憋紙2锛夌煡 2 mol Fe鲁鈦?鐢熸垚 3 mol Fe虏鈦?鈥?1鍒?br>
+      鏁?1 mol Fe鈧侽鈧?鏈€缁堢敓鎴?3 mol Fe虏鈦?鈥?2鍒?br>
+      \(n(\ce{Fe2O3})=\frac{0.20}{3}\approx 0.0667\ \text{mol}\) 鈥?1鍒?br>
+      \(m(\ce{Fe2O3})=0.0667\times160\approx 10.7\ \text{g}\) 鈥?1鍒?/div>
+  </div>
+</div>
+
+<div class="question" data-q="q22" data-type="calc">
+  <div class="q-text"><span class="q-num">22.</span>锛?2鍒嗭級A銆丅銆丆 鏄笁绉嶅父瑙佺殑鍚搧鐗╄川锛屽畠浠箣闂村瓨鍦ㄥ涓嬭浆鍖栧叧绯伙細</div>
+  <div style="text-align:center;margin:6px 0;font-size:17px;font-family:'瀹嬩綋',serif;letter-spacing:4px">
+    Fe 鈥斺啋 A 鈥斺啋 B 鈥斺啋 C 鈥斺啋 Fe
+  </div>
+  <div class="q-text">宸茬煡锛欰 鏄竴绉嶇孩妫曡壊鍥轰綋锛孊 涓?\(\ce{FeCl3}\)锛孋 涓?\(\ce{Fe(OH)3}\)銆?/div>
+  <div class="calc-box">
+    <div class="calc-sub">锛?锛夛紙2鍒嗭級鍐欏嚭 A 鐨勫寲瀛﹀紡銆?/div>
+    <textarea class="fill-input" id="q22a" placeholder="鍐欏湪姝ゅ鈥? style="min-height:40px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙3鍒嗭級鍐欏嚭 Fe 鈫?A 鐨勫寲瀛︽柟绋嬪紡銆?/div>
+    <textarea class="fill-input" id="q22b" placeholder="鍐欏湪姝ゅ鈥? style="min-height:48px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙3鍒嗭級鍐欏嚭 B 鈫?C 鐨勭瀛愭柟绋嬪紡銆?/div>
+    <textarea class="fill-input" id="q22c" placeholder="鍐欏湪姝ゅ鈥? style="min-height:48px"></textarea>
+    <div class="calc-sub" style="margin-top:8px">锛?锛夛紙4鍒嗭級鍐欏嚭 C 鈫?Fe 鐨勫寲瀛︽柟绋嬪紡锛堝彲鐢ㄤ袱姝ヨ〃绀猴級銆?/div>
+    <textarea class="fill-input" id="q22d" placeholder="鍐欏湪姝ゅ鈥? style="min-height:56px"></textarea>
+  </div>
+  <div class="answer-reveal" id="ans-q22">
+    <strong>銆愮瓟妗堛€?/strong>
+    <div class="eq-block">锛?锛塡(\ce{Fe2O3}\) 鈥︹€︹€︹€︹€?2鍒?/div>
+    <div class="eq-block">锛?锛塡(\ce{4Fe + 3O2 ->[楂樻俯] 2Fe2O3}\) 鈥︹€︹€︹€︹€?3鍒?/div>
+    <div class="eq-block">锛?锛塡(\ce{Fe^{3+} + 3OH- -> Fe(OH)3 v}\) 鈥︹€︹€︹€︹€?3鍒?/div>
+    <div class="eq-block">锛?锛塡(\ce{2Fe(OH)3 ->[楂樻俯] Fe2O3 + 3H2O}\) 鈥?2鍒?br>
+      \(\ce{Fe2O3 + 3CO ->[楂樻俯] 2Fe + 3CO2}\) 鈥?2鍒?/div>
+  </div>
+</div>
+
+<!-- ============ 鎿嶄綔鏍?============ -->
+<div class="action-bar">
+  <button class="btn-submit" onclick="gradeExam()">馃摑 浜ゅ嵎鎵规敼</button>
+  <button class="btn-reset" onclick="resetAll()">馃棏锔?閲嶇疆</button>
+  <span class="score-display" id="scoreDisplay">鎬诲垎锛?span id="scoreNum">鈥?/span></span>
+  <span class="score-detail" id="scoreDetail"></span>
+</div>
+
+<div id="answerRevealArea"></div>
+
+<div class="status-bar">
+  馃捑 绛旀宸茶嚜鍔ㄤ繚瀛樿嚦鏈湴 &nbsp;路&nbsp; 鎸?<kbd>Ctrl</kbd>+<kbd>Enter</kbd> 杈撳叆瀵嗙爜鏌ョ湅绛旀
+</div>
+
+</div><!-- /.container -->
+
+<!-- ============ 瀵嗙爜閬僵 ============ -->
+<div class="pwd-overlay" id="pwdOverlay">
+  <div class="pwd-box">
+    <p>璇疯緭鍏ユ暀甯堝瘑鐮佹煡鐪嬬瓟妗?/p>
+    <input type="password" id="pwdInput" maxlength="10" autocomplete="off">
+    <div class="err" id="pwdErr">瀵嗙爜閿欒锛岃閲嶈瘯</div>
+    <div class="btns">
+      <button class="ok" onclick="checkPassword()">纭</button>
+      <button class="cancel" onclick="closePassword()">鍙栨秷</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   楂樹竴鍖栧路閾佸強鍏跺寲鍚堢墿 鈥?鎵规敼 & 淇濆瓨閫昏緫
+   ================================================================ */
+
+const KEY = {
+  q1:'C', q2:'C', q3:'B', q4:'D', q5:'A', q6:'A',
+  q7:'D', q8:'B', q9:'D', q10:'B', q11:'C', q12:'C',
+  q13:['B','C','D'], q14:['B','C'], q15:['B','C'],
+  fill: {
+    q16_eq: [['2fe+3cl2','2fe+cl2'],['2fecl3','fecl3']],
+    q16_prop: [['姘у寲','姘у寲鎬?]],
+    q17_eq: [['fe3o4','fe3o4'],['8hcl','hcl'],['2fecl3','fecl3'],['fecl2']],
+    q18_c1: [['鐧?,'鐧借壊']],
+    q18_c2: [['鐏扮豢','鐏扮豢鑹?]],
+    q18_c3: [['绾㈣','绾㈣鑹?]],
+    q19_eq: [['fe3+','fe3'],['scn-','scn'],['fe(scn)3','fescn']],
+    q19_color: [['琛€绾?,'琛€绾㈣壊','绾㈣壊','绾?]]
+  }
+};
+
+const STORAGE_KEY = 'chem_ch3_s1_answers';
+const PASSWORD = '2641';
+
+let revealed = false;
+
+// ===== localStorage =====
+function saveState() {
+  const data = {};
+  document.querySelectorAll('[data-type="choice"]').forEach(q => {
+    const name = q.dataset.q;
+    const sel = q.querySelector('input:checked');
+    data[name] = sel ? sel.value : '';
+  });
+  document.querySelectorAll('[data-type="multi"]').forEach(q => {
+    const name = q.dataset.q;
+    data[name] = Array.from(q.querySelectorAll('input:checked')).map(c => c.value);
+  });
+  document.querySelectorAll('[data-type="fill"] .fill-input, .calc-box .fill-input').forEach(el => {
+    if (el.id) data[el.id] = el.value;
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function loadState() {
+  let raw;
+  try { raw = localStorage.getItem(STORAGE_KEY); } catch(e) { return; }
+  if (!raw) return;
+  let data;
+  try { data = JSON.parse(raw); } catch(e) { return; }
+  document.querySelectorAll('[data-type="choice"]').forEach(q => {
+    const name = q.dataset.q;
+    if (data[name]) {
+      const r = q.querySelector('input[value="' + data[name] + '"]');
+      if (r) r.checked = true;
+    }
+  });
+  document.querySelectorAll('[data-type="multi"]').forEach(q => {
+    const name = q.dataset.q;
+    if (Array.isArray(data[name])) {
+      data[name].forEach(v => {
+        const c = q.querySelector('input[value="' + v + '"]');
+        if (c) c.checked = true;
+      });
+    }
+  });
+  document.querySelectorAll('.fill-input').forEach(el => {
+    if (el.id && data[el.id] !== undefined) el.value = data[el.id];
+  });
+}
+
+function initAutoSave() {
+  document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('change', saveState);
+    el.addEventListener('input', saveState);
+  });
+}
+
+// ===== 杈呭姪鍑芥暟 =====
+function norm(s) {
+  return s.replace(/[\s_鈫掆啈鈫撯柍鐐圭噧楂樻俯]/g,'').replace(/[锛堬級()]/g,'').toLowerCase();
+}
+
+function gradeFill(id, patternArr) {
+  const el = document.getElementById(id);
+  if (!el || !el.value) return false;
+  const v = norm(el.value);
+  if (!v) return false;
+  for (const group of patternArr) {
+    const matched = group.some(pat => v.includes(norm(pat)));
+    if (!matched) return false;
+  }
+  return true;
+}
+
+function gradeMulti(selected, correct) {
+  if (!selected || selected.length === 0) return 0;
+  for (const s of selected) {
+    if (!correct.includes(s)) return 0;
+  }
+  if (selected.length === correct.length) return 4;
+  if (selected.length > 0 && selected.length < correct.length) return 2;
+  return 0;
+}
+
+// ===== 涓绘壒鏀?=====
+function gradeExam() {
+  let choiceScore = 0, multiScore = 0, fillScore = 0;
+
+  // 鍗曢€?  document.querySelectorAll('[data-type="choice"]').forEach(q => {
+    const name = q.dataset.q;
+    const ans = KEY[name];
+    const sel = q.querySelector('input:checked');
+    const fb = document.getElementById('fb-' + name);
+    const val = sel ? sel.value : '';
+    const correct = val === ans;
+    if (correct) choiceScore += 3;
+    fb.textContent = correct ? '鉁?姝ｇ‘ (+3鍒?' : (val ? '鉁?閿欒' : '锛堟湭浣滅瓟锛?);
+    fb.className = 'feedback ' + (correct ? 'correct' : (val ? 'wrong' : ''));
+    if (revealed) {
+      q.querySelectorAll('.opt').forEach(o => {
+        const inp = o.querySelector('input');
+        o.classList.remove('correct-opt','wrong-opt');
+        if (inp.value === ans) o.classList.add('correct-opt');
+        else if (inp.checked && inp.value !== ans) o.classList.add('wrong-opt');
+      });
+    }
+  });
+
+  // 澶氶€?  document.querySelectorAll('[data-type="multi"]').forEach(q => {
+    const name = q.dataset.q;
+    const correct = KEY[name];
+    const selected = Array.from(q.querySelectorAll('input:checked')).map(c => c.value);
+    const fb = document.getElementById('fb-' + name);
+    const score = gradeMulti(selected, correct);
+    multiScore += score;
+    const label = score === 4 ? '鉁?鍏ㄥ (+4鍒?' : score === 2 ? '鈿?閮ㄥ垎姝ｇ‘ (+2鍒?' : (selected.length ? '鉁?閿欒 (0鍒?' : '锛堟湭浣滅瓟 0鍒嗭級');
+    fb.textContent = label;
+    fb.className = 'feedback ' + (score === 4 ? 'correct' : score === 2 ? 'partial' : 'wrong');
+    if (revealed) {
+      q.querySelectorAll('.opt').forEach(o => {
+        const inp = o.querySelector('input');
+        o.classList.remove('correct-opt','wrong-opt','missed-opt');
+        if (correct.includes(inp.value) && inp.checked) o.classList.add('correct-opt');
+        else if (correct.includes(inp.value) && !inp.checked) o.classList.add('missed-opt');
+        else if (!correct.includes(inp.value) && inp.checked) o.classList.add('wrong-opt');
+      });
+    }
+  });
+
+  // 濉┖
+  const f16_eq = gradeFill('q16_eq', KEY.fill.q16_eq);
+  const f16_prop = gradeFill('q16_prop', KEY.fill.q16_prop);
+  const f16_score = (f16_eq ? 2 : 0) + (f16_prop ? 2 : 0);
+
+  const f17_score = gradeFill('q17_eq', KEY.fill.q17_eq) ? 4 : 0;
+
+  const f18_1 = gradeFill('q18_c1', KEY.fill.q18_c1);
+  const f18_2 = gradeFill('q18_c2', KEY.fill.q18_c2);
+  const f18_3 = gradeFill('q18_c3', KEY.fill.q18_c3);
+  const f18_score = (f18_1 ? 1 : 0) + (f18_2 ? 1 : 0) + (f18_3 ? 2 : 0);
+
+  const f19_eq = gradeFill('q19_eq', KEY.fill.q19_eq);
+  const f19_color = gradeFill('q19_color', KEY.fill.q19_color);
+  const f19_score = (f19_eq ? 2 : 0) + (f19_color ? 2 : 0);
+
+  fillScore = f16_score + f17_score + f18_score + f19_score;
+
+  // 濉┖鍙嶉
+  function setFB(id, correct, pts) {
+    const fb = document.getElementById('fb-' + id.replace(/_.*$/,''));
+    if (!fb) return;
+    const tag = correct ? '鉁? : '寰呰姝?;
+    fb.textContent = id + ': ' + tag + ' (' + pts + '鍒?';
+    fb.className = 'feedback ' + (correct ? 'correct' : 'wrong');
+  }
+  // 娓呴櫎鏃у～绌哄弽棣堝啀閲嶅缓锛堥伩鍏嶅爢绉級
+  document.querySelectorAll('[data-type="fill"] .feedback').forEach(el => el.textContent = '');
+
+  // 缁欐瘡涓～绌轰竴涓洿鍙嬪ソ鐨勫弽棣?  const fillFB = document.getElementById('fb-q16');
+  if (fillFB) {
+    const parts = [];
+    if (f16_eq) parts.push('鏂圭▼寮忊湏(2鍒?'); else parts.push('鏂圭▼寮忓緟璁㈡');
+    if (f16_prop) parts.push('鎬ц川鉁?2鍒?'); else parts.push('鎬ц川寰呰姝?);
+    fillFB.textContent = parts.join('锛?);
+    fillFB.className = 'feedback ' + ((f16_eq && f16_prop) ? 'correct' : (f16_eq || f16_prop ? 'partial' : 'wrong'));
+  }
+  const fb17 = document.getElementById('fb-q17');
+  if (fb17) {
+    fb17.textContent = f17_score === 4 ? '鉁?姝ｇ‘ (4鍒?' : '寰呰姝?;
+    fb17.className = 'feedback ' + (f17_score === 4 ? 'correct' : 'wrong');
+  }
+  const fb18 = document.getElementById('fb-q18');
+  if (fb18) {
+    const p = [];
+    if (f18_1) p.push('鐧解湏(1鍒?'); else p.push('鐧解湕');
+    if (f18_2) p.push('鐏扮豢鉁?1鍒?'); else p.push('鐏扮豢鉁?);
+    if (f18_3) p.push('绾㈣鉁?2鍒?'); else p.push('绾㈣鉁?);
+    fb18.textContent = p.join('锛?);
+    const all18 = f18_1 && f18_2 && f18_3;
+    fb18.className = 'feedback ' + (all18 ? 'correct' : (f18_1 || f18_2 || f18_3 ? 'partial' : 'wrong'));
+  }
+  const fb19 = document.getElementById('fb-q19');
+  if (fb19) {
+    const p2 = [];
+    if (f19_eq) p2.push('鏂圭▼寮忊湏(2鍒?'); else p2.push('鏂圭▼寮忓緟璁㈡');
+    if (f19_color) p2.push('鐜拌薄鉁?2鍒?'); else p2.push('鐜拌薄寰呰姝?);
+    fb19.textContent = p2.join('锛?);
+    fb19.className = 'feedback ' + ((f19_eq && f19_color) ? 'correct' : (f19_eq || f19_color ? 'partial' : 'wrong'));
+  }
+
+  const total = choiceScore + multiScore + fillScore;
+  document.getElementById('scoreNum').textContent = total + '/100';
+  document.getElementById('scoreDetail').textContent =
+    '鍗曢€?' + choiceScore + '/36 路 澶氶€?' + multiScore + '/12 路 濉┖ ' + fillScore + '/16锛堣绠楅闇€浜哄伐鎵归槄锛?;
+}
+
+// ===== 閲嶇疆 =====
+function resetAll() {
+  if (!confirm('纭畾瑕侀噸缃墍鏈夌瓟妗堝悧锛?)) return;
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+  document.querySelectorAll('.fill-input, .calc-box textarea').forEach(el => el.value = '');
+  document.querySelectorAll('.feedback').forEach(el => { el.textContent = ''; el.className = 'feedback'; });
+  document.querySelectorAll('.opt').forEach(o => o.classList.remove('correct-opt','wrong-opt','missed-opt'));
+  document.getElementById('scoreNum').textContent = '鈥?;
+  document.getElementById('scoreDetail').textContent = '';
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+}
+
+// ===== 瀵嗙爜 & 绛旀鎻ず =====
+function openPassword() {
+  document.getElementById('pwdOverlay').classList.add('show');
+  document.getElementById('pwdInput').value = '';
+  document.getElementById('pwdErr').style.display = 'none';
+  document.getElementById('pwdInput').focus();
+}
+function closePassword() {
+  document.getElementById('pwdOverlay').classList.remove('show');
+}
+function checkPassword() {
+  const pwd = document.getElementById('pwdInput').value;
+  if (pwd === PASSWORD) {
+    closePassword();
+    revealAllAnswers();
+  } else {
+    document.getElementById('pwdErr').style.display = 'block';
+    document.getElementById('pwdInput').value = '';
+    document.getElementById('pwdInput').focus();
+  }
+}
+function revealAllAnswers() {
+  revealed = true;
+  document.querySelectorAll('.answer-reveal').forEach(el => el.classList.add('show'));
+  gradeExam();
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+}
+
+// ===== 蹇嵎閿?=====
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    openPassword();
+  }
+});
+
+// ===== 鍒濆鍖?=====
+document.addEventListener('DOMContentLoaded', function() {
+  loadState();
+  initAutoSave();
+  if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一化学（人教版）第二章 2.2 氯及其化合物</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Times New Roman', '宋体', SimSun, serif;
+  font-size: 14px;
+  line-height: 1.8;
+  background: #f0f0f0;
+  padding: 20px;
+  color: #222;
+}
+.paper {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 28px 32px;
+  box-shadow: 0 0 12px rgba(0,0,0,.12);
+  min-height: 297mm;
+  position: relative;
+}
+
+/* ===== Header ===== */
+.header { text-align: center; margin-bottom: 18px; border-bottom: 2px solid #333; padding-bottom: 14px; }
+.header h1 { font-size: 20px; font-weight: bold; letter-spacing: 2px; margin-bottom: 6px; }
+.header .sub { font-size: 15px; color: #555; margin-bottom: 4px; }
+.header .info-bar { font-size: 14px; color: #333; margin: 4px 0; }
+.student-info { display: flex; justify-content: center; gap: 24px; margin-top: 10px; flex-wrap: wrap; }
+.student-info label { font-size: 14px; }
+.student-info input { border: none; border-bottom: 1px solid #333; width: 90px; font-size: 14px; padding: 0 4px; background: transparent; outline: none; }
+
+/* ===== Sections ===== */
+.section { margin-bottom: 20px; }
+.section h2 { font-size: 16px; font-weight: bold; margin: 16px 0 10px; padding-left: 6px; border-left: 4px solid #1a5276; }
+
+/* ===== Questions ===== */
+.question { margin-bottom: 14px; padding: 8px 10px; border-left: 3px solid transparent; }
+.question:hover { border-left-color: #85c1e9; }
+.q-title { font-weight: bold; margin-bottom: 4px; }
+.q-text { margin-bottom: 6px; text-indent: 2em; }
+
+/* Options */
+.options { margin: 6px 0 4px 2em; }
+.options label { display: block; cursor: pointer; padding: 2px 4px; }
+.options label:hover { background: #eaf2f8; }
+.options input[type="radio"], .options input[type="checkbox"] { margin-right: 6px; vertical-align: middle; }
+
+/* Fill-in blanks */
+.fill-question .q-text { text-indent: 0; }
+.fill-blank {
+  border: none; border-bottom: 1.5px solid #333;
+  width: 100px; text-align: center; font-size: 14px;
+  padding: 0 4px; margin: 0 2px; background: transparent; outline: none;
+  font-family: inherit;
+}
+.fill-blank:focus { border-bottom-color: #2980b9; border-bottom-width: 2px; }
+.fill-blank.correct { border-bottom-color: #27ae60; background: #eafaf1; }
+.fill-blank.wrong { border-bottom-color: #e74c3c; background: #fdedec; }
+
+/* Calc textarea */
+.calc-question textarea {
+  width: 100%; min-height: 70px; margin-top: 6px;
+  border: 1px solid #bbb; border-radius: 4px; padding: 8px;
+  font-family: inherit; font-size: 14px; resize: vertical;
+  outline: none; line-height: 1.6;
+}
+.calc-question textarea:focus { border-color: #2980b9; box-shadow: 0 0 3px rgba(41,128,185,.3); }
+.calc-question .q-text { text-indent: 0; }
+.sub-q { margin: 6px 0 4px 1.5em; }
+
+/* ===== Buttons ===== */
+.btn-group { text-align: center; margin: 20px 0 10px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-group button {
+  padding: 8px 22px; font-size: 15px; border: none; border-radius: 4px;
+  cursor: pointer; font-family: inherit; transition: background .2s;
+}
+.btn-submit { background: #1a5276; color: #fff; }
+.btn-submit:hover { background: #154360; }
+.btn-clear { background: #922b21; color: #fff; }
+.btn-clear:hover { background: #7b241c; }
+.btn-reveal { background: #7d6608; color: #fff; }
+.btn-reveal:hover { background: #665705; }
+
+/* ===== Result ===== */
+#result { text-align: center; font-size: 16px; font-weight: bold; margin: 12px 0; padding: 10px; border-radius: 4px; display: none; }
+#result.show { display: block; }
+#result.pass { background: #d5f5e3; color: #1e8449; }
+#result.fail { background: #fadbd8; color: #922b21; }
+
+/* ===== Answer Section ===== */
+.answer-section {
+  margin-top: 24px; padding: 16px 20px; background: #fef9e7;
+  border: 1px solid #f9e79f; border-radius: 6px; display: none;
+}
+.answer-section.show { display: block; }
+.answer-section h3 { font-size: 17px; margin-bottom: 12px; border-bottom: 1px solid #f9e79f; padding-bottom: 6px; }
+.answer-item { margin-bottom: 10px; padding: 6px 8px; border-left: 3px solid #f9e79f; }
+.answer-item .ans-label { font-weight: bold; color: #1a5276; }
+.answer-item .ans-key { color: #922b21; font-weight: bold; }
+.answer-item .ans-desc { color: #555; font-size: 13px; margin-top: 2px; }
+
+/* Status feedback on question */
+.question.correct-q { border-left-color: #27ae60; background: #f0faf4; }
+.question.wrong-q { border-left-color: #e74c3c; background: #fdf2f2; }
+
+/* ===== Print ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper { box-shadow: none; padding: 15mm 20mm; max-width: 100%; }
+  .btn-group, #result, .answer-section, .student-info input { display: none; }
+  .student-info { display: flex; }
+  .student-info input { border-bottom: 1px solid #000; display: inline-block; }
+  .question:hover { border-left-color: transparent; }
+  .no-print { display: none; }
+  .section { page-break-inside: avoid; }
+  .fill-blank { border-bottom: 1.5px solid #000; }
+  @page { size: A4; margin: 15mm; }
+}
+
+/* ===== 手机端适配 ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 8px; }
+  .paper { padding: 14px 16px; box-shadow: none; min-height: auto; }
+  .student-info { flex-direction: column; gap: 6px; align-items: center; }
+  .options { margin-left: 0.5em; }
+  .sub-q { margin-left: 0.5em; }
+  .header h1 { font-size: 17px; }
+  .btn-group button { padding: 8px 14px; font-size: 14px; }
+}
+
+/* ===== Misc ===== */
+.clearfix::after { content: ''; display: table; clear: both; }
+.score-badge { display: inline-block; background: #1a5276; color: #fff; padding: 0 8px; border-radius: 3px; font-size: 12px; margin-left: 6px; }
+.total-score { font-size: 18px; text-align: center; padding: 10px; margin: 10px 0; background: #eaf2f8; border-radius: 4px; }
+.password-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); z-index: 999; display: flex; align-items: center; justify-content: center; }
+.password-modal-inner { background: #fff; padding: 30px; border-radius: 8px; text-align: center; max-width: 320px; width: 90%; }
+.password-modal-inner h3 { margin-bottom: 12px; }
+.password-modal-inner input { padding: 6px 10px; font-size: 16px; width: 120px; text-align: center; margin-bottom: 12px; border: 1px solid #bbb; border-radius: 4px; outline: none; }
+.password-modal-inner input:focus { border-color: #2980b9; }
+.password-modal-inner .pm-btn { padding: 6px 16px; margin: 0 4px; cursor: pointer; border: none; border-radius: 4px; font-size: 14px; }
+.pm-confirm { background: #1a5276; color: #fff; }
+.pm-cancel { background: #bbb; color: #333; }
+</style>
+</head>
+<body>
+
+<div class="paper" id="paper">
+
+  <!-- ==================== HEADER ==================== -->
+  <div class="header">
+    <h1>高一化学（人教版必修第一册）</h1>
+    <div class="sub">第二章 &nbsp; 2.2 氯及其化合物 &nbsp; 课时训练卷</div>
+    <div class="info-bar">
+      <strong>总分：100分</strong> &nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp; 命题范围：2.2 氯及其化合物
+    </div>
+    <div class="student-info">
+      <label>姓名：<input type="text" id="student-name" autocomplete="off"></label>
+      <label>班级：<input type="text" id="student-class" autocomplete="off" style="width:70px"></label>
+      <label>学号：<input type="text" id="student-id" autocomplete="off" style="width:80px"></label>
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section">
+    <h2>一、单选题（共10题，每题3分，共30分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题只有一个选项符合题意。</p>
+
+    <!-- q1 -->
+    <div class="question" data-qid="q1" data-type="single" data-answer="C">
+      <div class="q-title">1.</div>
+      <div class="q-text">下列有关氯气物理性质的说法中，错误的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A．黄绿色气体</label>
+        <label><input type="radio" name="q1" value="B"> B．有刺激性气味</label>
+        <label><input type="radio" name="q1" value="C"> C．密度比空气小</label>
+        <label><input type="radio" name="q1" value="D"> D．有毒</label>
+      </div>
+    </div>
+
+    <!-- q2 -->
+    <div class="question" data-qid="q2" data-type="single" data-answer="B">
+      <div class="q-title">2.</div>
+      <div class="q-text">下列氯化物中，不能由氯气与金属单质直接化合得到的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A．NaCl</label>
+        <label><input type="radio" name="q2" value="B"> B．FeCl\(_2\)</label>
+        <label><input type="radio" name="q2" value="C"> C．CuCl\(_2\)</label>
+        <label><input type="radio" name="q2" value="D"> D．AlCl\(_3\)</label>
+      </div>
+    </div>
+
+    <!-- q3 -->
+    <div class="question" data-qid="q3" data-type="single" data-answer="A">
+      <div class="q-title">3.</div>
+      <div class="q-text">氢气在氯气中燃烧，观察到的现象是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> A．苍白色火焰，瓶口有白雾</label>
+        <label><input type="radio" name="q3" value="B"> B．黄色火焰，产生大量白烟</label>
+        <label><input type="radio" name="q3" value="C"> C．蓝色火焰，生成无色无味气体</label>
+        <label><input type="radio" name="q3" value="D"> D．剧烈燃烧，发生爆炸</label>
+      </div>
+    </div>
+
+    <!-- q4 -->
+    <div class="question" data-qid="q4" data-type="single" data-answer="A">
+      <div class="q-title">4.</div>
+      <div class="q-text">新制氯水显浅黄绿色，说明氯水中含有（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> A．Cl\(_2\)</label>
+        <label><input type="radio" name="q4" value="B"> B．HCl</label>
+        <label><input type="radio" name="q4" value="C"> C．HClO</label>
+        <label><input type="radio" name="q4" value="D"> D．H\(^+\)</label>
+      </div>
+    </div>
+
+    <!-- q5 -->
+    <div class="question" data-qid="q5" data-type="single" data-answer="C">
+      <div class="q-title">5.</div>
+      <div class="q-text">在反应 Cl\(_2\) + 2NaOH = NaCl + NaClO + H\(_2\)O 中，氯气的作用是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> A．只作氧化剂</label>
+        <label><input type="radio" name="q5" value="B"> B．只作还原剂</label>
+        <label><input type="radio" name="q5" value="C"> C．既作氧化剂又作还原剂</label>
+        <label><input type="radio" name="q5" value="D"> D．既不作氧化剂也不作还原剂</label>
+      </div>
+    </div>
+
+    <!-- q6 -->
+    <div class="question" data-qid="q6" data-type="single" data-answer="D">
+      <div class="q-title">6.</div>
+      <div class="q-text">下列关于次氯酸（HClO）的说法中，不正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q6" value="A"> A．具有弱酸性</label>
+        <label><input type="radio" name="q6" value="B"> B．具有强氧化性</label>
+        <label><input type="radio" name="q6" value="C"> C．具有漂白性</label>
+        <label><input type="radio" name="q6" value="D"> D．见光稳定，不易分解</label>
+      </div>
+    </div>
+
+    <!-- q7 -->
+    <div class="question" data-qid="q7" data-type="single" data-answer="A">
+      <div class="q-title">7.</div>
+      <div class="q-text">漂白粉的有效成分是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A．Ca(ClO)\(_2\)</label>
+        <label><input type="radio" name="q7" value="B"> B．CaCl\(_2\)</label>
+        <label><input type="radio" name="q7" value="C"> C．Cl\(_2\)</label>
+        <label><input type="radio" name="q7" value="D"> D．Ca(OH)\(_2\)</label>
+      </div>
+    </div>
+
+    <!-- q8 -->
+    <div class="question" data-qid="q8" data-type="single" data-answer="B">
+      <div class="q-title">8.</div>
+      <div class="q-text">漂白粉在空气中久置会失效，主要原因是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q8" value="A"> A．CaCl\(_2\) 潮解</label>
+        <label><input type="radio" name="q8" value="B"> B．Ca(ClO)\(_2\) 与 CO\(_2\) 和 H\(_2\)O 反应生成 HClO，HClO 见光分解</label>
+        <label><input type="radio" name="q8" value="C"> C．CaCO\(_3\) 分解</label>
+        <label><input type="radio" name="q8" value="D"> D．Cl\(_2\) 挥发</label>
+      </div>
+    </div>
+
+    <!-- q9 -->
+    <div class="question" data-qid="q9" data-type="single" data-answer="C">
+      <div class="q-title">9.</div>
+      <div class="q-text">在反应 Cl\(_2\) + H\(_2\)O \(\rightleftharpoons\) HCl + HClO 中，氯气的作用是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q9" value="A"> A．只作氧化剂</label>
+        <label><input type="radio" name="q9" value="B"> B．只作还原剂</label>
+        <label><input type="radio" name="q9" value="C"> C．既作氧化剂又作还原剂</label>
+        <label><input type="radio" name="q9" value="D"> D．既不作氧化剂也不作还原剂</label>
+      </div>
+    </div>
+
+    <!-- q10 -->
+    <div class="question" data-qid="q10" data-type="single" data-answer="C">
+      <div class="q-title">10.</div>
+      <div class="q-text">下列关于氯气性质的说法中，正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q10" value="A"> A．干燥的氯气具有漂白性</label>
+        <label><input type="radio" name="q10" value="B"> B．氯气不能与金属铜反应</label>
+        <label><input type="radio" name="q10" value="C"> C．氯气与铁反应生成 FeCl\(_3\)</label>
+        <label><input type="radio" name="q10" value="D"> D．氯气是无色无味的气体</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section">
+    <h2>二、多选题（共3题，每题4分，共12分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题有多个选项符合题意。全对得4分，部分选对得2分，有错选得0分。</p>
+
+    <!-- q101 -->
+    <div class="question" data-qid="q101" data-type="multi" data-answer='["A","B","C"]'>
+      <div class="q-title">11.</div>
+      <div class="q-text">新制氯水中含有的分子有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q101" value="A"> A．Cl\(_2\)</label>
+        <label><input type="checkbox" name="q101" value="B"> B．HClO</label>
+        <label><input type="checkbox" name="q101" value="C"> C．H\(_2\)O</label>
+        <label><input type="checkbox" name="q101" value="D"> D．O\(_2\)</label>
+      </div>
+    </div>
+
+    <!-- q102 -->
+    <div class="question" data-qid="q102" data-type="multi" data-answer='["A","C","D"]'>
+      <div class="q-title">12.</div>
+      <div class="q-text">下列关于漂白粉的说法中，正确的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q102" value="A"> A．有效成分是 Ca(ClO)\(_2\)</label>
+        <label><input type="checkbox" name="q102" value="B"> B．漂白作用是 Ca(ClO)\(_2\) 直接发挥的</label>
+        <label><input type="checkbox" name="q102" value="C"> C．在空气中久置会失效</label>
+        <label><input type="checkbox" name="q102" value="D"> D．可用 Cl\(_2\) 与石灰乳反应制得</label>
+      </div>
+    </div>
+
+    <!-- q103 -->
+    <div class="question" data-qid="q103" data-type="multi" data-answer='["A","C","D"]'>
+      <div class="q-title">13.</div>
+      <div class="q-text">下列有关 Cl\(_2\) 的实验室制法的说法，正确的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q103" value="A"> A．用 MnO\(_2\) 与浓盐酸在加热条件下反应制取</label>
+        <label><input type="checkbox" name="q103" value="B"> B．收集 Cl\(_2\) 用向下排空气法</label>
+        <label><input type="checkbox" name="q103" value="C"> C．可用饱和食盐水除去 Cl\(_2\) 中混有的 HCl</label>
+        <label><input type="checkbox" name="q103" value="D"> D．Cl\(_2\) 有毒，制取时要在通风橱中进行</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section">
+    <h2>三、填空题（共6题，每题3分，共18分）</h2>
+
+    <!-- q11 (Display 14) -->
+    <div class="question fill-question" data-qid="q11" data-type="fill">
+      <div class="q-title">14. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-text">
+        Cl\(_2\) + H\(_2\)O \(\rightleftharpoons\) <input type="text" class="fill-blank" id="q11-0" data-answer="HCl" style="width:60px" autocomplete="off"> + <input type="text" class="fill-blank" id="q11-1" data-answer="HClO" style="width:70px" autocomplete="off">
+      </div>
+    </div>
+
+    <!-- q12 (Display 15) -->
+    <div class="question fill-question" data-qid="q12" data-type="fill">
+      <div class="q-title">15. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-text">
+        Cl\(_2\) + 2NaOH = <input type="text" class="fill-blank" id="q12-0" data-answer="NaCl" data-alt="氯化钠" style="width:70px" autocomplete="off"> + NaClO + H\(_2\)O
+      </div>
+    </div>
+
+    <!-- q13 (Display 16) -->
+    <div class="question fill-question" data-qid="q13" data-type="fill">
+      <div class="q-title">16. <span style="font-weight:normal">漂白粉的有效成分是</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q13-0" data-answer="Ca(ClO)₂" data-alt="Ca(ClO)2|次氯酸钙" style="width:120px" autocomplete="off"> （填化学式）。
+      </div>
+    </div>
+
+    <!-- q14 (Display 17) -->
+    <div class="question fill-question" data-qid="q14" data-type="fill">
+      <div class="q-title">17. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-text">
+        2HClO \(\xrightarrow{见光}\) <input type="text" class="fill-blank" id="q14-0" data-answer="2HCl" data-alt="HCl+HCl" style="width:70px" autocomplete="off"> + <input type="text" class="fill-blank" id="q14-1" data-answer="O₂" data-alt="O2|O₂↑|氧气" style="width:60px" autocomplete="off">
+      </div>
+    </div>
+
+    <!-- q15 (Display 18) -->
+    <div class="question fill-question" data-qid="q15" data-type="fill">
+      <div class="q-title">18. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-text">
+        2Cl\(_2\) + 2Ca(OH)\(_2\) = <input type="text" class="fill-blank" id="q15-0" data-answer="CaCl₂" data-alt="CaCl2|氯化钙" style="width:80px" autocomplete="off"> + Ca(ClO)\(_2\) + 2H\(_2\)O
+      </div>
+    </div>
+
+    <!-- q16 (Display 19) -->
+    <div class="question fill-question" data-qid="q16" data-type="fill">
+      <div class="q-title">19. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-text">
+        Ca(ClO)\(_2\) + CO\(_2\) + H\(_2\)O = CaCO\(_3\)\(\downarrow\) + <input type="text" class="fill-blank" id="q16-0" data-answer="2HClO" data-alt="HClO+HClO|2HClO" style="width:80px" autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section">
+    <h2>四、解答题（共4题，共40分）</h2>
+
+    <!-- q17 (Display 20) -->
+    <div class="question calc-question" data-qid="q17" data-type="calc">
+      <div class="q-title">20. <span style="font-weight:normal">（10分）氯气（Cl\(_2\)）是一种重要的非金属单质。请回答下列问题：</span></div>
+      <div class="sub-q">(1)（2分）写出氯气的三条物理性质。</div>
+      <textarea id="q17-1" placeholder="(1)" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（2分）写出氯气与铁在点燃条件下反应的化学方程式。</div>
+      <textarea id="q17-2" placeholder="(2)" style="min-height:50px"></textarea>
+      <div class="sub-q">(3)（3分）写出氯气与水反应的化学方程式，并指出氯气在该反应中充当氧化剂还是还原剂。</div>
+      <textarea id="q17-3" placeholder="(3)" style="min-height:60px"></textarea>
+      <div class="sub-q">(4)（3分）新制氯水显浅黄绿色，向其中滴加紫色石蕊试液，先变红后褪色。请解释上述现象。</div>
+      <textarea id="q17-4" placeholder="(4)" style="min-height:60px"></textarea>
+    </div>
+
+    <!-- q18 (Display 21) -->
+    <div class="question calc-question" data-qid="q18" data-type="calc">
+      <div class="q-title">21. <span style="font-weight:normal">（10分）漂白粉是生活中常用的消毒剂。请回答下列问题：</span></div>
+      <div class="sub-q">(1)（3分）写出工业上制备漂白粉的化学方程式。</div>
+      <textarea id="q18-1" placeholder="(1)" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（2分）漂白粉的有效成分是什么？写出漂白粉在空气中起漂白作用的原理（用化学方程式表示）。</div>
+      <textarea id="q18-2" placeholder="(2)" style="min-height:60px"></textarea>
+      <div class="sub-q">(3)（3分）漂白粉为什么在空气中久置会失效？</div>
+      <textarea id="q18-3" placeholder="(3)" style="min-height:50px"></textarea>
+      <div class="sub-q">(4)（2分）新制氯水和久置氯水在成分上有什么主要区别？</div>
+      <textarea id="q18-4" placeholder="(4)" style="min-height:50px"></textarea>
+    </div>
+
+    <!-- q19 (Display 22) -->
+    <div class="question calc-question" data-qid="q19" data-type="calc">
+      <div class="q-title">22. <span style="font-weight:normal">（10分）分析氯气（Cl\(_2\)）在不同反应中的作用。</span></div>
+      <div class="q-text">反应①：2Na + Cl\(_2\) \(\xrightarrow{点燃}\) 2NaCl &nbsp;&nbsp; 反应②：Cl\(_2\) + H\(_2\)O \(\rightleftharpoons\) HCl + HClO</div>
+      <div class="q-text" style="margin-top:4px;">反应③：Cl\(_2\) + 2NaOH = NaCl + NaClO + H\(_2\)O &nbsp;&nbsp; 反应④：2Cl\(_2\) + 2Ca(OH)\(_2\) = CaCl\(_2\) + Ca(ClO)\(_2\) + 2H\(_2\)O</div>
+      <div class="sub-q" style="margin-top:8px;">(1)（2分）在反应①中，氯元素化合价从 <input type="text" id="q19-val1" data-answer="0" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价变为 <input type="text" id="q19-val2" data-answer="-1" data-alt="﹣1" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价，Cl\(_2\) 被 <input type="text" id="q19-role1" data-answer="还原" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;text-align:center" autocomplete="off">（填"氧化"或"还原"），作 <input type="text" id="q19-role2" data-answer="氧化剂" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;text-align:center" autocomplete="off"> 剂。</div>
+      <div class="sub-q">(2)（2分）在反应②中，Cl\(_2\) 既作氧化剂又作还原剂，其中 Cl 的化合价从 0 价分别变为 <input type="text" id="q19-val3" data-answer="-1" data-alt="﹣1" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价和 <input type="text" id="q19-val4" data-answer="+1" data-alt="﹢1|1" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价。</div>
+      <div class="sub-q">(3)（3分）反应③与反应④均为氯气的歧化反应。若有 1 mol Cl\(_2\) 参加反应③，转移电子的物质的量为 <input type="text" id="q19-mol" data-answer="1" data-alt="1mol|1 mol" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;text-align:center" autocomplete="off"> mol。</div>
+      <div class="sub-q">(4)（3分）在反应④中，氧化产物是 <input type="text" id="q19-oxp" data-answer="Ca(ClO)₂" data-alt="Ca(ClO)2|次氯酸钙" style="border:none;border-bottom:1px solid #333;width:100px;padding:0 4px;text-align:center;font-family:inherit" autocomplete="off">，还原产物是 <input type="text" id="q19-rep" data-answer="CaCl₂" data-alt="CaCl2|氯化钙" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px;text-align:center;font-family:inherit" autocomplete="off">（填化学式）。</div>
+    </div>
+
+    <!-- q20 (Display 23) -->
+    <div class="question calc-question" data-qid="q20" data-type="calc">
+      <div class="q-title">23. <span style="font-weight:normal">（10分）某实验小组对新制氯水的成分进行探究，请回答下列问题：</span></div>
+      <div class="sub-q">(1)（2分）新制氯水呈浅黄绿色，说明其中含有 <input type="text" id="q20-cl2" data-answer="Cl₂" data-alt="Cl2|氯气" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off">（填化学式）。</div>
+      <div class="sub-q">(2)（2分）向新制氯水中滴加紫色石蕊试液，先变红后褪色。变红说明含有 <input type="text" id="q20-h" data-answer="H⁺" data-alt="H+|H离子|盐酸|HCl" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">（填离子符号），褪色说明含有 <input type="text" id="q20-hclo" data-answer="HClO" data-alt="次氯酸" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off">（填化学式）。</div>
+      <div class="sub-q">(3)（3分）向新制氯水中加入 AgNO\(_3\) 溶液，产生白色沉淀。写出该反应的离子方程式：</div>
+      <textarea id="q20-3" placeholder="(3)" style="min-height:50px"></textarea>
+      <div class="sub-q">(4)（3分）将新制氯水在阳光下放置一段时间，溶液中的黄绿色逐渐褪去，写出发生反应的化学方程式：</div>
+      <textarea id="q20-4" placeholder="(4)" style="min-height:50px"></textarea>
+    </div>
+  </div>
+
+  <!-- ==================== BUTTONS ==================== -->
+  <div class="btn-group no-print">
+    <button class="btn-submit" onclick="submitPaper()">提交试卷</button>
+    <button class="btn-clear" onclick="clearAll()">清空答案</button>
+    <button class="btn-reveal" onclick="showPasswordModal()">查看答案</button>
+  </div>
+
+  <div id="result"></div>
+
+  <!-- ==================== ANSWER SECTION ==================== -->
+  <div class="answer-section" id="answer-section">
+    <h3>📖 参考答案与解析</h3>
+
+    <div class="answer-item"><span class="ans-label">一、单选题</span></div>
+    <div class="answer-item"><span class="ans-label">1.</span> <span class="ans-key">C</span> —— <span class="ans-desc">氯气密度比空气大（约为空气的2.5倍），故C项"密度比空气小"错误。</span></div>
+    <div class="answer-item"><span class="ans-label">2.</span> <span class="ans-key">B</span> —— <span class="ans-desc">氯气具有强氧化性，与铁反应生成 FeCl₃ 而非 FeCl₂。FeCl₂ 不能由 Cl₂ 与 Fe 直接化合得到。</span></div>
+    <div class="answer-item"><span class="ans-label">3.</span> <span class="ans-key">A</span> —— <span class="ans-desc">H₂ 在 Cl₂ 中燃烧发出苍白色火焰，生成的 HCl 与空气中水蒸气结合形成盐酸小液滴，产生白雾。</span></div>
+    <div class="answer-item"><span class="ans-label">4.</span> <span class="ans-key">A</span> —— <span class="ans-desc">Cl₂ 溶于水，部分与水反应，氯水呈浅黄绿色是因为其中含有 Cl₂ 分子。</span></div>
+    <div class="answer-item"><span class="ans-label">5.</span> <span class="ans-key">C</span> —— <span class="ans-desc">反应中 Cl₂ 中的 Cl 化合价从 0 价分别变为 -1 价（NaCl）和 +1 价（NaClO），故 Cl₂ 既作氧化剂又作还原剂。</span></div>
+    <div class="answer-item"><span class="ans-label">6.</span> <span class="ans-key">D</span> —— <span class="ans-desc">HClO 不稳定，见光易分解（2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑），故 D 项"见光稳定"错误。</span></div>
+    <div class="answer-item"><span class="ans-label">7.</span> <span class="ans-key">A</span> —— <span class="ans-desc">漂白粉是 CaCl₂ 和 Ca(ClO)₂ 的混合物，有效成分是 Ca(ClO)₂（次氯酸钙）。</span></div>
+    <div class="answer-item"><span class="ans-label">8.</span> <span class="ans-key">B</span> —— <span class="ans-desc">漂白粉在空气中与 CO₂ 和 H₂O 反应生成 HClO，HClO 见光分解，导致漂白粉失效。</span></div>
+    <div class="answer-item"><span class="ans-label">9.</span> <span class="ans-key">C</span> —— <span class="ans-desc">Cl₂ + H₂O ⇌ HCl + HClO 中，Cl 从 0 价分别变为 -1 价（HCl）和 +1 价（HClO），Cl₂ 既被氧化又被还原。</span></div>
+    <div class="answer-item"><span class="ans-label">10.</span> <span class="ans-key">C</span> —— <span class="ans-desc">A错，干燥 Cl₂ 无漂白性，起漂白作用的是 HClO；B错，Cl₂ 能与 Cu 反应生成 CuCl₂；C对，Cl₂ 与 Fe 生成 FeCl₃；D错，Cl₂ 是黄绿色气体。</span></div>
+
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">二、多选题</span></div>
+    <div class="answer-item"><span class="ans-label">11.</span> <span class="ans-key">A, B, C</span> —— <span class="ans-desc">新制氯水中含有的分子有 Cl₂、H₂O、HClO。O₂ 是 HClO 见光分解的产物，新制氯水中 O₂ 极少。</span></div>
+    <div class="answer-item"><span class="ans-label">12.</span> <span class="ans-key">A, C, D</span> —— <span class="ans-desc">A对，有效成分为 Ca(ClO)₂。B错，漂白作用是 Ca(ClO)₂ 与 CO₂、H₂O 反应生成的 HClO 发挥的。C对，空气中 CO₂ 和 H₂O 使漂白粉逐渐失效。D对，工业上用 Cl₂ 与石灰乳反应制漂白粉。</span></div>
+    <div class="answer-item"><span class="ans-label">13.</span> <span class="ans-key">A, C, D</span> —— <span class="ans-desc">A对，MnO₂ + 4HCl(浓) \(\xrightarrow{\triangle}\) MnCl₂ + Cl₂↑ + 2H₂O。B错，Cl₂ 密度比空气大，应用向上排空气法。C对，饱和食盐水可吸收 HCl 而 Cl₂ 在其中的溶解度很小。D对，Cl₂ 有毒，需在通风橱中操作。</span></div>
+
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">三、填空题</span></div>
+    <div class="answer-item"><span class="ans-label">14.</span> <span class="ans-key">HCl；HClO</span> —— <span class="ans-desc">Cl₂ + H₂O ⇌ HCl + HClO（可逆反应，次氯酸为弱酸）。</span></div>
+    <div class="answer-item"><span class="ans-label">15.</span> <span class="ans-key">NaCl</span> —— <span class="ans-desc">Cl₂ + 2NaOH = NaCl + NaClO + H₂O，所得溶液称为漂白液。</span></div>
+    <div class="answer-item"><span class="ans-label">16.</span> <span class="ans-key">Ca(ClO)₂（次氯酸钙）</span> —— <span class="ans-desc">漂白粉是 CaCl₂ 和 Ca(ClO)₂ 的混合物，其中有效成分为 Ca(ClO)₂。</span></div>
+    <div class="answer-item"><span class="ans-label">17.</span> <span class="ans-key">2HCl；O₂</span> —— <span class="ans-desc">2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑，HClO 不稳定，见光分解。</span></div>
+    <div class="answer-item"><span class="ans-label">18.</span> <span class="ans-key">CaCl₂（氯化钙）</span> —— <span class="ans-desc">2Cl₂ + 2Ca(OH)₂ = CaCl₂ + Ca(ClO)₂ + 2H₂O，工业制漂白粉。</span></div>
+    <div class="answer-item"><span class="ans-label">19.</span> <span class="ans-key">2HClO</span> —— <span class="ans-desc">Ca(ClO)₂ + CO₂ + H₂O = CaCO₃↓ + 2HClO，漂白粉的漂白原理。</span></div>
+
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">四、解答题（参考解答）</span></div>
+    <div class="answer-item">
+      <span class="ans-label">20.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1)（2分）氯气为黄绿色气体、有刺激性气味、有毒、密度比空气大（答出任意三条即可）。<br>
+        (2)（2分）2Fe + 3Cl₂ \(\xrightarrow{点燃}\) 2FeCl₃（未写条件扣1分）。<br>
+        (3)（3分）Cl₂ + H₂O ⇌ HCl + HClO（1分）。该反应中 Cl 元素化合价从 0 分别变为 -1 和 +1，Cl₂ 既作氧化剂又作还原剂（2分）。<br>
+        (4)（3分）氯水显浅黄绿色是因为含有 Cl₂ 分子（1分）。滴入石蕊试液先变红，说明氯水中含 H⁺（酸性）（1分）；后褪色，说明氯水中含 HClO（漂白性）（1分）。
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">21.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1)（3分）2Cl₂ + 2Ca(OH)₂ = CaCl₂ + Ca(ClO)₂ + 2H₂O（未写条件扣1分）。<br>
+        (2)（2分）有效成分：Ca(ClO)₂（次氯酸钙）。漂白原理：Ca(ClO)₂ + CO₂ + H₂O = CaCO₃↓ + 2HClO（1分），生成的 HClO 具有强氧化性，起漂白消毒作用（1分）。<br>
+        (3)（3分）漂白粉在空气中与 CO₂ 和 H₂O 反应生成的 HClO 不稳定（1分），见光易分解：2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑（2分），导致漂白粉失效。<br>
+        (4)（2分）新制氯水含 Cl₂、H₂O、HClO、H⁺、Cl⁻、ClO⁻ 等多种微粒（1分）；久置氯水由于 HClO 分解，变为稀盐酸，主要含 H⁺ 和 Cl⁻（1分）。
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">22.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1)（2分）0；-1；还原；氧化（每个空0.5分）。<br>
+        (2)（2分）-1（1分）；+1（1分）。<br>
+        (3)（3分）1（或 1mol）。反应③中只有一半 Cl 被氧化，1 mol Cl₂ 参与反应转移 1 mol 电子。<br>
+        (4)（3分）氧化产物：Ca(ClO)₂（1.5分，Cl 从 0→+1，被氧化）；还原产物：CaCl₂（1.5分，Cl 从 0→-1，被还原）。
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">23.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1)（2分）Cl₂（氯气）。<br>
+        (2)（2分）H⁺（氢离子，1分）；HClO（次氯酸，1分）。<br>
+        (3)（3分）Cl⁻ + Ag⁺ = AgCl↓（或 Ag⁺ + Cl⁻ = AgCl↓，3分；写 AgNO₃ + HCl = AgCl↓ + HNO₃ 给1分）。<br>
+        (4)（3分）2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑（3分，未写条件扣1分）。HClO 见光分解，Cl₂ 不断与水反应被消耗，黄绿色褪去。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== PASSWORD MODAL ==================== -->
+<div id="password-modal" class="password-modal" style="display:none">
+  <div class="password-modal-inner">
+    <h3>🔒 请输入密码查看答案</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:10px;">（请联系老师获取密码）</p>
+    <input type="password" id="pwd-input" maxlength="10" onkeydown="if(event.key==='Enter')checkPassword()" autocomplete="off">
+    <div>
+      <button class="pm-btn pm-confirm" onclick="checkPassword()">确认</button>
+      <button class="pm-btn pm-cancel" onclick="closePasswordModal()">取消</button>
+    </div>
+    <p id="pwd-error" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none">密码错误，请重试</p>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Scoring Engine — Standard Three-part Configuration
+   ============================================================ */
+const PAPER_ID = 'chem_grade10_ch2_s2';
+const ANSWER_PASSWORD = '2641';
+
+const ANSWER_KEY = {
+  // Single choice
+  q1: 'C', q2: 'B', q3: 'A', q4: 'A', q5: 'C',
+  q6: 'D', q7: 'A', q8: 'B', q9: 'C', q10: 'C',
+  // Multi choice
+  q101: ['A', 'B', 'C'],
+  q102: ['A', 'C', 'D'],
+  q103: ['A', 'C', 'D'],
+  // Fill-in
+  q11: ['HCl', 'HClO'],
+  q12: ['NaCl'],
+  q13: ['Ca(ClO)₂'],
+  q14: ['2HCl', 'O₂'],
+  q15: ['CaCl₂'],
+  q16: ['2HClO']
+};
+
+const SCORE_MAP = {
+  q1: 3, q2: 3, q3: 3, q4: 3, q5: 3,
+  q6: 3, q7: 3, q8: 3, q9: 3, q10: 3,
+  q101: 4, q102: 4, q103: 4,
+  q11: 3, q12: 3, q13: 3, q14: 3, q15: 3, q16: 3,
+  q17: 10, q18: 10, q19: 10, q20: 10
+};
+
+const QUESTION_TYPES = {
+  q1:'single', q2:'single', q3:'single', q4:'single', q5:'single',
+  q6:'single', q7:'single', q8:'single', q9:'single', q10:'single',
+  q101:'multi', q102:'multi', q103:'multi',
+  q11:'fill', q12:'fill', q13:'fill', q14:'fill', q15:'fill', q16:'fill',
+  q17:'calc', q18:'calc', q19:'calc', q20:'calc'
+};
+
+const QUESTION_LABELS = {
+  q1:'1', q2:'2', q3:'3', q4:'4', q5:'5', q6:'6', q7:'7', q8:'8', q9:'9', q10:'10',
+  q101:'11', q102:'12', q103:'13',
+  q11:'14', q12:'15', q13:'16', q14:'17', q15:'18', q16:'19',
+  q17:'20', q18:'21', q19:'22', q20:'23'
+};
+
+/* ============================================================
+   Utility Functions
+   ============================================================ */
+
+/** Normalize string for comparison: trim, collapse spaces, unify common symbols */
+function norm(s) {
+  if (!s) return '';
+  return s.trim()
+    .replace(/\s+/g, '')
+    .replace(/³/g, '3').replace(/₂/g, '2').replace(/₃/g, '3').replace(/₄/g, '4')
+    .replace(/²/g, '2').replace(/⁺/g, '+').replace(/⁻/g, '-')
+    .replace(/→/g, '=').replace(/↑/g, '').replace(/↓/g, '')
+    .toLowerCase();
+}
+
+/** Check if user answer matches expected answer (with alt support) */
+function matchAnswer(userVal, expected, altStr) {
+  if (!userVal) return false;
+  const u = norm(userVal);
+  if (u === norm(expected)) return true;
+  if (altStr) {
+    const alts = altStr.split('|').map(s => norm(s));
+    return alts.includes(u);
+  }
+  return false;
+}
+
+/** Get selected value from a group of radio buttons */
+function getRadioValue(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+
+/** Get all checked values from a group of checkboxes */
+function getCheckboxValues(name) {
+  const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
+  return Array.from(checked).map(cb => cb.value);
+}
+
+/** Fill input status class */
+function setFillStatus(qid, blankIndex, correct) {
+  const el = document.getElementById(qid + '-' + blankIndex);
+  if (el) {
+    el.classList.remove('correct', 'wrong');
+    el.classList.add(correct ? 'correct' : 'wrong');
+  }
+}
+
+/** Question correct/wrong visual */
+function setQuestionStatus(qid, correct) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  if (q) {
+    q.classList.remove('correct-q', 'wrong-q');
+    q.classList.add(correct ? 'correct-q' : 'wrong-q');
+  }
+}
+
+/* ============================================================
+   Scoring Functions
+   ============================================================ */
+
+function scoreSingle(qid) {
+  const userAns = getRadioValue(qid);
+  const correct = ANSWER_KEY[qid];
+  return { score: userAns === correct ? SCORE_MAP[qid] : 0, user: userAns, correct: correct };
+}
+
+function scoreMulti(qid) {
+  const userAns = getCheckboxValues(qid);
+  const correct = ANSWER_KEY[qid];
+  if (!userAns.length) return { score: 0, user: userAns, correct: correct };
+  for (let a of userAns) {
+    if (!correct.includes(a)) return { score: 0, user: userAns, correct: correct };
+  }
+  if (userAns.length === correct.length) return { score: SCORE_MAP[qid], user: userAns, correct: correct };
+  return { score: SCORE_MAP[qid] / 2, user: userAns, correct: correct };
+}
+
+function scoreFill(qid) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  const inputs = q ? q.querySelectorAll('.fill-blank') : [];
+  let allCorrect = true;
+  let blankResults = [];
+  inputs.forEach((input, idx) => {
+    const val = input.value.trim();
+    const ans = input.dataset.answer;
+    const alt = input.dataset.alt;
+    const ok = matchAnswer(val, ans, alt);
+    setFillStatus(qid, idx, ok);
+    if (!ok) allCorrect = false;
+    blankResults.push(ok);
+  });
+  return { score: allCorrect ? SCORE_MAP[qid] : 0, blanks: blankResults };
+}
+
+/** Calc questions: check embedded fill-ins if present, rest is manual */
+function scoreCalc(qid) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  if (!q) return { score: 0, manual: true };
+  // Score any inline input fields within calc questions
+  const inputs = q.querySelectorAll('input[data-answer]');
+  let subScore = 0;
+  let subTotal = 0;
+  inputs.forEach(input => {
+    const val = input.value.trim();
+    const ans = input.dataset.answer;
+    const alt = input.dataset.alt;
+    const ok = matchAnswer(val, ans, alt);
+    if (ok) subScore++;
+    subTotal++;
+    input.style.borderBottomColor = ok ? '#27ae60' : '#e74c3c';
+    input.style.background = ok ? '#eafaf1' : '#fdedec';
+  });
+  return { score: subScore, total: subTotal, manual: true };
+}
+
+/* ============================================================
+   Main Submit
+   ============================================================ */
+
+function submitPaper() {
+  let totalScore = 0;
+  const maxAuto = 60; // single(30) + multi(12) + fill(18)
+  const resultEl = document.getElementById('result');
+  const results = [];
+
+  // --- Single choice ---
+  ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].forEach(qid => {
+    const r = scoreSingle(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.user === r.correct);
+    results.push({ qid, ...r });
+  });
+
+  // --- Multi choice ---
+  ['q101','q102','q103'].forEach(qid => {
+    const r = scoreMulti(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.score > 0);
+    results.push({ qid, ...r });
+  });
+
+  // --- Fill-in ---
+  ['q11','q12','q13','q14','q15','q16'].forEach(qid => {
+    const r = scoreFill(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.score > 0);
+    results.push({ qid, ...r });
+  });
+
+  // Save to localStorage
+  saveToStorage();
+
+  // Show result
+  const pct = Math.round((totalScore / maxAuto) * 100);
+  resultEl.className = 'show ' + (pct >= 60 ? 'pass' : 'fail');
+  resultEl.innerHTML = '📊 客观题得分：<strong>' + totalScore + '</strong> / ' + maxAuto +
+    ' （' + pct + '%）' +
+    '<br><span style="font-size:14px;font-weight:normal;">主观题（解答题20-23题，共40分）请老师手动批改。</span>' +
+    '<br><span style="font-size:14px;font-weight:normal;">总分 = 客观题 ' + totalScore + ' + 主观题（待批改）</span>';
+
+  // Scroll to result
+  resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ============================================================
+   Password & Answer Reveal
+   ============================================================ */
+
+function showPasswordModal() {
+  document.getElementById('password-modal').style.display = 'flex';
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-error').style.display = 'none';
+  document.getElementById('pwd-input').focus();
+}
+
+function closePasswordModal() {
+  document.getElementById('password-modal').style.display = 'none';
+}
+
+function checkPassword() {
+  const pwd = document.getElementById('pwd-input').value;
+  if (pwd === ANSWER_PASSWORD) {
+    closePasswordModal();
+    document.getElementById('answer-section').classList.toggle('show');
+  } else {
+    document.getElementById('pwd-error').style.display = 'block';
+    document.getElementById('pwd-input').focus();
+    document.getElementById('pwd-input').select();
+  }
+}
+
+/* ============================================================
+   Clear All
+   ============================================================ */
+
+function clearAll() {
+  if (!confirm('确定要清空所有答案吗？')) return;
+  // Clear radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+  // Clear checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+  // Clear fill-in inputs
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    el.value = '';
+    el.classList.remove('correct', 'wrong');
+  });
+  // Clear textareas
+  document.querySelectorAll('textarea').forEach(el => el.value = '');
+  // Clear calc inline inputs
+  document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+    el.value = '';
+    el.style.borderBottomColor = '#333';
+    el.style.background = 'transparent';
+  });
+  // Clear question status
+  document.querySelectorAll('.question').forEach(el => {
+    el.classList.remove('correct-q', 'wrong-q');
+  });
+  // Clear result
+  document.getElementById('result').className = '';
+  document.getElementById('result').innerHTML = '';
+  // Hide answer section
+  document.getElementById('answer-section').classList.remove('show');
+  // Remove localStorage
+  localStorage.removeItem(PAPER_ID);
+}
+
+/* ============================================================
+   LocalStorage Auto Save & Restore
+   ============================================================ */
+
+function saveToStorage() {
+  const data = {};
+  // Student info
+  ['student-name','student-class','student-id'].forEach(id => {
+    data[id] = document.getElementById(id).value;
+  });
+  // Radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(el => {
+    if (el.checked) data[el.name] = el.value;
+  });
+  // Checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    const key = el.name + '_cb';
+    if (!data[key]) data[key] = [];
+    if (el.checked) data[key].push(el.value);
+  });
+  // Fill-in blanks
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    data[el.id] = el.value;
+  });
+  // Textareas
+  document.querySelectorAll('textarea').forEach(el => {
+    data[el.id] = el.value;
+  });
+  // Calc inline inputs
+  document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+    data[el.id] = el.value;
+  });
+  try {
+    localStorage.setItem(PAPER_ID, JSON.stringify(data));
+  } catch(e) {}
+}
+
+function restoreFromStorage() {
+  try {
+    const raw = localStorage.getItem(PAPER_ID);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    // Student info
+    ['student-name','student-class','student-id'].forEach(id => {
+      if (data[id]) document.getElementById(id).value = data[id];
+    });
+    // Radio buttons
+    Object.keys(data).forEach(key => {
+      if (key.startsWith('q') && !key.includes('_')) {
+        const radio = document.querySelector(`input[name="${key}"][value="${data[key]}"]`);
+        if (radio) radio.checked = true;
+      }
+    });
+    // Checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+      const key = el.name + '_cb';
+      if (data[key] && data[key].includes(el.value)) el.checked = true;
+    });
+    // Fill-in blanks
+    document.querySelectorAll('.fill-blank').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+    // Textareas
+    document.querySelectorAll('textarea').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+    // Calc inline inputs
+    document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+  } catch(e) {}
+}
+
+/* ============================================================
+   Auto-save on input change
+   ============================================================ */
+
+document.addEventListener('input', function() {
+  saveToStorage();
+});
+
+/* ============================================================
+   Ctrl+Enter Shortcut
+   ============================================================ */
+
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    submitPaper();
+  }
+});
+
+/* ============================================================
+   Init
+   ============================================================ */
+
+window.addEventListener('DOMContentLoaded', function() {
+  restoreFromStorage();
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+  }
+});
+</script>
+
+</body>
+</html>

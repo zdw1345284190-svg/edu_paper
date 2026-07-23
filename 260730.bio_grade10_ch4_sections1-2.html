@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一生物·必修第一册 第四章 4.1 被动运输 — 4.2 主动运输</title>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: '宋体', 'SimSun', serif;
+  background: #e8e8e8;
+  padding: 30px 0;
+  overflow-x: auto;
+}
+.paper {
+  width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 35px 40px 45px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.18);
+  position: relative;
+}
+/* ===== 双线页头 ===== */
+.header {
+  text-align: center;
+  border-bottom: 3px double #222;
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+}
+.header .school {
+  font-size: 14px; color: #555; letter-spacing: 2px; margin-bottom: 6px;
+}
+.header h1 {
+  font-size: 22px; font-weight: bold; margin-bottom: 4px; line-height: 1.4;
+}
+.header .meta {
+  font-size: 13px; color: #444; margin-top: 4px;
+}
+.header .meta span { margin: 0 16px; }
+/* ===== 学生信息栏 ===== */
+.info-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; margin-bottom: 22px; padding: 6px 0;
+  border-bottom: 1px dashed #aaa;
+}
+.info-bar .item { display: inline-block; }
+.info-bar .item label { font-weight: bold; }
+.info-bar .item .line {
+  display: inline-block; width: 100px; border-bottom: 1px solid #333;
+  margin-left: 4px; padding: 0 4px; min-height: 1.2em;
+}
+/* ===== 蓝色边框小节标题 ===== */
+.section-title {
+  font-size: 16px; font-weight: bold; color: #1a4d8f;
+  border-left: 4px solid #1a73e8;
+  padding: 4px 0 4px 14px; margin: 24px 0 14px 0; line-height: 1.5;
+  background: #f8fbff;
+}
+.section-title .pts {
+  font-weight: normal; font-size: 13px; color: #666; margin-left: 10px;
+}
+/* ===== 试题通用 ===== */
+.question {
+  margin-bottom: 20px; padding-left: 2px; page-break-inside: avoid;
+}
+.q-text {
+  font-size: 14px; line-height: 2.0; margin-bottom: 6px;
+}
+.q-text .q-label { font-weight: bold; margin-right: 4px; }
+/* ===== 选项 ===== */
+.options { padding-left: 28px; }
+.option {
+  font-size: 14px; line-height: 2.0; padding: 2px 10px; cursor: pointer;
+  border-radius: 4px; transition: background 0.15s; user-select: none;
+}
+.option:hover { background: #e8f0fe; }
+.option.single-sel { background: #c6dafc; font-weight: bold; }
+.option.multi-sel { background: #c6dafc; font-weight: bold; }
+.option.correct { background: #d4edda !important; color: #155724 !important; }
+.option.wrong { background: #f8d7da !important; color: #721c24 !important; }
+.option.missed { background: #fff3cd !important; color: #856404 !important; }
+.option input[type="radio"], .option input[type="checkbox"] { display: none; }
+/* ===== 填空 ===== */
+.fill-blank { display: inline-block; margin: 0 2px; }
+.fill-blank input {
+  border: none; border-bottom: 2px solid #555; width: 76px;
+  text-align: center; font-family: '宋体', 'SimSun', serif;
+  font-size: 14px; padding: 0 4px; outline: none; background: transparent;
+}
+.fill-blank input:focus { border-bottom-color: #1a73e8; }
+.fill-blank input.correct { border-bottom-color: #28a745 !important; background: #d4edda !important; }
+.fill-blank input.wrong { border-bottom-color: #dc3545 !important; background: #f8d7da !important; }
+.fill-check { font-size: 13px; margin-left: 4px; display: none; }
+.fill-check.show { display: inline; }
+/* ===== 解答题 ===== */
+.essay-q { margin-bottom: 24px; }
+.essay-q .q-text { margin-bottom: 8px; }
+.essay-q textarea {
+  width: 100%; min-height: 80px; font-family: '宋体', 'SimSun', serif;
+  font-size: 13px; padding: 8px 10px; border: 1px solid #bbb;
+  border-radius: 3px; resize: vertical; outline: none; line-height: 1.6;
+}
+.essay-q textarea:focus { border-color: #1a73e8; }
+.score-input-area {
+  margin-top: 6px; font-size: 13px; color: #555;
+  text-align: right;
+}
+.score-input-area input {
+  width: 50px; border: 1px solid #bbb; border-radius: 2px;
+  text-align: center; font-family: '宋体', 'SimSun', serif;
+  font-size: 13px; padding: 2px; outline: none;
+}
+.score-input-area input:focus { border-color: #1a73e8; }
+/* ===== 表格 ===== */
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+  margin: 10px 0; font-family: inherit;
+}
+.data-table th, .data-table td {
+  border: 1px solid #999; padding: 6px 10px; text-align: center;
+}
+.data-table th {
+  background: #eef3fb; font-weight: bold;
+}
+/* ===== 提交区域 ===== */
+.submit-area {
+  text-align: center; margin-top: 30px; padding-top: 20px;
+  border-top: 2px solid #333;
+}
+.submit-area .hint {
+  font-size: 12px; color: #888; margin-bottom: 12px;
+}
+.btn {
+  font-family: '宋体', 'SimSun', serif; font-size: 16px;
+  padding: 10px 44px; border: none; border-radius: 4px;
+  cursor: pointer; transition: background 0.2s; margin: 0 8px;
+}
+.btn-submit { background: #1a73e8; color: #fff; }
+.btn-submit:hover { background: #1557b0; }
+.btn-reset { background: #6c757d; color: #fff; }
+.btn-reset:hover { background: #5a6268; }
+.score-display {
+  margin-top: 20px; font-size: 16px; line-height: 2.0;
+  padding: 16px; border-radius: 4px; display: none;
+}
+.score-display.show { display: block; }
+.score-display .score-row { margin: 2px 0; }
+.score-display .total { font-size: 20px; font-weight: bold; margin-top: 6px; }
+.score-display .pass { color: #155724; background: #d4edda; padding: 6px 16px; border-radius: 4px; }
+.score-display .fail { color: #721c24; background: #f8d7da; padding: 6px 16px; border-radius: 4px; }
+/* ===== 打印优化 ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper { box-shadow: none; padding: 20mm; }
+  .btn, .submit-area .hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="paper" id="paper">
+
+  <!-- ==================== 页头 ==================== -->
+  <div class="header">
+    <div class="school">汕头市××中学 &nbsp;|&nbsp; 2025—2026学年度第二学期</div>
+    <h1>高一生物·必修第一册 第四章<br>4.1 被动运输 — 4.2 主动运输</h1>
+    <div class="meta">
+      <span>满分：100分</span>
+      <span>时间：45分钟</span>
+      <span>命题人：_____</span>
+      <span>审核人：_____</span>
+    </div>
+  </div>
+
+  <!-- ==================== 学生信息 ==================== -->
+  <div class="info-bar">
+    <div class="item"><label>姓名：</label><span class="line" contenteditable="true"></span></div>
+    <div class="item"><label>班级：</label><span class="line" contenteditable="true"></span></div>
+    <div class="item"><label>座号：</label><span class="line" contenteditable="true"></span></div>
+    <div class="item"><label>得分：</label><span id="displayTotalScore" style="font-weight:bold;color:#1a73e8;">—</span></div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 一、单选题 -->
+  <!-- ============================================================ -->
+  <div class="section-title">
+    一、单项选择题 <span class="pts">（本大题共15小题，每小题3分，共45分。每小题只有一个选项符合题意。）</span>
+  </div>
+
+  <div class="question" data-type="single" data-index="0">
+    <div class="q-text"><span class="q-label">1.</span> 下列物质跨膜运输方式中，属于自由扩散的是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．$K^+$ 进入细胞</div>
+      <div class="option" data-value="B">B．$O_2$ 进入细胞</div>
+      <div class="option" data-value="C">C．葡萄糖进入红细胞</div>
+      <div class="option" data-value="D">D．$Na^+$ 泵出细胞</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="1">
+    <div class="q-text"><span class="q-label">2.</span> 协助扩散与自由扩散的共同点是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．都需要载体蛋白的参与</div>
+      <div class="option" data-value="B">B．都顺浓度梯度进行</div>
+      <div class="option" data-value="C">C．都需要消耗细胞能量</div>
+      <div class="option" data-value="D">D．都逆浓度梯度进行</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="2">
+    <div class="q-text"><span class="q-label">3.</span> 渗透作用发生的必要条件是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．具有半透膜且半透膜两侧存在浓度差</div>
+      <div class="option" data-value="B">B．具有载体蛋白</div>
+      <div class="option" data-value="C">C．需要消耗ATP</div>
+      <div class="option" data-value="D">D．具有细胞壁</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="3">
+    <div class="q-text"><span class="q-label">4.</span> 植物细胞质壁分离实验中，"原生质层"是指（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．细胞膜</div>
+      <div class="option" data-value="B">B．细胞壁</div>
+      <div class="option" data-value="C">C．细胞膜、液泡膜及两层膜之间的细胞质</div>
+      <div class="option" data-value="D">D．液泡膜</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="4">
+    <div class="q-text"><span class="q-label">5.</span> 将洋葱鳞片叶外表皮细胞置于 $30\%$ 蔗糖溶液中，显微镜下可观察到的现象是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．细胞吸水膨胀</div>
+      <div class="option" data-value="B">B．细胞发生质壁分离</div>
+      <div class="option" data-value="C">C．细胞破裂</div>
+      <div class="option" data-value="D">D．无明显变化</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="5">
+    <div class="q-text"><span class="q-label">6.</span> 将动物成熟红细胞置于低渗溶液中，细胞会（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．吸水涨破</div>
+      <div class="option" data-value="B">B．失水皱缩</div>
+      <div class="option" data-value="C">C．形态不变</div>
+      <div class="option" data-value="D">D．发生质壁分离</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="6">
+    <div class="q-text"><span class="q-label">7.</span> 将动物成熟红细胞置于高渗溶液中，细胞会（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．吸水涨破</div>
+      <div class="option" data-value="B">B．失水皱缩</div>
+      <div class="option" data-value="C">C．形态不变</div>
+      <div class="option" data-value="D">D．发生质壁分离</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="7">
+    <div class="q-text"><span class="q-label">8.</span> 主动运输与被动运输的根本区别在于（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．是否需要载体蛋白</div>
+      <div class="option" data-value="B">B．是否顺浓度梯度</div>
+      <div class="option" data-value="C">C．是否需要消耗细胞能量（ATP）</div>
+      <div class="option" data-value="D">D．是否通过细胞膜</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="8">
+    <div class="q-text"><span class="q-label">9.</span> $Na^+$-$K^+$ 泵将 $Na^+$ 泵出细胞、$K^+$ 泵入细胞的运输方式属于（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．自由扩散</div>
+      <div class="option" data-value="B">B．协助扩散</div>
+      <div class="option" data-value="C">C．主动运输</div>
+      <div class="option" data-value="D">D．渗透作用</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="9">
+    <div class="q-text"><span class="q-label">10.</span> 影响自由扩散速率的主要因素是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．载体蛋白的数量</div>
+      <div class="option" data-value="B">B．能量（ATP）的供应</div>
+      <div class="option" data-value="C">C．半透膜两侧的浓度差</div>
+      <div class="option" data-value="D">D．水通道蛋白的数量</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="10">
+    <div class="q-text"><span class="q-label">11.</span> 水分子借助细胞膜上的水通道蛋白进出细胞的方式属于（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．自由扩散</div>
+      <div class="option" data-value="B">B．协助扩散</div>
+      <div class="option" data-value="C">C．主动运输</div>
+      <div class="option" data-value="D">D．胞吞作用</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="11">
+    <div class="q-text"><span class="q-label">12.</span> 下列物质中，一般通过主动运输进入细胞的是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．乙醇（酒精）</div>
+      <div class="option" data-value="B">B．甘油</div>
+      <div class="option" data-value="C">C．氨基酸</div>
+      <div class="option" data-value="D">D．二氧化碳</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="12">
+    <div class="q-text"><span class="q-label">13.</span> 葡萄糖进入哺乳动物成熟红细胞的方式是（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．自由扩散</div>
+      <div class="option" data-value="B">B．协助扩散</div>
+      <div class="option" data-value="C">C．主动运输</div>
+      <div class="option" data-value="D">D．胞吞作用</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="13">
+    <div class="q-text"><span class="q-label">14.</span> 在质壁分离复原实验中，向已发生质壁分离的植物细胞滴加清水后，细胞会（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．继续质壁分离</div>
+      <div class="option" data-value="B">B．逐渐复原</div>
+      <div class="option" data-value="C">C．立即破裂</div>
+      <div class="option" data-value="D">D．形态不变</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="single" data-index="14">
+    <div class="q-text"><span class="q-label">15.</span> $CO_2$ 从组织细胞进入组织液的跨膜运输方式属于（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．自由扩散</div>
+      <div class="option" data-value="B">B．协助扩散</div>
+      <div class="option" data-value="C">C．主动运输</div>
+      <div class="option" data-value="D">D．胞吐作用</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 二、多选题 -->
+  <!-- ============================================================ -->
+  <div class="section-title">
+    二、多项选择题 <span class="pts">（本大题共3小题，每小题4分，共12分。每小题有多个选项符合题意，全部选对得4分，选对但不全得2分，有选错或不选得0分。）</span>
+  </div>
+
+  <div class="question" data-type="multi" data-index="0">
+    <div class="q-text"><span class="q-label">1.</span> 下列关于自由扩散和协助扩散的叙述，正确的有（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．两者都顺浓度梯度运输</div>
+      <div class="option" data-value="B">B．两者都不需要消耗能量</div>
+      <div class="option" data-value="C">C．协助扩散需要载体蛋白参与</div>
+      <div class="option" data-value="D">D．自由扩散也需要载体蛋白参与</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="multi" data-index="1">
+    <div class="q-text"><span class="q-label">2.</span> 下列属于主动运输特点的有（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．逆浓度梯度运输</div>
+      <div class="option" data-value="B">B．需要载体蛋白参与</div>
+      <div class="option" data-value="C">C．需要消耗ATP</div>
+      <div class="option" data-value="D">D．不需要消耗能量</div>
+    </div>
+  </div>
+
+  <div class="question" data-type="multi" data-index="2">
+    <div class="q-text"><span class="q-label">3.</span> 关于植物细胞质壁分离实验，下列说法正确的有（　）</div>
+    <div class="options">
+      <div class="option" data-value="A">A．细胞壁具有全透性</div>
+      <div class="option" data-value="B">B．原生质层相当于一层半透膜</div>
+      <div class="option" data-value="C">C．质壁分离时液泡颜色变浅</div>
+      <div class="option" data-value="D">D．外界溶液浓度高于细胞液浓度时发生质壁分离</div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 三、填空题 -->
+  <!-- ============================================================ -->
+  <div class="section-title">
+    三、填空题 <span class="pts">（本大题共3小题，每空1分，共21分。）</span>
+  </div>
+
+  <!-- 填空题 第1题 -->
+  <div class="question essay-q" data-type="fill" data-index="0">
+    <div class="q-text"><span class="q-label">1.</span> （7分）渗透作用原理与质壁分离实验。</div>
+    <div class="q-text" style="padding-left:20px;">
+      （1）渗透作用发生的两个必备条件：一是具有<span class="fill-blank"><input type="text" data-blank="0-0" size="6"></span>，二是该膜两侧的溶液具有<span class="fill-blank"><input type="text" data-blank="0-1" size="6"></span>。<br>
+      （2）水分子从溶液浓度较<span class="fill-blank"><input type="text" data-blank="0-2" size="4"></span>（填"高"或"低"）的一侧通过半透膜向浓度较<span class="fill-blank"><input type="text" data-blank="0-3" size="4"></span>（填"高"或"低"）的一侧扩散。<br>
+      （3）植物细胞的原生质层相当于一层<span class="fill-blank"><input type="text" data-blank="0-4" size="6"></span>膜。当外界溶液浓度<span class="fill-blank"><input type="text" data-blank="0-5" size="4"></span>（填"大于"或"小于"）细胞液浓度时，细胞失水，发生质壁分离。要使已质壁分离的细胞复原，需向装片滴加<span class="fill-blank"><input type="text" data-blank="0-6" size="6"></span>。
+    </div>
+  </div>
+
+  <!-- 填空题 第2题 -->
+  <div class="question essay-q" data-type="fill" data-index="1">
+    <div class="q-text"><span class="q-label">2.</span> （7分）完成下表，对比三种跨膜运输方式。</div>
+    <div class="q-text" style="padding-left:20px;">
+      <table class="data-table">
+        <tr><th>运输方式</th><th>浓度梯度方向</th><th>是否需要载体蛋白</th><th>是否需要能量</th></tr>
+        <tr>
+          <td>自由扩散</td>
+          <td>顺浓度梯度</td>
+          <td><span class="fill-blank"><input type="text" data-blank="1-0" size="6"></span></td>
+          <td><span class="fill-blank"><input type="text" data-blank="1-1" size="6"></span></td>
+        </tr>
+        <tr>
+          <td>协助扩散</td>
+          <td><span class="fill-blank"><input type="text" data-blank="1-2" size="8"></span></td>
+          <td>需要</td>
+          <td><span class="fill-blank"><input type="text" data-blank="1-3" size="6"></span></td>
+        </tr>
+        <tr>
+          <td>主动运输</td>
+          <td><span class="fill-blank"><input type="text" data-blank="1-4" size="8"></span></td>
+          <td><span class="fill-blank"><input type="text" data-blank="1-5" size="6"></span></td>
+          <td>需要</td>
+        </tr>
+      </table>
+    </div>
+    <div class="q-text" style="padding-left:20px;">
+      （6）主动运输所需能量主要来自<span class="fill-blank"><input type="text" data-blank="1-6" size="10"></span>（填细胞器名称）。
+    </div>
+  </div>
+
+  <!-- 填空题 第3题 -->
+  <div class="question essay-q" data-type="fill" data-index="2">
+    <div class="q-text"><span class="q-label">3.</span> （7分）动物细胞在不同渗透压溶液中的变化。</div>
+    <div class="q-text" style="padding-left:20px;">
+      （1）将动物成熟红细胞置于低渗溶液中，细胞<span class="fill-blank"><input type="text" data-blank="2-0" size="4"></span>（填"吸"或"失"）水，最终可能<span class="fill-blank"><input type="text" data-blank="2-1" size="6"></span>。<br>
+      （2）将动物成熟红细胞置于高渗溶液中，水分子由<span class="fill-blank"><input type="text" data-blank="2-2" size="4"></span>侧向<span class="fill-blank"><input type="text" data-blank="2-3" size="4"></span>侧扩散，细胞<span class="fill-blank"><input type="text" data-blank="2-4" size="4"></span>（填"吸"或"失"）水，发生<span class="fill-blank"><input type="text" data-blank="2-5" size="6"></span>（填"吸水涨破"或"失水皱缩"）。<br>
+      （3）与植物细胞不同，动物细胞没有<span class="fill-blank"><input type="text" data-blank="2-6" size="8"></span>，因此在低渗溶液中不会发生质壁分离。
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 四、解答题 -->
+  <!-- ============================================================ -->
+  <div class="section-title">
+    四、解答题 <span class="pts">（本大题共2小题，共22分。请写出必要的文字说明和解题过程。）</span>
+  </div>
+
+  <!-- 解答题 第1题 -->
+  <div class="question essay-q" data-type="essay" data-index="0">
+    <div class="q-text"><span class="q-label">1.</span> （11分）综合比较三种跨膜运输方式。</div>
+    <div class="q-text" style="padding-left:20px;">
+      （1）（6分）列表比较自由扩散、协助扩散和主动运输在"浓度梯度方向""是否需要载体蛋白""是否需要消耗能量"三个方面的区别。<br>
+      （2）（5分）葡萄糖进入哺乳动物成熟红细胞和进入小肠上皮细胞的方式是否相同？请分别说明两种运输方式并分析原因。
+    </div>
+    <textarea placeholder="请在此书写答案……"></textarea>
+    <div class="score-input-area">
+      得分（教师评阅）：<input type="number" class="essay-score" data-index="0" min="0" max="11" value="0"> / 11分
+    </div>
+  </div>
+
+  <!-- 解答题 第2题 -->
+  <div class="question essay-q" data-type="essay" data-index="1">
+    <div class="q-text"><span class="q-label">2.</span> （11分）实验设计题。</div>
+    <div class="q-text" style="padding-left:20px;">
+      某研究小组欲探究物质X进入细胞的运输方式。已知物质X为离子态小分子，实验试剂包括：适宜浓度的物质X溶液、动物细胞悬液、呼吸抑制剂（可抑制细胞ATP合成）、载体蛋白抑制剂、蒸馏水等。<br><br>
+      （1）（2分）提出两种可能的实验假设。<br>
+      （2）（9分）请设计三组实验：A组（对照组）、B组（抑制载体蛋白活性）、C组（抑制细胞呼吸，即抑制能量供应）。分别预测三组的实验结果，并据此得出结论说明物质X的跨膜运输方式。
+    </div>
+    <textarea placeholder="请在此书写答案……"></textarea>
+    <div class="score-input-area">
+      得分（教师评阅）：<input type="number" class="essay-score" data-index="1" min="0" max="11" value="0"> / 11分
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 提交区域 -->
+  <!-- ============================================================ -->
+  <div class="submit-area">
+    <div class="hint">按 <kbd>Ctrl</kbd> + <kbd>Enter</kbd> 提交评分 &nbsp;|&nbsp; 密码保护</div>
+    <div>
+      <button class="btn btn-submit" id="btnSubmit" onclick="submitPaper()">📝 提交评分</button>
+      <button class="btn btn-reset" onclick="resetAll()">🗑 清空答案</button>
+    </div>
+    <div class="score-display" id="scoreDisplay"></div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- JavaScript 评分引擎 -->
+<!-- ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  // ==================== 答案库 ====================
+  var ANSWER_KEY = {
+    single: ['B','B','A','C','B','A','B','C','C','C','B','C','B','B','A'],
+    multi: [
+      ['A','B','C'],
+      ['A','B','C'],
+      ['A','B','D']
+    ],
+    fill: [
+      // 第1题 7空
+      [
+        ['半透膜','半透膜膜','半透性的膜'],
+        ['浓度差','浓度差差','溶液浓度差','渗透浓度'],
+        ['低','小','较低'],
+        ['高','大','较高'],
+        ['半透','半透性','选择透过性'],
+        ['大于','>','高于','大'],
+        ['清水','蒸馏水','纯水','水']
+      ],
+      // 第2题 7空
+      [
+        ['不需要','否','不','不用','不需'],
+        ['不需要','否','不','不用','不需'],
+        ['顺浓度梯度','顺浓度','顺'],
+        ['不需要','否','不','不用','不需'],
+        ['逆浓度梯度','逆浓度','逆','逆浓度度'],
+        ['需要','是','需','要'],
+        ['线粒体','线粒体体','粒线体']
+      ],
+      // 第3题 7空
+      [
+        ['吸','吸水'],
+        ['涨破','破裂','吸水涨破','胀破'],
+        ['内','细胞内侧','细胞内部','内侧'],
+        ['外','细胞外侧','细胞外部','外侧'],
+        ['失','失水'],
+        ['失水皱缩','皱缩','失水缩'],
+        ['细胞壁','细壁','壁']
+      ]
+    ]
+  };
+
+  // ==================== 状态 ====================
+  var LS_KEY = 'bio_ch4_260730';
+  var saved = loadFromStorage();
+
+  // ==================== DOM 引用 ====================
+  var singleQs = document.querySelectorAll('.question[data-type="single"]');
+  var multiQs  = document.querySelectorAll('.question[data-type="multi"]');
+  var fillQs   = document.querySelectorAll('.question[data-type="fill"]');
+  var essayScoreInputs = document.querySelectorAll('.essay-score');
+
+  // ==================== 初始化 ====================
+  function init() {
+    // 单选题事件
+    singleQs.forEach(function(q, idx) {
+      var opts = q.querySelectorAll('.option');
+      opts.forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          // 清除同组其他选择
+          opts.forEach(function(o) { o.classList.remove('single-sel'); });
+          this.classList.add('single-sel');
+          saveSingle(idx, this.getAttribute('data-value'));
+        });
+      });
+    });
+
+    // 多选题事件
+    multiQs.forEach(function(q, idx) {
+      var opts = q.querySelectorAll('.option');
+      opts.forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          this.classList.toggle('multi-sel');
+          saveMulti(idx, getMultiSelection(idx));
+        });
+      });
+    });
+
+    // 填空题事件
+    fillQs.forEach(function(q, idx) {
+      var inputs = q.querySelectorAll('input[data-blank]');
+      inputs.forEach(function(inp) {
+        inp.addEventListener('input', function() {
+          saveFill();
+        });
+      });
+    });
+
+    // 解答题得分事件
+    essayScoreInputs.forEach(function(inp) {
+      inp.addEventListener('input', function() {
+        saveEssayScore();
+      });
+    });
+
+    // 解答题文本自动保存
+    var essayTextareas = document.querySelectorAll('.essay-q textarea');
+    essayTextareas.forEach(function(ta, idx) {
+      ta.addEventListener('input', function() {
+        saveEssayText(idx, this.value);
+      });
+    });
+
+    // Ctrl+Enter 提交
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'Enter') {
+        e.preventDefault();
+        submitPaper();
+      }
+    });
+
+    // 恢复保存的答案
+    restoreAll();
+  }
+
+  // ==================== 保存与恢复 (单选) ====================
+  function saveSingle(idx, val) {
+    saved.single[idx] = val;
+    saveToStorage();
+  }
+
+  function getSingleSelection(idx) {
+    var sel = singleQs[idx].querySelector('.option.single-sel');
+    return sel ? sel.getAttribute('data-value') : null;
+  }
+
+  // ==================== 保存与恢复 (多选) ====================
+  function getMultiSelection(idx) {
+    var opts = multiQs[idx].querySelectorAll('.option.multi-sel');
+    return Array.from(opts).map(function(o) { return o.getAttribute('data-value'); });
+  }
+
+  function saveMulti(idx, arr) {
+    saved.multi[idx] = arr;
+    saveToStorage();
+  }
+
+  // ==================== 保存与恢复 (填空) ====================
+  function collectFillValues() {
+    var result = [];
+    fillQs.forEach(function(q, qi) {
+      var inputs = q.querySelectorAll('input[data-blank]');
+      inputs.forEach(function(inp) {
+        result.push(inp.value.trim());
+      });
+    });
+    return result;
+  }
+
+  function saveFill() {
+    saved.fill = collectFillValues();
+    saveToStorage();
+  }
+
+  // ==================== 保存与恢复 (解答题) ====================
+  function saveEssayText(idx, val) {
+    saved.essayText[idx] = val;
+    saveToStorage();
+  }
+
+  function saveEssayScore() {
+    var scores = [];
+    essayScoreInputs.forEach(function(inp) {
+      scores.push(parseFloat(inp.value) || 0);
+    });
+    saved.essayScore = scores;
+    saveToStorage();
+  }
+
+  // ==================== localStorage ====================
+  function saveToStorage() {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(saved));
+    } catch(e) {}
+  }
+
+  function loadFromStorage() {
+    try {
+      var raw = localStorage.getItem(LS_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        // 确保结构完整
+        if (parsed && typeof parsed === 'object') {
+          parsed.single = parsed.single || new Array(15).fill(null);
+          parsed.multi  = parsed.multi  || new Array(3).fill([]);
+          parsed.fill   = parsed.fill   || new Array(21).fill('');
+          parsed.essayText  = parsed.essayText  || new Array(2).fill('');
+          parsed.essayScore = parsed.essayScore || new Array(2).fill(0);
+          return parsed;
+        }
+      }
+    } catch(e) {}
+    return {
+      single: new Array(15).fill(null),
+      multi:  new Array(3).fill([]),
+      fill:   new Array(21).fill(''),
+      essayText:  new Array(2).fill(''),
+      essayScore: new Array(2).fill(0)
+    };
+  }
+
+  // ==================== 恢复所有答案 ====================
+  function restoreAll() {
+    // 单选
+    saved.single.forEach(function(val, idx) {
+      if (val) {
+        var opts = singleQs[idx].querySelectorAll('.option');
+        opts.forEach(function(o) {
+          if (o.getAttribute('data-value') === val) {
+            o.classList.add('single-sel');
+          }
+        });
+      }
+    });
+
+    // 多选
+    saved.multi.forEach(function(arr, idx) {
+      if (arr && arr.length > 0) {
+        var opts = multiQs[idx].querySelectorAll('.option');
+        opts.forEach(function(o) {
+          if (arr.indexOf(o.getAttribute('data-value')) !== -1) {
+            o.classList.add('multi-sel');
+          }
+        });
+      }
+    });
+
+    // 填空
+    var fillInputs = document.querySelectorAll('.fill-blank input');
+    saved.fill.forEach(function(val, idx) {
+      if (val && fillInputs[idx]) {
+        fillInputs[idx].value = val;
+      }
+    });
+
+    // 解答题文本
+    var essayTextareas = document.querySelectorAll('.essay-q textarea');
+    saved.essayText.forEach(function(val, idx) {
+      if (val && essayTextareas[idx]) {
+        essayTextareas[idx].value = val;
+      }
+    });
+
+    // 解答题得分
+    saved.essayScore.forEach(function(val, idx) {
+      if (essayScoreInputs[idx]) {
+        essayScoreInputs[idx].value = val;
+      }
+    });
+  }
+
+  // ==================== 评分引擎 ====================
+  function scoreSingle() {
+    var correct = 0;
+    singleQs.forEach(function(q, idx) {
+      var sel = getSingleSelection(idx);
+      var isCorrect = (sel === ANSWER_KEY.single[idx]);
+      if (isCorrect) correct++;
+
+      // 显示对错
+      var opts = q.querySelectorAll('.option');
+      // 先清除评分样式
+      opts.forEach(function(o) {
+        o.classList.remove('correct', 'wrong');
+      });
+      // 标记正确选项
+      opts.forEach(function(o) {
+        if (o.getAttribute('data-value') === ANSWER_KEY.single[idx]) {
+          o.classList.add('correct');
+        }
+      });
+      // 如果选错了，标记错误
+      if (sel && !isCorrect) {
+        opts.forEach(function(o) {
+          if (o.getAttribute('data-value') === sel) {
+            o.classList.add('wrong');
+          }
+        });
+      }
+    });
+    return correct * 3;
+  }
+
+  function scoreMulti() {
+    var score = 0;
+    multiQs.forEach(function(q, idx) {
+      var selected = getMultiSelection(idx);
+      var correctArr = ANSWER_KEY.multi[idx];
+      var selectedSet = new Set(selected);
+      var correctSet = new Set(correctArr);
+
+      // 清除评分样式
+      var opts = q.querySelectorAll('.option');
+      opts.forEach(function(o) { o.classList.remove('correct', 'wrong', 'missed'); });
+
+      // 检查是否有错误选项被选中
+      var hasWrong = selected.some(function(v) { return !correctSet.has(v); });
+      // 计算选中了多少个正确答案
+      var correctSelected = selected.filter(function(v) { return correctSet.has(v); }).length;
+
+      if (correctSet.size === selected.length && !hasWrong) {
+        // 全对
+        score += 4;
+        opts.forEach(function(o) {
+          if (correctSet.has(o.getAttribute('data-value'))) o.classList.add('correct');
+        });
+      } else if (!hasWrong && correctSelected > 0) {
+        // 部分正确
+        score += 2;
+        opts.forEach(function(o) {
+          var v = o.getAttribute('data-value');
+          if (correctSet.has(v) && selectedSet.has(v)) o.classList.add('correct');
+          if (correctSet.has(v) && !selectedSet.has(v)) o.classList.add('missed');
+        });
+      } else if (hasWrong) {
+        // 有错误选项
+        score += 0;
+        opts.forEach(function(o) {
+          var v = o.getAttribute('data-value');
+          if (correctSet.has(v) && !selectedSet.has(v)) o.classList.add('missed');
+          if (correctSet.has(v) && selectedSet.has(v)) o.classList.add('correct');
+          if (!correctSet.has(v) && selectedSet.has(v)) o.classList.add('wrong');
+        });
+      }
+      // 未选任何选项 - 0分，不标记
+    });
+    return score;
+  }
+
+  function scoreFill() {
+    var totalBlanks = 0;
+    var correctBlanks = 0;
+    var fillInputs = document.querySelectorAll('.fill-blank input');
+
+    // 清除评分样式
+    fillInputs.forEach(function(inp) { inp.classList.remove('correct', 'wrong'); });
+
+    // 展平答案索引
+    var flatIdx = 0;
+    ANSWER_KEY.fill.forEach(function(qAnswers, qi) {
+      qAnswers.forEach(function(acceptable, bi) {
+        var inp = fillInputs[flatIdx];
+        if (inp) {
+          var val = inp.value.trim().toLowerCase();
+          var match = acceptable.some(function(a) { return a.toLowerCase() === val; });
+          // 额外检查：如果输入包含可接受答案的关键字
+          if (!match) {
+            match = acceptable.some(function(a) {
+              return val.indexOf(a.toLowerCase()) !== -1 || a.toLowerCase().indexOf(val) !== -1;
+            });
+          }
+          if (match && val !== '') {
+            correctBlanks++;
+            inp.classList.add('correct');
+          } else if (val !== '') {
+            inp.classList.add('wrong');
+          }
+        }
+        flatIdx++;
+      });
+    });
+    totalBlanks = flatIdx;
+    return correctBlanks;
+  }
+
+  // ==================== 提交 ====================
+  window.submitPaper = function() {
+    var pwd = prompt('请输入评分密码：');
+    if (pwd !== '2641') {
+      alert('密码错误，无法查看评分结果！');
+      return;
+    }
+
+    // 执行评分
+    var singleScore = scoreSingle();
+    var multiScore = scoreMulti();
+    var fillScore = scoreFill();
+
+    // 解答题得分（手动）
+    var essayScoreTotal = 0;
+    essayScoreInputs.forEach(function(inp) {
+      essayScoreTotal += parseFloat(inp.value) || 0;
+    });
+
+    var total = singleScore + multiScore + fillScore + essayScoreTotal;
+    var maxTotal = 45 + 12 + 21 + 22;
+
+    // 更新顶部显示
+    document.getElementById('displayTotalScore').textContent = total.toFixed(1);
+
+    // 显示详细得分
+    var display = document.getElementById('scoreDisplay');
+    var passClass = total >= 60 ? 'pass' : 'fail';
+    var passText = total >= 60 ? '✅ 合格' : '❌ 不合格';
+
+    display.innerHTML = ''
+      + '<div class="score-row">客观题（系统评分）：</div>'
+      + '<div class="score-row">&emsp;单选题：' + singleScore + ' / 45 分</div>'
+      + '<div class="score-row">&emsp;多选题：' + multiScore + ' / 12 分</div>'
+      + '<div class="score-row">&emsp;填空题：' + fillScore + ' / 21 分</div>'
+      + '<div class="score-row">主观题（教师评分）：' + essayScoreTotal.toFixed(1) + ' / 22 分</div>'
+      + '<div class="score-row" style="border-top:1px dashed #aaa; padding-top:6px; margin-top:6px;"></div>'
+      + '<div class="total ' + passClass + '">'
+      + '总分：' + total.toFixed(1) + ' / ' + maxTotal + ' 分 &emsp; ' + passText
+      + '</div>';
+
+    display.className = 'score-display show';
+  };
+
+  // ==================== 全部清空 ====================
+  window.resetAll = function() {
+    if (!confirm('确定要清空所有答案和评分吗？')) return;
+
+    // 清除单选
+    document.querySelectorAll('.option').forEach(function(o) {
+      o.classList.remove('single-sel', 'multi-sel', 'correct', 'wrong', 'missed');
+    });
+    // 清除填空
+    document.querySelectorAll('.fill-blank input').forEach(function(inp) {
+      inp.value = '';
+      inp.classList.remove('correct', 'wrong');
+    });
+    // 清除解答题
+    document.querySelectorAll('.essay-q textarea').forEach(function(ta) {
+      ta.value = '';
+    });
+    document.querySelectorAll('.essay-score').forEach(function(inp) {
+      inp.value = '0';
+    });
+
+    // 重置状态
+    saved = {
+      single: new Array(15).fill(null),
+      multi:  new Array(3).fill([]),
+      fill:   new Array(21).fill(''),
+      essayText:  new Array(2).fill(''),
+      essayScore: new Array(2).fill(0)
+    };
+    saveToStorage();
+
+    document.getElementById('displayTotalScore').textContent = '—';
+    document.getElementById('scoreDisplay').className = 'score-display';
+  };
+
+  // ==================== DOM 就绪 ====================
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+
+</body>
+</html>

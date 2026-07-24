@@ -79,12 +79,17 @@
   }
 
   /* ===== 题目布局 ===== */
-  .question { margin-bottom: 14px; }
+  .question {
+    margin-bottom: 14px;
+    display: flex;
+    gap: 4px;
+  }
   .question .q-head {
     font-weight: 600;
-    margin-bottom: 4px;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
-  .question .q-body { padding-left: 6px; }
+  .question .q-body { flex: 1; min-width: 0; }
   .question .q-body p { margin-bottom: 4px; }
 
   /* ===== 选项（单选 / 多选） ===== */

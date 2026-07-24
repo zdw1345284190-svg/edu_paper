@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>楂樹竴鍖栧锛堜汉鏁欑増锛夌浜岀珷 2.1 閽犲強鍏跺寲鍚堢墿</title>
+<title>高一化学（人教版）第二章 2.1 钠及其化合物</title>
 <script>
 window.MathJax = {
   tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] ,
@@ -15,7 +15,7 @@ window.MathJax = {
 /* ===== Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'Times New Roman', '瀹嬩綋', SimSun, serif;
+  font-family: 'Times New Roman', '宋体', SimSun, serif;
   font-size: 14px;
   line-height: 1.8;
   background: #f0f0f0;
@@ -50,6 +50,12 @@ body {
 .question:hover { border-left-color: #85c1e9; }
 .q-title { font-weight: bold; margin-bottom: 4px; }
 .q-text { margin-bottom: 6px; text-indent: 2em; }
+
+/* Inline question number & text for single/multi choice */
+.question[data-type="single"] .q-title,
+.question[data-type="multi"] .q-title { display: inline; }
+.question[data-type="single"] .q-text,
+.question[data-type="multi"] .q-text { display: inline; text-indent: 0; }
 
 /* Options */
 .options { margin: 6px 0 4px 2em; }
@@ -129,7 +135,7 @@ body {
   @page { size: A4; margin: 15mm; }
 }
 
-/* ===== 鎵嬫満绔€傞厤 ===== */
+/* ===== 手机端适配 ===== */
 @media screen and (max-width: 640px) {
   body { padding: 8px; }
   .paper { padding: 14px 16px; box-shadow: none; min-height: auto; }
@@ -160,376 +166,397 @@ body {
 
   <!-- ==================== HEADER ==================== -->
   <div class="header">
-    <h1>楂樹竴鍖栧锛堜汉鏁欑増蹇呬慨绗竴鍐岋級</h1>
-    <div class="sub">绗簩绔?&nbsp; 2.1 閽犲強鍏跺寲鍚堢墿 &nbsp; 璇炬椂妫€娴嬪嵎</div>
+    <h1>高一化学（人教版必修第一册）</h1>
+    <div class="sub">第二章 &nbsp; 2.1 钠及其化合物 &nbsp; 单元检测卷</div>
     <div class="info-bar">
-      <strong>鎬诲垎锛?00鍒?/strong> &nbsp;&nbsp; 鑰冭瘯鏃堕棿锛?5鍒嗛挓 &nbsp;&nbsp; 鍛介鑼冨洿锛氱浜岀珷 2.1
+      <strong>总分：100分</strong> &nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp; 命题范围：第二章 2.1
     </div>
     <div class="student-info">
-      <label>濮撳悕锛?input type="text" id="student-name" autocomplete="off"></label>
-      <label>鐝骇锛?input type="text" id="student-class" autocomplete="off" style="width:70px"></label>
-      <label>瀛﹀彿锛?input type="text" id="student-id" autocomplete="off" style="width:80px"></label>
+      <label>姓名：<input type="text" id="student-name" autocomplete="off"></label>
+      <label>班级：<input type="text" id="student-class" autocomplete="off" style="width:70px"></label>
+      <label>学号：<input type="text" id="student-id" autocomplete="off" style="width:80px"></label>
     </div>
   </div>
 
-  <!-- ==================== 涓€銆佸崟閫夐 ==================== -->
+  <!-- ==================== 一、单选题 ==================== -->
   <div class="section">
-    <h2>涓€銆佸崟閫夐锛堝叡10棰橈紝姣忛3鍒嗭紝鍏?0鍒嗭級</h2>
-    <p style="color:#666;font-size:13px;margin-bottom:8px;">姣忛鍙湁涓€涓€夐」绗﹀悎棰樻剰銆?/p>
+    <h2>一、单选题（共10题，每题3分，共30分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题只有一个选项符合题意。</p>
 
     <!-- q1 -->
     <div class="question" data-qid="q1" data-type="single" data-answer="C">
       <div class="q-title">1.</div>
-      <div class="q-text">涓嬪垪鍏充簬閽犵殑鐗╃悊鎬ц川锛屽彊杩版纭殑鏄紙銆€锛?/div>
+      <div class="q-text">下列关于钠的物理性质的叙述，正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q1" value="A"> A锛庨摱鐧借壊閲戝睘锛岃川纭紝瀵嗗害姣旀按澶?/label>
-        <label><input type="radio" name="q1" value="B"> B锛庢殫鐏拌壊閲戝睘锛岃川杞紝瀵嗗害姣旀按灏?/label>
-        <label><input type="radio" name="q1" value="C"> C锛庨摱鐧借壊閲戝睘锛岃川杞紝瀵嗗害姣旀按灏?/label>
-        <label><input type="radio" name="q1" value="D"> D锛庨摱鐧借壊閲戝睘锛岃川纭紝瀵嗗害姣旂叅娌瑰ぇ</label>
+        <label><input type="radio" name="q1" value="A"> A．银白色金属，硬度大，密度比水大</label>
+        <label><input type="radio" name="q1" value="B"> B．暗灰色金属，质软，密度比煤油大</label>
+        <label><input type="radio" name="q1" value="C"> C．银白色金属，质地柔软，可用刀切割</label>
+        <label><input type="radio" name="q1" value="D"> D．银白色金属，硬度大，导电性差</label>
       </div>
     </div>
 
     <!-- q2 -->
-    <div class="question" data-qid="q2" data-type="single" data-answer="B">
+    <div class="question" data-qid="q2" data-type="single" data-answer="A">
       <div class="q-title">2.</div>
-      <div class="q-text">瀹為獙瀹や腑锛岄噾灞為挔閫氬父淇濆瓨鍦紙銆€锛?/div>
+      <div class="q-text">实验室取用金属钠时，下列操作正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q2" value="A"> A锛庢按涓?/label>
-        <label><input type="radio" name="q2" value="B"> B锛庣叅娌逛腑</label>
-        <label><input type="radio" name="q2" value="C"> C锛庨厭绮句腑</label>
-        <label><input type="radio" name="q2" value="D"> D锛庡共鐕ュ櫒涓?/label>
+        <label><input type="radio" name="q2" value="A"> A．用镊子夹取，用滤纸吸干表面煤油，用小刀切割</label>
+        <label><input type="radio" name="q2" value="B"> B．直接用手取用，用滤纸擦干净表面</label>
+        <label><input type="radio" name="q2" value="C"> C．用镊子夹取，直接放在空气中切割</label>
+        <label><input type="radio" name="q2" value="D"> D．用药匙取用，直接放在水中切割</label>
       </div>
     </div>
 
     <!-- q3 -->
     <div class="question" data-qid="q3" data-type="single" data-answer="B">
       <div class="q-title">3.</div>
-      <div class="q-text">閽犲湪甯告俯涓嬩笌姘ф皵鍙嶅簲锛岀敓鎴愮殑浜х墿鏄紙銆€锛?/div>
+      <div class="q-text">钠在常温下与氧气反应，生成的产物是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q3" value="A"> A锛嶯a\(_2\)O\(_2\)</label>
-        <label><input type="radio" name="q3" value="B"> B锛嶯a\(_2\)O</label>
-        <label><input type="radio" name="q3" value="C"> C锛嶯aOH</label>
-        <label><input type="radio" name="q3" value="D"> D锛嶯a\(_2\)CO\(_3\)</label>
+        <label><input type="radio" name="q3" value="A"> A．Na\(_2\)O\(_2\)</label>
+        <label><input type="radio" name="q3" value="B"> B．Na\(_2\)O</label>
+        <label><input type="radio" name="q3" value="C"> C．NaOH</label>
+        <label><input type="radio" name="q3" value="D"> D．Na\(_2\)CO\(_3\)</label>
       </div>
     </div>
 
     <!-- q4 -->
-    <div class="question" data-qid="q4" data-type="single" data-answer="D">
+    <div class="question" data-qid="q4" data-type="single" data-answer="B">
       <div class="q-title">4.</div>
-      <div class="q-text">鍙栦竴灏忓潡閽犲湪鐭虫缃戜笂鍔犵儹锛屼笅鍒楃幇璞℃弿杩版纭殑鏄紙銆€锛?/div>
+      <div class="q-text">钠在空气中燃烧时，下列实验现象描述正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q4" value="A"> A锛庨挔缂撴參姘у寲锛岀敓鎴愮櫧鑹插浐浣?/label>
-        <label><input type="radio" name="q4" value="B"> B锛庨挔鍓х儓鐕冪儳锛岀伀鐒板憟绱壊锛岀敓鎴愭贰榛勮壊鍥轰綋</label>
-        <label><input type="radio" name="q4" value="C"> C锛庨挔鍓х儓鐕冪儳锛岀伀鐒板憟榛勮壊锛岀敓鎴愮櫧鑹插浐浣?/label>
-        <label><input type="radio" name="q4" value="D"> D锛庨挔鍓х儓鐕冪儳锛岀伀鐒板憟榛勮壊锛岀敓鎴愭贰榛勮壊鍥轰綋</label>
+        <label><input type="radio" name="q4" value="A"> A．钠缓慢氧化，表面变暗，生成白色固体</label>
+        <label><input type="radio" name="q4" value="B"> B．钠先熔化成小球，然后剧烈燃烧，火焰呈黄色</label>
+        <label><input type="radio" name="q4" value="C"> C．钠剧烈燃烧，火焰呈紫色，生成白色固体</label>
+        <label><input type="radio" name="q4" value="D"> D．钠剧烈燃烧，火焰呈黄色，生成白色固体</label>
       </div>
     </div>
 
     <!-- q5 -->
-    <div class="question" data-qid="q5" data-type="single" data-answer="C">
+    <div class="question" data-qid="q5" data-type="single" data-answer="B">
       <div class="q-title">5.</div>
-      <div class="q-text">灏嗕竴灏忓潡閽犳姇鍏ユ按涓紝涓嬪垪鐜拌薄鎻忚堪閿欒鐨勬槸锛堛€€锛?/div>
+      <div class="q-text">钠与水反应时，钠熔化成闪亮的小球，这主要是因为（　）</div>
       <div class="options">
-        <label><input type="radio" name="q5" value="A"> A锛庨挔娴湪姘撮潰涓?/label>
-        <label><input type="radio" name="q5" value="B"> B锛庨挔鐔斿寲鎴愰棯浜殑灏忕悆</label>
-        <label><input type="radio" name="q5" value="C"> C锛庨挔娌夊湪姘村簳</label>
-        <label><input type="radio" name="q5" value="D"> D锛庨挔鍦ㄦ按闈笂鍥涘娓稿姩</label>
+        <label><input type="radio" name="q5" value="A"> A．钠的密度比水小</label>
+        <label><input type="radio" name="q5" value="B"> B．反应放热，且钠的熔点较低</label>
+        <label><input type="radio" name="q5" value="C"> C．钠的质地柔软</label>
+        <label><input type="radio" name="q5" value="D"> D．反应生成气体推动</label>
       </div>
     </div>
 
     <!-- q6 -->
-    <div class="question" data-qid="q6" data-type="single" data-answer="B">
+    <div class="question" data-qid="q6" data-type="single" data-answer="D">
       <div class="q-title">6.</div>
-      <div class="q-text">涓嬪垪鍏充簬Na\(_2\)O鐨勮娉曪紝姝ｇ‘鐨勬槸锛堛€€锛?/div>
+      <div class="q-text">下列关于Na\(_2\)O的说法，错误的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q6" value="A"> A锛嶯a\(_2\)O鏄繃姘у寲鐗?/label>
-        <label><input type="radio" name="q6" value="B"> B锛嶯a\(_2\)O鏄⒈鎬ф哀鍖栫墿</label>
-        <label><input type="radio" name="q6" value="C"> C锛嶯a\(_2\)O涓庢按鍙嶅簲鐢熸垚H\(_2\)</label>
-        <label><input type="radio" name="q6" value="D"> D锛嶯a\(_2\)O鏄贰榛勮壊鍥轰綋</label>
+        <label><input type="radio" name="q6" value="A"> A．Na\(_2\)O是白色固体</label>
+        <label><input type="radio" name="q6" value="B"> B．Na\(_2\)O属于碱性氧化物</label>
+        <label><input type="radio" name="q6" value="C"> C．Na\(_2\)O与水反应生成NaOH</label>
+        <label><input type="radio" name="q6" value="D"> D．Na\(_2\)O与酸反应生成盐、水和O\(_2\)</label>
       </div>
     </div>
 
     <!-- q7 -->
-    <div class="question" data-qid="q7" data-type="single" data-answer="D">
+    <div class="question" data-qid="q7" data-type="single" data-answer="B">
       <div class="q-title">7.</div>
-      <div class="q-text">涓嬪垪鍏充簬Na\(_2\)O\(_2\)鐨勮娉曪紝涓嶆纭殑鏄紙銆€锛?/div>
+      <div class="q-text">Na\(_2\)O\(_2\)常用于呼吸面具中作供氧剂，这是利用其能与下列哪些物质反应生成O\(_2\)的性质（　）</div>
       <div class="options">
-        <label><input type="radio" name="q7" value="A"> A锛嶯a\(_2\)O\(_2\)鏄贰榛勮壊鍥轰綋</label>
-        <label><input type="radio" name="q7" value="B"> B锛嶯a\(_2\)O\(_2\)涓庢按鍙嶅簲鐢熸垚O\(_2\)</label>
-        <label><input type="radio" name="q7" value="C"> C锛嶯a\(_2\)O\(_2\)鍙敤浣滃懠鍚搁潰鍏风殑渚涙哀鍓?/label>
-        <label><input type="radio" name="q7" value="D"> D锛嶯a\(_2\)O\(_2\)鏄⒈鎬ф哀鍖栫墿</label>
+        <label><input type="radio" name="q7" value="A"> A．H\(_2\)O和N\(_2\)</label>
+        <label><input type="radio" name="q7" value="B"> B．H\(_2\)O和CO\(_2\)</label>
+        <label><input type="radio" name="q7" value="C"> C．HCl和CO\(_2\)</label>
+        <label><input type="radio" name="q7" value="D"> D．H\(_2\)O和O\(_2\)</label>
       </div>
     </div>
 
     <!-- q8 -->
     <div class="question" data-qid="q8" data-type="single" data-answer="C">
       <div class="q-title">8.</div>
-      <div class="q-text">涓嬪垪鍏充簬Na\(_2\)CO\(_3\)鍜孨aHCO\(_3\)鐑ǔ瀹氭€х殑姣旇緝锛屾纭殑鏄紙銆€锛?/div>
+      <div class="q-text">下列关于Na\(_2\)CO\(_3\)的叙述，正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q8" value="A"> A锛嶯a\(_2\)CO\(_3\)鍙楃儹鏄撳垎瑙?/label>
-        <label><input type="radio" name="q8" value="B"> B锛嶯aHCO\(_3\)鍙楃儹涓嶅垎瑙?/label>
-        <label><input type="radio" name="q8" value="C"> C锛嶯a\(_2\)CO\(_3\)鐨勭儹绋冲畾鎬уぇ浜嶯aHCO\(_3\)</label>
-        <label><input type="radio" name="q8" value="D"> D锛庝袱鑰呯儹绋冲畾鎬х浉鍚?/label>
+        <label><input type="radio" name="q8" value="A"> A．俗称小苏打</label>
+        <label><input type="radio" name="q8" value="B"> B．受热易分解</label>
+        <label><input type="radio" name="q8" value="C"> C．水溶液显碱性</label>
+        <label><input type="radio" name="q8" value="D"> D．与酸反应不产生气体</label>
       </div>
     </div>
 
     <!-- q9 -->
     <div class="question" data-qid="q9" data-type="single" data-answer="B">
       <div class="q-title">9.</div>
-      <div class="q-text">绛夎川閲忕殑Na\(_2\)CO\(_3\)鍜孨aHCO\(_3\)涓庤冻閲忕洂閰稿弽搴旓紝浜х敓CO\(_2\)鐨勯€熺巼锛堛€€锛?/div>
+      <div class="q-text">NaHCO\(_3\)与足量盐酸反应的离子方程式，书写正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q9" value="A"> A锛嶯a\(_2\)CO\(_3\)鏇村揩</label>
-        <label><input type="radio" name="q9" value="B"> B锛嶯aHCO\(_3\)鏇村揩</label>
-        <label><input type="radio" name="q9" value="C"> C锛庝袱鑰呬竴鏍峰揩</label>
-        <label><input type="radio" name="q9" value="D"> D锛庢棤娉曟瘮杈?/label>
+        <label><input type="radio" name="q9" value="A"> A．CO\(_3^{2-}\) + 2H\(^+\) = CO\(_2\)↑ + H\(_2\)O</label>
+        <label><input type="radio" name="q9" value="B"> B．HCO\(_3^-\) + H\(^+\) = CO\(_2\)↑ + H\(_2\)O</label>
+        <label><input type="radio" name="q9" value="C"> C．NaHCO\(_3\) + H\(^+\) = Na\(^+\) + CO\(_2\)↑ + H\(_2\)O</label>
+        <label><input type="radio" name="q9" value="D"> D．HCO\(_3^-\) + OH\(^-\) = CO\(_3^{2-}\) + H\(_2\)O</label>
       </div>
     </div>
 
     <!-- q10 -->
-    <div class="question" data-qid="q10" data-type="single" data-answer="B">
+    <div class="question" data-qid="q10" data-type="single" data-answer="D">
       <div class="q-title">10.</div>
-      <div class="q-text">涓嬪垪杞寲涓紝鑳戒竴姝ュ疄鐜扮殑鏄紙銆€锛?/div>
+      <div class="q-text">下列物质间的转化，不能通过一步反应实现的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q10" value="A"> A锛嶯a \(\xrightarrow{\text{甯告俯O}_2}\) Na\(_2\)O\(_2\)</label>
-        <label><input type="radio" name="q10" value="B"> B锛嶯a\(_2\)O \(\xrightarrow{\triangle}\) Na\(_2\)O\(_2\)</label>
-        <label><input type="radio" name="q10" value="C"> C锛嶯aHCO\(_3\) \(\xrightarrow{\text{鍔犳按}}\) Na\(_2\)CO\(_3\)</label>
-        <label><input type="radio" name="q10" value="D"> D锛嶯a\(_2\)CO\(_3\) \(\xrightarrow{\text{鍔犵儹}}\) NaHCO\(_3\)</label>
+        <label><input type="radio" name="q10" value="A"> A．Na → Na\(_2\)O</label>
+        <label><input type="radio" name="q10" value="B"> B．Na\(_2\)O → NaOH</label>
+        <label><input type="radio" name="q10" value="C"> C．Na\(_2\)CO\(_3\) → NaHCO\(_3\)</label>
+        <label><input type="radio" name="q10" value="D"> D．NaHCO\(_3\) → Na\(_2\)O</label>
       </div>
     </div>
   </div>
 
-  <!-- ==================== 浜屻€佸閫夐 ==================== -->
+  <!-- ==================== 二、多选题 ==================== -->
   <div class="section">
-    <h2>浜屻€佸閫夐锛堝叡3棰橈紝姣忛4鍒嗭紝鍏?2鍒嗭級</h2>
-    <p style="color:#666;font-size:13px;margin-bottom:8px;">姣忛鏈夊涓€夐」绗﹀悎棰樻剰銆傚叏瀵瑰緱4鍒嗭紝閮ㄥ垎閫夊寰?鍒嗭紝鏈夐敊閫夊緱0鍒嗐€?/p>
+    <h2>二、多选题（共3题，每题4分，共12分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题有多个选项符合题意。全对得4分，部分选对得2分，有错选得0分。</p>
 
     <!-- q101 -->
     <div class="question" data-qid="q101" data-type="multi" data-answer='["B","C","D"]'>
       <div class="q-title">11.</div>
-      <div class="q-text">鍏充簬閽犵殑"鍥涗釜涓€"鍙嶅簲锛屼笅鍒楄娉曟纭殑鏈夛紙銆€锛?/div>
+      <div class="q-text">关于钠与水反应的现象及解释，下列说法正确的有（　）</div>
       <div class="options">
-        <label><input type="checkbox" name="q101" value="A"> A锛庨挔涓庢哀姘斿父娓╁弽搴旂敓鎴怤a\(_2\)O\(_2\)</label>
-        <label><input type="checkbox" name="q101" value="B"> B锛庨挔涓庢哀姘斿姞鐑弽搴旂敓鎴怤a\(_2\)O\(_2\)</label>
-        <label><input type="checkbox" name="q101" value="C"> C锛庨挔涓庢按鍙嶅簲鐨勫寲瀛︽柟绋嬪紡涓?Na + 2H\(_2\)O = 2NaOH + H\(_2\)鈫?/label>
-        <label><input type="checkbox" name="q101" value="D"> D锛庨挔涓庢按鍙嶅簲鏃堕挔鐔斿寲鎴愬皬鐞冿紝璇存槑閽犵殑鐔旂偣浣?/label>
+        <label><input type="checkbox" name="q101" value="A"> A．钠浮在水面上——钠的密度比水大</label>
+        <label><input type="checkbox" name="q101" value="B"> B．钠熔化成闪亮小球——反应放热，钠熔点低</label>
+        <label><input type="checkbox" name="q101" value="C"> C．钠在水面游动——产生的H\(_2\)推动</label>
+        <label><input type="checkbox" name="q101" value="D"> D．反应后溶液变红——生成NaOH</label>
       </div>
     </div>
 
     <!-- q102 -->
     <div class="question" data-qid="q102" data-type="multi" data-answer='["B","C","D"]'>
       <div class="q-title">12.</div>
-      <div class="q-text">涓嬪垪鍏充簬Na\(_2\)CO\(_3\)鍜孨aHCO\(_3\)鐨勮娉曪紝姝ｇ‘鐨勬湁锛堛€€锛?/div>
+      <div class="q-text">下列关于Na\(_2\)CO\(_3\)和NaHCO\(_3\)的说法，正确的有（　）</div>
       <div class="options">
-        <label><input type="checkbox" name="q102" value="A"> A锛嶯a\(_2\)CO\(_3\)淇楃О灏忚嫃鎵擄紝NaHCO\(_3\)淇楃О鑻忔墦</label>
-        <label><input type="checkbox" name="q102" value="B"> B锛嶯aHCO\(_3\)鍙楃儹鏄撳垎瑙ｏ紝Na\(_2\)CO\(_3\)鍙楃儹涓嶆槗鍒嗚В</label>
-        <label><input type="checkbox" name="q102" value="C"> C锛嶯aHCO\(_3\)涓庨吀鍙嶅簲姣擭a\(_2\)CO\(_3\)鏇村墽鐑?/label>
-        <label><input type="checkbox" name="q102" value="D"> D锛嶯a\(_2\)CO\(_3\)婧舵恫纰辨€ф瘮NaHCO\(_3\)寮?/label>
+        <label><input type="checkbox" name="q102" value="A"> A．Na\(_2\)CO\(_3\)俗称小苏打，NaHCO\(_3\)俗称苏打</label>
+        <label><input type="checkbox" name="q102" value="B"> B．Na\(_2\)CO\(_3\)溶液碱性比NaHCO\(_3\)强</label>
+        <label><input type="checkbox" name="q102" value="C"> C．NaHCO\(_3\)受热分解生成CO\(_2\)</label>
+        <label><input type="checkbox" name="q102" value="D"> D．NaHCO\(_3\)与盐酸反应比Na\(_2\)CO\(_3\)更剧烈</label>
       </div>
     </div>
 
     <!-- q103 -->
     <div class="question" data-qid="q103" data-type="multi" data-answer='["A","B","C"]'>
       <div class="q-title">13.</div>
-      <div class="q-text">涓嬪垪鍏充簬閽犵殑淇濆瓨鍜屽彇鐢紝璇存硶姝ｇ‘鐨勬湁锛堛€€锛?/div>
+      <div class="q-text">下列关于Na\(_2\)O\(_2\)的说法，正确的有（　）</div>
       <div class="options">
-        <label><input type="checkbox" name="q103" value="A"> A锛庨挔淇濆瓨鍦ㄧ叅娌逛腑锛岀洰鐨勬槸闅旂粷绌烘皵鍜屾按</label>
-        <label><input type="checkbox" name="q103" value="B"> B锛庡彇鐢ㄩ挔鏃跺簲鐢ㄩ晩瀛愬す鍙栵紝涓嶈兘鐢ㄦ墜鐩存帴鎺ヨЕ</label>
-        <label><input type="checkbox" name="q103" value="C"> C锛庡垏鍓查挔鏃讹紝鍓╀綑鐨勯挔搴旀斁鍥炲師璇曞墏鐡?/label>
-        <label><input type="checkbox" name="q103" value="D"> D锛庨挔鐫€鐏椂鍙互鐢ㄦ按鐏伀</label>
+        <label><input type="checkbox" name="q103" value="A"> A．Na\(_2\)O\(_2\)是淡黄色固体</label>
+        <label><input type="checkbox" name="q103" value="B"> B．Na\(_2\)O\(_2\)与水反应放出O\(_2\)</label>
+        <label><input type="checkbox" name="q103" value="C"> C．Na\(_2\)O\(_2\)可用作呼吸面具的供氧剂</label>
+        <label><input type="checkbox" name="q103" value="D"> D．Na\(_2\)O\(_2\)属于碱性氧化物</label>
       </div>
     </div>
   </div>
 
-  <!-- ==================== 涓夈€佸～绌洪 ==================== -->
+  <!-- ==================== 三、填空题 ==================== -->
   <div class="section">
-    <h2>涓夈€佸～绌洪锛堝叡6棰橈紝姣忛3鍒嗭紝鍏?8鍒嗭級</h2>
+    <h2>三、填空题（共6题，每题3分，共18分）</h2>
 
     <!-- q11 (Display 14) -->
     <div class="question fill-question" data-qid="q11" data-type="fill">
-      <div class="q-title">14. <span style="font-weight:normal">閽犱笌姘村弽搴旂殑鐜拌薄鍙鎷负"娴€佺啍銆?/span></div>
+      <div class="q-title">14. <span style="font-weight:normal">钠与水反应的现象可概括为五个字："浮、</span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q11-0" data-answer="娓? data-alt="娓告吵|娓稿姩" style="width:50px" autocomplete="off">銆佸搷銆佺孩"銆?      </div>
+        <input type="text" class="fill-blank" id="q11-0" data-answer="熔" data-alt="熔化" style="width:50px" autocomplete="off">、游、响、红"。
+      </div>
     </div>
 
     <!-- q12 (Display 15) -->
     <div class="question fill-question" data-qid="q12" data-type="fill">
-      <div class="q-title">15. <span style="font-weight:normal">閽犲湪绌烘皵涓噧鐑э紝鐏劙鍛?/span></div>
+      <div class="q-title">15. <span style="font-weight:normal">钠在空气中燃烧，火焰呈</span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q12-0" data-answer="榛? data-alt="榛勮壊" style="width:50px" autocomplete="off">鑹诧紝鐢熸垚
-        <input type="text" class="fill-blank" id="q12-1" data-answer="娣￠粍" data-alt="娣￠粍鑹瞸娴呴粍" style="width:70px" autocomplete="off">鑹插浐浣撱€?      </div>
+        <input type="text" class="fill-blank" id="q12-0" data-answer="黄" data-alt="黄色" style="width:50px" autocomplete="off">色，生成
+        <input type="text" class="fill-blank" id="q12-1" data-answer="淡黄" data-alt="淡黄色|浅黄" style="width:70px" autocomplete="off">色固体。
+      </div>
     </div>
 
     <!-- q13 (Display 16) -->
     <div class="question fill-question" data-qid="q13" data-type="fill">
-      <div class="q-title">16. <span style="font-weight:normal">Na\(_2\)O\(_2\)涓庢按鍙嶅簲浜х敓</span></div>
+      <div class="q-title">16. <span style="font-weight:normal">Na\(_2\)O\(_2\)与水反应的化学方程式中，除NaOH外，另一种生成物是</span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q13-0" data-answer="O鈧? data-alt="O2|姘ф皵" style="width:60px" autocomplete="off">锛堝～鍖栧寮忥級锛岃姘斾綋鑳戒娇甯︾伀鏄熺殑鏈ㄦ潯澶嶇噧銆?      </div>
+        <input type="text" class="fill-blank" id="q13-0" data-answer="O₂" data-alt="O2|氧气" style="width:60px" autocomplete="off">（填化学式）；该反应中，每有1 mol Na₂O₂反应，转移
+        <input type="text" class="fill-blank" id="q13-1" data-answer="1" data-alt="1mol|1 mol|1.0" style="width:50px" autocomplete="off"> mol电子。
+      </div>
     </div>
 
     <!-- q14 (Display 17) -->
     <div class="question fill-question" data-qid="q14" data-type="fill">
-      <div class="q-title">17. <span style="font-weight:normal">NaHCO\(_3\)鍙楃儹鍒嗚В鐨勫寲瀛︽柟绋嬪紡锛?NaHCO\(_3\) \(\xrightarrow{\triangle}\) </span></div>
+      <div class="q-title">17. <span style="font-weight:normal">将NaHCO\(_3\)固体加热分解，产生能使澄清石灰水变浑浊的气体，该气体的化学式为</span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q14-0" data-answer="Na鈧侰O鈧? data-alt="Na2CO3|纰抽吀閽? style="width:90px" autocomplete="off"> + CO\(_2\)鈫?+ H\(_2\)O
+        <input type="text" class="fill-blank" id="q14-0" data-answer="CO₂" data-alt="CO2|二氧化碳" style="width:65px" autocomplete="off">，另一种生成物为
+        <input type="text" class="fill-blank" id="q14-1" data-answer="Na₂CO₃" data-alt="Na2CO3|碳酸钠" style="width:85px" autocomplete="off">（填化学式）。
       </div>
     </div>
 
     <!-- q15 (Display 18) -->
     <div class="question fill-question" data-qid="q15" data-type="fill">
-      <div class="q-title">18. <span style="font-weight:normal">閽犵殑瀵嗗害涓?/span></div>
+      <div class="q-title">18. <span style="font-weight:normal">钠的密度约为</span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q15-0" data-answer="0.97" data-alt="0.97g/cm鲁|0.97 g/cm鲁|0.97g/cm3" style="width:70px" autocomplete="off"> g/cm鲁锛屾瘮姘寸殑瀵嗗害
-        <input type="text" class="fill-blank" id="q15-1" data-answer="灏? data-alt="灏忎竴浜泑灏忎竴鐐? style="width:40px" autocomplete="off">锛堝～"澶?鎴?灏?锛夈€?      </div>
+        <input type="text" class="fill-blank" id="q15-0" data-answer="0.97" data-alt="0.97g/cm³|0.97 g/cm³|0.97g/cm3" style="width:60px" autocomplete="off"> g/cm³；钠在常温下与氧气反应生成
+        <input type="text" class="fill-blank" id="q15-1" data-answer="Na₂O" data-alt="Na2O|氧化钠" style="width:70px" autocomplete="off">（填化学式）。
+      </div>
     </div>
 
     <!-- q16 (Display 19) -->
     <div class="question fill-question" data-qid="q16" data-type="fill">
-      <div class="q-title">19. <span style="font-weight:normal">鐢ㄥ姞鐑硶閴村埆Na\(_2\)CO\(_3\)鍜孨aHCO\(_3\)鍥轰綋锛屽彈鐑垎瑙ｄ骇鐢熶娇婢勬竻鐭崇伆姘村彉娴戞祳姘斾綋鐨勬槸</span></div>
+      <div class="q-title">19. <span style="font-weight:normal">鉴别Na\(_2\)CO\(_3\)和NaHCO\(_3\)溶液，可以滴加</span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q16-0" data-answer="NaHCO鈧? data-alt="NaHCO3|纰抽吀姘㈤挔|灏忚嫃鎵? style="width:90px" autocomplete="off">锛堝～鍖栧寮忥級銆?      </div>
+        <input type="text" class="fill-blank" id="q16-0" data-answer="CaCl₂" data-alt="CaCl2|氯化钙|BaCl₂|BaCl2|氯化钡" style="width:70px" autocomplete="off">溶液（填化学式），产生白色沉淀的是
+        <input type="text" class="fill-blank" id="q16-1" data-answer="Na₂CO₃" data-alt="Na2CO3|碳酸钠|碳酸钠溶液" style="width:85px" autocomplete="off">（填化学式）。
+      </div>
     </div>
   </div>
 
-  <!-- ==================== 鍥涖€佽В绛旈 ==================== -->
+  <!-- ==================== 四、解答题 ==================== -->
   <div class="section">
-    <h2>鍥涖€佽В绛旈锛堝叡4棰橈紝鍏?0鍒嗭級</h2>
+    <h2>四、解答题（共4题，共40分）</h2>
 
     <!-- q17 (Display 20) -->
     <div class="question calc-question" data-qid="q17" data-type="calc">
-      <div class="q-title">20. <span style="font-weight:normal">锛?0鍒嗭級閽犱笌姘村弽搴旂殑瀹屾暣鍒嗘瀽銆?/span></div>
-      <div class="sub-q">(1)锛?鍒嗭級鍐欏嚭閽犱笌姘村弽搴旂殑鍖栧鏂圭▼寮忋€?/div>
-      <textarea id="q17-1" placeholder="璇峰啓鍑哄寲瀛︽柟绋嬪紡鈥︹€?></textarea>
-      <div class="sub-q">(2)锛?鍒嗭級閽犱笌姘村弽搴旂殑鐜拌薄鍙鎷负"娴€佺啍銆佹父銆佸搷銆佺孩"锛岃鍒嗗埆璇存槑浜х敓杩欎簺鐜拌薄鐨勫師鍥犮€?/div>
-      <textarea id="q17-2" placeholder="璇烽€愭潯鍒嗘瀽鈥︹€? style="min-height:80px"></textarea>
-      <div class="sub-q">(3)锛?鍒嗭級璇ュ弽搴斾腑姘翠綔
-        <input type="text" id="q17-3" data-answer="姘у寲" data-alt="姘у寲鍓? style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> 鍓傦紙濉?姘у寲"鎴?杩樺師"锛夛紱
-        姣忔秷鑰? mol Na锛岀敓鎴怘\(_2\)鐨勮川閲忎负
-        <input type="text" id="q17-4" data-answer="1" data-alt="1g|1 g|1.0" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off"> g銆?      </div>
+      <div class="q-title">20. <span style="font-weight:normal">（10分）钠与水反应的实验探究</span></div>
+      <div class="sub-q">(1)（3分）写出钠与水反应的化学方程式：</div>
+      <textarea id="q17-1" placeholder="请写出化学方程式…"></textarea>
+      <div class="sub-q">(2)（4分）钠与水反应的现象可概括为"浮、熔、游、响、红"，请分别解释产生这些现象的原因。</div>
+      <textarea id="q17-2" placeholder="请逐条分析…" style="min-height:80px"></textarea>
+      <div class="sub-q">(3)（3分）将0.1 mol钠投入足量水中，反应生成H₂的物质的量为
+        <input type="text" id="q17-3" data-answer="0.05" data-alt="0.05mol|0.05 mol" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> mol；
+        生成NaOH的物质的量为
+        <input type="text" id="q17-4" data-answer="0.1" data-alt="0.1mol|0.1 mol" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> mol。</div>
     </div>
 
     <!-- q18 (Display 21) -->
     <div class="question calc-question" data-qid="q18" data-type="calc">
-      <div class="q-title">21. <span style="font-weight:normal">锛?0鍒嗭級Na\(_2\)O\(_2\)涓嶩\(_2\)O銆丆O\(_2\)鍙嶅簲銆?/span></div>
-      <div class="sub-q">(1)锛?鍒嗭級鍐欏嚭Na\(_2\)O\(_2\)涓嶩\(_2\)O鍙嶅簲鐨勫寲瀛︽柟绋嬪紡銆?/div>
+      <div class="q-title">21. <span style="font-weight:normal">（10分）Na₂O₂的性质探究</span></div>
+      <div class="sub-q">(1)（3分）写出Na₂O₂与水反应的化学方程式：</div>
       <textarea id="q18-1" placeholder="(1)" style="min-height:50px"></textarea>
-      <div class="sub-q">(2)锛?鍒嗭級鍐欏嚭Na\(_2\)O\(_2\)涓嶤O\(_2\)鍙嶅簲鐨勫寲瀛︽柟绋嬪紡銆?/div>
+      <div class="sub-q">(2)（3分）写出Na₂O₂与CO₂反应的化学方程式：</div>
       <textarea id="q18-2" placeholder="(2)" style="min-height:50px"></textarea>
-      <div class="sub-q">(3)锛?鍒嗭級灏?8 g Na\(_2\)O\(_2\)鎶曞叆瓒抽噺姘翠腑锛屽彲浜х敓O\(_2\)鐨勮川閲忎负
-        <input type="text" id="q18-3" data-answer="16" data-alt="16g|16 g" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> g銆?        锛堝啓鍑鸿绠楄繃绋嬶級</div>
-      <textarea id="q18-4" placeholder="璁＄畻杩囩▼鈥︹€? style="min-height:60px"></textarea>
+      <div class="sub-q">(3)（4分）将7.8 g Na₂O₂投入足量水中，反应产生O₂的质量为
+        <input type="text" id="q18-3" data-answer="1.6" data-alt="1.6g|1.6 g" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> g。
+        （写出计算过程）</div>
+      <textarea id="q18-4" placeholder="计算过程…" style="min-height:60px"></textarea>
     </div>
 
     <!-- q19 (Display 22) -->
     <div class="question calc-question" data-qid="q19" data-type="calc">
-      <div class="q-title">22. <span style="font-weight:normal">锛?0鍒嗭級Na\(_2\)CO\(_3\)涓嶯aHCO\(_3\)鐨勯壌鍒笌闄ゆ潅銆?/span></div>
-      <div class="sub-q">(1)锛?鍒嗭級鏂规硶涓€锛氬姞鐑硶銆傚啓鍑烘湁鍏冲弽搴旂殑鍖栧鏂圭▼寮忋€?/div>
-      <textarea id="q19-1" placeholder="鍖栧鏂圭▼寮忊€︹€? style="min-height:50px"></textarea>
-      <div class="sub-q">(2)锛?鍒嗭級鏂规硶浜岋細涓庤冻閲忕洂閰稿弽搴斻€傜瓑璐ㄩ噺鐨勪袱绉嶅浐浣撲笌瓒抽噺鐩愰吀鍙嶅簲锛屼骇鐢熸皵浣撴洿蹇殑鏄?        <input type="text" id="q19-2" data-answer="NaHCO鈧? data-alt="NaHCO3|纰抽吀姘㈤挔|灏忚嫃鎵? style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px;font-family:inherit" autocomplete="off">
-        锛堝～鍖栧寮忥級锛屽啓鍑鸿鐗╄川涓庣洂閰稿弽搴旂殑绂诲瓙鏂圭▼寮忥細</div>
-      <textarea id="q19-3" placeholder="绂诲瓙鏂圭▼寮忊€︹€? style="min-height:50px"></textarea>
-      <div class="sub-q">(3)锛?鍒嗭級闄ゅ幓Na\(_2\)CO\(_3\)鍥轰綋涓贩鏈夌殑灏戦噺NaHCO\(_3\)锛屽彲閲囩敤鐨勬柟娉曟槸
-        <input type="text" id="q19-4" data-answer="鍔犵儹" data-alt="鍏呭垎鍔犵儹|鍔犵儹鑷虫亽閲? style="border:none;border-bottom:1px solid #333;width:120px;padding:0 4px;font-family:inherit" autocomplete="off">銆?      </div>
+      <div class="q-title">22. <span style="font-weight:normal">（10分）Na₂CO₃与NaHCO₃的鉴别与除杂</span></div>
+      <div class="sub-q">(1)（3分）写出用加热法鉴别Na₂CO₃和NaHCO₃固体的反应的化学方程式：</div>
+      <textarea id="q19-1" placeholder="化学方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（3分）等质量的Na₂CO₃和NaHCO₃分别与足量盐酸反应，产生气体更快的是
+        <input type="text" id="q19-2" data-answer="NaHCO₃" data-alt="NaHCO3|碳酸氢钠|小苏打" style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px;font-family:inherit" autocomplete="off">
+        （填化学式）；写出该反应的离子方程式：</div>
+      <textarea id="q19-3" placeholder="离子方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(3)（2分）除去Na₂CO₃固体中混有的少量NaHCO₃，可采用
+        <input type="text" id="q19-4" data-answer="加热" data-alt="充分加热|加热至恒重" style="border:none;border-bottom:1px solid #333;width:120px;padding:0 4px;font-family:inherit" autocomplete="off">
+        的方法。</div>
+      <div class="sub-q">(4)（2分）除去NaHCO₃溶液中混有的少量Na₂CO₃，可通入足量
+        <input type="text" id="q19-5" data-answer="CO₂" data-alt="CO2|二氧化碳" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px;font-family:inherit" autocomplete="off">
+        气体。</div>
     </div>
 
     <!-- q20 (Display 23) -->
     <div class="question calc-question" data-qid="q20" data-type="calc">
-      <div class="q-title">23. <span style="font-weight:normal">锛?0鍒嗭級閽犲強鍏跺寲鍚堢墿鐨勮浆鍖栧叧绯汇€?/span></div>
-      <div class="q-text">宸茬煡A涓洪挔鍗曡川锛圢a锛夛紝B涓烘贰榛勮壊鍥轰綋锛孋涓轰竴绉嶇⒈锛孌鍜孍涓洪挔鐩愩€傝浆鍖栧叧绯诲涓嬶細</div>
-      <div class="sub-q" style="margin:6px 0;">A \(\xrightarrow{\text{O}_2/\triangle}\) B \(\xrightarrow{\text{H}_2\text{O}}\) C + O\(_2\)鈫?/div>
-      <div class="sub-q">A \(\xrightarrow{\text{H}_2\text{O}}\) C + H\(_2\)鈫?/div>
+      <div class="q-title">23. <span style="font-weight:normal">（10分）钠及其化合物的转化关系</span></div>
+      <div class="q-text">已知A为钠单质（Na），B为白色固体（碱性氧化物），C为一种碱，D和E为钠盐（D俗称纯碱，E俗称小苏打）。转化关系如下：</div>
+      <div class="sub-q" style="margin:6px 0;">A \(\xrightarrow{\text{O}_2/\text{常温}}\) B</div>
+      <div class="sub-q">A \(\xrightarrow{\text{H}_2\text{O}}\) C + H\(_2\)↑</div>
+      <div class="sub-q">B \(\xrightarrow{\text{H}_2\text{O}}\) C</div>
       <div class="sub-q">C \(\xrightarrow{\text{CO}_2}\) D + H\(_2\)O</div>
-      <div class="sub-q">A \(\xrightarrow{\text{O}_2/\text{甯告俯}}\) E</div>
-      <div class="sub-q" style="margin-top:8px;">(1)锛?鍒嗭級鍐欏嚭涓嬪垪鐗╄川鐨勫寲瀛﹀紡锛?/div>
+      <div class="sub-q">D \(\xrightarrow{\text{CO}_2+\text{H}_2\text{O}}\) E</div>
+      <div class="sub-q">E \(\xrightarrow{\triangle}\) D + CO\(_2\)↑ + H\(_2\)O</div>
+      <div class="sub-q" style="margin-top:8px;">(1)（4分）写出下列物质的化学式：</div>
       <div class="sub-q">
-        B锛?input type="text" id="q20-B" data-answer="Na鈧侽鈧? data-alt="Na2O2|杩囨哀鍖栭挔" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px;font-family:inherit" autocomplete="off">
-        &nbsp;&nbsp; C锛?input type="text" id="q20-C" data-answer="NaOH" data-alt="姘㈡哀鍖栭挔" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px;font-family:inherit" autocomplete="off">
-        &nbsp;&nbsp; D锛?input type="text" id="q20-D" data-answer="Na鈧侰O鈧? data-alt="Na2CO3|纰抽吀閽? style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px;font-family:inherit" autocomplete="off">
-        &nbsp;&nbsp; E锛?input type="text" id="q20-E" data-answer="Na鈧侽" data-alt="Na2O|姘у寲閽? style="border:none;border-bottom:1px solid #333;width:70px;padding:0 4px;font-family:inherit" autocomplete="off">
+        A：<input type="text" id="q20-A" data-answer="Na" data-alt="钠" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">
+        &nbsp;&nbsp; B：<input type="text" id="q20-B" data-answer="Na₂O" data-alt="Na2O|氧化钠" style="border:none;border-bottom:1px solid #333;width:70px;padding:0 4px;font-family:inherit" autocomplete="off">
+        &nbsp;&nbsp; C：<input type="text" id="q20-C" data-answer="NaOH" data-alt="氢氧化钠" style="border:none;border-bottom:1px solid #333;width:70px;padding:0 4px;font-family:inherit" autocomplete="off">
+        &nbsp;&nbsp; D：<input type="text" id="q20-D" data-answer="Na₂CO₃" data-alt="Na2CO3|碳酸钠" style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px;font-family:inherit" autocomplete="off">
+        &nbsp;&nbsp; E：<input type="text" id="q20-E" data-answer="NaHCO₃" data-alt="NaHCO3|碳酸氢钠|小苏打" style="border:none;border-bottom:1px solid #333;width:90px;padding:0 4px;font-family:inherit" autocomplete="off">
       </div>
-      <div class="sub-q">(2)锛?鍒嗭級鍐欏嚭A鈫払鐨勫寲瀛︽柟绋嬪紡锛?/div>
-      <textarea id="q20-2" placeholder="鍖栧鏂圭▼寮忊€︹€? style="min-height:50px"></textarea>
-      <div class="sub-q">(3)锛?鍒嗭級鍐欏嚭B鈫扖鐨勫寲瀛︽柟绋嬪紡锛?/div>
-      <textarea id="q20-3" placeholder="鍖栧鏂圭▼寮忊€︹€? style="min-height:50px"></textarea>
-      <div class="sub-q">(4)锛?鍒嗭級鍐欏嚭鐢盌杞寲涓篘aHCO\(_3\)鐨勫寲瀛︽柟绋嬪紡锛?/div>
-      <textarea id="q20-4" placeholder="鍖栧鏂圭▼寮忊€︹€? style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（2分）写出A→B的化学方程式：</div>
+      <textarea id="q20-2" placeholder="化学方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(3)（2分）写出D→E的化学方程式：</div>
+      <textarea id="q20-3" placeholder="化学方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(4)（2分）写出E→D的化学方程式：</div>
+      <textarea id="q20-4" placeholder="化学方程式…" style="min-height:50px"></textarea>
     </div>
   </div>
 
   <!-- ==================== BUTTONS ==================== -->
   <div class="btn-group no-print">
-    <button class="btn-submit" onclick="submitPaper()">鎻愪氦璇曞嵎</button>
-    <button class="btn-clear" onclick="clearAll()">娓呯┖绛旀</button>
-    <button class="btn-reveal" onclick="showPasswordModal()">鏌ョ湅绛旀</button>
+    <button class="btn-submit" onclick="submitPaper()">提交试卷</button>
+    <button class="btn-clear" onclick="clearAll()">清空答案</button>
+    <button class="btn-reveal" onclick="showPasswordModal()">查看答案</button>
   </div>
 
   <div id="result"></div>
 
   <!-- ==================== ANSWER SECTION ==================== -->
   <div class="answer-section" id="answer-section">
-    <h3>馃摉 鍙傝€冪瓟妗堜笌瑙ｆ瀽</h3>
+    <h3>📖 参考答案与解析</h3>
 
-    <div class="answer-item"><span class="ans-label">涓€銆佸崟閫夐</span></div>
-    <div class="answer-item"><span class="ans-label">1.</span> <span class="ans-key">C</span> 鈥斺€?<span class="ans-desc">閽犳槸閾剁櫧鑹查噾灞炪€佽川杞紙鍙敤鍒€鍒囧壊锛夈€佸瘑搴?.97 g/cm鲁锛堟瘮姘村皬锛夈€佺啍鐐逛綆銆侫閿欏湪"璐ㄧ‖"锛孊閿欏湪"鏆楃伆鑹?锛孌閿欏湪"璐ㄧ‖"銆?/span></div>
-    <div class="answer-item"><span class="ans-label">2.</span> <span class="ans-key">B</span> 鈥斺€?<span class="ans-desc">閽犱繚瀛樺湪鐓ゆ补涓紝鍥犱负鐓ゆ补瀵嗗害灏忎簬閽狅紙閽犳矇鍦ㄥ簳閮級锛屽彲浠ラ殧缁濈┖姘旓紙O鈧傦級鍜屾按銆傞挔涓庢按鍜岄厭绮鹃兘浼氬弽搴斻€?/span></div>
-    <div class="answer-item"><span class="ans-label">3.</span> <span class="ans-key">B</span> 鈥斺€?<span class="ans-desc">閽犲湪甯告俯涓嬩笌O鈧傚弽搴旂敓鎴愮櫧鑹茬殑Na鈧侽锛堟哀鍖栭挔锛夈€傚姞鐑紙鐕冪儳锛夋椂鎵嶇敓鎴怤a鈧侽鈧傦紙杩囨哀鍖栭挔锛夈€?/span></div>
-    <div class="answer-item"><span class="ans-label">4.</span> <span class="ans-key">D</span> 鈥斺€?<span class="ans-desc">閽犲湪绌烘皵涓姞鐑紙鐕冪儳锛夊墽鐑堝弽搴旓紝鐏劙鍛堥粍鑹诧紙閽犲厓绱犵殑鐗瑰緛鐒拌壊锛夛紝鐢熸垚鐨凬a鈧侽鈧傛槸娣￠粍鑹插浐浣撱€?/span></div>
-    <div class="answer-item"><span class="ans-label">5.</span> <span class="ans-key">C</span> 鈥斺€?<span class="ans-desc">閽犵殑瀵嗗害锛?.97 g/cm鲁锛夊皬浜庢按鐨勫瘑搴︼紙1 g/cm鲁锛夛紝鎵€浠ラ挔娴湪姘撮潰涓婏紝涓嶄細娌夊簳銆傛晠C鎻忚堪閿欒銆?/span></div>
-    <div class="answer-item"><span class="ans-label">6.</span> <span class="ans-key">B</span> 鈥斺€?<span class="ans-desc">Na鈧侽鏄⒈鎬ф哀鍖栫墿锛堜笌閰稿弽搴斿彧鐢熸垚鐩愬拰姘达級銆傚畠涓嶆槸杩囨哀鍖栫墿锛圢a鈧侽鈧傛墠鏄級锛屼笌姘村弽搴旂敓鎴怤aOH锛堜笉鐢熸垚H鈧傦級锛屾槸鐧借壊鍥轰綋銆?/span></div>
-    <div class="answer-item"><span class="ans-label">7.</span> <span class="ans-key">D</span> 鈥斺€?<span class="ans-desc">Na鈧侽鈧傛槸杩囨哀鍖栫墿锛堝惈O鈧偮测伝锛夛紝涓嶆槸纰辨€ф哀鍖栫墿銆傜⒈鎬ф哀鍖栫墿涓庨吀鍙嶅簲鍙敓鎴愮洂鍜屾按锛岃€孨a鈧侽鈧備笌閰稿弽搴旇繕浼氱敓鎴怬鈧傘€侫銆丅銆丆鍧囨纭€?/span></div>
-    <div class="answer-item"><span class="ans-label">8.</span> <span class="ans-key">C</span> 鈥斺€?<span class="ans-desc">Na鈧侰O鈧冨彈鐑笉鍒嗚В锛堢ǔ瀹氭€у己锛夛紝NaHCO鈧冨彈鐑槗鍒嗚В锛?NaHCO鈧?\(\xrightarrow{\triangle}\) Na鈧侰O鈧?+ CO鈧傗啈 + H鈧侽锛夛紝鏁匩a鈧侰O鈧冪殑鐑ǔ瀹氭€уぇ浜嶯aHCO鈧冦€?/span></div>
-    <div class="answer-item"><span class="ans-label">9.</span> <span class="ans-key">B</span> 鈥斺€?<span class="ans-desc">NaHCO鈧冧笌閰稿弽搴旈€熺巼鏇村揩銆傚洜涓篐CO鈧冣伝鍙互鐩存帴涓嶩鈦虹粨鍚堢敓鎴怌O鈧傚拰H鈧侽锛岃€孋O鈧兟测伝闇€瑕佸厛缁撳悎涓€涓狧鈦虹敓鎴怘CO鈧冣伝锛屽啀缁撳悎涓€涓狧鈦烘墠鐢熸垚CO鈧傘€?/span></div>
-    <div class="answer-item"><span class="ans-label">10.</span> <span class="ans-key">B</span> 鈥斺€?<span class="ans-desc">A锛歂a鍦ㄥ父娓╀笅鐢熸垚Na鈧侽锛屽姞鐑墠鐢熸垚Na鈧侽鈧傘€侭锛?Na鈧侽 + O鈧?\(\xrightarrow{\triangle}\) 2Na鈧侽鈧傦紝鑳戒竴姝ュ疄鐜般€侰锛歂aHCO鈧冨姞鐑垎瑙ｇ敓鎴怤a鈧侰O鈧冿紝鍔犳按涓嶅弽搴斻€侱锛歂a鈧侰O鈧冮渶閫氬叆CO鈧傚拰H鈧侽鎵嶈兘杞寲涓篘aHCO鈧冿紝鍔犵儹涓嶈兘瀹炵幇銆?/span></div>
+    <div class="answer-item"><span class="ans-label">一、单选题</span></div>
+    <div class="answer-item"><span class="ans-label">1.</span> <span class="ans-key">C</span> — <span class="ans-desc">钠是银白色金属，质地柔软（可用刀切割），密度比水小（约0.97 g/cm³）。A错在"硬度大、密度比水大"，B错在"暗灰色"，D错在"硬度大、导电性差"。</span></div>
+    <div class="answer-item"><span class="ans-label">2.</span> <span class="ans-key">A</span> — <span class="ans-desc">取用钠时用镊子夹取，用滤纸吸干表面的煤油，在玻璃片上用小刀切割。B错在"直接用手"，C错在"直接暴露在空气中"，D错在"药匙"和"在水中切割"。</span></div>
+    <div class="answer-item"><span class="ans-label">3.</span> <span class="ans-key">B</span> — <span class="ans-desc">钠在常温下与氧气反应生成白色的Na₂O（氧化钠）：4Na + O₂ = 2Na₂O。加热（燃烧）时才生成Na₂O₂（过氧化钠）。</span></div>
+    <div class="answer-item"><span class="ans-label">4.</span> <span class="ans-key">B</span> — <span class="ans-desc">钠在空气中加热时先熔化成小球（钠的熔点低），然后剧烈燃烧，火焰呈黄色（钠的特征焰色），生成淡黄色的Na₂O₂。A是常温氧化的现象，C错在"紫色"和"白色"，D错在"白色固体"。</span></div>
+    <div class="answer-item"><span class="ans-label">5.</span> <span class="ans-key">B</span> — <span class="ans-desc">反应放热使钠熔化，同时钠的熔点低（约97.8℃），所以熔化成闪亮的小球。A描述的是密度导致浮在水面，C和D与熔化原因无关。</span></div>
+    <div class="answer-item"><span class="ans-label">6.</span> <span class="ans-key">D</span> — <span class="ans-desc">Na₂O是碱性氧化物，与酸反应只生成盐和水，不产生O₂（产生O₂是Na₂O₂的性质）。A、B、C均正确。</span></div>
+    <div class="answer-item"><span class="ans-label">7.</span> <span class="ans-key">B</span> — <span class="ans-desc">Na₂O₂与人呼出的H₂O和CO₂反应生成O₂：2Na₂O₂ + 2H₂O = 4NaOH + O₂↑，2Na₂O₂ + 2CO₂ = 2Na₂CO₃ + O₂，因此可用作呼吸面具的供氧剂。</span></div>
+    <div class="answer-item"><span class="ans-label">8.</span> <span class="ans-key">C</span> — <span class="ans-desc">Na₂CO₃俗称纯碱（苏打），水溶液因CO₃²⁻水解而显碱性。A错（小苏打是NaHCO₃），B错（Na₂CO₃受热不分解），D错（与酸反应产生CO₂）。</span></div>
+    <div class="answer-item"><span class="ans-label">9.</span> <span class="ans-key">B</span> — <span class="ans-desc">NaHCO₃是可溶性盐，写离子方程式时应拆成离子：HCO₃⁻ + H⁺ = CO₂↑ + H₂O。A是CO₃²⁻与酸的反应（适用于Na₂CO₃），C未拆NaHCO₃，D不是与酸反应。</span></div>
+    <div class="answer-item"><span class="ans-label">10.</span> <span class="ans-key">D</span> — <span class="ans-desc">A：4Na + O₂ = 2Na₂O（可一步），B：Na₂O + H₂O = 2NaOH（可一步），C：Na₂CO₃ + CO₂ + H₂O = 2NaHCO₃（可一步），D：NaHCO₃不能一步转化为Na₂O（需多步反应）。</span></div>
 
-    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">浜屻€佸閫夐</span></div>
-    <div class="answer-item"><span class="ans-label">11.</span> <span class="ans-key">B, C, D</span> 鈥斺€?<span class="ans-desc">A閿欙細閽犲父娓╀笌O鈧傚弽搴旂敓鎴怤a鈧侽锛堢櫧鑹诧級锛屽姞鐑墠鐢熸垚Na鈧侽鈧傦紙娣￠粍鑹诧級銆侭瀵癸細鍔犵儹鐢熸垚Na鈧侽鈧傘€侰瀵癸細鍖栧鏂圭▼寮忔纭€侱瀵癸細鍙嶅簲鏀剧儹锛岄挔鐔旂偣浣庯紙绾?7.8鈩冿級锛屾晠鐔斿寲鎴愬皬鐞冦€?/span></div>
-    <div class="answer-item"><span class="ans-label">12.</span> <span class="ans-key">B, C, D</span> 鈥斺€?<span class="ans-desc">A閿欙細Na鈧侰O鈧冧織绉拌嫃鎵擄紙绾⒈锛夛紝NaHCO鈧冧織绉板皬鑻忔墦锛屼袱鑰呮濂借鍙嶃€侭瀵癸細NaHCO鈧冨彈鐑垎瑙ｏ紝Na鈧侰O鈧冨彈鐑笉鍒嗚В銆侰瀵癸細HCO鈧冣伝涓嶩鈦哄弽搴旀洿蹇€侱瀵癸細CO鈧兟测伝姘磋В绋嬪害澶т簬HCO鈧冣伝锛屾晠Na鈧侰O鈧冩憾娑茬⒈鎬ф洿寮恒€?/span></div>
-    <div class="answer-item"><span class="ans-label">13.</span> <span class="ans-key">A, B, C</span> 鈥斺€?<span class="ans-desc">A瀵癸細鐓ゆ补鍙殧缁濈┖姘旓紙O鈧傦級鍜屾按銆侭瀵癸細閽犳湁鑵愯殌鎬э紝涓嶈兘鐩存帴鐢ㄦ墜鎺ヨЕ銆侰瀵癸細閽犺緝璐甸噸锛屽墿浣欑殑閽犲簲鏀惧洖鍘熺摱銆侱閿欙細閽犱笌姘村弽搴旂敓鎴怘鈧傦紙鍙噧锛夛紝涓擭a鈧侽鈧備笌姘村弽搴旀斁O鈧傦紙鍔╃噧锛夛紝鏁呴挔鐫€鐏簲鐢ㄦ矙鍦熺洊鐏紝涓嶈兘鐢ㄦ按銆?/span></div>
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">二、多选题</span></div>
+    <div class="answer-item"><span class="ans-label">11.</span> <span class="ans-key">B, C, D</span> — <span class="ans-desc">A错：钠的密度比水小（约0.97 g/cm³），因此浮在水面。B对：反应放热使钠熔化成小球。C对：产生的H₂推动钠球游动。D对：生成的NaOH使酚酞变红。</span></div>
+    <div class="answer-item"><span class="ans-label">12.</span> <span class="ans-key">B, C, D</span> — <span class="ans-desc">A错：Na₂CO₃俗称苏打（纯碱），NaHCO₃俗称小苏打，正好说反。B对：CO₃²⁻水解程度大于HCO₃⁻，故碱性更强。C对：2NaHCO₃ \(\xrightarrow{\triangle}\) Na₂CO₃ + CO₂↑ + H₂O。D对：HCO₃⁻可直接与H⁺反应，速率更快。</span></div>
+    <div class="answer-item"><span class="ans-label">13.</span> <span class="ans-key">A, B, C</span> — <span class="ans-desc">A对：Na₂O₂是淡黄色固体（而Na₂O是白色）。B对：2Na₂O₂ + 2H₂O = 4NaOH + O₂↑。C对：与H₂O和CO₂反应生成O₂。D错：Na₂O₂属于过氧化物，不是碱性氧化物（与酸反应还生成O₂）。</span></div>
 
-    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">涓夈€佸～绌洪</span></div>
-    <div class="answer-item"><span class="ans-label">14.</span> <span class="ans-key">娓?/span> 鈥斺€?<span class="ans-desc">"娴?锛氶挔瀵嗗害灏忎簬姘达紱"鐔?锛氬弽搴旀斁鐑紝閽犵啍鐐逛綆锛?娓?锛氫骇鐢熺殑H鈧傛帹鍔ㄩ挔鐞冩父鍔紱"鍝?锛欻鈧備笌绌烘皵鎽╂摝鍙戝嚭鍢跺樁澹帮紱"绾?锛氱敓鎴愮殑NaOH浣块厷閰炲彉绾€?/span></div>
-    <div class="answer-item"><span class="ans-label">15.</span> <span class="ans-key">榛勶紱娣￠粍</span> 鈥斺€?<span class="ans-desc">閽犵噧鐑ф椂鐏劙鍛堥粍鑹诧紙鐗瑰緛鐒拌壊鍙嶅簲锛夛紝鐢熸垚鐨凬a鈧侽鈧傛槸娣￠粍鑹插浐浣撱€?/span></div>
-    <div class="answer-item"><span class="ans-label">16.</span> <span class="ans-key">O鈧傦紙姘ф皵锛?/span> 鈥斺€?<span class="ans-desc">2Na鈧侽鈧?+ 2H鈧侽 = 4NaOH + O鈧傗啈锛屼骇鐢熺殑O鈧傝兘浣垮甫鐏槦鐨勬湪鏉″鐕冦€?/span></div>
-    <div class="answer-item"><span class="ans-label">17.</span> <span class="ans-key">Na鈧侰O鈧?/span> 鈥斺€?<span class="ans-desc">2NaHCO鈧?\(\xrightarrow{\triangle}\) Na鈧侰O鈧?+ CO鈧傗啈 + H鈧侽锛岃繖鏄壌鍒玁aHCO鈧冨拰闄ゅ幓NaHCO鈧冪殑閲嶈鍙嶅簲渚濇嵁銆?/span></div>
-    <div class="answer-item"><span class="ans-label">18.</span> <span class="ans-key">0.97锛涘皬</span> 鈥斺€?<span class="ans-desc">閽犵殑瀵嗗害涓?.97 g/cm鲁锛屾按鐨勫瘑搴︿负1 g/cm鲁锛屾晠閽犳诞鍦ㄦ按闈笂銆?/span></div>
-    <div class="answer-item"><span class="ans-label">19.</span> <span class="ans-key">NaHCO鈧冿紙纰抽吀姘㈤挔/灏忚嫃鎵擄級</span> 鈥斺€?<span class="ans-desc">NaHCO鈧冨彈鐑垎瑙ｄ骇鐢烠O鈧傦紙浣挎緞娓呯煶鐏版按鍙樻祽娴婏級锛孨a鈧侰O鈧冨彈鐑笉鍒嗚В銆?/span></div>
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">三、填空题</span></div>
+    <div class="answer-item"><span class="ans-label">14.</span> <span class="ans-key">熔</span> — <span class="ans-desc">钠与水反应放热，钠的熔点低（约97.8℃），因此熔化成闪亮的小球。</span></div>
+    <div class="answer-item"><span class="ans-label">15.</span> <span class="ans-key">黄；淡黄</span> — <span class="ans-desc">钠燃烧时火焰呈黄色（钠元素的特征焰色反应），生成的Na₂O₂是淡黄色固体。</span></div>
+    <div class="answer-item"><span class="ans-label">16.</span> <span class="ans-key">O₂；1</span> — <span class="ans-desc">2Na₂O₂ + 2H₂O = 4NaOH + O₂↑。Na₂O₂中O为-1价，发生歧化反应：部分O升到0价（O₂），部分降到-2价（OH⁻），每mol Na₂O₂转移1 mol电子。</span></div>
+    <div class="answer-item"><span class="ans-label">17.</span> <span class="ans-key">CO₂；Na₂CO₃</span> — <span class="ans-desc">2NaHCO₃ \(\xrightarrow{\triangle}\) Na₂CO₃ + CO₂↑ + H₂O。产生的CO₂能使澄清石灰水变浑浊，这是鉴别NaHCO₃的重要方法。</span></div>
+    <div class="answer-item"><span class="ans-label">18.</span> <span class="ans-key">0.97；Na₂O</span> — <span class="ans-desc">钠的密度为0.97 g/cm³，比水小；常温下与O₂反应生成白色的Na₂O（氧化钠）。</span></div>
+    <div class="answer-item"><span class="ans-label">19.</span> <span class="ans-key">CaCl₂（或BaCl₂）；Na₂CO₃</span> — <span class="ans-desc">CaCl₂ + Na₂CO₃ = CaCO₃↓ + 2NaCl，产生白色沉淀。CaCl₂与NaHCO₃不反应（无沉淀、无气体），故可鉴别。</span></div>
 
-    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">鍥涖€佽В绛旈锛堝弬鑰冭В绛旓級</span></div>
+    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">四、解答题（参考解答）</span></div>
     <div class="answer-item">
-      <span class="ans-label">20.</span> <span class="ans-key">锛?0鍒嗭級</span>
+      <span class="ans-label">20.</span> <span class="ans-key">（10分）</span>
       <div class="ans-desc">
-        (1) 2Na + 2H鈧侽 = 2NaOH + H鈧傗啈锛?鍒嗭級<br>
-        (2) 鈶犳诞锛氶挔鐨勫瘑搴︼紙0.97 g/cm鲁锛夊皬浜庢按锛屾诞鍦ㄦ按闈紱锛?鍒嗭級<br>
-        &nbsp;&nbsp;鈶＄啍锛氬弽搴旀斁鐑紝涓旈挔鐨勭啍鐐逛綆锛堢害97.8鈩冿級锛岄挔鐔斿寲鎴愰棯浜殑灏忕悆锛涳紙1鍒嗭級<br>
-        &nbsp;&nbsp;鈶㈡父锛氫骇鐢熺殑H鈧傛皵浣撴帹鍔ㄩ挔鐞冨湪姘撮潰涓婂洓澶勬父鍔紱锛?鍒嗭級<br>
-        &nbsp;&nbsp;鈶ｅ搷锛欻鈧備笌绌烘皵鎽╂摝鍙戝嚭鍢跺樁鍝嶅０锛涳紙0.5鍒嗭級<br>
-        &nbsp;&nbsp;鈶ょ孩锛氱敓鎴愮殑NaOH浣挎淮鏈夐厷閰炵殑婧舵恫鍙樼孩銆傦紙0.5鍒嗭級<br>
-        (3) 姘у寲锛?鍒嗭級锛? g锛?鍒嗭級銆侼a浠?鈫?1浠峰け鐢靛瓙锛孒鈧侽涓璈浠?1鈫?浠峰緱鐢靛瓙锛屾按浣滄哀鍖栧墏銆傜敱2Na ~ H鈧傦紝1 mol Na鐢熸垚0.5 mol H鈧傦紝m(H鈧? = 0.5 脳 2 = 1 g銆?      </div>
-    </div>
-    <div class="answer-item">
-      <span class="ans-label">21.</span> <span class="ans-key">锛?0鍒嗭級</span>
-      <div class="ans-desc">
-        (1) 2Na鈧侽鈧?+ 2H鈧侽 = 4NaOH + O鈧傗啈锛?鍒嗭級<br>
-        (2) 2Na鈧侽鈧?+ 2CO鈧?= 2Na鈧侰O鈧?+ O鈧傦紙3鍒嗭級<br>
-        (3) 16 g锛?鍒嗭級<br>
-        &nbsp;&nbsp;璁＄畻杩囩▼锛?鍒嗭級锛歁(Na鈧侽鈧? = 78 g/mol锛宯(Na鈧侽鈧? = 78 g 梅 78 g/mol = 1 mol<br>
-        &nbsp;&nbsp;2Na鈧侽鈧?~ O鈧傦紝n(O鈧? = 陆 n(Na鈧侽鈧? = 0.5 mol锛宮(O鈧? = 0.5 mol 脳 32 g/mol = 16 g
+        (1) 2Na + 2H₂O = 2NaOH + H₂↑（3分）<br>
+        (2) ①浮：钠的密度（0.97 g/cm³）小于水，浮在水面；（1分）<br>
+        &nbsp;&nbsp;②熔：反应放热，且钠的熔点低（约97.8℃），钠熔化成闪亮的小球；（1分）<br>
+        &nbsp;&nbsp;③游：产生的H₂气体推动钠球在水面上四处游动；（1分）<br>
+        &nbsp;&nbsp;④响：H₂与空气摩擦发出嘶嘶响声；（0.5分）<br>
+        &nbsp;&nbsp;⑤红：生成的NaOH使滴有酚酞的溶液变红。（0.5分）<br>
+        (3) 0.05 mol（1.5分）；0.1 mol（1.5分）<br>
+        &nbsp;&nbsp;由2Na ~ H₂ ~ 2NaOH，n(H₂) = ½ × 0.1 = 0.05 mol，n(NaOH) = 0.1 mol
       </div>
     </div>
     <div class="answer-item">
-      <span class="ans-label">22.</span> <span class="ans-key">锛?0鍒嗭級</span>
+      <span class="ans-label">21.</span> <span class="ans-key">（10分）</span>
       <div class="ans-desc">
-        (1) 2NaHCO鈧?\(\xrightarrow{\triangle}\) Na鈧侰O鈧?+ CO鈧傗啈 + H鈧侽锛?鍒嗭級<br>
-        (2) NaHCO鈧冿紙2鍒嗭級锛汬CO鈧冣伝 + H鈦?= CO鈧傗啈 + H鈧侽锛?鍒嗭級<br>
-        (3) 鍔犵儹锛堟垨鍏呭垎鍔犵儹鑷虫亽閲嶏紝3鍒嗭級銆傚埄鐢∟aHCO鈧冨彈鐑垎瑙ｈ浆鍖栦负Na鈧侰O鈧冿紝鑰孨a鈧侰O鈧冨彈鐑笉鍒嗚В鐨勫師鐞嗚繘琛岄櫎鏉傘€?      </div>
+        (1) 2Na₂O₂ + 2H₂O = 4NaOH + O₂↑（3分）<br>
+        (2) 2Na₂O₂ + 2CO₂ = 2Na₂CO₃ + O₂（3分）<br>
+        (3) 1.6 g（4分，其中计算过程3分，结果1分）<br>
+        &nbsp;&nbsp;M(Na₂O₂) = 78 g/mol，n(Na₂O₂) = 7.8 g ÷ 78 g/mol = 0.1 mol<br>
+        &nbsp;&nbsp;2Na₂O₂ ~ O₂，n(O₂) = ½ n(Na₂O₂) = 0.05 mol，m(O₂) = 0.05 mol × 32 g/mol = 1.6 g
+      </div>
     </div>
     <div class="answer-item">
-      <span class="ans-label">23.</span> <span class="ans-key">锛?0鍒嗭級</span>
+      <span class="ans-label">22.</span> <span class="ans-key">（10分）</span>
       <div class="ans-desc">
-        (1) B锛歂a鈧侽鈧傘€丆锛歂aOH銆丏锛歂a鈧侰O鈧冦€丒锛歂a鈧侽锛堝悇1鍒嗭紝鍏?鍒嗭級<br>
-        &nbsp;&nbsp;鍒嗘瀽锛氭贰榛勮壊鍥轰綋B涓篘a鈧侽鈧傦紱涓嶩鈧侽鍙嶅簲鐢熸垚NaOH(C)鍜孫鈧傦紱NaOH涓嶤O鈧傚弽搴旂敓鎴怤a鈧侰O鈧?D)锛汚鍦ㄥ父娓╀笅鐢熸垚Na鈧侽(E)銆?br>
-        (2) 2Na + O鈧?\(\xrightarrow{\triangle}\) Na鈧侽鈧傦紙2鍒嗭級<br>
-        (3) 2Na鈧侽鈧?+ 2H鈧侽 = 4NaOH + O鈧傗啈锛?鍒嗭級<br>
-        (4) Na鈧侰O鈧?+ CO鈧?+ H鈧侽 = 2NaHCO鈧冿紙2鍒嗭級
+        (1) 2NaHCO₃ \(\xrightarrow{\triangle}\) Na₂CO₃ + CO₂↑ + H₂O（3分）<br>
+        (2) NaHCO₃（1.5分）；HCO₃⁻ + H⁺ = CO₂↑ + H₂O（1.5分）<br>
+        (3) 加热（或充分加热至恒重，2分）。利用NaHCO₃受热分解转化为Na₂CO₃，而Na₂CO₃受热不分解的原理除杂。<br>
+        (4) CO₂（2分）。Na₂CO₃ + CO₂ + H₂O = 2NaHCO₃，通入足量CO₂可将Na₂CO₃转化为NaHCO₃。
+      </div>
+    </div>
+    <div class="answer-item">
+      <span class="ans-label">23.</span> <span class="ans-key">（10分）</span>
+      <div class="ans-desc">
+        (1) A：Na、B：Na₂O、C：NaOH、D：Na₂CO₃、E：NaHCO₃（各1分，共5分）<br>
+        &nbsp;&nbsp;分析：A为Na单质；B为白色固体碱性氧化物→Na₂O；C为碱→NaOH；D俗称纯碱→Na₂CO₃；E俗称小苏打→NaHCO₃。<br>
+        (2) 4Na + O₂ = 2Na₂O（2分）<br>
+        (3) Na₂CO₃ + CO₂ + H₂O = 2NaHCO₃（2分）<br>
+        (4) 2NaHCO₃ \(\xrightarrow{\triangle}\) Na₂CO₃ + CO₂↑ + H₂O（2分）
       </div>
     </div>
   </div>
@@ -539,39 +566,39 @@ body {
 <!-- ==================== PASSWORD MODAL ==================== -->
 <div id="password-modal" class="password-modal" style="display:none">
   <div class="password-modal-inner">
-    <h3>馃敀 璇疯緭鍏ュ瘑鐮佹煡鐪嬬瓟妗?/h3>
-    <p style="font-size:13px;color:#888;margin-bottom:10px;">锛堣鑱旂郴鑰佸笀鑾峰彇瀵嗙爜锛?/p>
+    <h3>🔒 请输入密码查看答案</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:10px;">（请联系老师获取密码）</p>
     <input type="password" id="pwd-input" maxlength="10" onkeydown="if(event.key==='Enter')checkPassword()" autocomplete="off">
     <div>
-      <button class="pm-btn pm-confirm" onclick="checkPassword()">纭</button>
-      <button class="pm-btn pm-cancel" onclick="closePasswordModal()">鍙栨秷</button>
+      <button class="pm-btn pm-confirm" onclick="checkPassword()">确认</button>
+      <button class="pm-btn pm-cancel" onclick="closePasswordModal()">取消</button>
     </div>
-    <p id="pwd-error" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none">瀵嗙爜閿欒锛岃閲嶈瘯</p>
+    <p id="pwd-error" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none">密码错误，请重试</p>
   </div>
 </div>
 
 <script>
 /* ============================================================
-   Scoring Engine 鈥?Standard Three-part Configuration
+   Scoring Engine — Standard Three-part Configuration
    ============================================================ */
 const PAPER_ID = 'chem_grade10_ch2_1';
 const ANSWER_PASSWORD = '2641';
 
 const ANSWER_KEY = {
   // Single choice
-  q1: 'C', q2: 'B', q3: 'B', q4: 'D', q5: 'C',
-  q6: 'B', q7: 'D', q8: 'C', q9: 'B', q10: 'B',
+  q1: 'C', q2: 'A', q3: 'B', q4: 'B', q5: 'B',
+  q6: 'D', q7: 'B', q8: 'C', q9: 'B', q10: 'D',
   // Multi choice
   q101: ['B', 'C', 'D'],
   q102: ['B', 'C', 'D'],
   q103: ['A', 'B', 'C'],
   // Fill-in
-  q11: ['娓?],
-  q12: ['榛?, '娣￠粍'],
-  q13: ['O鈧?],
-  q14: ['Na鈧侰O鈧?],
-  q15: ['0.97', '灏?],
-  q16: ['NaHCO鈧?]
+  q11: ['熔'],
+  q12: ['黄', '淡黄'],
+  q13: ['O₂', '1'],
+  q14: ['CO₂', 'Na₂CO₃'],
+  q15: ['0.97', 'Na₂O'],
+  q16: ['CaCl₂', 'Na₂CO₃']
 };
 
 const SCORE_MAP = {
@@ -606,9 +633,9 @@ function norm(s) {
   if (!s) return '';
   return s.trim()
     .replace(/\s+/g, '')
-    .replace(/鲁/g, '3').replace(/鈧?g, '2').replace(/鈧?g, '3').replace(/鈧?g, '4')
-    .replace(/虏/g, '2').replace(/鈦?g, '+').replace(/鈦?g, '-')
-    .replace(/鈫?g, '=').replace(/鈫?g, '').replace(/鈫?g, '')
+    .replace(/³/g, '3').replace(/₂/g, '2').replace(/₃/g, '3').replace(/₄/g, '4')
+    .replace(/²/g, '2').replace(/⁺/g, '+').replace(/⁻/g, '-')
+    .replace(/⁼/g, '=').replace(/↑/g, '').replace(/↓/g, '')
     .toLowerCase();
 }
 
@@ -701,7 +728,7 @@ function scoreCalc(qid) {
   let subScore = 0;
   let subTotal = 0;
   inputs.forEach(input => {
-    // Each inline input is worth a portion 鈥?we just check correctness
+    // Each inline input is worth a portion — we just check correctness
     const val = input.value.trim();
     const ans = input.dataset.answer;
     const alt = input.dataset.alt;
@@ -755,10 +782,10 @@ function submitPaper() {
   // Show result
   const pct = Math.round((totalScore / maxAuto) * 100);
   resultEl.className = 'show ' + (pct >= 60 ? 'pass' : 'fail');
-  resultEl.innerHTML = '馃搳 瀹㈣棰樺緱鍒嗭細<strong>' + totalScore + '</strong> / ' + maxAuto +
-    ' 锛? + pct + '%锛? +
-    '<br><span style="font-size:14px;font-weight:normal;">涓昏棰橈紙瑙ｇ瓟棰?0-23棰橈紝鍏?0鍒嗭級璇疯€佸笀鎵嬪姩鎵规敼銆?/span>' +
-    '<br><span style="font-size:14px;font-weight:normal;">鎬诲垎 = 瀹㈣棰?' + totalScore + ' + 涓昏棰橈紙寰呮壒鏀癸級</span>';
+  resultEl.innerHTML = '📊 客观题得分：<strong>' + totalScore + '</strong> / ' + maxAuto +
+    ' （' + pct + '%）' +
+    '<br><span style="font-size:14px;font-weight:normal;">主观题（解答题20-23题，共40分）请老师手动批改</span>' +
+    '<br><span style="font-size:14px;font-weight:normal;">总分 = 客观题' + totalScore + ' + 主观题（待批改）</span>';
 
   // Scroll to result
   resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -796,7 +823,7 @@ function checkPassword() {
    ============================================================ */
 
 function clearAll() {
-  if (!confirm('纭畾瑕佹竻绌烘墍鏈夌瓟妗堝悧锛?)) return;
+  if (!confirm('确定要清空所有答案吗？')) return;
   // Clear radio buttons
   document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
   // Clear checkboxes
@@ -930,4 +957,3 @@ window.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-

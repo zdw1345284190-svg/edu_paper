@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>汕头·数学诊断评估 小学·几何图形与测量</title><script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'宋体','SimSun',serif;font-size:13px;line-height:1.7;color:#222;background:#f5f5f5;padding:16px}.container{max-width:210mm;margin:0 auto;background:#fff;padding:28px 22px;box-shadow:0 2px 8px rgba(0,0,0,.1)}.header{border-top:3px double #1a237e;border-bottom:3px double #1a237e;text-align:center;padding:14px 0;margin-bottom:6px;position:relative}.header h1{font-size:22px;letter-spacing:3px;color:#1a237e}.header .sub{font-size:14px;color:#444;margin-top:4px;font-weight:bold}.header .info{font-size:12px;color:#666;margin-top:5px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}.header .info span{border-bottom:1px solid #999;display:inline-block;min-width:80px;padding:0 8px}.module-tag{display:inline-block;font-size:11px;padding:1px 10px;border-radius:3px;color:#fff;margin-right:6px;vertical-align:middle}.m-c{background:#43a047}.section-title{border-left:5px solid #1a237e;padding-left:10px;font-size:15px;font-weight:bold;margin:20px 0 10px 0;color:#1a237e}.section-title .score-range{font-weight:normal;font-size:12px;color:#888;margin-left:8px}.question{margin:9px 0;padding:5px 0;border-bottom:1px dashed #eee}.question:last-child{border-bottom:none}.question .q-text{font-weight:bold;margin-bottom:3px}.options{margin-left:14px}.options label{display:block;padding:2px 6px;border-radius:3px;cursor:pointer;font-size:13px}.options label:hover{background:#f0f0ff}.options label input{margin-right:5px}.fill-in{border:none;border-bottom:2px solid #999;outline:none;padding:0 4px;font-size:13px;width:70px;text-align:center;font-family:inherit;background:transparent}.fill-in:focus{border-bottom-color:#1a237e}.fill-in-lg{width:160px}.fill-in-mid{width:90px}.answer-box textarea{width:100%;min-height:72px;padding:8px 10px;border:1px solid #ccc;border-radius:4px;font-family:inherit;font-size:13px;resize:vertical}.answer-box textarea:focus{border-color:#1a237e;outline:none}.btn-row{text-align:center;margin:16px 0 10px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.btn{padding:8px 24px;font-size:14px;border:none;border-radius:4px;cursor:pointer;color:#fff;font-family:inherit;transition:background .2s}.btn-submit{background:#1a237e}.btn-submit:hover{background:#283593}.btn-answer{background:#00897b}.btn-answer:hover{background:#009688}.btn-clear{background:#c62828}.btn-clear:hover{background:#d32f2f}.score-box{display:none;margin-top:14px;padding:14px 16px;background:#f5f5ff;border:1px solid #c5cae9;border-radius:6px;font-size:13px}.score-box.show{display:block}.score-box .big{font-size:22px;color:#1a237e;font-weight:bold}.answer-reveal{display:none;margin:6px 0 2px 14px;padding:6px 12px;background:#f1f8e9;border-left:3px solid #66bb6a;border-radius:2px;font-size:12px;color:#2e7d32;line-height:1.8}.answer-reveal.show{display:block}.answer-reveal.essay-answer{background:#fff3e0;border-left-color:#fb8c00;color:#e65100}.no-print{display:block}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center}.modal-box{background:#fff;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.25);width:380px;max-width:90vw;overflow:hidden}.modal-header{padding:14px 20px;font-size:15px;font-weight:bold;background:#1a237e;color:#fff}.modal-body{padding:18px 20px}.modal-input{width:100%;padding:10px 12px;font-size:16px;border:2px solid #ccc;border-radius:4px;outline:none;font-family:inherit;box-sizing:border-box}.modal-input:focus{border-color:#1a237e}.modal-error{font-size:12px;color:#c62828;margin-top:6px;min-height:20px}.modal-footer{padding:10px 20px 16px;display:flex;gap:10px;justify-content:flex-end}.modal-footer .btn{padding:7px 18px;font-size:13px}@media print{body{background:#fff;padding:0}.container{box-shadow:none;padding:20px}.btn-row{display:none}.modal-overlay{display:none!important}.score-box{display:block!important;border-color:#999}.answer-reveal{display:block!important;background:#f9f9f9}}
+
+/* 评分视觉反馈 */
+div[id^="q"].grade-correct>.q-text::before{content:"●";color:#66bb6a;margin-right:4px;font-size:11px;vertical-align:middle}
+div[id^="q"].grade-wrong>.q-text::before{content:"●";color:#ffab91;margin-right:4px;font-size:11px;vertical-align:middle}</style></head><body>
+
+<div class="container">
+
+<div class="header">
+  <h1>汕头市·数学学习诊断评估 — 几何图形与测量</h1>
+  <div class="sub">小学·几何图形与测量（周长·面积·体积·轴对称·单位换算）</div>
+  <div class="info">
+    <span>满分：36分</span>
+    <span>时间：20分钟</span>
+    <span>姓名：_______________</span>
+    <span>得分：<span id="totalScore">____</span></span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 选择题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  一、选择题 <span class="score-range">每题 2 分，共 12 分</span>
+</div>
+
+<div id="q1" data-type="single" data-answer="B">
+  <div class="q-text">1. 一个长方形的长是 8cm，宽是 5cm，它的周长是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q1" value="A"> A. 13cm</label>
+    <label><input type="radio" name="q1" value="B"> B. 26cm</label>
+    <label><input type="radio" name="q1" value="C"> C. 40cm²</label>
+    <label><input type="radio" name="q1" value="D"> D. 40cm</label>
+  </div>
+  <div class="answer-reveal">答案：B（$2\times(8+5)=26$cm）</div>
+</div>
+
+<div id="q2" data-type="single" data-answer="D">
+  <div class="q-text">2. 一个平行四边形的底是 6cm，高是 4cm，它的面积是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q2" value="A"> A. 12cm²</label>
+    <label><input type="radio" name="q2" value="B"> B. 48cm²</label>
+    <label><input type="radio" name="q2" value="C"> C. 20cm²</label>
+    <label><input type="radio" name="q2" value="D"> D. 24cm²</label>
+  </div>
+  <div class="answer-reveal">答案：D（$S=6\times4=24$cm²）</div>
+</div>
+
+<div id="q3" data-type="single" data-answer="A">
+  <div class="q-text">3. 一个圆柱的底面积是 $10\text{cm}^2$，高是 5cm，它的体积是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q3" value="A"> A. $50\text{cm}^3$</label>
+    <label><input type="radio" name="q3" value="B"> B. $15\text{cm}^3$</label>
+    <label><input type="radio" name="q3" value="C"> C. $25\text{cm}^3$</label>
+    <label><input type="radio" name="q3" value="D"> D. $100\text{cm}^3$</label>
+  </div>
+  <div class="answer-reveal">答案：A（$V=S_{\text{底}}\times h=10\times5=50$cm³）</div>
+</div>
+
+<div id="q4" data-type="single" data-answer="B">
+  <div class="q-text">4. 下列图形中，是轴对称图形的是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label style="display:flex;align-items:center;gap:8px;">
+      <input type="radio" name="q4" value="A">
+      <span style="min-width:18px;">A.</span>
+      <svg width="56" height="36" viewBox="0 0 56 36" style="vertical-align:middle;flex-shrink:0;"><polygon points="8,4 50,4 48,32 6,32" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+      <span>平行四边形</span>
+    </label>
+    <label style="display:flex;align-items:center;gap:8px;">
+      <input type="radio" name="q4" value="B">
+      <span style="min-width:18px;">B.</span>
+      <svg width="56" height="36" viewBox="0 0 56 36" style="vertical-align:middle;flex-shrink:0;"><polygon points="6,4 50,4 54,32 2,32" fill="none" stroke="#555" stroke-width="1.5"/><line x1="28" y1="4" x2="28" y2="32" stroke="#c62828" stroke-width="1" stroke-dasharray="4,3"/></svg>
+      <span>等腰梯形</span>
+    </label>
+    <label style="display:flex;align-items:center;gap:8px;">
+      <input type="radio" name="q4" value="C">
+      <span style="min-width:18px;">C.</span>
+      <svg width="46" height="38" viewBox="0 0 46 38" style="vertical-align:middle;flex-shrink:0;"><polygon points="23,3 44,34 3,34" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+      <span>普通三角形</span>
+    </label>
+    <label style="display:flex;align-items:center;gap:8px;">
+      <input type="radio" name="q4" value="D">
+      <span style="min-width:18px;">D.</span>
+      <svg width="56" height="36" viewBox="0 0 56 36" style="vertical-align:middle;flex-shrink:0;"><polygon points="4,4 30,4 52,32 4,32" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+      <span>直角梯形</span>
+    </label>
+  </div>
+  <div class="answer-reveal">答案：B（等腰梯形是轴对称图形，虚线为对称轴）</div>
+</div>
+
+<div id="q5" data-type="single" data-answer="C">
+  <div class="q-text">5. 一个三角形的底是 8cm，高是 6cm，它的面积是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A"> A. 48cm²</label>
+    <label><input type="radio" name="q5" value="B"> B. 14cm²</label>
+    <label><input type="radio" name="q5" value="C"> C. 24cm²</label>
+    <label><input type="radio" name="q5" value="D"> D. 28cm²</label>
+  </div>
+  <div class="answer-reveal">答案：C（$S=\frac{1}{2}\times8\times6=24$cm²）</div>
+</div>
+
+<div id="q6" data-type="single" data-answer="D">
+  <div class="q-text">6. 一个正方体的棱长是 3cm，它的体积是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q6" value="A"> A. 9cm³</label>
+    <label><input type="radio" name="q6" value="B"> B. 12cm³</label>
+    <label><input type="radio" name="q6" value="C"> C. 18cm³</label>
+    <label><input type="radio" name="q6" value="D"> D. 27cm³</label>
+  </div>
+  <div class="answer-reveal">答案：D（$V=3^3=27$cm³）</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 填空题（单位换算） -->
+<!-- ============================================================ -->
+<div class="section-title">
+  二、填空题 <span class="score-range">每题 2 分，共 8 分</span>
+</div>
+
+<div id="q7">
+  <div class="q-text">7. $2.5\text{m} = $ <input type="text" class="fill-in fill-in-sm" id="q7"> cm</div>
+  <div class="answer-reveal">答案：250</div>
+</div>
+
+<div id="q8">
+  <div class="q-text">8. $3\text{吨}50\text{千克} = $ <input type="text" class="fill-in fill-in-sm" id="q8"> 吨</div>
+  <div class="answer-reveal">答案：3.05</div>
+</div>
+
+<div id="q9">
+  <div class="q-text">9. $1.2\text{小时} = $ <input type="text" class="fill-in fill-in-sm" id="q9"> 分钟</div>
+  <div class="answer-reveal">答案：72</div>
+</div>
+
+<div id="q10">
+  <div class="q-text">10. $500\text{mL} = $ <input type="text" class="fill-in fill-in-sm" id="q10"> L</div>
+  <div class="answer-reveal">答案：0.5</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 解答题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  三、解答题 <span class="score-range">共 16 分</span>
+</div>
+
+<div id="q11">
+  <div class="q-text">11.（8分）如图，在一个长 10cm、宽 6cm 的长方形中，挖去一个最大的半圆（半圆的直径等于长方形的宽）。求剩余部分的面积。</div>
+  <div style="text-align:center;margin:6px 0;">
+    <svg width="200" height="130" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="10" width="160" height="96" fill="none" stroke="#333" stroke-width="2"/>
+      <text x="90" y="126" font-size="12" fill="#333" text-anchor="middle">10cm</text>
+      <text x="182" y="63" font-size="12" fill="#333" dominant-baseline="middle">6cm</text>
+      <path d="M 10 10 A 80 48 0 0 0 170 10" fill="#e8eaf6" stroke="#c62828" stroke-width="2" stroke-dasharray="6,3"/>
+      <line x1="10" y1="10" x2="170" y2="10" stroke="#c62828" stroke-width="2"/>
+      <text x="90" y="-4" font-size="11" fill="#c62828" text-anchor="middle">直径 6cm</text>
+    </svg>
+  </div>
+  <div class="answer-box" style="margin:6px 0 4px 16px;"><textarea placeholder="请写出完整的解答过程（含算式和答句）..."></textarea></div>
+  <div class="answer-reveal essay-answer"><strong>参考答案：</strong><br>长方形面积：$10\times6=60$（cm²）<br>半圆直径 = 6cm，半径 $r=3$cm<br>半圆面积：$\frac{1}{2}\times\pi\times3^2 = \frac{9}{2}\pi \approx 14.13$（cm²）<br>剩余面积：$60 - \frac{9}{2}\pi \approx 60 - 14.13 = 45.87$（cm²）<br>答：剩余部分的面积约为 $45.87$ cm²。</div>
+</div>
+
+<div id="q12">
+  <div class="q-text">12.（8分）一个圆形花坛的直径是 8m，在花坛周围修一条宽 1m 的环形小路。这条小路的面积是多少平方米？（$\pi$ 取 3.14）</div>
+  <div style="text-align:center;margin:6px 0;">
+    <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="80" cy="80" r="70" fill="none" stroke="#333" stroke-width="2"/>
+      <circle cx="80" cy="80" r="55" fill="#e8f5e9" stroke="#c62828" stroke-width="2" stroke-dasharray="6,3"/>
+      <circle cx="80" cy="80" r="12" fill="#333"/>
+      <text x="80" y="30" font-size="11" fill="#333" text-anchor="middle">R=5m</text>
+      <text x="80" y="135" font-size="11" fill="#c62828" text-anchor="middle">r=4m</text>
+      <line x1="80" y1="80" x2="80" y2="150" stroke="#c62828" stroke-width="1" stroke-dasharray="3,2"/>
+      <line x1="80" y1="80" x2="80" y2="10" stroke="#333" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="12" y="80" font-size="10" fill="#888">小路</text>
+    </svg>
+  </div>
+  <div class="answer-box" style="margin:6px 0 4px 16px;"><textarea placeholder="请写出完整的解答过程（含算式和答句）..."></textarea></div>
+  <div class="answer-reveal essay-answer"><strong>参考答案：</strong><br>花坛半径 $r = 8\div2 = 4$（m）<br>大圆半径 $R = 4 + 1 = 5$（m）<br>小路面积（环形面积）：$S = \pi(R^2 - r^2) = 3.14 \times (5^2 - 4^2)$<br>$= 3.14 \times (25 - 16) = 3.14 \times 9 = 28.26$（m²）<br>答：这条小路的面积是 $28.26$ m²。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 密码弹窗 -->
+<!-- ============================================================ -->
+<div id="modalOverlay" class="modal-overlay no-print" style="display:none">
+  <div class="modal-box">
+    <div class="modal-header">🔒 请输入答案密码</div>
+    <div class="modal-body">
+      <input type="password" id="modalPwd" class="modal-input" placeholder="请输入密码..." autofocus>
+      <p id="modalError" class="modal-error"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-answer" id="modalConfirm">确认</button>
+      <button class="btn btn-clear" id="modalCancel">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 确认弹窗 -->
+<div id="confirmOverlay" class="modal-overlay no-print" style="display:none">
+  <div class="modal-box" style="width:340px;">
+    <div class="modal-header">⚠️ 确认操作</div>
+    <div class="modal-body">
+      <p style="font-size:14px;">确定清除所有作答？</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-submit" id="confirmYes">确定</button>
+      <button class="btn btn-clear" id="confirmNo">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 按钮区 -->
+<div class="btn-row no-print">
+  <button class="btn btn-submit" id="btnSubmit">提交并评分</button>
+  <button class="btn btn-answer" id="btnAnswer">显示答案</button>
+  <button class="btn btn-clear" id="btnClear">清除作答</button>
+</div>
+
+<!-- 得分汇总 -->
+<div id="scoreBox" class="score-box">
+  <p style="font-size:15px;font-weight:bold;margin-bottom:8px;color:#1a237e;">📊 得分汇总</p>
+  <p>
+    选择题（共 6 题）：<span id="sChoice">0</span>/12 &nbsp;|&nbsp;
+    填空题（共 4 题）：<span id="sFill">0</span>/8 &nbsp;|&nbsp;
+    解答题（共 2 题）：<span id="sEssay">0</span>/16
+  </p>
+  <p style="font-size:16px;margin-top:6px;border-top:1px solid #ddd;padding-top:6px;">
+    <strong>总分：<span class="big" id="final">0</span>/36</strong>
+  </p>
+</div>
+
+</div><!-- /.container -->
+
+<script>
+var SK = 'mathC_260724';
+
+// 正确答案
+var SKEY = { q1:'B', q2:'D', q3:'A', q4:'B', q5:'C', q6:'D' };
+var FKEY = { q7:'250', q8:'3.05', q9:'72', q10:'0.5' };
+var FALT = {
+  q7: ['250'],
+  q8: ['3.05', '3.05'],
+  q9: ['72'],
+  q10: ['0.5', '0.5']
+};
+
+// 填空每题 2 分
+var FILL_SCORE = { q7:2, q8:2, q9:2, q10:2 };
+
+function saveAnswers() {
+  var d = {};
+  document.querySelectorAll('input[type="radio"]:checked').forEach(function(i) { d[i.name] = i.value; });
+  document.querySelectorAll('.fill-in').forEach(function(i) { d[i.id] = i.value; });
+  document.querySelectorAll('textarea').forEach(function(t, idx) { d['ta' + idx] = t.value; });
+  try { localStorage.setItem(SK, JSON.stringify(d)); } catch(e) {}
+}
+
+function loadAnswers() {
+  try {
+    var d = JSON.parse(localStorage.getItem(SK) || '{}');
+    document.querySelectorAll('input[type="radio"]').forEach(function(i) { if (d[i.name] === i.value) i.checked = true; });
+    document.querySelectorAll('.fill-in').forEach(function(i) { if (d[i.id]) i.value = d[i.id]; });
+    document.querySelectorAll('textarea').forEach(function(t, idx) { if (d['ta' + idx]) t.value = d['ta' + idx]; });
+  } catch(e) {}
+}
+
+function gradeExam() {
+  var total = 0;
+  var sChoice = 0, sFill = 0, sEssay = 0;
+
+  // 选择题（每题 2 分，共 6 题）
+  ['q1','q2','q3','q4','q5','q6'].forEach(function(q) {
+    var sel = document.querySelector('input[name="' + q + '"]:checked');
+    var el = document.getElementById(q);
+    if (sel && sel.value === SKEY[q]) {
+      total += 2; sChoice += 2;
+      if (el) el.classList.add('grade-correct');
+    } else if (sel) {
+      if (el) el.classList.add('grade-wrong');
+    }
+  });
+
+  // 填空题（每题 2 分，共 4 题）
+  Object.keys(FKEY).forEach(function(k) {
+    var inp = document.getElementById(k);
+    if (!inp) return;
+    var v = inp.value.trim();
+    if (v === '') return;
+    var alt = FALT[k] || [FKEY[k]];
+    var matched = alt.some(function(x) { return v === x || v.toLowerCase() === x.toLowerCase(); });
+    if (matched) {
+      total += 2; sFill += 2;
+    }
+  });
+
+  // 解答题
+  // Q11（8 分）
+  var ta0 = document.querySelectorAll('textarea')[0];
+  if (ta0) {
+    var v = ta0.value.trim();
+    if (v.length >= 40) { total += 8; sEssay += 8; }
+    else if (v.length >= 15) { total += 4; sEssay += 4; }
+  }
+  // Q12（8 分）
+  var ta1 = document.querySelectorAll('textarea')[1];
+  if (ta1) {
+    var v = ta1.value.trim();
+    if (v.length >= 40) { total += 8; sEssay += 8; }
+    else if (v.length >= 15) { total += 4; sEssay += 4; }
+  }
+
+  document.getElementById('sChoice').textContent = sChoice;
+  document.getElementById('sFill').textContent = sFill;
+  document.getElementById('sEssay').textContent = sEssay;
+  document.getElementById('final').textContent = total;
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('scoreBox').classList.add('show');
+  saveAnswers();
+}
+
+function highlightAnswers() {
+  document.querySelectorAll('.grade-correct,.grade-wrong').forEach(function(el) {
+    el.classList.remove('grade-correct','grade-wrong');
+  });
+
+  ['q1','q2','q3','q4','q5','q6'].forEach(function(q) {
+    var sel = document.querySelector('input[name="' + q + '"]:checked');
+    var el = document.getElementById(q);
+    if (sel && sel.value === SKEY[q]) {
+      if (el) el.classList.add('grade-correct');
+    } else if (sel) {
+      if (el) el.classList.add('grade-wrong');
+    }
+  });
+
+  Object.keys(FKEY).forEach(function(k) {
+    var inp = document.getElementById(k);
+    if (!inp) return;
+    var v = inp.value.trim();
+    if (v === '') return;
+    var alt = FALT[k] || [FKEY[k]];
+    var ok = alt.some(function(x) { return v === x || v.toLowerCase() === x.toLowerCase(); });
+    if (ok) {
+      var parent = document.getElementById(k).closest('div[id]');
+      if (parent) parent.classList.add('grade-correct');
+    }
+  });
+}
+
+function doClearAnswers() {
+  document.querySelectorAll('input[type="radio"]').forEach(function(i) { i.checked = false; });
+  document.querySelectorAll('.fill-in').forEach(function(i) { i.value = ''; });
+  document.querySelectorAll('textarea').forEach(function(i) { i.value = ''; });
+  document.querySelectorAll('.grade-correct,.grade-wrong').forEach(function(el) {
+    el.classList.remove('grade-correct','grade-wrong');
+  });
+  try { localStorage.removeItem(SK); } catch(e) {}
+  document.getElementById('scoreBox').classList.remove('show');
+}
+
+function showPwdModal() {
+  document.getElementById('modalOverlay').style.display = 'flex';
+  document.getElementById('modalPwd').focus();
+}
+
+function showConfirmModal() {
+  document.getElementById('confirmOverlay').style.display = 'flex';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+// === 事件绑定 ===
+document.addEventListener('change', saveAnswers);
+document.addEventListener('input', saveAnswers);
+
+document.getElementById('btnSubmit').addEventListener('click', function() {
+  gradeExam();
+  highlightAnswers();
+});
+document.getElementById('btnAnswer').addEventListener('click', showPwdModal);
+document.getElementById('btnClear').addEventListener('click', showConfirmModal);
+
+document.getElementById('modalConfirm').addEventListener('click', function() {
+  var pwd = document.getElementById('modalPwd').value;
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(e) { e.classList.add('show'); });
+    closeModal('modalOverlay');
+    document.getElementById('modalError').textContent = '';
+    document.getElementById('modalPwd').value = '';
+  } else {
+    document.getElementById('modalError').textContent = '❌ 密码错误，请重试';
+  }
+});
+
+document.getElementById('modalCancel').addEventListener('click', function() {
+  closeModal('modalOverlay');
+  document.getElementById('modalError').textContent = '';
+  document.getElementById('modalPwd').value = '';
+});
+
+document.getElementById('modalPwd').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('modalConfirm').click();
+});
+
+document.getElementById('confirmYes').addEventListener('click', function() {
+  doClearAnswers();
+  closeModal('confirmOverlay');
+});
+
+document.getElementById('confirmNo').addEventListener('click', function() {
+  closeModal('confirmOverlay');
+});
+
+document.querySelectorAll('.modal-overlay').forEach(function(ov) {
+  ov.addEventListener('click', function(e) {
+    if (e.target === ov) {
+      closeModal(ov.id);
+      document.getElementById('modalError').textContent = '';
+      document.getElementById('modalPwd').value = '';
+    }
+  });
+});
+
+loadAnswers();
+</script>
+
+</body></html>

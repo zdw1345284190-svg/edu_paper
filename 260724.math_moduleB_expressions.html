@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>汕头·数学诊断评估 小学·式与方程·比和比例</title><script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'宋体','SimSun',serif;font-size:13px;line-height:1.7;color:#222;background:#f5f5f5;padding:16px}.container{max-width:210mm;margin:0 auto;background:#fff;padding:28px 22px;box-shadow:0 2px 8px rgba(0,0,0,.1)}.header{border-top:3px double #1a237e;border-bottom:3px double #1a237e;text-align:center;padding:14px 0;margin-bottom:6px;position:relative}.header h1{font-size:22px;letter-spacing:3px;color:#1a237e}.header .sub{font-size:14px;color:#444;margin-top:4px;font-weight:bold}.header .info{font-size:12px;color:#666;margin-top:5px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}.header .info span{border-bottom:1px solid #999;display:inline-block;min-width:80px;padding:0 8px}.module-tag{display:inline-block;font-size:11px;padding:1px 10px;border-radius:3px;color:#fff;margin-right:6px;vertical-align:middle}.m-b{background:#fb8c00}.section-title{border-left:5px solid #1a237e;padding-left:10px;font-size:15px;font-weight:bold;margin:20px 0 10px 0;color:#1a237e}.section-title .score-range{font-weight:normal;font-size:12px;color:#888;margin-left:8px}.question{margin:9px 0;padding:5px 0;border-bottom:1px dashed #eee}.question:last-child{border-bottom:none}.question .q-text{font-weight:bold;margin-bottom:3px}.options{margin-left:14px}.options label{display:block;padding:2px 6px;border-radius:3px;cursor:pointer;font-size:13px}.options label:hover{background:#f0f0ff}.options label input{margin-right:5px}.fill-in{border:none;border-bottom:2px solid #999;outline:none;padding:0 4px;font-size:13px;width:70px;text-align:center;font-family:inherit;background:transparent}.fill-in:focus{border-bottom-color:#1a237e}.fill-in-lg{width:160px}.fill-in-mid{width:90px}.answer-box textarea{width:100%;min-height:72px;padding:8px 10px;border:1px solid #ccc;border-radius:4px;font-family:inherit;font-size:13px;resize:vertical}.answer-box textarea:focus{border-color:#1a237e;outline:none}.btn-row{text-align:center;margin:16px 0 10px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.btn{padding:8px 24px;font-size:14px;border:none;border-radius:4px;cursor:pointer;color:#fff;font-family:inherit;transition:background .2s}.btn-submit{background:#1a237e}.btn-submit:hover{background:#283593}.btn-answer{background:#00897b}.btn-answer:hover{background:#009688}.btn-clear{background:#c62828}.btn-clear:hover{background:#d32f2f}.score-box{display:none;margin-top:14px;padding:14px 16px;background:#f5f5ff;border:1px solid #c5cae9;border-radius:6px;font-size:13px}.score-box.show{display:block}.score-box .big{font-size:22px;color:#1a237e;font-weight:bold}.answer-reveal{display:none;margin:6px 0 2px 14px;padding:6px 12px;background:#f1f8e9;border-left:3px solid #66bb6a;border-radius:2px;font-size:12px;color:#2e7d32;line-height:1.8}.answer-reveal.show{display:block}.answer-reveal.essay-answer{background:#fff3e0;border-left-color:#fb8c00;color:#e65100}.no-print{display:block}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:center;justify-content:center}.modal-box{background:#fff;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.25);width:380px;max-width:90vw;overflow:hidden}.modal-header{padding:14px 20px;font-size:15px;font-weight:bold;background:#1a237e;color:#fff}.modal-body{padding:18px 20px}.modal-input{width:100%;padding:10px 12px;font-size:16px;border:2px solid #ccc;border-radius:4px;outline:none;font-family:inherit;box-sizing:border-box}.modal-input:focus{border-color:#1a237e}.modal-error{font-size:12px;color:#c62828;margin-top:6px;min-height:20px}.modal-footer{padding:10px 20px 16px;display:flex;gap:10px;justify-content:flex-end}.modal-footer .btn{padding:7px 18px;font-size:13px}@media print{body{background:#fff;padding:0}.container{box-shadow:none;padding:20px}.btn-row{display:none}.modal-overlay{display:none!important}.score-box{display:block!important;border-color:#999}.answer-reveal{display:block!important;background:#f9f9f9}}
+
+/* 评分视觉反馈 */
+div[id^="q"].grade-correct>.q-text::before{content:"●";color:#66bb6a;margin-right:4px;font-size:11px;vertical-align:middle}
+div[id^="q"].grade-wrong>.q-text::before{content:"●";color:#ffab91;margin-right:4px;font-size:11px;vertical-align:middle}</style></head><body>
+
+<div class="container">
+
+<div class="header">
+  <h1>汕头市·数学学习诊断评估 — 式与方程·比和比例</h1>
+  <div class="sub">小学·式与方程·比和比例（用字母表示数·解方程·化简比·正反比例）</div>
+  <div class="info">
+    <span>满分：34分</span>
+    <span>时间：20分钟</span>
+    <span>姓名：_______________</span>
+    <span>得分：<span id="totalScore">____</span></span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 选择题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  一、选择题 <span class="score-range">每题 2 分，共 12 分</span>
+</div>
+
+<div id="q1" data-type="single" data-answer="C">
+  <div class="q-text">1. 小明有 $a$ 本书，小红的书比小明的 3 倍多 2 本，小红有（&nbsp;&nbsp;）本书。</div>
+  <div class="options">
+    <label><input type="radio" name="q1" value="A"> A. $3a-2$</label>
+    <label><input type="radio" name="q1" value="B"> B. $a+3+2$</label>
+    <label><input type="radio" name="q1" value="C"> C. $3a+2$</label>
+    <label><input type="radio" name="q1" value="D"> D. $a+3\times2$</label>
+  </div>
+  <div class="answer-reveal">答案：C</div>
+</div>
+
+<div id="q2" data-type="single" data-answer="B">
+  <div class="q-text">2. 方程 $3x+5=20$ 的解是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q2" value="A"> A. $x=3$</label>
+    <label><input type="radio" name="q2" value="B"> B. $x=5$</label>
+    <label><input type="radio" name="q2" value="C"> C. $x=6$</label>
+    <label><input type="radio" name="q2" value="D"> D. $x=4$</label>
+  </div>
+  <div class="answer-reveal">答案：B（$3x=15$，$x=5$）</div>
+</div>
+
+<div id="q3" data-type="single" data-answer="B">
+  <div class="q-text">3. 把 $2:0.25$ 化成最简整数比是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q3" value="A"> A. $2:25$</label>
+    <label><input type="radio" name="q3" value="B"> B. $8:1$</label>
+    <label><input type="radio" name="q3" value="C"> C. $4:1$</label>
+    <label><input type="radio" name="q3" value="D"> D. $1:8$</label>
+  </div>
+  <div class="answer-reveal">答案：B（$2:0.25=200:25=8:1$）</div>
+</div>
+
+<div id="q4" data-type="single" data-answer="A">
+  <div class="q-text">4. 下列各题中，两种量成反比例关系的是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A"> A. 路程一定，速度和时间</label>
+    <label><input type="radio" name="q4" value="B"> B. 单价一定，总价和数量</label>
+    <label><input type="radio" name="q4" value="C"> C. 圆的周长和直径</label>
+    <label><input type="radio" name="q4" value="D"> D. 正方形的边长和面积</label>
+  </div>
+  <div class="answer-reveal">答案：A（路程一定时，速度×时间=定值，成反比例）</div>
+</div>
+
+<div id="q5" data-type="single" data-answer="B">
+  <div class="q-text">5. 解比例 $\frac{3}{4}:x=6:12$，则 $x$ 等于（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A"> A. 1</label>
+    <label><input type="radio" name="q5" value="B"> B. 1.5</label>
+    <label><input type="radio" name="q5" value="C"> C. 2</label>
+    <label><input type="radio" name="q5" value="D"> D. 2.5</label>
+  </div>
+  <div class="answer-reveal">答案：B（$6x=9$，$x=1.5$）</div>
+</div>
+
+<div id="q6" data-type="single" data-answer="B">
+  <div class="q-text">6. 下列各题中，两种量成正比例关系的是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q6" value="A"> A. 路程一定，速度和时间</label>
+    <label><input type="radio" name="q6" value="B"> B. 单价一定，总价和数量</label>
+    <label><input type="radio" name="q6" value="C"> C. 平行四边形的面积一定，底和高</label>
+    <label><input type="radio" name="q6" value="D"> D. 一个人的年龄和身高</label>
+  </div>
+  <div class="answer-reveal">答案：B（单价一定时，总价÷数量=单价（定值），成正比例）</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 填空题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  二、填空题 <span class="score-range">每题 2 分，共 8 分</span>
+</div>
+
+<div id="q7">
+  <div class="q-text">7. 比的前项是 3，后项是 8。如果后项增加到 32，要使比值不变，前项应变成 <input type="text" class="fill-in fill-in-sm" id="q7"> 。</div>
+  <div class="answer-reveal">答案：12（$32\div8=4$，$3\times4=12$）</div>
+</div>
+
+<div id="q8">
+  <div class="q-text">8. $x$ 的 2 倍比 36 少 12，列方程求得 $x=$ <input type="text" class="fill-in fill-in-sm" id="q8"> 。</div>
+  <div class="answer-reveal">答案：12（$2x=36-12$，$2x=24$，$x=12$）</div>
+</div>
+
+<div id="q9">
+  <div class="q-text">9. 在 $3:5$ 中，如果后项加上 15，要使比值不变，前项应加上 <input type="text" class="fill-in fill-in-sm" id="q9"> 。</div>
+  <div class="answer-reveal">答案：9（后项$5+15=20$，$20\div5=4$，前项$3\times4=12$，$12-3=9$）</div>
+</div>
+
+<div id="q10">
+  <div class="q-text">10. $a$ 的 3 倍与 $b$ 的一半的和，用式子表示为 <input type="text" class="fill-in fill-in-mid" id="q10"> 。</div>
+  <div class="answer-reveal">答案：$3a+\frac{b}{2}$（或 $3a+0.5b$）</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 解答题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  三、解答题 <span class="score-range">共 14 分</span>
+</div>
+
+<div id="q11">
+  <div class="q-text">11.（6分）在一幅地图上，比例尺是 $1:50000$。量得甲、乙两地的图上距离是 $3\text{cm}$，甲、乙两地的实际距离是多少千米？</div>
+  <div class="answer-box" style="margin:6px 0 4px 16px;"><textarea placeholder="请写出完整的解答过程（含算式和答句）..."></textarea></div>
+  <div class="answer-reveal essay-answer"><strong>参考答案：</strong><br>实际距离 $= 3 \times 50000 = 150000\text{cm}$<br>$150000\text{cm} = 1500\text{m} = 1.5\text{km}$<br>答：甲、乙两地的实际距离是 1.5 千米。</div>
+</div>
+
+<div id="q12">
+  <div class="q-text">12.（8分）一个数的 4 倍减去 15，等于这个数的 2 倍加上 5。求这个数。</div>
+  <div class="answer-box" style="margin:6px 0 4px 16px;"><textarea placeholder="请写出完整的解答过程（列方程求解）..."></textarea></div>
+  <div class="answer-reveal essay-answer"><strong>参考答案：</strong><br>设这个数为 $x$。<br>$4x-15 = 2x+5$<br>$4x-2x = 5+15$<br>$2x = 20$<br>$x = 10$<br>答：这个数是 10。</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 密码弹窗 -->
+<!-- ============================================================ -->
+<div id="modalOverlay" class="modal-overlay no-print" style="display:none">
+  <div class="modal-box">
+    <div class="modal-header">🔒 请输入答案密码</div>
+    <div class="modal-body">
+      <input type="password" id="modalPwd" class="modal-input" placeholder="请输入密码..." autofocus>
+      <p id="modalError" class="modal-error"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-answer" id="modalConfirm">确认</button>
+      <button class="btn btn-clear" id="modalCancel">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 确认弹窗 -->
+<div id="confirmOverlay" class="modal-overlay no-print" style="display:none">
+  <div class="modal-box" style="width:340px;">
+    <div class="modal-header">⚠️ 确认操作</div>
+    <div class="modal-body">
+      <p style="font-size:14px;">确定清除所有作答？</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-submit" id="confirmYes">确定</button>
+      <button class="btn btn-clear" id="confirmNo">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 按钮区 -->
+<div class="btn-row no-print">
+  <button class="btn btn-submit" id="btnSubmit">提交并评分</button>
+  <button class="btn btn-answer" id="btnAnswer">显示答案</button>
+  <button class="btn btn-clear" id="btnClear">清除作答</button>
+</div>
+
+<!-- 得分汇总 -->
+<div id="scoreBox" class="score-box">
+  <p style="font-size:15px;font-weight:bold;margin-bottom:8px;color:#1a237e;">📊 得分汇总</p>
+  <p>
+    选择题（共 6 题）：<span id="sChoice">0</span>/12 &nbsp;|&nbsp;
+    填空题（共 4 题）：<span id="sFill">0</span>/8 &nbsp;|&nbsp;
+    解答题（共 2 题）：<span id="sEssay">0</span>/14
+  </p>
+  <p style="font-size:16px;margin-top:6px;border-top:1px solid #ddd;padding-top:6px;">
+    <strong>总分：<span class="big" id="final">0</span>/34</strong>
+  </p>
+</div>
+
+</div><!-- /.container -->
+
+<script>
+var SK = 'mathB_260724';
+
+// 正确答案
+var SKEY = { q1:'C', q2:'B', q3:'B', q4:'A', q5:'B', q6:'B' };
+var FKEY = { q7:'12', q8:'12', q9:'9', q10:'3a+b/2' };
+var FALT = {
+  q7: ['12'],
+  q8: ['12'],
+  q9: ['9'],
+  q10: ['3a+b/2', '3a+0.5b', '3a+b÷2', 'a×3+b÷2', '3a + b/2', '3a + 0.5b', '3a+b/2', '3a+1/2b']
+};
+
+// 填空每题 2 分
+var FILL_SCORE = { q7:2, q8:2, q9:2, q10:2 };
+
+function saveAnswers() {
+  var d = {};
+  document.querySelectorAll('input[type="radio"]:checked').forEach(function(i) { d[i.name] = i.value; });
+  document.querySelectorAll('.fill-in').forEach(function(i) { d[i.id] = i.value; });
+  document.querySelectorAll('textarea').forEach(function(t, idx) { d['ta' + idx] = t.value; });
+  try { localStorage.setItem(SK, JSON.stringify(d)); } catch(e) {}
+}
+
+function loadAnswers() {
+  try {
+    var d = JSON.parse(localStorage.getItem(SK) || '{}');
+    document.querySelectorAll('input[type="radio"]').forEach(function(i) { if (d[i.name] === i.value) i.checked = true; });
+    document.querySelectorAll('.fill-in').forEach(function(i) { if (d[i.id]) i.value = d[i.id]; });
+    document.querySelectorAll('textarea').forEach(function(t, idx) { if (d['ta' + idx]) t.value = d['ta' + idx]; });
+  } catch(e) {}
+}
+
+function gradeExam() {
+  var total = 0;
+  var sChoice = 0, sFill = 0, sEssay = 0;
+
+  // 选择题（每题 2 分，共 6 题）
+  ['q1','q2','q3','q4','q5','q6'].forEach(function(q) {
+    var sel = document.querySelector('input[name="' + q + '"]:checked');
+    var el = document.getElementById(q);
+    if (sel && sel.value === SKEY[q]) {
+      total += 2; sChoice += 2;
+      if (el) el.classList.add('grade-correct');
+    } else if (sel) {
+      if (el) el.classList.add('grade-wrong');
+    }
+  });
+
+  // 填空题（每题 2 分，共 4 题）
+  Object.keys(FKEY).forEach(function(k) {
+    var inp = document.getElementById(k);
+    if (!inp) return;
+    var v = inp.value.trim();
+    if (v === '') return;
+    var alt = FALT[k] || [FKEY[k]];
+    var matched = alt.some(function(x) { return v === x || v.toLowerCase() === x.toLowerCase(); });
+    if (matched) {
+      total += 2; sFill += 2;
+    }
+  });
+
+  // 解答题
+  // Q11（6 分）
+  var ta0 = document.querySelectorAll('textarea')[0];
+  if (ta0) {
+    var v = ta0.value.trim();
+    if (v.length >= 30) { total += 6; sEssay += 6; }
+    else if (v.length >= 10) { total += 3; sEssay += 3; }
+  }
+  // Q12（8 分）
+  var ta1 = document.querySelectorAll('textarea')[1];
+  if (ta1) {
+    var v = ta1.value.trim();
+    if (v.length >= 40) { total += 8; sEssay += 8; }
+    else if (v.length >= 15) { total += 4; sEssay += 4; }
+  }
+
+  document.getElementById('sChoice').textContent = sChoice;
+  document.getElementById('sFill').textContent = sFill;
+  document.getElementById('sEssay').textContent = sEssay;
+  document.getElementById('final').textContent = total;
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('scoreBox').classList.add('show');
+  saveAnswers();
+}
+
+function highlightAnswers() {
+  document.querySelectorAll('.grade-correct,.grade-wrong').forEach(function(el) {
+    el.classList.remove('grade-correct','grade-wrong');
+  });
+
+  ['q1','q2','q3','q4','q5','q6'].forEach(function(q) {
+    var sel = document.querySelector('input[name="' + q + '"]:checked');
+    var el = document.getElementById(q);
+    if (sel && sel.value === SKEY[q]) {
+      if (el) el.classList.add('grade-correct');
+    } else if (sel) {
+      if (el) el.classList.add('grade-wrong');
+    }
+  });
+
+  Object.keys(FKEY).forEach(function(k) {
+    var inp = document.getElementById(k);
+    if (!inp) return;
+    var v = inp.value.trim();
+    if (v === '') return;
+    var alt = FALT[k] || [FKEY[k]];
+    var ok = alt.some(function(x) { return v === x || v.toLowerCase() === x.toLowerCase(); });
+    if (ok) {
+      var parent = document.getElementById(k).closest('div[id]');
+      if (parent) parent.classList.add('grade-correct');
+    }
+  });
+}
+
+function doClearAnswers() {
+  document.querySelectorAll('input[type="radio"]').forEach(function(i) { i.checked = false; });
+  document.querySelectorAll('.fill-in').forEach(function(i) { i.value = ''; });
+  document.querySelectorAll('textarea').forEach(function(i) { i.value = ''; });
+  document.querySelectorAll('.grade-correct,.grade-wrong').forEach(function(el) {
+    el.classList.remove('grade-correct','grade-wrong');
+  });
+  try { localStorage.removeItem(SK); } catch(e) {}
+  document.getElementById('scoreBox').classList.remove('show');
+}
+
+function showPwdModal() {
+  document.getElementById('modalOverlay').style.display = 'flex';
+  document.getElementById('modalPwd').focus();
+}
+
+function showConfirmModal() {
+  document.getElementById('confirmOverlay').style.display = 'flex';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+// === 事件绑定 ===
+document.addEventListener('change', saveAnswers);
+document.addEventListener('input', saveAnswers);
+
+document.getElementById('btnSubmit').addEventListener('click', function() {
+  gradeExam();
+  highlightAnswers();
+});
+document.getElementById('btnAnswer').addEventListener('click', showPwdModal);
+document.getElementById('btnClear').addEventListener('click', showConfirmModal);
+
+document.getElementById('modalConfirm').addEventListener('click', function() {
+  var pwd = document.getElementById('modalPwd').value;
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(e) { e.classList.add('show'); });
+    closeModal('modalOverlay');
+    document.getElementById('modalError').textContent = '';
+    document.getElementById('modalPwd').value = '';
+  } else {
+    document.getElementById('modalError').textContent = '❌ 密码错误，请重试';
+  }
+});
+
+document.getElementById('modalCancel').addEventListener('click', function() {
+  closeModal('modalOverlay');
+  document.getElementById('modalError').textContent = '';
+  document.getElementById('modalPwd').value = '';
+});
+
+document.getElementById('modalPwd').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('modalConfirm').click();
+});
+
+document.getElementById('confirmYes').addEventListener('click', function() {
+  doClearAnswers();
+  closeModal('confirmOverlay');
+});
+
+document.getElementById('confirmNo').addEventListener('click', function() {
+  closeModal('confirmOverlay');
+});
+
+document.querySelectorAll('.modal-overlay').forEach(function(ov) {
+  ov.addEventListener('click', function(e) {
+    if (e.target === ov) {
+      closeModal(ov.id);
+      document.getElementById('modalError').textContent = '';
+      document.getElementById('modalPwd').value = '';
+    }
+  });
+});
+
+loadAnswers();
+</script>
+
+</body></html>

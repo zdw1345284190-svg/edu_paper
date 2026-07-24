@@ -1,0 +1,373 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>汕头·数学模块练习 初一·有理数</title><script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]},svg:{fontCache:'global'}}</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'宋体','SimSun',serif;font-size:13px;line-height:1.7;color:#222;background:#f5f5f5;padding:16px}.container{max-width:210mm;margin:0 auto;background:#fff;padding:28px 22px;box-shadow:0 2px 8px rgba(0,0,0,.1)}.header{border-top:3px double #1a237e;border-bottom:3px double #1a237e;text-align:center;padding:14px 0;margin-bottom:6px;position:relative}.header h1{font-size:22px;letter-spacing:3px;color:#1a237e}.header .sub{font-size:14px;color:#444;margin-top:4px;font-weight:bold}.header .info{font-size:12px;color:#666;margin-top:5px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}.header .info span{border-bottom:1px solid #999;display:inline-block;min-width:80px;padding:0 8px}.section-title{border-left:5px solid #1a237e;padding-left:10px;font-size:15px;font-weight:bold;margin:20px 0 10px 0;color:#1a237e}.section-title .score-range{font-weight:normal;font-size:12px;color:#888;margin-left:8px}.question{margin:9px 0;padding:5px 0;border-bottom:1px dashed #eee}.question:last-child{border-bottom:none}.question .q-text{font-weight:bold;margin-bottom:3px}.options{margin-left:14px}.options label{display:block;padding:2px 6px;border-radius:3px;cursor:pointer;font-size:13px}.options label:hover{background:#f0f0ff}.options label input{margin-right:5px}.fill-in{border:none;border-bottom:2px solid #999;outline:none;padding:0 4px;font-size:13px;width:80px;text-align:center;font-family:inherit;background:transparent}.fill-in:focus{border-bottom-color:#1a237e}.fill-in-sm{width:70px}.fill-in-md{width:100px}.fill-in-lg{width:140px}.answer-box textarea{width:100%;min-height:60px;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:13px;font-family:inherit;resize:vertical}.answer-box textarea:focus{outline:none;border-color:#1a237e}.answer-reveal{display:none;margin:4px 0 2px 16px;padding:4px 10px;background:#f8f0ff;border-left:3px solid #ab47bc;font-size:12px;color:#444;border-radius:0 4px 4px 0}.answer-reveal.show{display:block}.answer-reveal.essay-answer{background:#e8f5e9;border-left-color:#43a047}.btn-row{text-align:center;margin:20px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.btn{padding:8px 24px;font-size:14px;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:opacity .15s}.btn:hover{opacity:.85}.btn-submit{background:#1a237e;color:#fff}.btn-answer{background:#6a1b9a;color:#fff}.btn-clear{background:#bf360c;color:#fff}.score-box{margin-top:5px;padding:8px 12px;background:#fafafa;border-radius:4px;display:none;border:2px solid #e0e0e0}.score-box.show{display:block}.score-box .big{font-size:20px;color:#1a237e;font-weight:bold}.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:999}.modal-box{background:#fff;border-radius:8px;padding:0;width:360px;max-width:90vw;box-shadow:0 8px 30px rgba(0,0,0,.25)}.modal-header{padding:12px 16px;font-size:15px;font-weight:bold;color:#fff;background:#1a237e;border-radius:8px 8px 0 0}.modal-body{padding:16px}.modal-input{width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:4px;font-size:14px;outline:none;font-family:inherit}.modal-input:focus{border-color:#1a237e}.modal-error{color:#e53935;font-size:12px;margin-top:6px;min-height:18px}.modal-footer{padding:10px 16px;text-align:right;border-top:1px solid #eee;display:flex;gap:8px;justify-content:flex-end}div[id^="q"].grade-correct>.q-text::before{content:"●";color:#66bb6a;margin-right:4px;font-size:11px;vertical-align:middle}div[id^="q"].grade-wrong>.q-text::before{content:"●";color:#ffab91;margin-right:4px;font-size:11px;vertical-align:middle}@media print{body{background:#fff;padding:0}.container{box-shadow:none;padding:20px 16px}.no-print{display:none!important}.score-box.show{border:1px solid #ccc;break-inside:avoid}.question{break-inside:avoid}}</style></head><body>
+
+<div class="container">
+
+<div class="header">
+  <h1>汕头市·数学模块练习册</h1>
+  <div class="sub">初一·有理数（概念·数轴·相反数·绝对值·混合运算·科学记数法）</div>
+  <div class="info">
+    <span>满分：34分</span>
+    <span>时间：20分钟</span>
+    <span>姓名：_______________</span>
+    <span>得分：<span id="totalScore">____</span></span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 选择题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  一、选择题 <span class="score-range">每题 2 分，共 12 分</span>
+</div>
+
+<div id="q1" data-type="single" data-answer="B">
+  <div class="q-text">1. 在 $-3,\;0,\;\dfrac12,\;-2.5,\;4$ 中，负数的个数是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q1" value="A"> A. 1个</label>
+    <label><input type="radio" name="q1" value="B"> B. 2个</label>
+    <label><input type="radio" name="q1" value="C"> C. 3个</label>
+    <label><input type="radio" name="q1" value="D"> D. 4个</label>
+  </div>
+  <div class="answer-reveal">答案：B（负数有 $-3$ 和 $-2.5$，共 2 个）</div>
+</div>
+
+<div id="q2" data-type="single" data-answer="A">
+  <div class="q-text">2. $-5$ 的相反数是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q2" value="A"> A. 5</label>
+    <label><input type="radio" name="q2" value="B"> B. $-5$</label>
+    <label><input type="radio" name="q2" value="C"> C. $\dfrac15$</label>
+    <label><input type="radio" name="q2" value="D"> D. $-\dfrac15$</label>
+  </div>
+  <div class="answer-reveal">答案：A（$-5$ 的相反数是 $5$，只有符号不同的两个数互为相反数）</div>
+</div>
+
+<div id="q3" data-type="single" data-answer="C">
+  <div class="q-text">3. 下列比较大小正确的是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q3" value="A"> A. $-|-2| > 0$</label>
+    <label><input type="radio" name="q3" value="B"> B. $-3 > 2$</label>
+    <label><input type="radio" name="q3" value="C"> C. $-5 < -3$</label>
+    <label><input type="radio" name="q3" value="D"> D. $|-4| < 3$</label>
+  </div>
+  <div class="answer-reveal">答案：C（$-5<-3$，负数绝对值越大反而越小）</div>
+</div>
+
+<div id="q4" data-type="single" data-answer="A">
+  <div class="q-text">4. 气温从 $-3^\circ\text{C}$ 上升 $5^\circ\text{C}$ 后的温度是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A"> A. $2^\circ\text{C}$</label>
+    <label><input type="radio" name="q4" value="B"> B. $-2^\circ\text{C}$</label>
+    <label><input type="radio" name="q4" value="C"> C. $8^\circ\text{C}$</label>
+    <label><input type="radio" name="q4" value="D"> D. $-8^\circ\text{C}$</label>
+  </div>
+  <div class="answer-reveal">答案：A（$-3+5=2$）</div>
+</div>
+
+<div id="q5" data-type="single" data-answer="B">
+  <div class="q-text">5. 地球半径约为 $6\,400\,000$ m，用科学记数法表示为（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A"> A. $64\times10^5$</label>
+    <label><input type="radio" name="q5" value="B"> B. $6.4\times10^6$</label>
+    <label><input type="radio" name="q5" value="C"> C. $0.64\times10^7$</label>
+    <label><input type="radio" name="q5" value="D"> D. $6.4\times10^5$</label>
+  </div>
+  <div class="answer-reveal">答案：B（科学记数法：$6.4\times10^6$）</div>
+</div>
+
+<div id="q6" data-type="single" data-answer="C">
+  <div class="q-text">6. 数轴上表示 $-2$ 的点到原点的距离是（&nbsp;&nbsp;）</div>
+  <div class="options">
+    <label><input type="radio" name="q6" value="A"> A. $-2$</label>
+    <label><input type="radio" name="q6" value="B"> B. 0</label>
+    <label><input type="radio" name="q6" value="C"> C. 2</label>
+    <label><input type="radio" name="q6" value="D"> D. 4</label>
+  </div>
+  <div class="answer-reveal">答案：C（数轴上点到原点的距离等于该数绝对值 $|-2|=2$）</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 填空题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  二、填空题 <span class="score-range">每题 2 分，共 8 分</span>
+</div>
+
+<div id="q7">
+  <div class="q-text">7. 计算 $(-2)^3\times\dfrac14-|-3|+(-1)^{2024}$，结果是 <input type="text" class="fill-in" data-key="q7"> 。</div>
+  <div class="answer-reveal">答案：$-4$（$(-8)\times\frac14-3+1=-2-3+1=-4$）</div>
+</div>
+
+<div id="q8">
+  <div class="q-text">8. 绝对值等于 $5$ 的数是 <input type="text" class="fill-in" data-key="q8"> 。</div>
+  <div class="answer-reveal">答案：$\pm5$（或 $5$ 和 $-5$）</div>
+</div>
+
+<div id="q9">
+  <div class="q-text">9. 比 $-3$ 小 $2$ 的数是 <input type="text" class="fill-in" data-key="q9"> 。</div>
+  <div class="answer-reveal">答案：$-5$（$-3-2=-5$）</div>
+</div>
+
+<div id="q10">
+  <div class="q-text">10. $-\dfrac23$ 的倒数是 <input type="text" class="fill-in" data-key="q10"> 。</div>
+  <div class="answer-reveal">答案：$-\dfrac32$（或 $-1.5$，乘积为 $1$ 的两个数互为倒数）</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 解答题 -->
+<!-- ============================================================ -->
+<div class="section-title">
+  三、解答题 <span class="score-range">共 14 分</span>
+</div>
+
+<div id="q11">
+  <div class="q-text">11.（6分）计算：$\left(\dfrac12-\dfrac13\right)\div\left(-\dfrac16\right)+(-2)^2\times(-3)$</div>
+  <div class="answer-box" style="margin:6px 0 4px 16px;"><textarea placeholder="请写出完整的解答过程（含算式和答句）..."></textarea></div>
+  <div class="answer-reveal essay-answer"><strong>参考答案：</strong><br>
+    $\left(\dfrac12-\dfrac13\right)\div\left(-\dfrac16\right)+(-2)^2\times(-3)$<br>
+    $=\left(\dfrac36-\dfrac26\right)\times(-6)+4\times(-3)$<br>
+    $=\dfrac16\times(-6)+(-12)$<br>
+    $=-1-12=-13$<br>
+    答：计算结果为 $-13$。
+  </div>
+</div>
+
+<div id="q12">
+  <div class="q-text">12.（8分）在数轴上表示下列各数：$-2.5,\;0,\;3,\;-1$，并用"$<$"将它们连接起来。（请画出数轴）</div>
+  <div class="answer-box" style="margin:6px 0 4px 16px;"><textarea placeholder="请画出数轴，标出各点位置并写出比较结果..."></textarea></div>
+  <div class="answer-reveal essay-answer"><strong>参考答案：</strong><br>
+    数轴（略）：画出数轴，标出原点 $O$、正方向、单位长度，<br>
+    在对应位置描出 $-2.5,\;-1,\;0,\;3$ 四个点。<br>
+    比较结果：$-2.5 &lt; -1 &lt; 0 &lt; 3$
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 密码弹窗 -->
+<!-- ============================================================ -->
+<div id="modalOverlay" class="modal-overlay no-print" style="display:none">
+  <div class="modal-box">
+    <div class="modal-header">🔒 请输入答案密码</div>
+    <div class="modal-body">
+      <input type="password" id="modalPwd" class="modal-input" placeholder="请输入密码..." autofocus>
+      <p id="modalError" class="modal-error"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-answer" id="modalConfirm">确认</button>
+      <button class="btn btn-clear" id="modalCancel">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 确认弹窗 -->
+<div id="confirmOverlay" class="modal-overlay no-print" style="display:none">
+  <div class="modal-box" style="width:340px;">
+    <div class="modal-header">⚠️ 确认操作</div>
+    <div class="modal-body">
+      <p style="font-size:14px;">确定清除所有作答？</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-submit" id="confirmYes">确定</button>
+      <button class="btn btn-clear" id="confirmNo">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 按钮区 -->
+<div class="btn-row no-print">
+  <button class="btn btn-submit" id="btnSubmit">提交并评分</button>
+  <button class="btn btn-answer" id="btnAnswer">显示答案</button>
+  <button class="btn btn-clear" id="btnClear">清除作答</button>
+</div>
+
+<!-- 得分汇总 -->
+<div id="scoreBox" class="score-box">
+  <p style="font-size:15px;font-weight:bold;margin-bottom:8px;color:#1a237e;">📊 得分汇总</p>
+  <p>
+    选择题（共 6 题）：<span id="sChoice">0</span>/12 &nbsp;|&nbsp;
+    填空题（共 4 题）：<span id="sFill">0</span>/8 &nbsp;|&nbsp;
+    解答题（共 2 题）：<span id="sEssay">0</span>/14
+  </p>
+  <p style="font-size:16px;margin-top:6px;border-top:1px solid #ddd;padding-top:6px;">
+    <strong>总分：<span class="big" id="final">0</span>/34</strong>
+  </p>
+</div>
+
+</div><!-- /.container -->
+
+<script>
+var SK = 'mathD_rational_260724';
+
+// 选择题答案
+var SKEY = { q1:'B', q2:'A', q3:'C', q4:'A', q5:'B', q6:'C' };
+// 填空题答案
+var FKEY = { q7:'-4', q8:'±5', q9:'-5', q10:'-3/2' };
+// 填空题可接受的替代答案
+var FALT = {
+  q7: ['-4'],
+  q8: ['±5', '5,-5', '-5,5', '5和-5'],
+  q9: ['-5'],
+  q10: ['-3/2', '-1.5']
+};
+
+function saveAnswers() {
+  var d = {};
+  document.querySelectorAll('input[type="radio"]:checked').forEach(function(i) { d[i.name] = i.value; });
+  document.querySelectorAll('.fill-in').forEach(function(i) { d[i.dataset.key] = i.value; });
+  document.querySelectorAll('textarea').forEach(function(t, idx) { d['ta' + idx] = t.value; });
+  try { localStorage.setItem(SK, JSON.stringify(d)); } catch(e) {}
+}
+
+function loadAnswers() {
+  try {
+    var d = JSON.parse(localStorage.getItem(SK) || '{}');
+    document.querySelectorAll('input[type="radio"]').forEach(function(i) { if (d[i.name] === i.value) i.checked = true; });
+    document.querySelectorAll('.fill-in').forEach(function(i) { if (d[i.dataset.key]) i.value = d[i.dataset.key]; });
+    document.querySelectorAll('textarea').forEach(function(t, idx) { if (d['ta' + idx]) t.value = d['ta' + idx]; });
+  } catch(e) {}
+}
+
+function gradeExam() {
+  var total = 0;
+  var sChoice = 0, sFill = 0, sEssay = 0;
+
+  // 选择题（每题 2 分）
+  ['q1','q2','q3','q4','q5','q6'].forEach(function(q) {
+    var sel = document.querySelector('input[name="' + q + '"]:checked');
+    var el = document.getElementById(q);
+    if (el) el.classList.remove('grade-correct','grade-wrong');
+    if (sel && sel.value === SKEY[q]) {
+      total += 2; sChoice += 2;
+      if (el) el.classList.add('grade-correct');
+    } else if (sel) {
+      if (el) el.classList.add('grade-wrong');
+    } else {
+      if (el) el.classList.add('grade-wrong');
+    }
+  });
+
+  // 填空题（每题 2 分）
+  Object.keys(FKEY).forEach(function(k) {
+    var parent = document.getElementById(k);
+    if (!parent) return;
+    var inp = parent.querySelector('.fill-in');
+    if (!inp) return;
+    var v = inp.value.trim();
+    if (parent) parent.classList.remove('grade-correct','grade-wrong');
+    if (v === '') { parent.classList.add('grade-wrong'); return; }
+    var alt = FALT[k] || [FKEY[k]];
+    var matched = alt.some(function(x) { return v === x || v.toLowerCase() === x.toLowerCase(); });
+    if (matched) {
+      total += 2; sFill += 2;
+      parent.classList.add('grade-correct');
+    } else {
+      parent.classList.add('grade-wrong');
+    }
+  });
+
+  // 解答题 Q11（6 分）
+  var ta0 = document.querySelectorAll('textarea')[0];
+  if (ta0) {
+    var v = ta0.value.trim();
+    if (v.length >= 30) { total += 6; sEssay += 6; }
+    else if (v.length >= 10) { total += 3; sEssay += 3; }
+  }
+  // 解答题 Q12（8 分）
+  var ta1 = document.querySelectorAll('textarea')[1];
+  if (ta1) {
+    var v = ta1.value.trim();
+    if (v.length >= 40) { total += 8; sEssay += 8; }
+    else if (v.length >= 15) { total += 4; sEssay += 4; }
+  }
+
+  document.getElementById('sChoice').textContent = sChoice;
+  document.getElementById('sFill').textContent = sFill;
+  document.getElementById('sEssay').textContent = sEssay;
+  document.getElementById('final').textContent = total;
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('scoreBox').classList.add('show');
+  saveAnswers();
+}
+
+function doClearAnswers() {
+  document.querySelectorAll('input[type="radio"]').forEach(function(i) { i.checked = false; });
+  document.querySelectorAll('.fill-in').forEach(function(i) { i.value = ''; });
+  document.querySelectorAll('textarea').forEach(function(i) { i.value = ''; });
+  document.querySelectorAll('.grade-correct,.grade-wrong').forEach(function(el) {
+    el.classList.remove('grade-correct','grade-wrong');
+  });
+  var sb = document.getElementById('scoreBox');
+  if (sb) sb.classList.remove('show');
+  document.getElementById('totalScore').textContent = '____';
+  try { localStorage.removeItem(SK); } catch(e) {}
+}
+
+function showPwdModal() {
+  document.getElementById('modalOverlay').style.display = 'flex';
+  document.getElementById('modalPwd').focus();
+}
+
+function showConfirmModal() {
+  document.getElementById('confirmOverlay').style.display = 'flex';
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+// === 事件绑定 ===
+document.addEventListener('change', saveAnswers);
+document.addEventListener('input', saveAnswers);
+
+document.getElementById('btnSubmit').addEventListener('click', function() {
+  gradeExam();
+});
+
+document.getElementById('btnAnswer').addEventListener('click', showPwdModal);
+document.getElementById('btnClear').addEventListener('click', showConfirmModal);
+
+document.getElementById('modalConfirm').addEventListener('click', function() {
+  var pwd = document.getElementById('modalPwd').value;
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(e) { e.classList.add('show'); });
+    closeModal('modalOverlay');
+    document.getElementById('modalError').textContent = '';
+    document.getElementById('modalPwd').value = '';
+  } else {
+    document.getElementById('modalError').textContent = '❌ 密码错误，请重试';
+  }
+});
+
+document.getElementById('modalCancel').addEventListener('click', function() {
+  closeModal('modalOverlay');
+  document.getElementById('modalError').textContent = '';
+  document.getElementById('modalPwd').value = '';
+});
+
+document.getElementById('modalPwd').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('modalConfirm').click();
+});
+
+document.getElementById('confirmYes').addEventListener('click', function() {
+  doClearAnswers();
+  closeModal('confirmOverlay');
+});
+
+document.getElementById('confirmNo').addEventListener('click', function() {
+  closeModal('confirmOverlay');
+});
+
+document.querySelectorAll('.modal-overlay').forEach(function(ov) {
+  ov.addEventListener('click', function(e) {
+    if (e.target === ov) {
+      closeModal(ov.id);
+      document.getElementById('modalError').textContent = '';
+      document.getElementById('modalPwd').value = '';
+    }
+  });
+});
+
+loadAnswers();
+</script>
+
+</body></html>

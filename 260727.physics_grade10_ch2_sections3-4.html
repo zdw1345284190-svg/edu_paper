@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>高一物理·必修第一册 第二章 2.3-2.4 单元测试</title>
+<title>高一物理·必修第一册 第二章 2.3-2.4</title>
 <style>
   /* ===== 全局重置 & 基础 ===== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -79,12 +79,18 @@
   }
 
   /* ===== 题目布局 ===== */
-  .question { margin-bottom: 14px; }
+  .question {
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
   .question .q-head {
     font-weight: 600;
-    margin-bottom: 4px;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
-  .question .q-body { padding-left: 6px; }
+  .question .q-body { flex: 1; min-width: 0; }
   .question .q-body p { margin-bottom: 4px; }
 
   /* ===== 选项（单选 / 多选） ===== */
@@ -166,56 +172,20 @@
     height: auto;
   }
 
-  /* ===== 参考答案区 ===== */
-  .answer-section {
-    margin-top: 32px;
-    padding-top: 20px;
-    border-top: 2px dashed #ccc;
+  /* ===== 数据表格 ===== */
+  .data-table {
+    margin: 8px auto;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: center;
   }
-  .answer-section h2 {
-    font-size: 17px;
-    margin-bottom: 8px;
+  .data-table th, .data-table td {
+    border: 1px solid #999;
+    padding: 4px 12px;
   }
-  .toggle-answer-btn {
-    display: inline-block;
-    padding: 6px 22px;
-    font-size: 14px;
-    font-family: inherit;
-    border: 1px solid #1a5276;
-    background: #fff;
-    color: #1a5276;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.15s;
-    margin-bottom: 10px;
-  }
-  .toggle-answer-btn:hover {
-    background: #1a5276;
-    color: #fff;
-  }
-  #answerContent {
-    background: #f7f9fc;
-    border: 1px solid #d5dfe8;
-    border-radius: 4px;
-    padding: 18px 22px;
-    font-size: 14px;
-    line-height: 1.9;
-  }
-  #answerContent .ans-block {
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e2e8ee;
-  }
-  #answerContent .ans-block:last-child { border-bottom: none; }
-  #answerContent .ans-q { font-weight: 600; color: #1a5276; }
-  #answerContent .ans-body { padding-left: 8px; }
-  #answerContent .ans-body .ans-key {
-    color: #c0392b;
+  .data-table th {
+    background: #eef4fa;
     font-weight: 600;
-  }
-  #answerContent .ans-body .ans-detail {
-    color: #444;
-    margin-top: 2px;
   }
 
   /* ===== 底部交卷 ===== */
@@ -280,16 +250,30 @@
     }
     .score-summary { display: none !important; }
     .submit-bar { display: none !important; }
-    .toggle-answer-btn { display: none !important; }
-    #answerContent { display: block !important; }
+    .answer-reveal.show { display: block !important; }
     .options li label:hover { background: transparent; }
     textarea { border: 1px solid #ccc; background: #fafafa; }
     .calc-question textarea { min-height: 60px; }
     .exam-header .info-row .blank { border-bottom: 1px solid #000; }
     .fillin input[type="text"] { border-bottom: 1px solid #000; }
-    .answer-section { border-top-color: #aaa; }
-    #answerContent { background: #fafafa; border-color: #ccc; }
+
   }
+
+  /* ===== 答案内联显示 ===== */
+  .answer-reveal {
+    display: none;
+    flex: 0 0 100%;
+    margin: 6px 0 2px;
+    padding: 6px 12px;
+    background: #e8f5e9;
+    border-left: 3px solid #1a5276;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: #1b5e20;
+    line-height: 1.7;
+  }
+  .answer-reveal.show { display: block; }
+  .answer-reveal .ans-key { color: #c0392b; font-weight: 600; }
 
   /* ===== 移动端适配 ===== */
   @media screen and (max-width: 640px) {
@@ -308,15 +292,15 @@
   <!-- ======================== 页头 ======================== -->
   <div class="exam-header">
     <h1>高一物理·必修第一册 第二章</h1>
-    <div class="subtitle">2.3 位移与时间关系 + 2.4 自由落体运动</div>
+    <div class="subtitle">2.3 匀变速直线运动的位移与时间的关系 + 2.4 自由落体运动</div>
     <div class="info-row">
       <span><span class="label">姓名：</span><span class="blank">&nbsp;</span></span>
       <span><span class="label">班级：</span><span class="blank">&nbsp;</span></span>
       <span><span class="label">学号：</span><span class="blank">&nbsp;</span></span>
-      <span><span class="label">得分：</span><span class="blank" id="displayScore">______</span></span>
+      <span><span class="label">得分：</span><span class="blank">&nbsp;</span></span>
     </div>
     <div style="margin-top:6px; font-size:13px; color:#666;">
-      总分：100分 &nbsp;&nbsp;|&nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp;|&nbsp;&nbsp; 命题范围：人教版必修第一册 2.3–2.4
+      总分：100分 &nbsp;&nbsp;|&nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp;|&nbsp;&nbsp; 命题范围：人教版必修第一册第二章 2.3-2.4
     </div>
   </div>
 
@@ -333,137 +317,147 @@
       <p>关于匀变速直线运动的位移公式 \(x = v_0 t + \frac{1}{2}at^2\)，下列说法正确的是（　）</p>
       <ul class="options">
         <li><label><input type="radio" name="q1" value="A"> A．该公式只适用于匀加速直线运动</label></li>
-        <li><label><input type="radio" name="q1" value="B"> B．该公式只适用于匀减速直线运动</label></li>
-        <li><label><input type="radio" name="q1" value="C"> C．该公式适用于任何直线运动</label></li>
-        <li><label><input type="radio" name="q1" value="D"> D．该公式适用于匀变速直线运动</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B．该公式中的 \(\frac{1}{2}at^2\) 表示匀速运动的位移</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C．该公式可由 \(v\!-\!t\) 图象的面积推导得出</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D．该公式仅适用于初速度为零的情况</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。A错误，该公式适用于所有匀变速直线运动（包括匀加速和匀减速）。B错误，\(\frac{1}{2}at^2\) 是由加速度引起的位移增量，不是匀速运动的位移。C正确，在 \(v\!-\!t\) 图象中，图线与 \(t\) 轴围成的梯形面积即为位移，可直接推导出该公式。D错误，该公式适用于任意初速度的情况。</div>
   </div>
 
   <!-- q2 -->
   <div class="question" id="q2">
     <div class="q-head">2.</div>
     <div class="q-body">
-      <p>在 \(v\!-\!t\) 图象中，图线与时间轴所围成的"面积"表示（　）</p>
+      <p>某物体做匀加速直线运动，初速度 \(v_0 = 3\,\text{m/s}\)，加速度 \(a = 2\,\text{m/s}^2\)，则 \(4\,\text{s}\) 内的位移为（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q2" value="A"> A．速度</label></li>
-        <li><label><input type="radio" name="q2" value="B"> B．加速度</label></li>
-        <li><label><input type="radio" name="q2" value="C"> C．位移</label></li>
-        <li><label><input type="radio" name="q2" value="D"> D．路程</label></li>
+        <li><label><input type="radio" name="q2" value="A"> A．\(20\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B．\(24\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C．\(28\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D．\(32\,\text{m}\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。由位移公式 \(x = v_0 t + \frac{1}{2}at^2\)，代入数据：\(x = 3 \times 4 + \frac{1}{2} \times 2 \times 4^2 = 12 + \frac{1}{2} \times 2 \times 16 = 12 + 16 = 28\,\text{m}\)。</div>
   </div>
 
   <!-- q3 -->
   <div class="question" id="q3">
     <div class="q-head">3.</div>
     <div class="q-body">
-      <p>一个物体的 \(x\!-\!t\) 图象是一条抛物线，则该物体做（　）</p>
+      <p>在 \(v\!-\!t\) 图象中，图线与时间轴所围成的"面积"在数值上等于物体的（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q3" value="A"> A．匀速直线运动</label></li>
-        <li><label><input type="radio" name="q3" value="B"> B．匀变速直线运动</label></li>
-        <li><label><input type="radio" name="q3" value="C"> C．静止</label></li>
-        <li><label><input type="radio" name="q3" value="D"> D．变速曲线运动</label></li>
+        <li><label><input type="radio" name="q3" value="A"> A．速度</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B．加速度</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C．位移</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D．时间</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。在 \(v\!-\!t\) 图象中，图线与时间轴所围成的"面积"在数值上等于物体在该段时间内的位移。这是通过微元法（将变速运动分割成无数小段匀速运动）推导得出的结论。</div>
   </div>
 
   <!-- q4 -->
   <div class="question" id="q4">
     <div class="q-head">4.</div>
     <div class="q-body">
-      <p>关于自由落体运动，下列说法正确的是（　）</p>
+      <p>某质点做匀变速直线运动的 \(v\!-\!t\) 图线为一条过原点的倾斜直线。若 \(t=2\,\text{s}\) 时速度为 \(4\,\text{m/s}\)，则 \(0\sim2\,\text{s}\) 内质点的位移为（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q4" value="A"> A．自由落体运动是初速度为零、加速度为 \(g\) 的匀加速直线运动</label></li>
-        <li><label><input type="radio" name="q4" value="B"> B．物体只在重力作用下的运动就是自由落体运动</label></li>
-        <li><label><input type="radio" name="q4" value="C"> C．自由落体运动的加速度 \(g\) 方向竖直向上</label></li>
-        <li><label><input type="radio" name="q4" value="D"> D．自由落体运动中，重的物体比轻的物体下落快</label></li>
+        <li><label><input type="radio" name="q4" value="A"> A．\(2\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B．\(4\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C．\(6\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D．\(8\,\text{m}\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。过原点的倾斜直线说明初速度 \(v_0 = 0\)，\(t=2\,\text{s}\) 时 \(v=4\,\text{m/s}\)。\(v\!-\!t\) 图线与 \(t\) 轴围成三角形，面积即为位移：\(x = \frac{1}{2} \times 2 \times 4 = 4\,\text{m}\)。</div>
   </div>
 
   <!-- q5 -->
   <div class="question" id="q5">
     <div class="q-head">5.</div>
     <div class="q-body">
-      <p>自由落体运动中，速度 \(v\) 与时间 \(t\) 的关系是（　）</p>
+      <p>关于自由落体运动，下列说法正确的是（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q5" value="A"> A．\(v = gt\)</label></li>
-        <li><label><input type="radio" name="q5" value="B"> B．\(v = \dfrac{1}{2}gt\)</label></li>
-        <li><label><input type="radio" name="q5" value="C"> C．\(v = gt^2\)</label></li>
-        <li><label><input type="radio" name="q5" value="D"> D．\(v = \dfrac{v_0}{t}\)</label></li>
+        <li><label><input type="radio" name="q5" value="A"> A．自由落体运动是初速度为零、加速度为 \(g\) 的匀加速直线运动</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B．自由落体运动是初速度不为零的匀加速直线运动</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C．重的物体下落得快，轻的物体下落得慢</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D．自由落体运动是匀速直线运动</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。A正确，自由落体运动的条件是：初速度为零、仅受重力作用，是匀加速直线运动（\(a=g\)）。B错误，初速度必须为零。C错误，如果没有空气阻力，所有物体下落快慢相同。D错误，自由落体速度均匀增加，不是匀速。</div>
   </div>
 
   <!-- q6 -->
   <div class="question" id="q6">
     <div class="q-head">6.</div>
     <div class="q-body">
-      <p>一个物体从静止开始自由下落，下落高度 \(h\) 与时间 \(t\) 的关系是（　）</p>
+      <p>关于自由落体加速度 \(g\)，下列说法正确的是（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q6" value="A"> A．\(h = gt\)</label></li>
-        <li><label><input type="radio" name="q6" value="B"> B．\(h = \dfrac{1}{2}gt^2\)</label></li>
-        <li><label><input type="radio" name="q6" value="C"> C．\(h = gt^2\)</label></li>
-        <li><label><input type="radio" name="q6" value="D"> D．\(h = \dfrac{1}{2}gt\)</label></li>
+        <li><label><input type="radio" name="q6" value="A"> A．在同一地点，\(g\) 是一个恒定的矢量，方向竖直向下</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B．\(g \approx 9.8\,\text{m/s}^2\)，方向竖直向上</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C．赤道处的 \(g\) 值比北极处大</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D．\(g\) 随高度增加而增大</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。A正确，同一地点 \(g\) 为定值，方向始终竖直向下。B错误，\(g\) 方向竖直向下，不是向上。C错误，赤道处的 \(g\) 值最小，两极最大。D错误，\(g\) 随高度增加而减小。</div>
   </div>
 
   <!-- q7 -->
   <div class="question" id="q7">
     <div class="q-head">7.</div>
     <div class="q-body">
-      <p>关于重力加速度 \(g\)，下列说法正确的是（　）</p>
+      <p>一个物体从静止开始做自由落体运动，取 \(g=10\,\text{m/s}^2\)，则 \(2\,\text{s}\) 末的速度大小为（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q7" value="A"> A．在地球上同一地点，\(g\) 的值是恒定的</label></li>
-        <li><label><input type="radio" name="q7" value="B"> B．\(g\) 的值在地球上任何地方都相同</label></li>
-        <li><label><input type="radio" name="q7" value="C"> C．自由落体运动的 \(g\) 值随高度的增大而增大</label></li>
-        <li><label><input type="radio" name="q7" value="D"> D．\(g\) 是标量，没有方向</label></li>
+        <li><label><input type="radio" name="q7" value="A"> A．\(10\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B．\(15\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C．\(20\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D．\(25\,\text{m/s}\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。由自由落体速度公式 \(v = gt\)，代入数据：\(v = 10 \times 2 = 20\,\text{m/s}\)。</div>
   </div>
 
   <!-- q8 -->
   <div class="question" id="q8">
     <div class="q-head">8.</div>
     <div class="q-body">
-      <p>一辆汽车以 \(10\,\text{m/s}\) 的初速度做匀加速直线运动，加速度为 \(2\,\text{m/s}^2\)，则汽车前 \(3\,\text{s}\) 内的位移为（　）</p>
+      <p>一石块从 \(45\,\text{m}\) 高的楼顶自由下落，不计空气阻力，取 \(g=10\,\text{m/s}^2\)，则石块落地时的速度大小为（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q8" value="A"> A．\(30\,\text{m}\)</label></li>
-        <li><label><input type="radio" name="q8" value="B"> B．\(39\,\text{m}\)</label></li>
-        <li><label><input type="radio" name="q8" value="C"> C．\(45\,\text{m}\)</label></li>
-        <li><label><input type="radio" name="q8" value="D"> D．\(60\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q8" value="A"> A．\(20\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B．\(25\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C．\(30\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D．\(35\,\text{m/s}\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。<br>方法一（用 \(v^2 = 2gh\)）：\(v = \sqrt{2gh} = \sqrt{2 \times 10 \times 45} = \sqrt{900} = 30\,\text{m/s}\)<br>方法二（先求时间再求速度）：\(h = \frac{1}{2}gt^2 \Rightarrow t = \sqrt{\frac{2h}{g}} = \sqrt{\frac{90}{10}} = 3\,\text{s}\)，\(v = gt = 10 \times 3 = 30\,\text{m/s}\)</div>
   </div>
 
   <!-- q9 -->
   <div class="question" id="q9">
     <div class="q-head">9.</div>
     <div class="q-body">
-      <p>一个物体从某一高度自由下落，着地时的速度为 \(30\,\text{m/s}\)，则物体下落的高度约为（取 \(g = 10\,\text{m/s}^2\)）（　）</p>
+      <p>一小球从某一高度自由下落，落地时速度大小为 \(30\,\text{m/s}\)，取 \(g=10\,\text{m/s}^2\)，则小球下落前离地面的高度为（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q9" value="A"> A．\(15\,\text{m}\)</label></li>
-        <li><label><input type="radio" name="q9" value="B"> B．\(30\,\text{m}\)</label></li>
-        <li><label><input type="radio" name="q9" value="C"> C．\(45\,\text{m}\)</label></li>
-        <li><label><input type="radio" name="q9" value="D"> D．\(90\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q9" value="A"> A．\(30\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B．\(35\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C．\(40\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D．\(45\,\text{m}\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>D。由自由落体速度-位移公式 \(v^2 = 2gh\)，得：\(h = \frac{v^2}{2g} = \frac{30^2}{2 \times 10} = \frac{900}{20} = 45\,\text{m}\)。</div>
   </div>
 
   <!-- q10 -->
   <div class="question" id="q10">
     <div class="q-head">10.</div>
     <div class="q-body">
-      <p>甲、乙两物体从同一高度同时自由下落，甲的质量大于乙的质量，不计空气阻力，则（　）</p>
+      <p>一辆汽车以 \(15\,\text{m/s}\) 的速度在平直公路上匀速行驶，司机发现前方有障碍物后以 \(3\,\text{m/s}^2\) 的加速度急刹车（做匀减速直线运动），则刹车后 \(6\,\text{s}\) 内汽车的位移为（　）</p>
       <ul class="options">
-        <li><label><input type="radio" name="q10" value="A"> A．甲先落地</label></li>
-        <li><label><input type="radio" name="q10" value="B"> B．乙先落地</label></li>
-        <li><label><input type="radio" name="q10" value="C"> C．两者同时落地</label></li>
-        <li><label><input type="radio" name="q10" value="D"> D．无法确定</label></li>
+        <li><label><input type="radio" name="q10" value="A"> A．\(36\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B．\(37.5\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C．\(45\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D．\(50\,\text{m}\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。取初速度方向为正，\(v_0 = 15\,\text{m/s}\)，\(a = -3\,\text{m/s}^2\)。先判断停车时间：由 \(v = v_0 + at\) 得 \(0 = 15 - 3t\)，\(t = 5\,\text{s}\)。因 \(6\,\text{s} > 5\,\text{s}\)，汽车在 \(5\,\text{s}\) 时已停止，故 \(6\,\text{s}\) 的位移等于 \(5\,\text{s}\) 的位移：\(x = v_0 t + \frac{1}{2}at^2 = 15 \times 5 + \frac{1}{2} \times (-3) \times 5^2 = 75 - 37.5 = 37.5\,\text{m}\)。</div>
   </div>
 
   <!-- ==================== 二、多选题 ==================== -->
@@ -476,42 +470,45 @@
   <div class="question" id="q101">
     <div class="q-head">11.（多选）</div>
     <div class="q-body">
-      <p>关于匀变速直线运动，下列说法正确的有（　）</p>
+      <p>关于匀变速直线运动的位移公式 \(x = v_0 t + \frac{1}{2}at^2\)，下列说法正确的有（　）</p>
       <ul class="options">
-        <li><label><input type="checkbox" name="q101" value="A"> A．位移公式 \(x = v_0 t + \frac{1}{2}at^2\) 适用于任何匀变速直线运动</label></li>
-        <li><label><input type="checkbox" name="q101" value="B"> B．\(v\!-\!t\) 图象中图线的斜率表示加速度</label></li>
-        <li><label><input type="checkbox" name="q101" value="C"> C．匀变速直线运动的速度与位移成正比</label></li>
-        <li><label><input type="checkbox" name="q101" value="D"> D．\(x\!-\!t\) 图象为抛物线，说明物体做匀变速直线运动</label></li>
+        <li><label><input type="checkbox" name="q101" value="A"> A．该公式只适用于匀加速直线运动，不适用于匀减速直线运动</label></li>
+        <li><label><input type="checkbox" name="q101" value="B"> B．公式中的 \(x\) 是物体在时间 \(t\) 内发生的位移</label></li>
+        <li><label><input type="checkbox" name="q101" value="C"> C．该公式可由 \(v\!-\!t\) 图线与 \(t\) 轴围成的面积推导得出</label></li>
+        <li><label><input type="checkbox" name="q101" value="D"> D．当 \(v_0 = 0\) 时，公式简化为 \(x = \frac{1}{2}at^2\)</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B、C、D。A错误，该公式适用于所有匀变速直线运动，匀加速和匀减速均适用（匀减速时 \(a\) 取负值）。B正确，\(x\) 表示位移。C正确，该公式正是通过 \(v\!-\!t\) 图线下的梯形面积推导得出的。D正确，当 \(v_0 = 0\) 时，\(x = \frac{1}{2}at^2\)。</div>
   </div>
 
   <!-- q102 -->
   <div class="question" id="q102">
     <div class="q-head">12.（多选）</div>
     <div class="q-body">
-      <p>关于自由落体运动，下列说法正确的有（　）</p>
+      <p>关于 \(v\!-\!t\) 图象中"面积"的含义，下列说法正确的有（　）</p>
       <ul class="options">
-        <li><label><input type="checkbox" name="q102" value="A"> A．自由落体运动是初速度为零的匀加速直线运动</label></li>
-        <li><label><input type="checkbox" name="q102" value="B"> B．自由落体运动中，速度与时间成正比</label></li>
-        <li><label><input type="checkbox" name="q102" value="C"> C．自由落体运动中，下落高度与时间的平方成正比</label></li>
-        <li><label><input type="checkbox" name="q102" value="D"> D．自由落体运动的加速度与物体的质量有关</label></li>
+        <li><label><input type="checkbox" name="q102" value="A"> A．\(v\!-\!t\) 图线与时间轴围成的面积表示位移</label></li>
+        <li><label><input type="checkbox" name="q102" value="B"> B．若图线在时间轴下方，则该部分"面积"为负值，表示位移方向与正方向相反</label></li>
+        <li><label><input type="checkbox" name="q102" value="C"> C．只有匀变速直线运动的 \(v\!-\!t\) 图面积才表示位移</label></li>
+        <li><label><input type="checkbox" name="q102" value="D"> D．面积的大小可以直接从坐标轴上读出，不需要计算</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B。A正确，任何直线运动的 \(v\!-\!t\) 图线与 \(t\) 轴围成的面积都表示位移。B正确，\(t\) 轴下方速度为负，面积为负，表示位移方向与正方向相反。C错误，适用于一切直线运动（不仅限于匀变速）。D错误，面积需通过几何公式或积分计算得出。</div>
   </div>
 
   <!-- q103 -->
   <div class="question" id="q103">
     <div class="q-head">13.（多选）</div>
     <div class="q-body">
-      <p>关于重力加速度 \(g\)，下列说法正确的有（　）</p>
+      <p>关于自由落体运动，下列说法正确的有（　）</p>
       <ul class="options">
-        <li><label><input type="checkbox" name="q103" value="A"> A．\(g\) 的大小约为 \(9.8\,\text{m/s}^2\)</label></li>
-        <li><label><input type="checkbox" name="q103" value="B"> B．\(g\) 的方向总是竖直向下</label></li>
-        <li><label><input type="checkbox" name="q103" value="C"> C．在地球上不同的纬度，\(g\) 的值略有不同</label></li>
-        <li><label><input type="checkbox" name="q103" value="D"> D．在同一地点，轻、重物体的 \(g\) 值不同</label></li>
+        <li><label><input type="checkbox" name="q103" value="A"> A．自由落体运动是初速度为零、加速度为 \(g\) 的匀加速直线运动</label></li>
+        <li><label><input type="checkbox" name="q103" value="B"> B．在同一地点，不同质量的物体自由落体加速度相同</label></li>
+        <li><label><input type="checkbox" name="q103" value="C"> C．自由落体运动中，物体下落的高度与时间成正比</label></li>
+        <li><label><input type="checkbox" name="q103" value="D"> D．自由落体运动中，物体的速度与下落高度成正比</label></li>
       </ul>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B。A正确，自由落体运动是初速度为零、加速度为 \(g\) 的匀加速直线运动。B正确，同一地点 \(g\) 值相同，与物体质量无关。C错误，\(h = \frac{1}{2}gt^2\)，高度与时间的平方成正比，不是与时间成正比。D错误，\(v^2 = 2gh\)，速度与下落高度的平方根成正比，不是与高度成正比。</div>
   </div>
 
   <!-- ==================== 三、填空题 ==================== -->
@@ -519,61 +516,64 @@
     三、填空题（共6题，每题3分，共18分）
   </div>
 
-  <!-- q11 (displayed as 14) -->
-  <div class="question" id="q11">
+  <!-- q14 -->
+  <div class="question" id="q14">
     <div class="q-head">14.</div>
     <div class="q-body">
-      <p>某物体做匀加速直线运动，初速度 \(v_0 = 2\,\text{m/s}\)，加速度 \(a = 0.5\,\text{m/s}^2\)，则 \(4\,\text{s}\) 内的位移为 ______ m。</p>
-      <div class="fillin"><input type="text" id="fill_q11" maxlength="6" style="width:60px;"> m</div>
+      <p>匀变速直线运动的位移与时间的关系式为 \(x = \frac{1}{2}at^2 +\) ______，其中 \(v_0\) 为初速度。</p>
+      <div class="fillin"><input type="text" id="fill_q14" maxlength="8" style="width:80px;"></div>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(v_0 t\)。位移公式完整形式为 \(x = v_0 t + \frac{1}{2}at^2\)，故空白处应填 \(v_0 t\)。</div>
   </div>
 
-  <!-- q12 (displayed as 15) -->
-  <div class="question" id="q12">
+  <!-- q15 -->
+  <div class="question" id="q15">
     <div class="q-head">15.</div>
     <div class="q-body">
-      <p>物体做初速度为零的匀加速直线运动，加速度 \(a = 2\,\text{m/s}^2\)，则 \(5\,\text{s}\) 末的速度为 ______ m/s。</p>
-      <div class="fillin"><input type="text" id="fill_q12" maxlength="6" style="width:60px;"> m/s</div>
+      <p>在 \(v\!-\!t\) 图象中，图线与时间轴所围成的______表示物体在该段时间内发生的位移。</p>
+      <div class="fillin"><input type="text" id="fill_q15" maxlength="8" style="width:90px;"></div>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>面积。\(v\!-\!t\) 图象中，图线与时间轴所围成的面积在数值上等于物体的位移。</div>
   </div>
 
-  <!-- q13 (displayed as 16) -->
-  <div class="question" id="q13">
+  <!-- q16 -->
+  <div class="question" id="q16">
     <div class="q-head">16.</div>
     <div class="q-body">
-      <p>一物体从 \(45\,\text{m}\) 高的塔顶自由下落，取 \(g = 10\,\text{m/s}^2\)，则物体落地所需时间为 ______ s。</p>
-      <div class="fillin"><input type="text" id="fill_q13" maxlength="4" style="width:50px;"> s</div>
+      <p>自由落体加速度的标准值 \(g =\) ______ m/s²（保留一位小数）。</p>
+      <div class="fillin"><input type="text" id="fill_q16" maxlength="4" style="width:50px;"> m/s²</div>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>9.8。自由落体加速度又称重力加速度（即 \(g\)），其标准值约为 \(9.8\,\text{m/s}^2\)，方向竖直向下。</div>
   </div>
 
-  <!-- q14 (displayed as 17) -->
-  <div class="question" id="q14">
+  <!-- q17 -->
+  <div class="question" id="q17">
     <div class="q-head">17.</div>
     <div class="q-body">
-      <p>一物体做自由落体运动，取 \(g = 10\,\text{m/s}^2\)，则第 \(1\,\text{s}\) 末的速度为 ______ m/s，\(2\,\text{s}\) 内下落的位移为 ______ m。</p>
-      <div class="fillin">
-        速度：<input type="text" id="fill_q14a" maxlength="4" style="width:50px;"> m/s &nbsp;
-        位移：<input type="text" id="fill_q14b" maxlength="4" style="width:50px;"> m
-      </div>
+      <p>自由落体运动的速度公式为 \(v =\) ______，下落高度公式为 \(h =\) ______（用 \(g\) 和 \(t\) 表示）。</p>
+      <div class="fillin">\(v =\) <input type="text" id="fill_q17a" maxlength="6" style="width:60px;"> &nbsp; \(h =\) <input type="text" id="fill_q17b" maxlength="10" style="width:80px;"></div>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(gt\)；\(\frac{1}{2}gt^2\)。自由落体速度公式 \(v = gt\)，下落高度公式 \(h = \frac{1}{2}gt^2\)（初速度 \(v_0 = 0\)）。</div>
   </div>
 
-  <!-- q15 (displayed as 18) -->
-  <div class="question" id="q15">
+  <!-- q18 -->
+  <div class="question" id="q18">
     <div class="q-head">18.</div>
     <div class="q-body">
-      <p>一物体做自由落体运动，落地时速度大小为 \(30\,\text{m/s}\)，取 \(g = 10\,\text{m/s}^2\)，则下落的高度为 ______ m。</p>
-      <div class="fillin"><input type="text" id="fill_q15" maxlength="6" style="width:60px;"> m</div>
+      <p>一小球从塔顶自由下落，取 \(g = 10\,\text{m/s}^2\)，则 \(2\,\text{s}\) 内下落的高度为______m。</p>
+      <div class="fillin"><input type="text" id="fill_q18" maxlength="4" style="width:60px;"> m</div>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>20。\(h = \frac{1}{2}gt^2 = \frac{1}{2} \times 10 \times 2^2 = \frac{1}{2} \times 10 \times 4 = 20\,\text{m}\)。</div>
   </div>
 
-  <!-- q16 (displayed as 19) -->
-  <div class="question" id="q16">
+  <!-- q19 -->
+  <div class="question" id="q19">
     <div class="q-head">19.</div>
     <div class="q-body">
-      <p>一物体做自由落体运动，下落 \(20\,\text{m}\) 时的速度为 ______ m/s。（取 \(g = 10\,\text{m/s}^2\)）</p>
-      <div class="fillin"><input type="text" id="fill_q16" maxlength="6" style="width:60px;"> m/s</div>
+      <p>某物体做匀加速直线运动，初速度 \(v_0 = 5\,\text{m/s}\)，加速度 \(a = 2\,\text{m/s}^2\)，则 \(3\,\text{s}\) 内的位移为______m。</p>
+      <div class="fillin"><input type="text" id="fill_q19" maxlength="4" style="width:60px;"> m</div>
     </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>24。\(x = v_0 t + \frac{1}{2}at^2 = 5 \times 3 + \frac{1}{2} \times 2 \times 3^2 = 15 + 9 = 24\,\text{m}\)。</div>
   </div>
 
   <!-- ==================== 四、解答题 ==================== -->
@@ -582,187 +582,122 @@
     <span class="score-hint">请写出必要的文字说明和解题过程</span>
   </div>
 
-  <!-- q17 (displayed as 20) — 刹车类问题 -->
-  <div class="question calc-question" id="q17">
+  <!-- q20 (解答题第1题) -->
+  <div class="question calc-question" id="q20">
     <div class="q-head">20.（10分）</div>
     <div class="q-body">
-      <p>一辆汽车在平直公路上以 \(72\,\text{km/h}\) 的速度匀速行驶，司机发现前方有危险后立即刹车，刹车加速度大小为 \(4\,\text{m/s}^2\)。</p>
-      <div class="sub-q"><span class="sq-label">(1)</span> 求刹车后 \(3\,\text{s}\) 末汽车的速度大小；（3分）</div>
-      <div class="sub-q"><span class="sq-label">(2)</span> 求刹车后 \(5\,\text{s}\) 内汽车的位移大小；（4分）</div>
-      <div class="sub-q"><span class="sq-label">(3)</span> 求刹车后第 \(2\,\text{s}\) 内的位移大小。（3分）</div>
+      <p>滑雪运动员从山坡上由静止开始匀加速滑下，加速度大小为 \(2\,\text{m/s}^2\)。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求运动员 \(4\,\text{s}\) 内下滑的位移；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求运动员第 \(4\,\text{s}\) 内的位移；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求运动员 \(4\,\text{s}\) 末的速度。（3分）</div>
       <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>取初速度方向为正方向，运动员由静止开始滑下，\(v_0 = 0\)，\(a = 2\,\text{m/s}^2\)。<br>
+        (1) \(4\,\text{s}\) 内位移：\(x_4 = v_0 t + \frac{1}{2}at^2 = 0 \times 4 + \frac{1}{2} \times 2 \times 4^2 = \frac{1}{2} \times 2 \times 16 = 16\,\text{m}\)（3分）<br>
+        (2) \(3\,\text{s}\) 内位移：\(x_3 = \frac{1}{2} \times 2 \times 3^2 = 9\,\text{m}\)；第 \(4\,\text{s}\) 内位移 = 前 \(4\,\text{s}\) 位移 \(-\) 前 \(3\,\text{s}\) 位移：\(x_{\text{第4s}} = x_4 - x_3 = 16 - 9 = 7\,\text{m}\)（4分）<br>
+        (3) \(4\,\text{s}\) 末的速度：\(v_4 = v_0 + at = 0 + 2 \times 4 = 8\,\text{m/s}\)（3分）</div>
     </div>
   </div>
 
-  <!-- q18 (displayed as 21) — 自由落体计算题 -->
-  <div class="question calc-question" id="q18">
+  <!-- q21 (解答题第2题) -->
+  <div class="question calc-question" id="q21">
     <div class="q-head">21.（10分）</div>
     <div class="q-body">
-      <p>一个物体从 \(80\,\text{m}\) 高的塔顶自由下落，取 \(g = 10\,\text{m/s}^2\)，不计空气阻力。</p>
-      <div class="sub-q"><span class="sq-label">(1)</span> 求物体落地时的速度大小；（3分）</div>
-      <div class="sub-q"><span class="sq-label">(2)</span> 求物体下落的总时间；（3分）</div>
-      <div class="sub-q"><span class="sq-label">(3)</span> 求物体落地前最后 \(1\,\text{s}\) 内下落的位移。（4分）</div>
+      <p>某同学从 \(20\,\text{m}\) 高的楼顶由静止释放一小球，不计空气阻力，取 \(g = 10\,\text{m/s}^2\)。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求小球落地所需时间；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求小球落地时的速度大小；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求小球落地前最后 \(1\,\text{s}\) 内下落的位移。（4分）</div>
       <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>由静止释放，\(v_0 = 0\)，取 \(g = 10\,\text{m/s}^2\)，下落高度 \(h = 20\,\text{m}\)。<br>
+        (1) 由 \(h = \frac{1}{2}gt^2\) 得：\(t = \sqrt{\frac{2h}{g}} = \sqrt{\frac{2 \times 20}{10}} = \sqrt{4} = 2\,\text{s}\)（3分）<br>
+        (2) 落地速度：\(v = gt = 10 \times 2 = 20\,\text{m/s}\) 或 \(v^2 = 2gh\)，\(v = \sqrt{2gh} = \sqrt{2 \times 10 \times 20} = \sqrt{400} = 20\,\text{m/s}\)（3分）<br>
+        (3) 前 \(1\,\text{s}\) 内下落高度：\(h_1 = \frac{1}{2}gt_1^2 = \frac{1}{2} \times 10 \times 1^2 = 5\,\text{m}\)；最后 \(1\,\text{s}\) 内下落的位移：\(\Delta h = h - h_1 = 20 - 5 = 15\,\text{m}\)（4分）</div>
     </div>
   </div>
 
-  <!-- q19 (displayed as 22) — v-t图求位移题 -->
-  <div class="question calc-question" id="q19">
+  <!-- q22 (解答题第3题) -->
+  <div class="question calc-question" id="q22">
     <div class="q-head">22.（10分）</div>
     <div class="q-body">
-      <p>某物体做直线运动，其 \(v\!-\!t\) 图象如下图所示：</p>
+      <p>某质点做直线运动，其 \(v\!-\!t\) 图象如下图所示：</p>
       <div class="figure-container">
-        <svg width="360" height="210" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #d0d8e0; border-radius:4px; background:#fafcfe;">
+        <svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #d0d8e0; border-radius:4px; background:#fafcfe;">
           <!-- 坐标轴 -->
-          <line x1="40" y1="180" x2="340" y2="180" stroke="#333" stroke-width="1.5"/>
-          <line x1="40" y1="180" x2="40" y2="20" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="170" x2="330" y2="170" stroke="#333" stroke-width="1.5"/>
+          <line x1="50" y1="170" x2="50" y2="20" stroke="#333" stroke-width="1.5"/>
           <!-- 箭头 -->
-          <polygon points="335,180 340,180 338,175" fill="#333"/>
-          <polygon points="40,25 40,20 35,22" fill="#333"/>
+          <polygon points="325,170 330,170 328,165" fill="#333"/>
+          <polygon points="50,25 50,20 45,22" fill="#333"/>
           <!-- 刻度 & 标签 -->
-          <text x="100" y="196" font-size="12" text-anchor="middle" fill="#333">2</text>
-          <text x="160" y="196" font-size="12" text-anchor="middle" fill="#333">4</text>
-          <text x="220" y="196" font-size="12" text-anchor="middle" fill="#333">6</text>
-          <text x="310" y="196" font-size="12" text-anchor="middle" fill="#333">t/s</text>
-          <text x="32" y="157" font-size="12" text-anchor="end" fill="#333">1</text>
-          <text x="32" y="117" font-size="12" text-anchor="end" fill="#333">2</text>
-          <text x="32" y="77" font-size="12" text-anchor="end" fill="#333">3</text>
-          <text x="32" y="37" font-size="12" text-anchor="end" fill="#333">4</text>
-          <text x="20" y="24" font-size="12" text-anchor="middle" fill="#333">v/(m·s⁻¹)</text>
+          <text x="120" y="186" font-size="12" text-anchor="middle" fill="#333">2</text>
+          <text x="190" y="186" font-size="12" text-anchor="middle" fill="#333">4</text>
+          <text x="260" y="186" font-size="12" text-anchor="middle" fill="#333">6</text>
+          <text x="330" y="186" font-size="12" text-anchor="middle" fill="#333">8</text>
+          <text x="347" y="186" font-size="12" text-anchor="middle" fill="#333">t/s</text>
+          <text x="42" y="144" font-size="12" text-anchor="end" fill="#333">2</text>
+          <text x="42" y="114" font-size="12" text-anchor="end" fill="#333">4</text>
+          <text x="42" y="84" font-size="12" text-anchor="end" fill="#333">6</text>
+          <text x="42" y="54" font-size="12" text-anchor="end" fill="#333">8</text>
+          <text x="42" y="24" font-size="12" text-anchor="end" fill="#333">10</text>
+          <text x="20" y="24" font-size="12" text-anchor="middle" fill="#333">\(v/(\text{m·s}^{-1})\)</text>
           <!-- 网格虚线 -->
-          <line x1="100" y1="180" x2="100" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <line x1="160" y1="180" x2="160" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <line x1="220" y1="180" x2="220" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <line x1="40" y1="150" x2="340" y2="150" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <line x1="40" y1="110" x2="340" y2="110" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <line x1="40" y1="70" x2="340" y2="70" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <line x1="40" y1="30" x2="340" y2="30" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
-          <!-- v-t 折线: (0,0) -> (2s,4) -> (6s,4) -> (8s,0) -->
-          <!-- 映射: t: 0→x=40, 2→x=115, 6→x=265, 8→x=340 -->
-          <!-- 映射: v: 0→y=180, 1→y=150, 2→y=120, 3→y=90, 4→y=60 -->
-          <circle cx="40" cy="180" r="4" fill="#c0392b"/>
-          <circle cx="115" cy="60" r="4" fill="#c0392b"/>
-          <circle cx="265" cy="60" r="4" fill="#c0392b"/>
-          <circle cx="340" cy="180" r="4" fill="#c0392b"/>
-          <polyline points="40,180 115,60 265,60 340,180" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linejoin="round"/>
+          <line x1="120" y1="170" x2="120" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="190" y1="170" x2="190" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="260" y1="170" x2="260" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="330" y1="170" x2="330" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="50" y1="140" x2="330" y2="140" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="50" y1="110" x2="330" y2="110" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="50" y1="80" x2="330" y2="80" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="50" y1="50" x2="330" y2="50" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <line x1="50" y1="20" x2="330" y2="20" stroke="#e2e8ee" stroke-width="0.8" stroke-dasharray="4,3"/>
+          <!-- v-t 直线: (0,2) -> (8s,10) -->
+          <circle cx="50" cy="140" r="4" fill="#c0392b"/>
+          <circle cx="330" cy="20" r="4" fill="#c0392b"/>
+          <line x1="50" y1="140" x2="330" y2="20" stroke="#c0392b" stroke-width="2.5"/>
         </svg>
       </div>
-      <div class="sub-q"><span class="sq-label">(1)</span> 求物体在 \(0\!-\!2\,\text{s}\) 内的加速度；（3分）</div>
-      <div class="sub-q"><span class="sq-label">(2)</span> 求物体在 \(0\!-\!6\,\text{s}\) 内的位移；（4分）</div>
-      <div class="sub-q"><span class="sq-label">(3)</span> 求物体在 \(6\!-\!8\,\text{s}\) 内的加速度和位移。（3分）</div>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求质点的初速度 \(v_0\) 和加速度 \(a\)；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求质点 \(0\sim8\,\text{s}\) 内的位移 \(x\)；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 写出质点的速度随时间变化的关系式。（3分）</div>
       <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1) 由 \(v\!-\!t\) 图线可知：\(t = 0\) 时 \(v = 2\,\text{m/s}\)，故初速度 \(v_0 = 2\,\text{m/s}\)（2分）。取图线上两点 \((0,2)\) 和 \((8,10)\)，加速度为图线斜率：\(a = \frac{\Delta v}{\Delta t} = \frac{10 - 2}{8 - 0} = \frac{8}{8} = 1\,\text{m/s}^2\)（2分）<br>
+        (2) 方法一（面积法）：\(v\!-\!t\) 图线与 \(t\) 轴围成梯形，上底 \(v_0 = 2\)，下底 \(v_8 = 10\)，高 \(t = 8\)：\(x = \frac{(v_0 + v_8) \times t}{2} = \frac{(2 + 10) \times 8}{2} = \frac{12 \times 8}{2} = 48\,\text{m}\)（3分）。方法二（公式法）：\(x = v_0 t + \frac{1}{2}at^2 = 2 \times 8 + \frac{1}{2} \times 1 \times 8^2 = 16 + 32 = 48\,\text{m}\)<br>
+        (3) 速度随时间变化的关系式（取国际单位制）：\(v = v_0 + at = 2 + t\)（3分）</div>
     </div>
   </div>
 
-  <!-- q20 (displayed as 23) — 竖直上抛运动分析 -->
-  <div class="question calc-question" id="q20">
+  <!-- q23 (解答题第4题) -->
+  <div class="question calc-question" id="q23">
     <div class="q-head">23.（10分）</div>
     <div class="q-body">
-      <p>将一个小球以 \(30\,\text{m/s}\) 的初速度竖直上抛，不计空气阻力，取 \(g = 10\,\text{m/s}^2\)。</p>
-      <div class="sub-q"><span class="sq-label">(1)</span> 求小球上升的最大高度；（3分）</div>
-      <div class="sub-q"><span class="sq-label">(2)</span> 求小球从抛出到落回抛出点所需的总时间；（3分）</div>
-      <div class="sub-q"><span class="sq-label">(3)</span> 求小球抛出后 \(4\,\text{s}\) 末的速度和位置。（4分）</div>
+      <p>某校物理兴趣小组用频闪摄影研究自由落体运动，测得一小球自由下落时连续三个位置的照片。相邻位置的时间间隔均为 \(T = 0.1\,\text{s}\)，测得前两个位置间的距离为 \(h_1 = 0.15\,\text{m}\)，后两个位置间的距离为 \(h_2 = 0.25\,\text{m}\)。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求小球自由下落的加速度 \(g\)；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求小球在第二个位置时的速度 \(v_2\)；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求小球从起点下落到第一个位置所用的时间 \(t_1\)。（3分）</div>
       <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>频闪摄影中，相邻位置的时间间隔 \(T = 0.1\,\text{s}\)，\(h_1 = 0.15\,\text{m}\)，\(h_2 = 0.25\,\text{m}\)。<br>
+        (1) 自由落体运动中，连续相等时间间隔内的位移差 \(\Delta h = gT^2\)：\(\Delta h = h_2 - h_1 = 0.25 - 0.15 = 0.10\,\text{m}\)，\(g = \frac{\Delta h}{T^2} = \frac{0.10}{0.1^2} = \frac{0.10}{0.01} = 10\,\text{m/s}^2\)（4分）<br>
+        (2) 第二个位置为 \(h_1\) 和 \(h_2\) 段的中间时刻，其瞬时速度等于该段的平均速度：\(v_2 = \frac{h_1 + h_2}{2T} = \frac{0.15 + 0.25}{2 \times 0.1} = \frac{0.40}{0.20} = 2\,\text{m/s}\)（3分）<br>
+        (3) 由 \(v_2 = gt_2\) 得：\(t_2 = \frac{v_2}{g} = \frac{2}{10} = 0.2\,\text{s}\)；故小球从起点下落到第一个位置的时间：\(t_1 = t_2 - T = 0.2 - 0.1 = 0.1\,\text{s}\)（3分）</div>
     </div>
   </div>
 
   <!-- ======================== 交卷按钮 ======================== -->
   <div class="submit-bar">
-    <button onclick="submitPaper()">提交试卷（Ctrl+Enter）</button>
+    <button onclick="submitExam()">提交试卷（Ctrl+Enter）</button>
     <button onclick="clearAnswers()" style="background:#888; margin-left:8px;">清空答案</button>
+    <button class="btn-answer" onclick="showAnswers()" style="background:#e8a317;color:#fff;border:none;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;margin-left:8px;">显示答案</button>
     <p style="margin-top:6px; font-size:12px; color:#999;">按下 Ctrl+Enter 也可提交</p>
   </div>
 
-  <!-- ======================== 参考答案 ======================== -->
-  <div class="answer-section">
-    <h2>参考答案与解析</h2>
-    <button class="toggle-answer-btn" onclick="toggleAnswer()">显示答案</button>
-    <div id="answerContent" style="display:none;">
 
-      <!-- 单选题 -->
-      <div class="ans-block">
-        <div class="ans-q">一、单项选择题（每题3分）</div>
-        <div class="ans-body">
-          <p><span class="ans-key">1.【D】</span> 位移公式 \(x = v_0 t + \frac{1}{2}at^2\) 适用于匀变速直线运动（包括匀加速和匀减速），但不适用于非匀变速运动。</p>
-          <p><span class="ans-key">2.【C】</span> \(v\!-\!t\) 图象中，图线与时间轴所围成的面积表示位移。若图线在时间轴下方，面积为负，表示位移方向为负。</p>
-          <p><span class="ans-key">3.【B】</span> \(x\!-\!t\) 图象为抛物线说明位移与时间的二次方成正比，即物体做匀变速直线运动。</p>
-          <p><span class="ans-key">4.【A】</span> 自由落体运动的条件：① 只受重力；② 初速度为零，是初速为零、加速度为 \(g\) 的匀加速直线运动。B 缺少"初速为零"的条件。</p>
-          <p><span class="ans-key">5.【A】</span> 自由落体运动中 \(v = gt\)，速度与时间成正比。</p>
-          <p><span class="ans-key">6.【B】</span> 自由落体位移公式为 \(h = \frac{1}{2}gt^2\)，高度与时间的平方成正比。</p>
-          <p><span class="ans-key">7.【A】</span> 同一地点 \(g\) 值恒定；不同纬度 \(g\) 值不同，两极大于赤道；\(g\) 随高度增大而减小；\(g\) 是矢量，方向竖直向下。</p>
-          <p><span class="ans-key">8.【B】</span> 由 \(x = v_0 t + \frac{1}{2}at^2 = 10 \times 3 + \frac{1}{2} \times 2 \times 9 = 30 + 9 = 39\,\text{m}\)。</p>
-          <p><span class="ans-key">9.【C】</span> 由 \(v^2 = 2gh\) 得 \(h = \dfrac{v^2}{2g} = \dfrac{900}{20} = 45\,\text{m}\)。</p>
-          <p><span class="ans-key">10.【C】</span> 自由落体加速度与质量无关，同一高度同时下落，同时落地。</p>
-        </div>
-      </div>
-
-      <!-- 多选题 -->
-      <div class="ans-block">
-        <div class="ans-q">二、多项选择题（每题4分）</div>
-        <div class="ans-body">
-          <p><span class="ans-key">11.【A、B、D】</span> C 错误，匀变速直线运动中速度随时间均匀变化，与位移不成正比。A、B、D 均为正确描述。</p>
-          <p><span class="ans-key">12.【A、B、C】</span> D 错误，自由落体加速度为重力加速度，与物体质量无关。由 \(v=gt\) 知速度与时间成正比；由 \(h=\frac{1}{2}gt^2\) 知高度与时间的平方成正比。</p>
-          <p><span class="ans-key">13.【A、B、C】</span> D 错误，在同一地点，所有物体的重力加速度相同，与质量无关。纬度越高 \(g\) 值越大，赤道处 \(g\) 最小。</p>
-        </div>
-      </div>
-
-      <!-- 填空题 -->
-      <div class="ans-block">
-        <div class="ans-q">三、填空题（每题3分）</div>
-        <div class="ans-body">
-          <p><span class="ans-key">14.【12】</span> \(x = v_0 t + \frac{1}{2}at^2 = 2 \times 4 + \frac{1}{2} \times 0.5 \times 16 = 8 + 4 = 12\,\text{m}\)。</p>
-          <p><span class="ans-key">15.【10】</span> \(v = v_0 + at = 0 + 2 \times 5 = 10\,\text{m/s}\)。</p>
-          <p><span class="ans-key">16.【3】</span> 由 \(h = \frac{1}{2}gt^2\) 得 \(t = \sqrt{\dfrac{2h}{g}} = \sqrt{\dfrac{90}{10}} = 3\,\text{s}\)。</p>
-          <p><span class="ans-key">17.【10；20】</span> 第 \(1\,\text{s}\) 末速度 \(v = gt = 10 \times 1 = 10\,\text{m/s}\)；\(2\,\text{s}\) 内位移 \(h = \frac{1}{2} \times 10 \times 4 = 20\,\text{m}\)。</p>
-          <p><span class="ans-key">18.【45】</span> 由 \(v^2 = 2gh\) 得 \(h = \dfrac{v^2}{2g} = \dfrac{900}{20} = 45\,\text{m}\)。</p>
-          <p><span class="ans-key">19.【20】</span> 由 \(v^2 = 2gh = 2 \times 10 \times 20 = 400\)，\(v = 20\,\text{m/s}\)。</p>
-        </div>
-      </div>
-
-      <!-- 解答题 -->
-      <div class="ans-block">
-        <div class="ans-q">四、解答题</div>
-        <div class="ans-body">
-          <p><span class="ans-key">20.（10分）</span></p>
-          <p style="padding-left:16px;">解：\(v_0 = 72\,\text{km/h} = 20\,\text{m/s}\)，\(a = -4\,\text{m/s}^2\)</p>
-          <p style="padding-left:16px;">(1) \(v = v_0 + at = 20 + (-4) \times 3 = 8\,\text{m/s}\)（3分）</p>
-          <p style="padding-left:16px;">(2) 刹车至停下时间：\(t_{\text{停}} = \dfrac{0 - v_0}{a} = \dfrac{-20}{-4} = 5\,\text{s}\)（1分）<br>
-             \(5\,\text{s}\) 内位移：\(x = v_0 t + \frac{1}{2}at^2 = 20 \times 5 + \frac{1}{2} \times (-4) \times 25 = 100 - 50 = 50\,\text{m}\)（3分）</p>
-          <p style="padding-left:16px;">(3) 前 \(1\,\text{s}\) 内位移：\(x_1 = 20 \times 1 + \frac{1}{2} \times (-4) \times 1 = 20 - 2 = 18\,\text{m}\)（1分）<br>
-             前 \(2\,\text{s}\) 内位移：\(x_2 = 20 \times 2 + \frac{1}{2} \times (-4) \times 4 = 40 - 8 = 32\,\text{m}\)（1分）<br>
-             第 \(2\,\text{s}\) 内位移：\(\Delta x = x_2 - x_1 = 32 - 18 = 14\,\text{m}\)（1分）</p>
-
-          <p><span class="ans-key">21.（10分）</span></p>
-          <p style="padding-left:16px;">(1) 由 \(v^2 = 2gh\) 得 \(v = \sqrt{2gh} = \sqrt{2 \times 10 \times 80} = 40\,\text{m/s}\)（3分）</p>
-          <p style="padding-left:16px;">(2) 由 \(h = \frac{1}{2}gt^2\) 得 \(t = \sqrt{\dfrac{2h}{g}} = \sqrt{\dfrac{160}{10}} = 4\,\text{s}\)（3分）</p>
-          <p style="padding-left:16px;">(3) 前 \(3\,\text{s}\) 下落高度：\(h_3 = \frac{1}{2} \times 10 \times 9 = 45\,\text{m}\)（2分）<br>
-             最后 \(1\,\text{s}\) 位移：\(\Delta h = h - h_3 = 80 - 45 = 35\,\text{m}\)（2分）</p>
-
-          <p><span class="ans-key">22.（10分）</span></p>
-          <p style="padding-left:16px;">(1) \(0\!-\!2\,\text{s}\)：\(a_1 = \dfrac{\Delta v}{\Delta t} = \dfrac{4 - 0}{2 - 0} = 2\,\text{m/s}^2\)（3分）</p>
-          <p style="padding-left:16px;">(2) \(0\!-\!6\,\text{s}\) 内位移等于 \(v\!-\!t\) 图线与 \(t\) 轴所围面积：<br>
-             \(x = \frac{1}{2} \times 2 \times 4 + 4 \times 4 = 4 + 16 = 20\,\text{m}\)（4分）</p>
-          <p style="padding-left:16px;">(3) \(6\!-\!8\,\text{s}\)：\(a_2 = \dfrac{0 - 4}{8 - 6} = -2\,\text{m/s}^2\)（1分）<br>
-             位移 \(x' = \frac{1}{2} \times 2 \times 4 = 4\,\text{m}\)（2分）</p>
-
-          <p><span class="ans-key">23.（10分）</span></p>
-          <p style="padding-left:16px;">解：取竖直向上为正方向，\(v_0 = 30\,\text{m/s}\)，\(a = -g = -10\,\text{m/s}^2\)</p>
-          <p style="padding-left:16px;">(1) 最大高度：\(H = \dfrac{v_0^2}{2g} = \dfrac{900}{20} = 45\,\text{m}\)（3分）</p>
-          <p style="padding-left:16px;">(2) 上升时间 \(t_{\text{上}} = \dfrac{v_0}{g} = \dfrac{30}{10} = 3\,\text{s}\)（1分），由对称性知总时间 \(t_{\text{总}} = 2t_{\text{上}} = 6\,\text{s}\)（2分）</p>
-          <p style="padding-left:16px;">(3) \(4\,\text{s}\) 末速度：\(v = v_0 - gt = 30 - 10 \times 4 = -10\,\text{m/s}\)（负号表示方向竖直向下）（2分）<br>
-             位移：\(h = v_0 t - \frac{1}{2}gt^2 = 30 \times 4 - \frac{1}{2} \times 10 \times 16 = 120 - 80 = 40\,\text{m}\)（在抛出点上方 \(40\,\text{m}\) 处）（2分）</p>
-        </div>
-      </div>
-
-    </div><!-- /answerContent -->
-  </div><!-- /answer-section -->
 
 </div><!-- /paper -->
 
 <!-- ======================== JavaScript ======================== -->
 <script>
 // ===== 答案自动缓存（防手机切后台丢失） =====
-const PAPER_ID = 'physics_grade10_ch2_34';
+const PAPER_ID = 'physics_grade10_ch2_s34';
 const STORAGE_KEY = 'test_answers_' + PAPER_ID;
 
 function saveAnswers() {
@@ -864,30 +799,14 @@ restoreAnswers();
 setupAutoSave();
 
 // ===== 参考答案密码锁 =====
-let answerUnlocked = false;
-
-function toggleAnswer() {
-  const content = document.getElementById('answerContent');
-  const btn = document.querySelector('.toggle-answer-btn');
-
-  if (answerUnlocked) {
-    if (content.style.display === 'none') {
-      content.style.display = 'block';
-      btn.textContent = '隐藏答案';
-    } else {
-      content.style.display = 'none';
-      btn.textContent = '显示答案';
-    }
-    return;
-  }
-
+function showAnswers() {
   const pwd = prompt('请输入密码查看参考答案：');
   if (pwd === '2641') {
-    answerUnlocked = true;
-    content.style.display = 'block';
-    btn.textContent = '隐藏答案';
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
   } else if (pwd !== null) {
-    alert('密码错误，无法查看参考答案！');
+    alert('密码错误！');
   }
 }
 
@@ -895,98 +814,59 @@ function toggleAnswer() {
 document.addEventListener('keydown', function(e) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
     e.preventDefault();
-    submitPaper();
+    submitExam();
   }
 });
 
-// ===== 答案与评分映射 =====
-const ANSWER_KEY = {
-  // 单选题
-  q1: 'D', q2: 'C', q3: 'B', q4: 'A', q5: 'A',
-  q6: 'B', q7: 'A', q8: 'B', q9: 'C', q10: 'C',
-  // 多选题
-  q101: ['A','B','D'],
-  q102: ['A','B','C'],
-  q103: ['A','B','C'],
-  // 填空题
-  fill_q11: '12',
-  fill_q12: '10',
-  fill_q13: '3',
-  fill_q14a: '10',
-  fill_q14b: '20',
-  fill_q15: '45',
-  fill_q16: '20'
-};
-
-const SCORE_MAP = {
-  single: 3,    // 单选每题 3 分
-  multi: 4,     // 多选每题 4 分
-  fill: 3       // 填空每题 3 分
-};
-
-// ===== 提交试卷 =====
-function submitPaper() {
+// ===== 提交试卷（提示并滚动到顶部） =====
+function submitExam() {
   saveAnswers();  // 提交前确保保存
-
-  // ----- 单选题评分 -----
+  // 收集单选题答案
+  const singleAns = {};
+  const singleKeys = { q1:'C', q2:'C', q3:'C', q4:'B', q5:'A', q6:'A', q7:'C', q8:'C', q9:'D', q10:'B' };
   let singleScore = 0;
   let singleResult = '';
   for (let i = 1; i <= 10; i++) {
     const name = 'q' + i;
     const sel = document.querySelector('input[name="' + name + '"]:checked');
     const userAns = sel ? sel.value : '未选';
-    const correct = ANSWER_KEY[name];
+    const correct = singleKeys[name];
     const isCorrect = (userAns === correct);
-    if (isCorrect) singleScore += SCORE_MAP.single;
-    singleResult += (i + '.' + userAns + (isCorrect ? '✓' : '✗(' + correct + ')') + '  ');
+    if (isCorrect) singleScore += 3;
+    singleResult += (i + '.' + userAns + (isCorrect ? '✓' : '✗(' + correct + ')') + ' ');
   }
 
-  // ----- 多选题评分 -----
+  // 收集多选题答案
+  const multiKeys = { q101:['B','C','D'], q102:['A','B'], q103:['A','B'] };
   let multiScore = 0;
   let multiResult = '';
-  const multiNames = ['q101', 'q102', 'q103'];
-  multiNames.forEach(function(name) {
-    const num = name === 'q101' ? 11 : name === 'q102' ? 12 : 13;
+  for (const name in multiKeys) {
     const checks = document.querySelectorAll('input[name="' + name + '"]:checked');
-    const userVals = Array.from(checks).map(function(c) { return c.value; }).sort();
-    const correctVals = ANSWER_KEY[name].slice().sort();
-    const match = (userVals.length === correctVals.length && userVals.every(function(v, i) { return v === correctVals[i]; }));
-    if (match) {
-      multiScore += SCORE_MAP.multi;
-      multiResult += (num + '.' + userVals.join(',') + '✓  ');
-    } else if (userVals.length > 0 && userVals.every(function(v) { return ANSWER_KEY[name].indexOf(v) !== -1; })) {
-      multiScore += 2;
-      multiResult += (num + '.' + userVals.join(',') + '△(不全)  ');
-    } else {
-      multiResult += (num + '.' + (userVals.join(',') || '未选') + '✗(' + correctVals.join(',') + ')  ');
-    }
-  });
+    const userVals = Array.from(checks).map(c => c.value).sort();
+    const correctVals = multiKeys[name].slice().sort();
+    const match = (userVals.length === correctVals.length && userVals.every((v,i) => v === correctVals[i]));
+    if (match) multiScore += 4;
+    else if (userVals.length > 0 && userVals.every(v => multiKeys[name].includes(v))) multiScore += 2;
+    multiResult += (name.replace('q','') + '.' + (userVals.join(',') || '未选') + (match ? '✓' : '') + ' ');
+  }
 
-  // ----- 填空题评分（仅展示，不计入总分） -----
-  const fillIds = ['fill_q11','fill_q12','fill_q13','fill_q14a','fill_q14b','fill_q15','fill_q16'];
+  // 填空题（仅展示，不计分）
+  const fillIds = ['fill_q14','fill_q15','fill_q16','fill_q17a','fill_q17b','fill_q18','fill_q19'];
   let fillResult = '';
   fillIds.forEach(function(id) {
     const el = document.getElementById(id);
-    const val = el ? el.value.trim() : '';
-    const correct = ANSWER_KEY[id];
-    const isMatch = (val === correct);
-    fillResult += (id.replace('fill_q', '') + '=' + (val || '空') + (isMatch ? '✓' : '') + '  ');
+    if (el) fillResult += (id + '=' + (el.value || '空') + ' ');
   });
 
   const totalScore = singleScore + multiScore;
-
-  // 更新得分栏
-  const scoreEl = document.getElementById('displayScore');
-  if (scoreEl) scoreEl.textContent = totalScore + '/42分（客观题）';
 
   alert(
     '===== 提交成功 =====\n\n' +
     '【单选题】' + singleScore + '/30分\n' + singleResult + '\n\n' +
     '【多选题】' + multiScore + '/12分\n' + multiResult + '\n\n' +
     '【填空题】（请对照答案自行批改）\n' + fillResult + '\n\n' +
-    '【客观题总分】' + totalScore + '/42分\n' +
-    '【解答题】40分 请对照答案自行批改\n\n' +
-    '参考答案已加密，请点击下方"显示答案"按钮查看。'
+    '【当前总分】' + totalScore + '/100分（不含填空和解答题）\n\n' +
+    '参考答案已加密，请点击下方"显示答案"按钮查看（密码：2641）。'
   );
 
   window.scrollTo({ top: 0, behavior: 'smooth' });

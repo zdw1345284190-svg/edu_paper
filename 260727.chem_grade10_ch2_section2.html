@@ -6,21 +6,11 @@
 <title>高一化学（人教版）第二章 2.2 氯及其化合物</title>
 <script>
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(', '\\)']],
-    displayMath: [['\\[', '\\]']],
-    processEscapes: true,
-    tags: 'none'
-  },
-  options: {
-    ignoreHtmlClass: 'no-mathjax'
-  },
-  svg: {
-    fontCache: 'global'
-  }
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] ,
+  processEscapes: true, tags: 'none' }, options: { ignoreHtmlClass: 'no-mathjax' }, svg: { fontCache: 'global' }
 };
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 <style>
 /* ===== Reset & Base ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,6 +51,12 @@ body {
 .q-title { font-weight: bold; margin-bottom: 4px; }
 .q-text { margin-bottom: 6px; text-indent: 2em; }
 
+/* Inline question number & text for single/multi choice */
+.question[data-type="single"] .q-title,
+.question[data-type="multi"] .q-title { display: inline; }
+.question[data-type="single"] .q-text,
+.question[data-type="multi"] .q-text { display: inline; text-indent: 0; }
+
 /* Options */
 .options { margin: 6px 0 4px 2em; }
 .options label { display: block; cursor: pointer; padding: 2px 4px; }
@@ -100,36 +96,36 @@ body {
 .btn-submit:hover { background: #154360; }
 .btn-clear { background: #922b21; color: #fff; }
 .btn-clear:hover { background: #7b241c; }
-.btn-reveal { background: #7d6608; color: #fff; }
-.btn-reveal:hover { background: #665705; }
-
 /* ===== Result ===== */
 #result { text-align: center; font-size: 16px; font-weight: bold; margin: 12px 0; padding: 10px; border-radius: 4px; display: none; }
 #result.show { display: block; }
 #result.pass { background: #d5f5e3; color: #1e8449; }
 #result.fail { background: #fadbd8; color: #922b21; }
 
-/* ===== Answer Section ===== */
-.answer-section {
-  margin-top: 24px; padding: 16px 20px; background: #fef9e7;
-  border: 1px solid #f9e79f; border-radius: 6px; display: none;
-}
-.answer-section.show { display: block; }
-.answer-section h3 { font-size: 17px; margin-bottom: 12px; border-bottom: 1px solid #f9e79f; padding-bottom: 6px; }
-.answer-item { margin-bottom: 10px; padding: 6px 8px; border-left: 3px solid #f9e79f; }
-.answer-item .ans-label { font-weight: bold; color: #1a5276; }
-.answer-item .ans-key { color: #922b21; font-weight: bold; }
-.answer-item .ans-desc { color: #555; font-size: 13px; margin-top: 2px; }
-
-/* Status feedback on question */
+/* ===== Status feedback on question ===== */
 .question.correct-q { border-left-color: #27ae60; background: #f0faf4; }
 .question.wrong-q { border-left-color: #e74c3c; background: #fdf2f2; }
+
+/* ===== 答案内联显示 ===== */
+.answer-reveal {
+  display: none;
+  margin: 6px 0 2px;
+  padding: 6px 12px;
+  background: #e8f5e9;
+  border-left: 3px solid #1a5276;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: #1b5e20;
+  line-height: 1.7;
+}
+.answer-reveal.show { display: block; }
+.answer-reveal .ans-key { color: #c0392b; font-weight: 600; }
 
 /* ===== Print ===== */
 @media print {
   body { background: #fff; padding: 0; }
   .paper { box-shadow: none; padding: 15mm 20mm; max-width: 100%; }
-  .btn-group, #result, .answer-section, .student-info input { display: none; }
+  .btn-group, #result, .student-info input { display: none; }
   .student-info { display: flex; }
   .student-info input { border-bottom: 1px solid #000; display: inline-block; }
   .question:hover { border-left-color: transparent; }
@@ -154,14 +150,7 @@ body {
 .clearfix::after { content: ''; display: table; clear: both; }
 .score-badge { display: inline-block; background: #1a5276; color: #fff; padding: 0 8px; border-radius: 3px; font-size: 12px; margin-left: 6px; }
 .total-score { font-size: 18px; text-align: center; padding: 10px; margin: 10px 0; background: #eaf2f8; border-radius: 4px; }
-.password-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.5); z-index: 999; display: flex; align-items: center; justify-content: center; }
-.password-modal-inner { background: #fff; padding: 30px; border-radius: 8px; text-align: center; max-width: 320px; width: 90%; }
-.password-modal-inner h3 { margin-bottom: 12px; }
-.password-modal-inner input { padding: 6px 10px; font-size: 16px; width: 120px; text-align: center; margin-bottom: 12px; border: 1px solid #bbb; border-radius: 4px; outline: none; }
-.password-modal-inner input:focus { border-color: #2980b9; }
-.password-modal-inner .pm-btn { padding: 6px 16px; margin: 0 4px; cursor: pointer; border: none; border-radius: 4px; font-size: 14px; }
-.pm-confirm { background: #1a5276; color: #fff; }
-.pm-cancel { background: #bbb; color: #333; }
+
 </style>
 </head>
 <body>
@@ -171,9 +160,9 @@ body {
   <!-- ==================== HEADER ==================== -->
   <div class="header">
     <h1>高一化学（人教版必修第一册）</h1>
-    <div class="sub">第二章 &nbsp; 2.2 氯及其化合物 &nbsp; 课时训练卷</div>
+    <div class="sub">第二章 &nbsp; 2.2 氯及其化合物 &nbsp; 单元检测卷</div>
     <div class="info-bar">
-      <strong>总分：100分</strong> &nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp; 命题范围：2.2 氯及其化合物
+      <strong>总分：100分</strong> &nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp; 命题范围：第二章 2.2
     </div>
     <div class="student-info">
       <label>姓名：<input type="text" id="student-name" autocomplete="off"></label>
@@ -188,123 +177,133 @@ body {
     <p style="color:#666;font-size:13px;margin-bottom:8px;">每题只有一个选项符合题意。</p>
 
     <!-- q1 -->
-    <div class="question" data-qid="q1" data-type="single" data-answer="C">
+    <div class="question" data-qid="q1" data-type="single" data-answer="B">
       <div class="q-title">1.</div>
-      <div class="q-text">下列有关氯气物理性质的说法中，错误的是（　）</div>
+      <div class="q-text">下列关于氯气物理性质的叙述，正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q1" value="A"> A．黄绿色气体</label>
-        <label><input type="radio" name="q1" value="B"> B．有刺激性气味</label>
-        <label><input type="radio" name="q1" value="C"> C．密度比空气小</label>
-        <label><input type="radio" name="q1" value="D"> D．有毒</label>
+        <label><input type="radio" name="q1" value="A"> A．无色、有刺激性气味的气体，密度比空气小</label>
+        <label><input type="radio" name="q1" value="B"> B．黄绿色、有刺激性气味的气体，密度比空气大</label>
+        <label><input type="radio" name="q1" value="C"> C．黄绿色、无味的气体，密度比空气大</label>
+        <label><input type="radio" name="q1" value="D"> D．黄绿色、有刺激性气味的气体，密度比空气小</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 氯气（Cl₂）在通常情况下是一种黄绿色、有刺激性气味的气体，密度（约 3.17 g/L）比空气（约 1.29 g/L）大，能溶于水。A 错在"无色"，C 错在"无味"，D 错在"密度比空气小"。</div>
     </div>
 
     <!-- q2 -->
-    <div class="question" data-qid="q2" data-type="single" data-answer="B">
+    <div class="question" data-qid="q2" data-type="single" data-answer="C">
       <div class="q-title">2.</div>
-      <div class="q-text">下列氯化物中，不能由氯气与金属单质直接化合得到的是（　）</div>
+      <div class="q-text">实验室收集氯气应采用的方法是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q2" value="A"> A．NaCl</label>
-        <label><input type="radio" name="q2" value="B"> B．FeCl\(_2\)</label>
-        <label><input type="radio" name="q2" value="C"> C．CuCl\(_2\)</label>
-        <label><input type="radio" name="q2" value="D"> D．AlCl\(_3\)</label>
+        <label><input type="radio" name="q2" value="A"> A．排水法</label>
+        <label><input type="radio" name="q2" value="B"> B．向下排空气法</label>
+        <label><input type="radio" name="q2" value="C"> C．向上排空气法</label>
+        <label><input type="radio" name="q2" value="D"> D．以上均可</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>C — 氯气密度比空气大，故应采用向上排空气法收集；氯气能溶于水（1:2），不能用排水法收集。A 错在"排水法"（Cl₂ 能溶于水），B 错在"向下排空气法"（Cl₂ 密度比空气大）。</div>
     </div>
 
     <!-- q3 -->
-    <div class="question" data-qid="q3" data-type="single" data-answer="A">
+    <div class="question" data-qid="q3" data-type="single" data-answer="B">
       <div class="q-title">3.</div>
-      <div class="q-text">氢气在氯气中燃烧，观察到的现象是（　）</div>
+      <div class="q-text">铁丝在氯气中燃烧，生成的产物是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q3" value="A"> A．苍白色火焰，瓶口有白雾</label>
-        <label><input type="radio" name="q3" value="B"> B．黄色火焰，产生大量白烟</label>
-        <label><input type="radio" name="q3" value="C"> C．蓝色火焰，生成无色无味气体</label>
-        <label><input type="radio" name="q3" value="D"> D．剧烈燃烧，发生爆炸</label>
+        <label><input type="radio" name="q3" value="A"> A．FeCl\(_2\)</label>
+        <label><input type="radio" name="q3" value="B"> B．FeCl\(_3\)</label>
+        <label><input type="radio" name="q3" value="C"> C．FeCl\(_2\) 和 FeCl\(_3\) 的混合物</label>
+        <label><input type="radio" name="q3" value="D"> D．Fe 与 Cl\(_2\) 不反应</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 氯气是强氧化剂，与可变价态金属反应时生成高价氯化物。铁在氯气中燃烧：2Fe + 3Cl₂ \(\xrightarrow{\text{点燃}}\) 2FeCl₃，生成棕褐色烟（FeCl₃固体颗粒）。A 错（FeCl₂是铁与盐酸反应的产物），C 错（Cl₂只生成 FeCl₃），D 错（铁与氯气能剧烈反应）。</div>
     </div>
 
     <!-- q4 -->
     <div class="question" data-qid="q4" data-type="single" data-answer="A">
       <div class="q-title">4.</div>
-      <div class="q-text">新制氯水显浅黄绿色，说明氯水中含有（　）</div>
+      <div class="q-text">铜丝在氯气中燃烧的实验现象是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q4" value="A"> A．Cl\(_2\)</label>
-        <label><input type="radio" name="q4" value="B"> B．HCl</label>
-        <label><input type="radio" name="q4" value="C"> C．HClO</label>
-        <label><input type="radio" name="q4" value="D"> D．H\(^+\)</label>
+        <label><input type="radio" name="q4" value="A"> A．产生棕黄色的烟</label>
+        <label><input type="radio" name="q4" value="B"> B．产生白色的烟</label>
+        <label><input type="radio" name="q4" value="C"> C．产生蓝色的烟</label>
+        <label><input type="radio" name="q4" value="D"> D．产生大量白雾</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A — Cu + Cl₂ \(\xrightarrow{\text{点燃}}\) CuCl₂，产生棕黄色的烟（CuCl₂固体颗粒）。B 错在"白色"，C 错在"蓝色"，D 错在"白雾"（雾是小液滴，烟是固体颗粒）。</div>
     </div>
 
     <!-- q5 -->
-    <div class="question" data-qid="q5" data-type="single" data-answer="C">
+    <div class="question" data-qid="q5" data-type="single" data-answer="A">
       <div class="q-title">5.</div>
-      <div class="q-text">在反应 Cl\(_2\) + 2NaOH = NaCl + NaClO + H\(_2\)O 中，氯气的作用是（　）</div>
+      <div class="q-text">氢气在氯气中燃烧的现象是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q5" value="A"> A．只作氧化剂</label>
-        <label><input type="radio" name="q5" value="B"> B．只作还原剂</label>
-        <label><input type="radio" name="q5" value="C"> C．既作氧化剂又作还原剂</label>
-        <label><input type="radio" name="q5" value="D"> D．既不作氧化剂也不作还原剂</label>
+        <label><input type="radio" name="q5" value="A"> A．安静地燃烧，发出苍白色火焰，瓶口有白雾</label>
+        <label><input type="radio" name="q5" value="B"> B．剧烈燃烧，发出黄色火焰，瓶口有白烟</label>
+        <label><input type="radio" name="q5" value="C"> C．光照下发生爆炸，产生大量白烟</label>
+        <label><input type="radio" name="q5" value="D"> D．不燃烧，无明显现象</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A — H₂ + Cl₂ \(\xrightarrow{\text{点燃}}\) 2HCl，氢气在氯气中安静燃烧，发出苍白色火焰，生成的 HCl 气体在瓶口遇水蒸气形成盐酸小液滴，产生白雾。B 错在"黄色火焰"和"白烟"（应为白雾），C 是 H₂与 Cl₂混合光照的现象，D 明显错误。</div>
     </div>
 
     <!-- q6 -->
-    <div class="question" data-qid="q6" data-type="single" data-answer="D">
+    <div class="question" data-qid="q6" data-type="single" data-answer="C">
       <div class="q-title">6.</div>
-      <div class="q-text">下列关于次氯酸（HClO）的说法中，不正确的是（　）</div>
+      <div class="q-text">新制氯水中含有的微粒种类，下列说法正确的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q6" value="A"> A．具有弱酸性</label>
-        <label><input type="radio" name="q6" value="B"> B．具有强氧化性</label>
-        <label><input type="radio" name="q6" value="C"> C．具有漂白性</label>
-        <label><input type="radio" name="q6" value="D"> D．见光稳定，不易分解</label>
+        <label><input type="radio" name="q6" value="A"> A．只有 Cl\(_2\) 分子</label>
+        <label><input type="radio" name="q6" value="B"> B．只有 Cl\(_2\) 和 H\(_2\)O 分子</label>
+        <label><input type="radio" name="q6" value="C"> C．Cl\(_2\)、H\(_2\)O、HClO 分子及 H\(^+\)、Cl\(^-\)、ClO\(^-\) 等离子</label>
+        <label><input type="radio" name="q6" value="D"> D．只有 H\(^+\) 和 Cl\(^-\)</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>C — 氯气与水发生可逆反应：Cl₂ + H₂O ⇌ HCl + HClO，因此新制氯水中含有"三分子"（Cl₂、H₂O、HClO）和"三离子"（H⁺、Cl⁻、ClO⁻）。A 和 B 忽略了电离产物，D 忽略了 Cl₂ 分子和 HClO。</div>
     </div>
 
     <!-- q7 -->
-    <div class="question" data-qid="q7" data-type="single" data-answer="A">
+    <div class="question" data-qid="q7" data-type="single" data-answer="B">
       <div class="q-title">7.</div>
-      <div class="q-text">漂白粉的有效成分是（　）</div>
+      <div class="q-text">干燥的氯气不能使有色布条褪色，但氯水能使有色布条褪色，这是因为（　）</div>
       <div class="options">
-        <label><input type="radio" name="q7" value="A"> A．Ca(ClO)\(_2\)</label>
-        <label><input type="radio" name="q7" value="B"> B．CaCl\(_2\)</label>
-        <label><input type="radio" name="q7" value="C"> C．Cl\(_2\)</label>
-        <label><input type="radio" name="q7" value="D"> D．Ca(OH)\(_2\)</label>
+        <label><input type="radio" name="q7" value="A"> A．氯气与水反应生成的 HCl 具有漂白性</label>
+        <label><input type="radio" name="q7" value="B"> B．氯气与水反应生成的 HClO 具有强氧化性，能漂白</label>
+        <label><input type="radio" name="q7" value="C"> C．氯气本身具有漂白性，水起催化作用</label>
+        <label><input type="radio" name="q7" value="D"> D．氯气与水反应放热，热量使有色布条褪色</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 干燥的 Cl₂ 不具有漂白性，Cl₂ 与水反应生成的 HClO（次氯酸）具有强氧化性，能使有色物质氧化褪色。A 错（HCl 无漂白性），C 错（Cl₂ 本身无漂白性），D 错（放热不是褪色原因）。</div>
     </div>
 
     <!-- q8 -->
-    <div class="question" data-qid="q8" data-type="single" data-answer="B">
+    <div class="question" data-qid="q8" data-type="single" data-answer="A">
       <div class="q-title">8.</div>
-      <div class="q-text">漂白粉在空气中久置会失效，主要原因是（　）</div>
+      <div class="q-text">工业上制取漂白粉的化学原理是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q8" value="A"> A．CaCl\(_2\) 潮解</label>
-        <label><input type="radio" name="q8" value="B"> B．Ca(ClO)\(_2\) 与 CO\(_2\) 和 H\(_2\)O 反应生成 HClO，HClO 见光分解</label>
-        <label><input type="radio" name="q8" value="C"> C．CaCO\(_3\) 分解</label>
-        <label><input type="radio" name="q8" value="D"> D．Cl\(_2\) 挥发</label>
+        <label><input type="radio" name="q8" value="A"> A．Cl\(_2\) 与 Ca(OH)\(_2\)（石灰乳）反应</label>
+        <label><input type="radio" name="q8" value="B"> B．Cl\(_2\) 与 NaOH 溶液反应</label>
+        <label><input type="radio" name="q8" value="C"> C．Cl\(_2\) 与 CaCO\(_3\) 反应</label>
+        <label><input type="radio" name="q8" value="D"> D．Cl\(_2\) 与 CaO 反应</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A — 工业上常用 Cl₂ 与石灰乳（Ca(OH)₂ 悬浊液）反应制取漂白粉：2Cl₂ + 2Ca(OH)₂ = Ca(ClO)₂ + CaCl₂ + 2H₂O。B 是制备 84 消毒液（NaClO）的原理，C 和 D 均不能用于制漂白粉。</div>
     </div>
 
     <!-- q9 -->
-    <div class="question" data-qid="q9" data-type="single" data-answer="C">
+    <div class="question" data-qid="q9" data-type="single" data-answer="B">
       <div class="q-title">9.</div>
-      <div class="q-text">在反应 Cl\(_2\) + H\(_2\)O \(\rightleftharpoons\) HCl + HClO 中，氯气的作用是（　）</div>
+      <div class="q-text">漂白粉在空气中放置容易失效，其主要原因是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q9" value="A"> A．只作氧化剂</label>
-        <label><input type="radio" name="q9" value="B"> B．只作还原剂</label>
-        <label><input type="radio" name="q9" value="C"> C．既作氧化剂又作还原剂</label>
-        <label><input type="radio" name="q9" value="D"> D．既不作氧化剂也不作还原剂</label>
+        <label><input type="radio" name="q9" value="A"> A．Ca(ClO)\(_2\) 见光分解</label>
+        <label><input type="radio" name="q9" value="B"> B．Ca(ClO)\(_2\) 与空气中的 CO\(_2\) 和 H\(_2\)O 反应，生成的 HClO 分解</label>
+        <label><input type="radio" name="q9" value="C"> C．Ca(ClO)\(_2\) 与空气中的 O\(_2\) 反应</label>
+        <label><input type="radio" name="q9" value="D"> D．Ca(ClO)\(_2\) 受潮后结块变质</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 漂白粉在空气中失效分两步：① Ca(ClO)₂ + CO₂ + H₂O = CaCO₃ + 2HClO；② 2HClO \(\xrightarrow{\text{光}}\) 2HCl + O₂↑。A 错在"Ca(ClO)₂ 见光分解"（实际是 HClO 见光分解），C 和 D 也非主要原因。</div>
     </div>
 
     <!-- q10 -->
-    <div class="question" data-qid="q10" data-type="single" data-answer="C">
+    <div class="question" data-qid="q10" data-type="single" data-answer="D">
       <div class="q-title">10.</div>
-      <div class="q-text">下列关于氯气性质的说法中，正确的是（　）</div>
+      <div class="q-text">下列有关氯水的说法，错误的是（　）</div>
       <div class="options">
-        <label><input type="radio" name="q10" value="A"> A．干燥的氯气具有漂白性</label>
-        <label><input type="radio" name="q10" value="B"> B．氯气不能与金属铜反应</label>
-        <label><input type="radio" name="q10" value="C"> C．氯气与铁反应生成 FeCl\(_3\)</label>
-        <label><input type="radio" name="q10" value="D"> D．氯气是无色无味的气体</label>
+        <label><input type="radio" name="q10" value="A"> A．新制氯水呈浅黄绿色，说明 Cl\(_2\) 分子仍然存在</label>
+        <label><input type="radio" name="q10" value="B"> B．氯水具有酸性、氧化性和漂白性</label>
+        <label><input type="radio" name="q10" value="C"> C．久置氯水最终变为稀盐酸</label>
+        <label><input type="radio" name="q10" value="D"> D．氯水中 c(Cl\(_2\)) 始终保持不变</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>D — 新制氯水呈浅黄绿色是因为存在 Cl₂ 分子（A 正确）；氯水中含 H⁺（酸性）、Cl₂/HClO（氧化性）、HClO（漂白性，B 正确）；久置氯水中，HClO 分解促进 Cl₂ 与 H₂O 持续反应，最终成为稀盐酸（C 正确）。氯水久置过程中 Cl₂ 不断被消耗，c(Cl₂) 逐渐减小（D 错误）。</div>
     </div>
   </div>
 
@@ -316,37 +315,40 @@ body {
     <!-- q101 -->
     <div class="question" data-qid="q101" data-type="multi" data-answer='["A","B","C"]'>
       <div class="q-title">11.</div>
-      <div class="q-text">新制氯水中含有的分子有（　）</div>
+      <div class="q-text">关于新制氯水的成分和性质，下列说法正确的有（　）</div>
       <div class="options">
-        <label><input type="checkbox" name="q101" value="A"> A．Cl\(_2\)</label>
-        <label><input type="checkbox" name="q101" value="B"> B．HClO</label>
-        <label><input type="checkbox" name="q101" value="C"> C．H\(_2\)O</label>
-        <label><input type="checkbox" name="q101" value="D"> D．O\(_2\)</label>
+        <label><input type="checkbox" name="q101" value="A"> A．新制氯水中含有 Cl\(_2\)、H\(_2\)O、HClO 三种分子</label>
+        <label><input type="checkbox" name="q101" value="B"> B．新制氯水中含有 H\(^+\)、Cl\(^-\)、ClO\(^-\) 三种主要离子</label>
+        <label><input type="checkbox" name="q101" value="C"> C．新制氯水能使有色布条褪色，体现了 HClO 的漂白性</label>
+        <label><input type="checkbox" name="q101" value="D"> D．新制氯水中加入 NaHCO\(_3\) 产生气泡，说明含有大量 HCl 分子</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A, B, C — A 对：新制氯水中存在 Cl₂ + H₂O ⇌ HCl + HClO 平衡，含有三种分子。B 对：HCl 完全电离出 H⁺ 和 Cl⁻，HClO 部分电离出 H⁺ 和 ClO⁻，故三种主要离子均存在。C 对：HClO 具有强氧化性，能使有色布条褪色。D 错：加入 NaHCO₃ 产生气泡是与 H⁺ 反应所致（HCO₃⁻ + H⁺ = CO₂↑ + H₂O），并非因为存在 HCl 分子（HCl 是强电解质，完全电离）。</div>
     </div>
 
     <!-- q102 -->
-    <div class="question" data-qid="q102" data-type="multi" data-answer='["A","C","D"]'>
+    <div class="question" data-qid="q102" data-type="multi" data-answer='["B","C","D"]'>
       <div class="q-title">12.</div>
-      <div class="q-text">下列关于漂白粉的说法中，正确的有（　）</div>
+      <div class="q-text">下列关于氯气化学性质的说法，正确的有（　）</div>
       <div class="options">
-        <label><input type="checkbox" name="q102" value="A"> A．有效成分是 Ca(ClO)\(_2\)</label>
-        <label><input type="checkbox" name="q102" value="B"> B．漂白作用是 Ca(ClO)\(_2\) 直接发挥的</label>
-        <label><input type="checkbox" name="q102" value="C"> C．在空气中久置会失效</label>
-        <label><input type="checkbox" name="q102" value="D"> D．可用 Cl\(_2\) 与石灰乳反应制得</label>
+        <label><input type="checkbox" name="q102" value="A"> A．氯气与铁反应生成 FeCl\(_2\)</label>
+        <label><input type="checkbox" name="q102" value="B"> B．氯气与铜反应产生棕黄色的烟</label>
+        <label><input type="checkbox" name="q102" value="C"> C．氢气在氯气中燃烧发出苍白色火焰</label>
+        <label><input type="checkbox" name="q102" value="D"> D．氯气与水反应生成 HCl 和 HClO</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B, C, D — A 错：Cl₂ 是强氧化剂，与 Fe 反应生成 FeCl₃ 而非 FeCl₂。B 对：Cu + Cl₂ \(\xrightarrow{\text{点燃}}\) CuCl₂，产生的 CuCl₂ 固体颗粒形成棕黄色的烟。C 对：H₂ + Cl₂ \(\xrightarrow{\text{点燃}}\) 2HCl，发出苍白色火焰。D 对：Cl₂ + H₂O ⇌ HCl + HClO，这是氯水能同时具有酸性和漂白性的根本原因。</div>
     </div>
 
     <!-- q103 -->
-    <div class="question" data-qid="q103" data-type="multi" data-answer='["A","C","D"]'>
+    <div class="question" data-qid="q103" data-type="multi" data-answer='["B","C","D"]'>
       <div class="q-title">13.</div>
-      <div class="q-text">下列有关 Cl\(_2\) 的实验室制法的说法，正确的有（　）</div>
+      <div class="q-text">下列关于漂白粉的说法，正确的有（　）</div>
       <div class="options">
-        <label><input type="checkbox" name="q103" value="A"> A．用 MnO\(_2\) 与浓盐酸在加热条件下反应制取</label>
-        <label><input type="checkbox" name="q103" value="B"> B．收集 Cl\(_2\) 用向下排空气法</label>
-        <label><input type="checkbox" name="q103" value="C"> C．可用饱和食盐水除去 Cl\(_2\) 中混有的 HCl</label>
-        <label><input type="checkbox" name="q103" value="D"> D．Cl\(_2\) 有毒，制取时要在通风橱中进行</label>
+        <label><input type="checkbox" name="q103" value="A"> A．漂白粉的有效成分是 CaCl\(_2\) 和 Ca(ClO)\(_2\)</label>
+        <label><input type="checkbox" name="q103" value="B"> B．漂白粉的漂白原理是 Ca(ClO)\(_2\) 与酸反应生成有漂白性的 HClO</label>
+        <label><input type="checkbox" name="q103" value="C"> C．漂白粉在空气中会因 Ca(ClO)\(_2\) 与 CO\(_2\)、H\(_2\)O 反应而失效</label>
+        <label><input type="checkbox" name="q103" value="D"> D．漂白粉应密封、避光保存</label>
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B, C, D — A 错：漂白粉的主要成分是 CaCl₂ 和 Ca(ClO)₂，但有效成分仅为 Ca(ClO)₂。B 对：漂白粉的漂白原理是 Ca(ClO)₂ + CO₂ + H₂O = CaCO₃ + 2HClO，HClO 具有强氧化性起漂白作用。C 对：该反应消耗 Ca(ClO)₂，且生成的 HClO 易分解。D 对：密封防止 CO₂ 进入，避光防止 HClO 分解，干燥防止潮解。</div>
     </div>
   </div>
 
@@ -356,50 +358,62 @@ body {
 
     <!-- q11 (Display 14) -->
     <div class="question fill-question" data-qid="q11" data-type="fill">
-      <div class="q-title">14. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-title">14. <span style="font-weight:normal">氯气在通常情况下是一种</span></div>
       <div class="q-text">
-        Cl\(_2\) + H\(_2\)O \(\rightleftharpoons\) <input type="text" class="fill-blank" id="q11-0" data-answer="HCl" style="width:60px" autocomplete="off"> + <input type="text" class="fill-blank" id="q11-1" data-answer="HClO" style="width:70px" autocomplete="off">
+        <input type="text" class="fill-blank" id="q11-0" data-answer="黄绿" data-alt="黄绿色|浅黄绿色" style="width:55px" autocomplete="off">色、有
+        <input type="text" class="fill-blank" id="q11-1" data-answer="刺激性" data-alt="" style="width:70px" autocomplete="off">气味的气体。
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>黄绿（或黄绿色）；刺激性 — 氯气（Cl₂）的物理性质：黄绿色气体、有刺激性气味、密度比空气大、能溶于水（1 体积水约溶解 2 体积 Cl₂）。</div>
     </div>
 
     <!-- q12 (Display 15) -->
     <div class="question fill-question" data-qid="q12" data-type="fill">
-      <div class="q-title">15. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-title">15. <span style="font-weight:normal">新制氯水中含有的分子有 Cl\(_2\)、H\(_2\)O 和</span></div>
       <div class="q-text">
-        Cl\(_2\) + 2NaOH = <input type="text" class="fill-blank" id="q12-0" data-answer="NaCl" data-alt="氯化钠" style="width:70px" autocomplete="off"> + NaClO + H\(_2\)O
+        <input type="text" class="fill-blank" id="q12-0" data-answer="HClO" data-alt="次氯酸" style="width:70px" autocomplete="off">（填化学式）；含有的阳离子为
+        <input type="text" class="fill-blank" id="q12-1" data-answer="H⁺" data-alt="H+|氢离子" style="width:50px" autocomplete="off">（填离子符号）。
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>HClO；H⁺（或 H⁺） — 新制氯水中含有的分子（三分子）：Cl₂、H₂O、HClO；含有的离子（三离子）：H⁺、Cl⁻、ClO⁻。其中阳离子即为 H⁺（氢离子）。</div>
     </div>
 
     <!-- q13 (Display 16) -->
     <div class="question fill-question" data-qid="q13" data-type="fill">
-      <div class="q-title">16. <span style="font-weight:normal">漂白粉的有效成分是</span></div>
+      <div class="q-title">16. <span style="font-weight:normal">氯气与水反应的化学方程式为 Cl\(_2\) + H\(_2\)O = </span></div>
       <div class="q-text">
-        <input type="text" class="fill-blank" id="q13-0" data-answer="Ca(ClO)₂" data-alt="Ca(ClO)2|次氯酸钙" style="width:120px" autocomplete="off"> （填化学式）。
+        <input type="text" class="fill-blank" id="q13-0" data-answer="HCl" data-alt="盐酸|氯化氢" style="width:50px" autocomplete="off"> +
+        <input type="text" class="fill-blank" id="q13-1" data-answer="HClO" data-alt="次氯酸" style="width:60px" autocomplete="off">（填化学式）。
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>HCl；HClO — Cl₂ + H₂O ⇌ HCl + HClO，该反应为可逆反应，生成的 HCl 是强酸（完全电离），HClO 是弱酸（具有漂白性）。</div>
     </div>
 
     <!-- q14 (Display 17) -->
     <div class="question fill-question" data-qid="q14" data-type="fill">
-      <div class="q-title">17. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-title">17. <span style="font-weight:normal">氯气与 NaOH 溶液反应的化学方程式为 Cl\(_2\) + 2NaOH = </span></div>
       <div class="q-text">
-        2HClO \(\xrightarrow{见光}\) <input type="text" class="fill-blank" id="q14-0" data-answer="2HCl" data-alt="HCl+HCl" style="width:70px" autocomplete="off"> + <input type="text" class="fill-blank" id="q14-1" data-answer="O₂" data-alt="O2|O₂↑|氧气" style="width:60px" autocomplete="off">
+        <input type="text" class="fill-blank" id="q14-0" data-answer="NaCl" data-alt="氯化钠" style="width:60px" autocomplete="off"> +
+        <input type="text" class="fill-blank" id="q14-1" data-answer="NaClO" data-alt="次氯酸钠" style="width:70px" autocomplete="off"> + H\(_2\)O（填化学式）。
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>NaCl；NaClO — Cl₂ + 2NaOH = NaCl + NaClO + H₂O，该反应生成的 NaClO（次氯酸钠）是 84 消毒液的有效成分，与漂白粉的 Ca(ClO)₂ 漂白原理类似。</div>
     </div>
 
     <!-- q15 (Display 18) -->
     <div class="question fill-question" data-qid="q15" data-type="fill">
-      <div class="q-title">18. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-title">18. <span style="font-weight:normal">漂白粉的有效成分是</span></div>
       <div class="q-text">
-        2Cl\(_2\) + 2Ca(OH)\(_2\) = <input type="text" class="fill-blank" id="q15-0" data-answer="CaCl₂" data-alt="CaCl2|氯化钙" style="width:80px" autocomplete="off"> + Ca(ClO)\(_2\) + 2H\(_2\)O
+        <input type="text" class="fill-blank" id="q15-0" data-answer="Ca(ClO)₂" data-alt="Ca(ClO)2|次氯酸钙" style="width:85px" autocomplete="off">（填化学式）；工业上制备漂白粉所用的原料是 Cl\(_2\) 和
+        <input type="text" class="fill-blank" id="q15-1" data-answer="Ca(OH)₂" data-alt="Ca(OH)2|氢氧化钙|石灰乳" style="width:85px" autocomplete="off">（填化学式）。
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>Ca(ClO)₂（或 Ca(ClO)₂）；Ca(OH)₂（或 Ca(OH)₂） — 工业上制备漂白粉：2Cl₂ + 2Ca(OH)₂（石灰乳）= Ca(ClO)₂ + CaCl₂ + 2H₂O。有效成分是 Ca(ClO)₂（次氯酸钙）。注意石灰乳是 Ca(OH)₂ 悬浊液，不是澄清石灰水。</div>
     </div>
 
     <!-- q16 (Display 19) -->
     <div class="question fill-question" data-qid="q16" data-type="fill">
-      <div class="q-title">19. <span style="font-weight:normal">补全下列化学方程式：</span></div>
+      <div class="q-title">19. <span style="font-weight:normal">实验室检验 Cl\(^-\) 的方法是：向待测液中滴加</span></div>
       <div class="q-text">
-        Ca(ClO)\(_2\) + CO\(_2\) + H\(_2\)O = CaCO\(_3\)\(\downarrow\) + <input type="text" class="fill-blank" id="q16-0" data-answer="2HClO" data-alt="HClO+HClO|2HClO" style="width:80px" autocomplete="off">
+        <input type="text" class="fill-blank" id="q16-0" data-answer="AgNO₃" data-alt="AgNO3|硝酸银" style="width:70px" autocomplete="off">溶液（填化学式）和稀 HNO\(_3\)，若产生
+        <input type="text" class="fill-blank" id="q16-1" data-answer="白" data-alt="白色" style="width:40px" autocomplete="off">色沉淀，则证明含有 Cl\(^-\)。
       </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>AgNO₃（或 AgNO₃）；白 — Cl⁻ 的检验方法：向待测液中滴加 AgNO₃ 溶液，若产生白色沉淀（AgCl），再滴加稀 HNO₃，沉淀不溶解，则证明含有 Cl⁻。离子方程式：Ag⁺ + Cl⁻ = AgCl↓（白色）。加入稀 HNO₃ 的目的是排除 CO₃²⁻ 等干扰（Ag₂CO₃ 沉淀可溶于稀 HNO₃）。</div>
     </div>
   </div>
 
@@ -409,50 +423,90 @@ body {
 
     <!-- q17 (Display 20) -->
     <div class="question calc-question" data-qid="q17" data-type="calc">
-      <div class="q-title">20. <span style="font-weight:normal">（10分）氯气（Cl\(_2\)）是一种重要的非金属单质。请回答下列问题：</span></div>
-      <div class="sub-q">(1)（2分）写出氯气的三条物理性质。</div>
-      <textarea id="q17-1" placeholder="(1)" style="min-height:50px"></textarea>
-      <div class="sub-q">(2)（2分）写出氯气与铁在点燃条件下反应的化学方程式。</div>
-      <textarea id="q17-2" placeholder="(2)" style="min-height:50px"></textarea>
-      <div class="sub-q">(3)（3分）写出氯气与水反应的化学方程式，并指出氯气在该反应中充当氧化剂还是还原剂。</div>
-      <textarea id="q17-3" placeholder="(3)" style="min-height:60px"></textarea>
-      <div class="sub-q">(4)（3分）新制氯水显浅黄绿色，向其中滴加紫色石蕊试液，先变红后褪色。请解释上述现象。</div>
-      <textarea id="q17-4" placeholder="(4)" style="min-height:60px"></textarea>
+      <div class="q-title">20. <span style="font-weight:normal">（10分）氯气与金属及非金属的反应</span></div>
+      <div class="sub-q">(1)（3分）写出铁在氯气中燃烧的化学方程式，并描述实验现象。</div>
+      <textarea id="q17-1" placeholder="请写出化学方程式和现象…"></textarea>
+      <div class="sub-q">(2)（3分）写出氢气在氯气中燃烧的化学方程式，并描述实验现象。</div>
+      <textarea id="q17-2" placeholder="请写出化学方程式和现象…"></textarea>
+      <div class="sub-q">(3)（4分）将 0.3 mol Cl\(_2\) 通入足量铁粉中充分反应，理论上生成 FeCl\(_3\) 的物质的量为
+        <input type="text" id="q17-3" data-answer="0.2" data-alt="0.2mol|0.2 mol" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> mol；参与反应的 Fe 的物质的量为
+        <input type="text" id="q17-4" data-answer="0.2" data-alt="0.2mol|0.2 mol" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> mol。</div>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1) 2Fe + 3Cl₂ \(\xrightarrow{\text{点燃}}\) 2FeCl₃（2分）<br>
+        现象：铁丝在氯气中剧烈燃烧，产生棕褐色的烟（FeCl₃固体颗粒）。（1分）<br>
+        (2) H₂ + Cl₂ \(\xrightarrow{\text{点燃}}\) 2HCl（2分）<br>
+        现象：氢气在氯气中安静地燃烧，发出苍白色火焰，瓶口有白雾（HCl 气体遇水蒸气形成的盐酸小液滴）。（1分）<br>
+        (3) 0.2 mol（2分）；0.2 mol（2分）<br>
+        计算：2Fe + 3Cl₂ → 2FeCl₃，n(FeCl₃) = 2/3 × n(Cl₂) = 2/3 × 0.3 = 0.2 mol，n(Fe) = n(FeCl₃) = 0.2 mol
+      </div>
     </div>
 
     <!-- q18 (Display 21) -->
     <div class="question calc-question" data-qid="q18" data-type="calc">
-      <div class="q-title">21. <span style="font-weight:normal">（10分）漂白粉是生活中常用的消毒剂。请回答下列问题：</span></div>
-      <div class="sub-q">(1)（3分）写出工业上制备漂白粉的化学方程式。</div>
+      <div class="q-title">21. <span style="font-weight:normal">（10分）氯水的成分与性质探究</span></div>
+      <div class="sub-q">(1)（3分）写出 Cl\(_2\) 与 H\(_2\)O 反应的化学方程式。</div>
       <textarea id="q18-1" placeholder="(1)" style="min-height:50px"></textarea>
-      <div class="sub-q">(2)（2分）漂白粉的有效成分是什么？写出漂白粉在空气中起漂白作用的原理（用化学方程式表示）。</div>
-      <textarea id="q18-2" placeholder="(2)" style="min-height:60px"></textarea>
-      <div class="sub-q">(3)（3分）漂白粉为什么在空气中久置会失效？</div>
-      <textarea id="q18-3" placeholder="(3)" style="min-height:50px"></textarea>
-      <div class="sub-q">(4)（2分）新制氯水和久置氯水在成分上有什么主要区别？</div>
-      <textarea id="q18-4" placeholder="(4)" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（3分）向新制氯水中滴加紫色石蕊试液，先变红后褪色，请解释原因。</div>
+      <textarea id="q18-2" placeholder="请解释…" style="min-height:70px"></textarea>
+      <div class="sub-q">(3)（4分）新制氯水在阳光下久置后，最终溶液中的溶质是
+        <input type="text" id="q18-3" data-answer="HCl" data-alt="盐酸|稀盐酸|氯化氢" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off">（填化学式）；写出久置过程中发生分解反应的化学方程式：
+      </div>
+      <textarea id="q18-4" placeholder="分解反应的化学方程式…" style="min-height:50px"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1) Cl₂ + H₂O ⇌ HCl + HClO（3分）<br>
+        (2) 原因：氯水中含 H⁺，使石蕊试液变红（酸性）；（1.5分）<br>
+        氯水中含 HClO，具有强氧化性，将有色物质氧化褪色（漂白性）。（1.5分）<br>
+        (3) HCl（2分，盐酸或稀盐酸均可）<br>
+        HClO 分解的化学方程式：2HClO \(\xrightarrow{\text{光照}}\) 2HCl + O₂↑（2分）<br>
+        解释：久置过程中，Cl₂ 与 H₂O 持续反应，HClO 不断分解（2HClO → 2HCl + O₂），促使平衡 Cl₂ + H₂O ⇌ HCl + HClO 正向移动，最终 Cl₂ 完全转化为 HCl，溶液变为稀盐酸。
+      </div>
     </div>
 
     <!-- q19 (Display 22) -->
     <div class="question calc-question" data-qid="q19" data-type="calc">
-      <div class="q-title">22. <span style="font-weight:normal">（10分）分析氯气（Cl\(_2\)）在不同反应中的作用。</span></div>
-      <div class="q-text">反应①：2Na + Cl\(_2\) \(\xrightarrow{点燃}\) 2NaCl &nbsp;&nbsp; 反应②：Cl\(_2\) + H\(_2\)O \(\rightleftharpoons\) HCl + HClO</div>
-      <div class="q-text" style="margin-top:4px;">反应③：Cl\(_2\) + 2NaOH = NaCl + NaClO + H\(_2\)O &nbsp;&nbsp; 反应④：2Cl\(_2\) + 2Ca(OH)\(_2\) = CaCl\(_2\) + Ca(ClO)\(_2\) + 2H\(_2\)O</div>
-      <div class="sub-q" style="margin-top:8px;">(1)（2分）在反应①中，氯元素化合价从 <input type="text" id="q19-val1" data-answer="0" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价变为 <input type="text" id="q19-val2" data-answer="-1" data-alt="﹣1" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价，Cl\(_2\) 被 <input type="text" id="q19-role1" data-answer="还原" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;text-align:center" autocomplete="off">（填"氧化"或"还原"），作 <input type="text" id="q19-role2" data-answer="氧化剂" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;text-align:center" autocomplete="off"> 剂。</div>
-      <div class="sub-q">(2)（2分）在反应②中，Cl\(_2\) 既作氧化剂又作还原剂，其中 Cl 的化合价从 0 价分别变为 <input type="text" id="q19-val3" data-answer="-1" data-alt="﹣1" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价和 <input type="text" id="q19-val4" data-answer="+1" data-alt="﹢1|1" style="border:none;border-bottom:1px solid #333;width:30px;padding:0 4px;text-align:center" autocomplete="off"> 价。</div>
-      <div class="sub-q">(3)（3分）反应③与反应④均为氯气的歧化反应。若有 1 mol Cl\(_2\) 参加反应③，转移电子的物质的量为 <input type="text" id="q19-mol" data-answer="1" data-alt="1mol|1 mol" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;text-align:center" autocomplete="off"> mol。</div>
-      <div class="sub-q">(4)（3分）在反应④中，氧化产物是 <input type="text" id="q19-oxp" data-answer="Ca(ClO)₂" data-alt="Ca(ClO)2|次氯酸钙" style="border:none;border-bottom:1px solid #333;width:100px;padding:0 4px;text-align:center;font-family:inherit" autocomplete="off">，还原产物是 <input type="text" id="q19-rep" data-answer="CaCl₂" data-alt="CaCl2|氯化钙" style="border:none;border-bottom:1px solid #333;width:80px;padding:0 4px;text-align:center;font-family:inherit" autocomplete="off">（填化学式）。</div>
+      <div class="q-title">22. <span style="font-weight:normal">（10分）漂白粉的制备、漂白原理与失效</span></div>
+      <div class="sub-q">(1)（3分）写出工业上利用 Cl\(_2\) 与石灰乳反应制备漂白粉的化学方程式。</div>
+      <textarea id="q19-1" placeholder="化学方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（3分）写出漂白粉在空气中起漂白作用的化学方程式（Ca(ClO)\(_2\) 与 CO\(_2\) 和 H\(_2\)O 反应）。</div>
+      <textarea id="q19-2" placeholder="化学方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(3)（4分）漂白粉在空气中长期放置会完全失效。写出失效过程中 HClO 分解的化学方程式，并说明为什么漂白粉需要密封、避光保存。</div>
+      <textarea id="q19-3" placeholder="请写出化学方程式并解释…" style="min-height:70px"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1) 2Cl₂ + 2Ca(OH)₂（石灰乳）= Ca(ClO)₂ + CaCl₂ + 2H₂O（3分）<br>
+        (2) Ca(ClO)₂ + CO₂ + H₂O = CaCO₃↓ + 2HClO（3分）<br>
+        (3) HClO 分解：2HClO \(\xrightarrow{\text{光照}}\) 2HCl + O₂↑（2分）<br>
+        说明（2分）：<br>
+        ① 在空气中，Ca(ClO)₂ 与 CO₂、H₂O 反应生成 HClO，HClO 见光分解，使漂白粉失去漂白效果。<br>
+        ② 同时，分解产生的 HCl 会与未分解的 CaCO₃ 反应：CaCO₃ + 2HCl = CaCl₂ + CO₂↑ + H₂O，使漂白粉结块变质。<br>
+        ③ 因此漂白粉需密封保存（防止 CO₂ 进入）、避光保存（防止 HClO 分解）、干燥保存（防止潮解）。
+      </div>
     </div>
 
     <!-- q20 (Display 23) -->
     <div class="question calc-question" data-qid="q20" data-type="calc">
-      <div class="q-title">23. <span style="font-weight:normal">（10分）某实验小组对新制氯水的成分进行探究，请回答下列问题：</span></div>
-      <div class="sub-q">(1)（2分）新制氯水呈浅黄绿色，说明其中含有 <input type="text" id="q20-cl2" data-answer="Cl₂" data-alt="Cl2|氯气" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off">（填化学式）。</div>
-      <div class="sub-q">(2)（2分）向新制氯水中滴加紫色石蕊试液，先变红后褪色。变红说明含有 <input type="text" id="q20-h" data-answer="H⁺" data-alt="H+|H离子|盐酸|HCl" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">（填离子符号），褪色说明含有 <input type="text" id="q20-hclo" data-answer="HClO" data-alt="次氯酸" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off">（填化学式）。</div>
-      <div class="sub-q">(3)（3分）向新制氯水中加入 AgNO\(_3\) 溶液，产生白色沉淀。写出该反应的离子方程式：</div>
-      <textarea id="q20-3" placeholder="(3)" style="min-height:50px"></textarea>
-      <div class="sub-q">(4)（3分）将新制氯水在阳光下放置一段时间，溶液中的黄绿色逐渐褪去，写出发生反应的化学方程式：</div>
-      <textarea id="q20-4" placeholder="(4)" style="min-height:50px"></textarea>
+      <div class="q-title">23. <span style="font-weight:normal">（10分）Cl\(^-\) 检验与氯气性质综合推断</span></div>
+      <div class="sub-q">(1)（2分）简述实验室检验 Cl\(^-\) 的实验操作方法及现象。</div>
+      <textarea id="q20-1" placeholder="操作方法及现象…" style="min-height:50px"></textarea>
+      <div class="sub-q">(2)（4分）某无色透明溶液可能含有 Cl\(^-\)、CO\(_3^{2-}\) 中的一种或两种。进行如下实验：<br>
+        &nbsp;&nbsp;① 取少量溶液，滴加过量稀 HNO\(_3\)，产生无色气泡 → 证明含有
+        <input type="text" id="q20-2" data-answer="CO₃²⁻" data-alt="CO3^2-|CO3²⁻|碳酸根" style="border:none;border-bottom:1px solid #333;width:70px;padding:0 4px;font-family:inherit" autocomplete="off">（填离子符号）<br>
+        &nbsp;&nbsp;② 继续向试管中滴加 AgNO\(_3\) 溶液，产生白色沉淀 → 证明含有
+        <input type="text" id="q20-3" data-answer="Cl⁻" data-alt="Cl-|氯离子" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">（填离子符号）<br>
+        &nbsp;&nbsp;③ 写出产生白色沉淀的离子方程式：
+      </div>
+      <textarea id="q20-4" placeholder="离子方程式…" style="min-height:50px"></textarea>
+      <div class="sub-q">(3)（4分）将 Cl\(_2\) 通入滴有紫色石蕊试液的蒸馏水中，描述可能观察到的现象，并写出 Cl\(_2\) 与 H\(_2\)O 反应的化学方程式，结合方程式解释产生该现象的原因。</div>
+      <textarea id="q20-5" placeholder="描述现象、写方程式并解释…" style="min-height:80px"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1)（2分）取少量待测液于试管中，滴加几滴 AgNO₃ 溶液，若产生白色沉淀，再滴加稀 HNO₃，沉淀不溶解，则证明原溶液中含有 Cl⁻。<br>
+        离子方程式：Ag⁺ + Cl⁻ = AgCl↓（白色）<br>
+        (2)（4分）① CO₃²⁻（1分）；② Cl⁻（1分）<br>
+        ③ Ag⁺ + Cl⁻ = AgCl↓（2分）<br>
+        分析：滴加稀 HNO₃ 产生无色气泡（CO₂），证明有 CO₃²⁻；HNO₃ 过量可排除 CO₃²⁻ 干扰（Ag₂CO₃ 溶于稀 HNO₃），继续滴加 AgNO₃ 产生白色沉淀（AgCl），证明有 Cl⁻。<br>
+        (3)（4分）现象：紫色石蕊试液先变红后褪色。（1分）<br>
+        化学方程式：Cl₂ + H₂O ⇌ HCl + HClO（1分）<br>
+        解释：Cl₂ 与水反应生成 HCl 和 HClO。HCl 完全电离出 H⁺，使石蕊变红（酸性）；HClO 具有强氧化性，将红色物质氧化褪色（漂白性）。（2分）
+      </div>
     </div>
   </div>
 
@@ -460,117 +514,34 @@ body {
   <div class="btn-group no-print">
     <button class="btn-submit" onclick="submitPaper()">提交试卷</button>
     <button class="btn-clear" onclick="clearAll()">清空答案</button>
-    <button class="btn-reveal" onclick="showPasswordModal()">查看答案</button>
+    <button class="btn-answer" onclick="showAnswers()" style="background:#e8a317;color:#fff;border:none;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;">显示答案</button>
   </div>
 
   <div id="result"></div>
 
-  <!-- ==================== ANSWER SECTION ==================== -->
-  <div class="answer-section" id="answer-section">
-    <h3>📖 参考答案与解析</h3>
-
-    <div class="answer-item"><span class="ans-label">一、单选题</span></div>
-    <div class="answer-item"><span class="ans-label">1.</span> <span class="ans-key">C</span> —— <span class="ans-desc">氯气密度比空气大（约为空气的2.5倍），故C项"密度比空气小"错误。</span></div>
-    <div class="answer-item"><span class="ans-label">2.</span> <span class="ans-key">B</span> —— <span class="ans-desc">氯气具有强氧化性，与铁反应生成 FeCl₃ 而非 FeCl₂。FeCl₂ 不能由 Cl₂ 与 Fe 直接化合得到。</span></div>
-    <div class="answer-item"><span class="ans-label">3.</span> <span class="ans-key">A</span> —— <span class="ans-desc">H₂ 在 Cl₂ 中燃烧发出苍白色火焰，生成的 HCl 与空气中水蒸气结合形成盐酸小液滴，产生白雾。</span></div>
-    <div class="answer-item"><span class="ans-label">4.</span> <span class="ans-key">A</span> —— <span class="ans-desc">Cl₂ 溶于水，部分与水反应，氯水呈浅黄绿色是因为其中含有 Cl₂ 分子。</span></div>
-    <div class="answer-item"><span class="ans-label">5.</span> <span class="ans-key">C</span> —— <span class="ans-desc">反应中 Cl₂ 中的 Cl 化合价从 0 价分别变为 -1 价（NaCl）和 +1 价（NaClO），故 Cl₂ 既作氧化剂又作还原剂。</span></div>
-    <div class="answer-item"><span class="ans-label">6.</span> <span class="ans-key">D</span> —— <span class="ans-desc">HClO 不稳定，见光易分解（2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑），故 D 项"见光稳定"错误。</span></div>
-    <div class="answer-item"><span class="ans-label">7.</span> <span class="ans-key">A</span> —— <span class="ans-desc">漂白粉是 CaCl₂ 和 Ca(ClO)₂ 的混合物，有效成分是 Ca(ClO)₂（次氯酸钙）。</span></div>
-    <div class="answer-item"><span class="ans-label">8.</span> <span class="ans-key">B</span> —— <span class="ans-desc">漂白粉在空气中与 CO₂ 和 H₂O 反应生成 HClO，HClO 见光分解，导致漂白粉失效。</span></div>
-    <div class="answer-item"><span class="ans-label">9.</span> <span class="ans-key">C</span> —— <span class="ans-desc">Cl₂ + H₂O ⇌ HCl + HClO 中，Cl 从 0 价分别变为 -1 价（HCl）和 +1 价（HClO），Cl₂ 既被氧化又被还原。</span></div>
-    <div class="answer-item"><span class="ans-label">10.</span> <span class="ans-key">C</span> —— <span class="ans-desc">A错，干燥 Cl₂ 无漂白性，起漂白作用的是 HClO；B错，Cl₂ 能与 Cu 反应生成 CuCl₂；C对，Cl₂ 与 Fe 生成 FeCl₃；D错，Cl₂ 是黄绿色气体。</span></div>
-
-    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">二、多选题</span></div>
-    <div class="answer-item"><span class="ans-label">11.</span> <span class="ans-key">A, B, C</span> —— <span class="ans-desc">新制氯水中含有的分子有 Cl₂、H₂O、HClO。O₂ 是 HClO 见光分解的产物，新制氯水中 O₂ 极少。</span></div>
-    <div class="answer-item"><span class="ans-label">12.</span> <span class="ans-key">A, C, D</span> —— <span class="ans-desc">A对，有效成分为 Ca(ClO)₂。B错，漂白作用是 Ca(ClO)₂ 与 CO₂、H₂O 反应生成的 HClO 发挥的。C对，空气中 CO₂ 和 H₂O 使漂白粉逐渐失效。D对，工业上用 Cl₂ 与石灰乳反应制漂白粉。</span></div>
-    <div class="answer-item"><span class="ans-label">13.</span> <span class="ans-key">A, C, D</span> —— <span class="ans-desc">A对，MnO₂ + 4HCl(浓) \(\xrightarrow{\triangle}\) MnCl₂ + Cl₂↑ + 2H₂O。B错，Cl₂ 密度比空气大，应用向上排空气法。C对，饱和食盐水可吸收 HCl 而 Cl₂ 在其中的溶解度很小。D对，Cl₂ 有毒，需在通风橱中操作。</span></div>
-
-    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">三、填空题</span></div>
-    <div class="answer-item"><span class="ans-label">14.</span> <span class="ans-key">HCl；HClO</span> —— <span class="ans-desc">Cl₂ + H₂O ⇌ HCl + HClO（可逆反应，次氯酸为弱酸）。</span></div>
-    <div class="answer-item"><span class="ans-label">15.</span> <span class="ans-key">NaCl</span> —— <span class="ans-desc">Cl₂ + 2NaOH = NaCl + NaClO + H₂O，所得溶液称为漂白液。</span></div>
-    <div class="answer-item"><span class="ans-label">16.</span> <span class="ans-key">Ca(ClO)₂（次氯酸钙）</span> —— <span class="ans-desc">漂白粉是 CaCl₂ 和 Ca(ClO)₂ 的混合物，其中有效成分为 Ca(ClO)₂。</span></div>
-    <div class="answer-item"><span class="ans-label">17.</span> <span class="ans-key">2HCl；O₂</span> —— <span class="ans-desc">2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑，HClO 不稳定，见光分解。</span></div>
-    <div class="answer-item"><span class="ans-label">18.</span> <span class="ans-key">CaCl₂（氯化钙）</span> —— <span class="ans-desc">2Cl₂ + 2Ca(OH)₂ = CaCl₂ + Ca(ClO)₂ + 2H₂O，工业制漂白粉。</span></div>
-    <div class="answer-item"><span class="ans-label">19.</span> <span class="ans-key">2HClO</span> —— <span class="ans-desc">Ca(ClO)₂ + CO₂ + H₂O = CaCO₃↓ + 2HClO，漂白粉的漂白原理。</span></div>
-
-    <div class="answer-item" style="margin-top:10px;"><span class="ans-label">四、解答题（参考解答）</span></div>
-    <div class="answer-item">
-      <span class="ans-label">20.</span> <span class="ans-key">（10分）</span>
-      <div class="ans-desc">
-        (1)（2分）氯气为黄绿色气体、有刺激性气味、有毒、密度比空气大（答出任意三条即可）。<br>
-        (2)（2分）2Fe + 3Cl₂ \(\xrightarrow{点燃}\) 2FeCl₃（未写条件扣1分）。<br>
-        (3)（3分）Cl₂ + H₂O ⇌ HCl + HClO（1分）。该反应中 Cl 元素化合价从 0 分别变为 -1 和 +1，Cl₂ 既作氧化剂又作还原剂（2分）。<br>
-        (4)（3分）氯水显浅黄绿色是因为含有 Cl₂ 分子（1分）。滴入石蕊试液先变红，说明氯水中含 H⁺（酸性）（1分）；后褪色，说明氯水中含 HClO（漂白性）（1分）。
-      </div>
-    </div>
-    <div class="answer-item">
-      <span class="ans-label">21.</span> <span class="ans-key">（10分）</span>
-      <div class="ans-desc">
-        (1)（3分）2Cl₂ + 2Ca(OH)₂ = CaCl₂ + Ca(ClO)₂ + 2H₂O（未写条件扣1分）。<br>
-        (2)（2分）有效成分：Ca(ClO)₂（次氯酸钙）。漂白原理：Ca(ClO)₂ + CO₂ + H₂O = CaCO₃↓ + 2HClO（1分），生成的 HClO 具有强氧化性，起漂白消毒作用（1分）。<br>
-        (3)（3分）漂白粉在空气中与 CO₂ 和 H₂O 反应生成的 HClO 不稳定（1分），见光易分解：2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑（2分），导致漂白粉失效。<br>
-        (4)（2分）新制氯水含 Cl₂、H₂O、HClO、H⁺、Cl⁻、ClO⁻ 等多种微粒（1分）；久置氯水由于 HClO 分解，变为稀盐酸，主要含 H⁺ 和 Cl⁻（1分）。
-      </div>
-    </div>
-    <div class="answer-item">
-      <span class="ans-label">22.</span> <span class="ans-key">（10分）</span>
-      <div class="ans-desc">
-        (1)（2分）0；-1；还原；氧化（每个空0.5分）。<br>
-        (2)（2分）-1（1分）；+1（1分）。<br>
-        (3)（3分）1（或 1mol）。反应③中只有一半 Cl 被氧化，1 mol Cl₂ 参与反应转移 1 mol 电子。<br>
-        (4)（3分）氧化产物：Ca(ClO)₂（1.5分，Cl 从 0→+1，被氧化）；还原产物：CaCl₂（1.5分，Cl 从 0→-1，被还原）。
-      </div>
-    </div>
-    <div class="answer-item">
-      <span class="ans-label">23.</span> <span class="ans-key">（10分）</span>
-      <div class="ans-desc">
-        (1)（2分）Cl₂（氯气）。<br>
-        (2)（2分）H⁺（氢离子，1分）；HClO（次氯酸，1分）。<br>
-        (3)（3分）Cl⁻ + Ag⁺ = AgCl↓（或 Ag⁺ + Cl⁻ = AgCl↓，3分；写 AgNO₃ + HCl = AgCl↓ + HNO₃ 给1分）。<br>
-        (4)（3分）2HClO \(\xrightarrow{见光}\) 2HCl + O₂↑（3分，未写条件扣1分）。HClO 见光分解，Cl₂ 不断与水反应被消耗，黄绿色褪去。
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ==================== PASSWORD MODAL ==================== -->
-<div id="password-modal" class="password-modal" style="display:none">
-  <div class="password-modal-inner">
-    <h3>🔒 请输入密码查看答案</h3>
-    <p style="font-size:13px;color:#888;margin-bottom:10px;">（请联系老师获取密码）</p>
-    <input type="password" id="pwd-input" maxlength="10" onkeydown="if(event.key==='Enter')checkPassword()" autocomplete="off">
-    <div>
-      <button class="pm-btn pm-confirm" onclick="checkPassword()">确认</button>
-      <button class="pm-btn pm-cancel" onclick="closePasswordModal()">取消</button>
-    </div>
-    <p id="pwd-error" style="color:#e74c3c;font-size:13px;margin-top:8px;display:none">密码错误，请重试</p>
-  </div>
 </div>
 
 <script>
 /* ============================================================
    Scoring Engine — Standard Three-part Configuration
    ============================================================ */
-const PAPER_ID = 'chem_grade10_ch2_s2';
-const ANSWER_PASSWORD = '2641';
+const PAPER_ID = 'chem_grade10_ch2_2';
 
 const ANSWER_KEY = {
   // Single choice
-  q1: 'C', q2: 'B', q3: 'A', q4: 'A', q5: 'C',
-  q6: 'D', q7: 'A', q8: 'B', q9: 'C', q10: 'C',
+  q1: 'B', q2: 'C', q3: 'B', q4: 'A', q5: 'A',
+  q6: 'C', q7: 'B', q8: 'A', q9: 'B', q10: 'D',
   // Multi choice
   q101: ['A', 'B', 'C'],
-  q102: ['A', 'C', 'D'],
-  q103: ['A', 'C', 'D'],
+  q102: ['B', 'C', 'D'],
+  q103: ['B', 'C', 'D'],
   // Fill-in
-  q11: ['HCl', 'HClO'],
-  q12: ['NaCl'],
-  q13: ['Ca(ClO)₂'],
-  q14: ['2HCl', 'O₂'],
-  q15: ['CaCl₂'],
-  q16: ['2HClO']
+  q11: ['黄绿', '刺激性'],
+  q12: ['HClO', 'H⁺'],
+  q13: ['HCl', 'HClO'],
+  q14: ['NaCl', 'NaClO'],
+  q15: ['Ca(ClO)₂', 'Ca(OH)₂'],
+  q16: ['AgNO₃', '白']
 };
 
 const SCORE_MAP = {
@@ -607,7 +578,7 @@ function norm(s) {
     .replace(/\s+/g, '')
     .replace(/³/g, '3').replace(/₂/g, '2').replace(/₃/g, '3').replace(/₄/g, '4')
     .replace(/²/g, '2').replace(/⁺/g, '+').replace(/⁻/g, '-')
-    .replace(/→/g, '=').replace(/↑/g, '').replace(/↓/g, '')
+    .replace(/⁼/g, '=').replace(/↑/g, '').replace(/↓/g, '')
     .toLowerCase();
 }
 
@@ -754,37 +725,25 @@ function submitPaper() {
   resultEl.className = 'show ' + (pct >= 60 ? 'pass' : 'fail');
   resultEl.innerHTML = '📊 客观题得分：<strong>' + totalScore + '</strong> / ' + maxAuto +
     ' （' + pct + '%）' +
-    '<br><span style="font-size:14px;font-weight:normal;">主观题（解答题20-23题，共40分）请老师手动批改。</span>' +
-    '<br><span style="font-size:14px;font-weight:normal;">总分 = 客观题 ' + totalScore + ' + 主观题（待批改）</span>';
+    '<br><span style="font-size:14px;font-weight:normal;">主观题（解答题20-23题，共40分）请老师手动批改</span>' +
+    '<br><span style="font-size:14px;font-weight:normal;">总分 = 客观题' + totalScore + ' + 主观题（待批改）</span>';
 
   // Scroll to result
   resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 /* ============================================================
-   Password & Answer Reveal
+   Answer Reveal (inline)
    ============================================================ */
 
-function showPasswordModal() {
-  document.getElementById('password-modal').style.display = 'flex';
-  document.getElementById('pwd-input').value = '';
-  document.getElementById('pwd-error').style.display = 'none';
-  document.getElementById('pwd-input').focus();
-}
-
-function closePasswordModal() {
-  document.getElementById('password-modal').style.display = 'none';
-}
-
-function checkPassword() {
-  const pwd = document.getElementById('pwd-input').value;
-  if (pwd === ANSWER_PASSWORD) {
-    closePasswordModal();
-    document.getElementById('answer-section').classList.toggle('show');
-  } else {
-    document.getElementById('pwd-error').style.display = 'block';
-    document.getElementById('pwd-input').focus();
-    document.getElementById('pwd-input').select();
+function showAnswers() {
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
+  } else if (pwd !== null) {
+    alert('密码错误！');
   }
 }
 
@@ -818,8 +777,10 @@ function clearAll() {
   // Clear result
   document.getElementById('result').className = '';
   document.getElementById('result').innerHTML = '';
-  // Hide answer section
-  document.getElementById('answer-section').classList.remove('show');
+  // Hide inline answers
+  document.querySelectorAll('.answer-reveal').forEach(function(el) {
+    el.classList.remove('show');
+  });
   // Remove localStorage
   localStorage.removeItem(PAPER_ID);
 }
@@ -922,9 +883,6 @@ document.addEventListener('keydown', function(e) {
 
 window.addEventListener('DOMContentLoaded', function() {
   restoreFromStorage();
-  if (window.MathJax && MathJax.typesetPromise) {
-    MathJax.typesetPromise();
-  }
 });
 </script>
 

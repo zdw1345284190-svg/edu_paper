@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一生物·必修第一册 第三章 3.3 单元检测</title>
+<style>
+  /* ===== 全局重置 & 基础 ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "SimSun", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    line-height: 1.8;
+    font-size: 15px;
+    padding: 20px;
+  }
+
+  /* ===== 试卷容器 ===== */
+  .paper {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px 32px 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    border-radius: 2px;
+  }
+
+  /* ===== 页头 ===== */
+  .exam-header {
+    text-align: center;
+    border-bottom: 3px double #222;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+  }
+  .exam-header h1 {
+    font-size: 22px;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .exam-header .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .exam-header .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .exam-header .info-row span { display: inline-block; }
+  .exam-header .info-row .label { font-weight: 600; }
+  .exam-header .info-row .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1px solid #222;
+    margin: 0 4px;
+    padding: 0 8px;
+  }
+
+  /* ===== 通用标题 ===== */
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    padding: 4px 0 4px 12px;
+    border-left: 4px solid #1a5276;
+    background: #f7f9fc;
+  }
+  .section-title .score-hint {
+    font-weight: 400;
+    font-size: 13px;
+    color: #777;
+    margin-left: 8px;
+  }
+
+  /* ===== 题目布局 ===== */
+  .question {
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .question .q-head {
+    font-weight: 600;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .question .q-body { flex: 1; min-width: 0; }
+  .question .q-body p { margin-bottom: 4px; }
+
+  /* ===== 选项（单选 / 多选） ===== */
+  .options { list-style: none; padding-left: 20px; }
+  .options li { margin-bottom: 2px; }
+  .options li label {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    cursor: pointer;
+    padding: 1px 6px;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .options li label:hover { background: #eef4fa; }
+  .options li input[type="radio"],
+  .options li input[type="checkbox"] {
+    width: 15px; height: 15px;
+    margin-right: 4px;
+    accent-color: #1a5276;
+    cursor: pointer;
+  }
+
+  /* ===== 填空题 ===== */
+  .fillin { margin: 4px 0; }
+  .fillin input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #888;
+    width: 90px;
+    padding: 0 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background: transparent;
+    text-align: center;
+  }
+  .fillin input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: #1a5276;
+    border-bottom-width: 2px;
+  }
+  .fillin .blank-long {
+    display: inline-block;
+    min-width: 60px;
+    border-bottom: 1px solid #888;
+    margin: 0 4px;
+    padding: 0 6px;
+  }
+
+  /* ===== 解答题 ===== */
+  .calc-question .q-body { margin-bottom: 6px; }
+  .calc-question textarea {
+    width: 100%;
+    min-height: 80px;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    background: #fafcfe;
+  }
+  .calc-question textarea:focus {
+    border-color: #1a5276;
+    box-shadow: 0 0 0 2px rgba(26,82,118,0.12);
+    outline: none;
+  }
+  .calc-question .sub-q { margin: 6px 0 6px 16px; }
+  .calc-question .sub-q .sq-label { font-weight: 600; }
+
+  /* ===== SVG 简图 ===== */
+  .figure-container {
+    text-align: center;
+    margin: 8px 0;
+  }
+  .figure-container svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ===== 底部交卷 ===== */
+  .submit-bar {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #ccc;
+  }
+  .submit-bar button {
+    padding: 8px 36px;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    background: #1a5276;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .submit-bar button:hover { background: #0e3a55; }
+
+  /* ===== 右侧分数汇总（可选） ===== */
+  .score-summary {
+    position: fixed; right: 16px; top: 80px;
+    width: 170px;
+    background: #fff;
+    border: 1px solid #d5dfe8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: none;
+  }
+  .score-summary h3 { font-size: 13px; margin-bottom: 6px; }
+  .score-summary .ss-row {
+    display: flex; justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .score-summary .ss-total {
+    font-weight: 700; font-size: 14px; margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ===== 打印样式 ===== */
+  @page {
+    size: A4;
+    margin: 18mm 20mm 22mm;
+  }
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      font-size: 13.5px;
+    }
+    .paper {
+      max-width: 100%;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    .score-summary { display: none !important; }
+    .submit-bar { display: none !important; }
+    .answer-reveal.show { display: block !important; }
+    .options li label:hover { background: transparent; }
+    textarea { border: 1px solid #ccc; background: #fafafa; }
+    .calc-question textarea { min-height: 60px; }
+    .exam-header .info-row .blank { border-bottom: 1px solid #000; }
+    .fillin input[type="text"] { border-bottom: 1px solid #000; }
+  }
+
+  /* ===== 答案内联显示 ===== */
+  .answer-reveal {
+    display: none;
+    flex: 0 0 100%;
+    margin: 6px 0 2px;
+    padding: 6px 12px;
+    background: #e8f5e9;
+    border-left: 3px solid #1a5276;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: #1b5e20;
+    line-height: 1.7;
+  }
+  .answer-reveal.show { display: block; }
+  .answer-reveal .ans-key { color: #c0392b; font-weight: 600; }
+
+  /* ===== 移动端适配 ===== */
+  @media screen and (max-width: 640px) {
+    body { padding: 8px; }
+    .paper { padding: 14px 16px; }
+    .exam-header .info-row { flex-direction: column; align-items: center; }
+    .options { padding-left: 8px; }
+    .score-summary { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <!-- ======================== 页头 ======================== -->
+  <div class="exam-header">
+    <h1>高一生物·必修第一册 第三章</h1>
+    <div class="subtitle">3.3 细胞核——系统的控制中心</div>
+    <div class="info-row">
+      <span><span class="label">姓名：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">班级：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">学号：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">得分：</span><span class="blank">&nbsp;</span></span>
+    </div>
+    <div style="margin-top:6px; font-size:13px; color:#666;">
+      总分：100分 &nbsp;&nbsp;|&nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp;|&nbsp;&nbsp; 命题范围：人教版必修第一册第三章第3节
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section-title">
+    一、单项选择题（共10题，每题3分，共30分）
+    <span class="score-hint">每题只有一个正确选项</span>
+  </div>
+
+  <!-- q1 -->
+  <div class="question" id="q1">
+    <div class="q-head">1.</div>
+    <div class="q-body">
+      <p>下列结构中，不属于细胞核结构的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A．核膜</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B．核仁</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C．核糖体</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D．染色质</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。细胞核的结构包括核膜（含核孔）、核仁和染色质等。核糖体游离于细胞质基质中或附着在内质网上，不属于细胞核的结构。</div>
+  </div>
+
+  <!-- q2 -->
+  <div class="question" id="q2">
+    <div class="q-head">2.</div>
+    <div class="q-body">
+      <p>下列关于核孔的说法，正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A．核孔是大分子物质（如 \(DNA\)）自由进出细胞核的通道</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B．核孔是某些大分子物质（如 \(RNA\)、蛋白质）进出细胞核的通道，具有选择性</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C．核孔允许所有离子和小分子自由通过</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D．核孔是核糖体附着在核膜上的位点</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。核孔是核膜上的孔状结构，具有选择透过性，允许 \(RNA\) 和某些蛋白质等大分子物质通过，但 \(DNA\) 一般不能通过核孔出细胞核。核糖体主要附着在内质网上，不在核膜上。</div>
+  </div>
+
+  <!-- q3 -->
+  <div class="question" id="q3">
+    <div class="q-head">3.</div>
+    <div class="q-body">
+      <p>下列关于核仁的叙述，正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A．核仁是细胞核内储存遗传物质的主要结构</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B．核仁是合成蛋白质的场所</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C．核仁与某种 \(RNA\)（\(rRNA\)）的合成及核糖体的形成有关</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D．核仁是双层膜结构</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。核仁是细胞核中折光性较强的结构，与某种 \(RNA\)（即 \(rRNA\)，核糖体 \(RNA\)）的合成以及核糖体的形成有关。遗传物质主要储存在染色质中，核糖体是蛋白质合成的场所，核仁无膜结构。</div>
+  </div>
+
+  <!-- q4 -->
+  <div class="question" id="q4">
+    <div class="q-head">4.</div>
+    <div class="q-body">
+      <p>染色质的主要组成成分是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A．\(DNA\) 和蛋白质</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B．\(RNA\) 和蛋白质</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C．\(DNA\) 和 \(RNA\)</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D．脂质和蛋白质</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。染色质（染色体）主要由 \(DNA\) 和蛋白质（组蛋白）组成，另外还含有少量 \(RNA\)。\(DNA\) 是遗传信息的载体，组蛋白在 \(DNA\) 的包装和基因调控中发挥重要作用。</div>
+  </div>
+
+  <!-- q5 -->
+  <div class="question" id="q5">
+    <div class="q-head">5.</div>
+    <div class="q-body">
+      <p>下列关于染色质和染色体的叙述，正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A．染色质和染色体是两种不同的物质</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B．染色质和染色体是同一物质在细胞不同时期的两种存在形式</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C．染色质仅存在于原核细胞中，染色体存在于真核细胞中</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D．染色质主要分布在细胞质中，染色体分布在细胞核中</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。染色质和染色体都是由 \(DNA\) 和蛋白质组成的同一种物质。在细胞分裂间期呈细丝状的染色质状态，在分裂期高度螺旋化，缩短变粗成为圆柱状或杆状的染色体。两者是同一物质在不同时期的两种形态。</div>
+  </div>
+
+  <!-- q6 -->
+  <div class="question" id="q6">
+    <div class="q-head">6.</div>
+    <div class="q-body">
+      <p>下列关于细胞核功能的叙述，错误的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A．细胞核是遗传信息库</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B．细胞核是细胞代谢和遗传的控制中心</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C．细胞核是细胞代谢的主要场所</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D．细胞核控制着细胞的生长、分裂和分化等生命活动</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。细胞核内含有遗传物质 \(DNA\)，是遗传信息库，是细胞代谢和遗传的控制中心。但细胞代谢的主要场所是细胞质基质（细胞质），而不是细胞核。</div>
+  </div>
+
+  <!-- q7 -->
+  <div class="question" id="q7">
+    <div class="q-head">7.</div>
+    <div class="q-body">
+      <p>美西螈核移植实验中，将黑色美西螈胚胎细胞的细胞核移植到白色美西螈的去核卵细胞中，结果发育成的幼体（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A．全部为黑色</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B．全部为白色</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C．黑白相间</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D．无法确定</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。美西螈核移植实验的结果是：发育成的幼体全部为黑色，与供核美西螈的体色一致。该实验说明：细胞核控制着生物体的遗传性状，遗传信息储存在细胞核中。</div>
+  </div>
+
+  <!-- q8 -->
+  <div class="question" id="q8">
+    <div class="q-head">8.</div>
+    <div class="q-body">
+      <p>用头发将蝾螈的受精卵横缢为有核和无核两部分，中间有少量细胞质相连。结果发现有核部分能分裂并发育成胚胎，而无核部分则停止分裂。该实验说明（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A．细胞核是遗传信息库</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B．细胞核控制着细胞的分裂和分化</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C．无核部分也能长期存活</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D．细胞质对细胞分裂没有影响</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。蝾螈受精卵横缢实验的结果显示：有核部分能分裂分化，无核部分不能分裂。当细胞核从无核部分挤入后，该部分也开始分裂。该实验说明细胞核控制着细胞的分裂和分化，是细胞生命活动的控制中心。</div>
+  </div>
+
+  <!-- q9 -->
+  <div class="question" id="q9">
+    <div class="q-head">9.</div>
+    <div class="q-body">
+      <p>变形虫去核实验中，将变形虫切成有核和无核两部分，结果无核部分虽然能存活一段时间，但代谢减弱、运动停止，最终死亡；而重新植入细胞核后，又能恢复生命活动。该实验说明（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A．细胞核是遗传物质储存的场所</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B．细胞核是遗传特性的控制中心</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C．细胞核是细胞代谢的控制中心</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D．细胞核本身就是细胞的代谢中心</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。变形虫去核后代谢减弱、运动停止，说明细胞核与细胞代谢密切相关。重新植入细胞核后恢复生命活动，进一步证实细胞核是细胞代谢的控制中心。但细胞核本身并不是代谢的主要场所（代谢主要在细胞质中进行）。</div>
+  </div>
+
+  <!-- q10 -->
+  <div class="question" id="q10">
+    <div class="q-head">10.</div>
+    <div class="q-body">
+      <p>伞藻嫁接实验中，将菊花形伞藻的假根（含细胞核）嫁接到伞形伞藻的伞柄（不含细胞核）上，结果长出的伞形是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A．菊花形</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B．伞形</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C．中间类型</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D．无法判断</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。伞藻嫁接实验将菊花形伞藻的假根（含细胞核）嫁接到伞形伞藻的伞柄上，长出菊花形伞帽；反之，将伞形伞藻的假根嫁接到菊花形伞藻的伞柄上，则长出伞形伞帽。该实验说明伞藻的形态结构由细胞核（假根中的细胞核）决定。</div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section-title">
+    二、多项选择题（共3题，每题4分，共12分）
+    <span class="score-hint">每题有多个正确选项，全部选对得4分，选对但不全得2分，有选错得0分</span>
+  </div>
+
+  <!-- q101 -->
+  <div class="question" id="q101">
+    <div class="q-head">11.（多选）</div>
+    <div class="q-body">
+      <p>下列关于细胞核结构的叙述，正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q101" value="A"> A．核膜是双层膜结构，外膜与内质网相连</label></li>
+        <li><label><input type="checkbox" name="q101" value="B"> B．核孔是物质自由进出细胞核的通道，不具有选择性</label></li>
+        <li><label><input type="checkbox" name="q101" value="C"> C．核仁与某种 \(RNA\) 的合成及核糖体的形成有关</label></li>
+        <li><label><input type="checkbox" name="q101" value="D"> D．染色质和染色体是同一物质在细胞不同时期的两种存在形式</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、C、D。A正确，核膜由内层膜和外层膜构成，外膜与内质网相连通。B错误，核孔具有选择透过性，不是自由通道。C正确，核仁与 \(rRNA\) 合成及核糖体形成有关。D正确，染色质和染色体本质相同，只是形态不同。</div>
+  </div>
+
+  <!-- q102 -->
+  <div class="question" id="q102">
+    <div class="q-head">12.（多选）</div>
+    <div class="q-body">
+      <p>下列关于染色质和染色体的叙述，正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q102" value="A"> A．染色质和染色体都由 \(DNA\) 和蛋白质组成</label></li>
+        <li><label><input type="checkbox" name="q102" value="B"> B．染色质是极细的丝状物，存在于细胞分裂间期</label></li>
+        <li><label><input type="checkbox" name="q102" value="C"> C．染色体呈圆柱状或杆状，出现在细胞分裂期</label></li>
+        <li><label><input type="checkbox" name="q102" value="D"> D．染色质和染色体是两种不同的物质，功能各异</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B、C。A正确，两者均由 \(DNA\) 和蛋白质（组蛋白）构成。B正确，染色质在分裂间期呈细丝状。C正确，染色体在分裂期高度螺旋化呈圆柱状或杆状。D错误，染色质和染色体是同一物质的不同形态，并非两种物质。</div>
+  </div>
+
+  <!-- q103 -->
+  <div class="question" id="q103">
+    <div class="q-head">13.（多选）</div>
+    <div class="q-body">
+      <p>关于教材中四个经典实验的叙述，正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q103" value="A"> A．美西螈核移植实验说明细胞核控制着生物体的遗传性状</label></li>
+        <li><label><input type="checkbox" name="q103" value="B"> B．蝾螈受精卵横缢实验说明细胞核控制着细胞的分裂和分化</label></li>
+        <li><label><input type="checkbox" name="q103" value="C"> C．变形虫去核实验说明细胞核是细胞代谢的控制中心</label></li>
+        <li><label><input type="checkbox" name="q103" value="D"> D．伞藻嫁接实验说明伞藻的形态结构由细胞质决定</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B、C。A正确，核移植实验证明遗传性状由细胞核控制。B正确，横缢实验证明细胞核控制细胞分裂和分化。C正确，去核实验证明细胞核控制代谢。D错误，伞藻嫁接实验证明伞藻形态由细胞核（假根）决定，而非细胞质。</div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section-title">
+    三、填空题（共6题，每题3分，共18分）
+  </div>
+
+  <!-- q14 -->
+  <div class="question" id="q14">
+    <div class="q-head">14.</div>
+    <div class="q-body">
+      <p>细胞核中，核膜上的______是某些大分子物质（如 \(RNA\)、蛋白质）进出细胞核的通道。</p>
+      <div class="fillin"><input type="text" id="fill_q14" maxlength="10" style="width:90px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>核孔。核孔是核膜上的孔状结构，具有选择透过性，允许 \(RNA\)、蛋白质等大分子物质通过，但 \(DNA\) 不能通过核孔出细胞核。</div>
+  </div>
+
+  <!-- q15 -->
+  <div class="question" id="q15">
+    <div class="q-head">15.</div>
+    <div class="q-body">
+      <p>细胞核中，与某种 \(RNA\)（\(rRNA\)）的合成及核糖体形成有关的结构是______。</p>
+      <div class="fillin"><input type="text" id="fill_q15" maxlength="10" style="width:90px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>核仁。核仁是细胞核内折光性较强的结构，与 \(rRNA\) 的合成以及核糖体的形成有关。蛋白质合成旺盛的细胞，其核仁往往较大。</div>
+  </div>
+
+  <!-- q16 -->
+  <div class="question" id="q16">
+    <div class="q-head">16.</div>
+    <div class="q-body">
+      <p>染色质主要由______和______组成。</p>
+      <div class="fillin"><input type="text" id="fill_q16a" maxlength="8" style="width:80px;"> 和 <input type="text" id="fill_q16b" maxlength="8" style="width:80px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(DNA\)、蛋白质（组蛋白）。染色质由 \(DNA\) 和蛋白质（主要是组蛋白）组成，其中 \(DNA\) 是遗传信息的载体，组蛋白在 \(DNA\) 包装和基因表达调控中起重要作用。</div>
+  </div>
+
+  <!-- q17 -->
+  <div class="question" id="q17">
+    <div class="q-head">17.</div>
+    <div class="q-body">
+      <p>染色质和染色体是______在细胞不同时期的两种存在形式。</p>
+      <div class="fillin"><input type="text" id="fill_q17" maxlength="16" style="width:130px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>同一种物质（或"同一物质"）。染色质（分裂间期）和染色体（分裂期）是同一物质在不同细胞时期的两种存在形式，两者在化学成分上完全相同。</div>
+  </div>
+
+  <!-- q18 -->
+  <div class="question" id="q18">
+    <div class="q-head">18.</div>
+    <div class="q-body">
+      <p>细胞核是______信息库，是细胞______和遗传的控制中心。</p>
+      <div class="fillin"><input type="text" id="fill_q18a" maxlength="8" style="width:70px;"> 信息库，是细胞 <input type="text" id="fill_q18b" maxlength="8" style="width:70px;"> 和遗传的控制中心。</div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>遗传（信息库）；代谢（和遗传的控制中心）。细胞核内含有遗传物质 \(DNA\)，贮存着遗传信息，因此是遗传信息库；细胞核通过控制 \(RNA\) 和蛋白质的合成来控制细胞的代谢和遗传过程。</div>
+  </div>
+
+  <!-- q19 -->
+  <div class="question" id="q19">
+    <div class="q-head">19.</div>
+    <div class="q-body">
+      <p>美西螈核移植实验说明：细胞核控制着生物体的______。</p>
+      <div class="fillin"><input type="text" id="fill_q19" maxlength="16" style="width:120px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>遗传性状。美西螈核移植实验将黑色品系的细胞核移植到白色品系的无核卵细胞中，发育成的个体为黑色，说明细胞核控制着生物体的遗传性状。</div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section-title">
+    四、解答题（共4题，每题10分，共40分）
+    <span class="score-hint">请结合所学知识，条理清晰地作答</span>
+  </div>
+
+  <!-- q20 -->
+  <div class="question calc-question" id="q20">
+    <div class="q-head">20.（10分）</div>
+    <div class="q-body">
+      <p>请简述细胞核的结构，并说明各部分的功能。</p>
+      <textarea placeholder="请在此处书写答案……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        细胞核由以下结构组成：<br>
+        <strong>（1）核膜：</strong>双层膜结构，将核内物质与细胞质分隔开；外膜与内质网相连。核膜上的核孔是某些大分子物质（如 \(RNA\)、蛋白质）进出细胞核的通道，实现核质之间的物质交换和信息交流。（3分）<br>
+        <strong>（2）核仁：</strong>细胞核中折光性较强的结构，与某种 \(RNA\)（\(rRNA\)）的合成以及核糖体的形成有关。（2分）<br>
+        <strong>（3）染色质：</strong>由 \(DNA\) 和蛋白质（组蛋白）组成，\(DNA\) 是遗传信息的载体。染色质（分裂间期）与染色体（分裂期）是同一物质在不同细胞时期的两种存在形式。（3分）<br>
+        <strong>（4）功能：</strong>细胞核是遗传信息库，是细胞代谢和遗传的控制中心。（2分）</div>
+    </div>
+  </div>
+
+  <!-- q21 -->
+  <div class="question calc-question" id="q21">
+    <div class="q-head">21.（10分）</div>
+    <div class="q-body">
+      <p>请阐述染色质与染色体的关系，并从细胞周期的角度说明两者的相互转化过程。</p>
+      <textarea placeholder="请在此处书写答案……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        <strong>（1）关系：</strong>染色质和染色体是<strong>同一种物质</strong>在细胞不同时期的两种存在形式（形态结构不同，但化学成分完全相同）。（3分）<br>
+        <strong>（2）组成成分相同：</strong>两者都由 \(DNA\) 和蛋白质（组蛋白）组成，都含有遗传信息。（2分）<br>
+        <strong>（3）形态转化：</strong><br>
+        ① 在细胞分裂<strong>间期</strong>，染色体高度伸展、呈细丝状，称为<strong>染色质</strong>，有利于 \(DNA\) 复制和基因转录等生命活动的进行。（2.5分）<br>
+        ② 进入细胞分裂<strong>期</strong>时，染色质细丝高度螺旋化、缩短变粗，形成圆柱状或杆状的<strong>染色体</strong>，有利于遗传物质在细胞分裂中精确地平均分配。（2.5分）</div>
+    </div>
+  </div>
+
+  <!-- q22 -->
+  <div class="question calc-question" id="q22">
+    <div class="q-head">22.（10分）</div>
+    <div class="q-body">
+      <p>下图是伞藻嫁接实验的示意图。分析并回答下列问题：</p>
+      <div class="figure-container">
+        <svg width="480" height="220" viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg" style="background:#fafcfe; border:1px solid #d0d8e0; border-radius:4px;">
+          <!-- 两种伞藻 -->
+          <text x="80" y="30" font-size="13" text-anchor="middle" fill="#333" font-weight="600">菊花形伞藻</text>
+          <text x="370" y="30" font-size="13" text-anchor="middle" fill="#333" font-weight="600">伞形伞藻</text>
+          <!-- 菊花形伞帽 -->
+          <ellipse cx="80" cy="55" rx="30" ry="12" fill="#e8c87a" stroke="#a0823a" stroke-width="1.2"/>
+          <path d="M55,60 Q65,80 80,60 Q95,80 105,60" fill="none" stroke="#a0823a" stroke-width="1.2"/>
+          <path d="M50,55 Q60,75 80,55 Q100,75 110,55" fill="none" stroke="#a0823a" stroke-width="1.2"/>
+          <rect x="74" y="60" width="12" height="50" rx="4" fill="#8fb57a" stroke="#5a8047" stroke-width="1"/>
+          <!-- 假根 -->
+          <path d="M68,110 Q74,130 70,140" fill="none" stroke="#8fb57a" stroke-width="1.5"/>
+          <path d="M80,110 Q80,130 80,140" fill="none" stroke="#8fb57a" stroke-width="1.5"/>
+          <path d="M92,110 Q86,130 90,140" fill="none" stroke="#8fb57a" stroke-width="1.5"/>
+          <circle cx="80" cy="110" r="6" fill="#5a8047" stroke="#3a6040" stroke-width="1"/>
+          <text x="80" y="132" font-size="9" text-anchor="middle" fill="#333">(含核)</text>
+
+          <!-- 伞形伞藻 -->
+          <path d="M340,55 Q355,40 370,50 Q385,40 400,55" fill="#c8d8e8" stroke="#6a8aaa" stroke-width="1.2"/>
+          <path d="M345,60 Q360,45 370,55 Q380,45 395,60" fill="#d8e8f0" stroke="#6a8aaa" stroke-width="1.2"/>
+          <rect x="364" y="60" width="12" height="50" rx="4" fill="#8fb57a" stroke="#5a8047" stroke-width="1"/>
+          <!-- 假根 -->
+          <path d="M360,110 Q366,130 362,140" fill="none" stroke="#8fb57a" stroke-width="1.5"/>
+          <path d="M370,110 Q370,130 370,140" fill="none" stroke="#8fb57a" stroke-width="1.5"/>
+          <path d="M380,110 Q374,130 378,140" fill="none" stroke="#8fb57a" stroke-width="1.5"/>
+          <circle cx="370" cy="110" r="6" fill="#5a8047" stroke="#3a6040" stroke-width="1"/>
+          <text x="370" y="132" font-size="9" text-anchor="middle" fill="#333">(含核)</text>
+
+          <!-- 箭头 -->
+          <text x="210" y="60" font-size="11" text-anchor="middle" fill="#c0392b" font-weight="600">嫁接</text>
+          <line x1="115" y1="70" x2="335" y2="70" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)"/>
+          <line x1="115" y1="75" x2="335" y2="75" stroke="#999" stroke-width="1.5"/>
+
+          <!-- 结果区 -->
+          <text x="240" y="170" font-size="12" text-anchor="middle" fill="#c0392b" font-weight="600">结果</text>
+          <line x1="160" y1="178" x2="320" y2="178" stroke="#ccc" stroke-dasharray="4,3" stroke-width="1"/>
+          <ellipse cx="240" cy="195" rx="28" ry="10" fill="#e8c87a" stroke="#a0823a" stroke-width="1.2"/>
+          <path d="M215,200 Q225,218 240,200 Q255,218 265,200" fill="none" stroke="#a0823a" stroke-width="1.2"/>
+          <rect x="234" y="198" width="12" height="20" rx="3" fill="#8fb57a" stroke="#5a8047" stroke-width="1"/>
+          <text x="240" y="215" font-size="9" text-anchor="middle" fill="#333">? 形伞帽</text>
+        </svg>
+      </div>
+      <div class="sub-q"><span class="sq-label">(1)</span> 若将菊花形伞藻的假根（含细胞核）嫁接到伞形伞藻的伞柄（不含细胞核）上，长出的伞帽是什么形状？该结果说明了什么？（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 若将伞形伞藻的假根（含细胞核）嫁接到菊花形伞藻的伞柄（不含细胞核）上，长出的伞帽是什么形状？（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 综合以上分析，该实验的结论是什么？（3分）</div>
+      <textarea placeholder="请在此处书写答案……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        <strong>(1)</strong> 长出菊花形伞帽（2分）。说明伞藻的形态结构由假根中的细胞核决定，细胞核控制着生物体的遗传性状。（2分）<br>
+        <strong>(2)</strong> 长出伞形伞帽。（3分）<br>
+        <strong>(3)</strong> 伞藻嫁接实验的结论是：伞藻的形态结构（伞帽形状）由细胞核决定，即细胞核是遗传的控制中心，控制着生物体的遗传性状。（3分。若回答"细胞核控制着细胞的遗传"同样给分）</div>
+    </div>
+  </div>
+
+  <!-- q23 -->
+  <div class="question calc-question" id="q23">
+    <div class="q-head">23.（10分）</div>
+    <div class="q-body">
+      <p>综合所学知识，论述细胞核的结构与其功能的关系。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 结合核膜和核孔的结构特点，说明它们如何实现核质间的物质交换与信息交流？（4分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 分析染色质（含 \(DNA\)）为什么能成为遗传信息的载体？染色质的存在形式对细胞生命活动有何意义？（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 请用教材中的经典实验实例，论证细胞核是细胞代谢和遗传的控制中心。（3分）</div>
+      <textarea placeholder="请在此处书写答案……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        <strong>(1)</strong> 核膜是双层膜结构，将核内物质与细胞质分隔开，为 \(DNA\) 复制和转录提供相对稳定的环境（2分）。核膜并非完全封闭，其上的核孔是一种选择透过性通道，允许 \(RNA\)、蛋白质等大分子物质通过，实现核质之间频繁的物质交换和信息交流（2分）。<br>
+        <strong>(2)</strong> 染色质的主要成分是 \(DNA\) 和组蛋白。\(DNA\) 分子中的碱基排列顺序携带遗传信息，因此染色质是遗传信息的载体（1分）。在细胞分裂间期，染色质呈细丝状伸展状态，有利于 \(DNA\) 复制和转录的进行；在分裂期，染色质高度螺旋化成染色体，有利于遗传物质精确地平均分配到两个子细胞中（2分）。<br>
+        <strong>(3)</strong> ① 美西螈核移植实验：黑色美西螈的细胞核移植到白色美西螈的去核卵细胞中，发育成黑色幼体，说明细胞核控制遗传性状（1分）。② 变形虫去核实验：去核后代谢减弱直至死亡，植入核后恢复活动，说明细胞核是代谢的控制中心（1分）。③ 以上实验共同证明：细胞核是遗传信息库，是细胞代谢和遗传的控制中心（1分）。</div>
+    </div>
+  </div>
+
+  <!-- ======================== 交卷按钮 ======================== -->
+  <div class="submit-bar">
+    <button onclick="submitExam()">提交试卷（Ctrl+Enter）</button>
+    <button onclick="clearAnswers()" style="background:#888; margin-left:8px;">清空答案</button>
+    <button class="btn-answer" onclick="showAnswers()" style="background:#e8a317;color:#fff;border:none;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;margin-left:8px;">显示答案</button>
+    <p style="margin-top:6px; font-size:12px; color:#999;">按下 Ctrl+Enter 也可提交</p>
+  </div>
+
+</div><!-- /paper -->
+
+<!-- ======================== JavaScript ======================== -->
+<script>
+// ===== 答案自动缓存（防手机切后台丢失） =====
+const PAPER_ID = 'bio_grade10_ch3_s3';
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  // 单选/多选的选中状态
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  // 填空输入
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  // 解答题区域
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('.question, [data-qid]');
+    var key = parent ? (parent.id || parent.getAttribute('data-qid')) : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    // 恢复单选
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    // 恢复多选
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    // 恢复填空
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key);
+        if (!el) el = document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    // 恢复解答题
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('#' + key + ' textarea') || document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+  var scoreEl = document.getElementById('displayScore');
+  if (scoreEl) scoreEl.textContent = '______';
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+// 页面恢复 + 自动保存
+restoreAnswers();
+setupAutoSave();
+
+// ===== 参考答案密码锁 =====
+function showAnswers() {
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
+  } else if (pwd !== null) {
+    alert('密码错误！');
+  }
+}
+
+// ===== Ctrl+Enter 提交 =====
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    submitExam();
+  }
+});
+
+// ===== 提交试卷（提示并滚动到顶部） =====
+function submitExam() {
+  saveAnswers();  // 提交前确保保存
+  // 收集单选题答案
+  const singleKeys = {
+    q1:'C', q2:'B', q3:'C', q4:'A', q5:'B',
+    q6:'C', q7:'A', q8:'B', q9:'C', q10:'A'
+  };
+  let singleScore = 0;
+  let singleResult = '';
+  for (let i = 1; i <= 10; i++) {
+    const name = 'q' + i;
+    const sel = document.querySelector('input[name="' + name + '"]:checked');
+    const userAns = sel ? sel.value : '未选';
+    const correct = singleKeys[name];
+    const isCorrect = (userAns === correct);
+    if (isCorrect) singleScore += 3;
+    singleResult += (i + '.' + userAns + (isCorrect ? '✓' : '✗(' + correct + ')') + ' ');
+  }
+
+  // 收集多选题答案
+  const multiKeys = {
+    q101: ['A','C','D'],
+    q102: ['A','B','C'],
+    q103: ['A','B','C']
+  };
+  let multiScore = 0;
+  let multiResult = '';
+  for (const name in multiKeys) {
+    const checks = document.querySelectorAll('input[name="' + name + '"]:checked');
+    const userVals = Array.from(checks).map(function(c) { return c.value; }).sort();
+    const correctVals = multiKeys[name].slice().sort();
+    const match = (userVals.length === correctVals.length && userVals.every(function(v,i) { return v === correctVals[i]; }));
+    if (match) multiScore += 4;
+    else if (userVals.length > 0 && userVals.every(function(v) { return multiKeys[name].includes(v); })) multiScore += 2;
+    multiResult += (name.replace('q','') + '.' + (userVals.join(',') || '未选') + (match ? '✓' : '') + ' ');
+  }
+
+  // 填空题（仅展示，不计分）
+  const fillIds = ['fill_q14','fill_q15','fill_q16a','fill_q16b','fill_q17','fill_q18a','fill_q18b','fill_q19'];
+  let fillResult = '';
+  fillIds.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) fillResult += (id + '=' + (el.value || '空') + ' ');
+  });
+
+  const totalScore = singleScore + multiScore;
+
+  alert(
+    '===== 提交成功 =====\n\n' +
+    '【单选题】' + singleScore + '/30分\n' + singleResult + '\n\n' +
+    '【多选题】' + multiScore + '/12分\n' + multiResult + '\n\n' +
+    '【填空题】（请对照答案自行批改）\n' + fillResult + '\n\n' +
+    '【当前总分】' + totalScore + '/100分（不含填空和解答题）\n\n' +
+    '参考答案已加密，请点击下方"显示答案"按钮查看（密码：2641）。'
+  );
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<!-- ======================== MathJax 3 ======================== -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

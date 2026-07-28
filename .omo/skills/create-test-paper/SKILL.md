@@ -1229,7 +1229,121 @@ grep ".answer-reveal{display:block" *.html
 edit(filePath="...", oldString="}.answer-reveal{display:block!important;background:#f9f9f9}}", newString="}.answer-reveal.show{display:block!important;background:#f9f9f9}}")
 ```
 
-## 典型调用
+## 新沉淀：答案内联显示模式（每题下方 inline 答案）
+
+### 场景
+
+不再用底部独立的「参考答案区」，而是把答案放在每道题正下方，密码解锁后立即看到当前题目的解析。
+
+### 两种架构对比
+
+| 模式 | 旧：底部答案区 | ✅ 新：内联答案 |
+|------|---------------|---------------|
+| 结构 | 页面底部一个大区块，罗列所有答案 | 每题下方一个 `.answer-reveal` |
+| 显示方式 | 点击按钮 → 页面跳转到底部 | 点击按钮 → 每题下方原地展开 |
+| 优缺点 | 来回滚动，对应麻烦 | 答案紧贴题目，无需滚动查找 |
+| 密码机制 | `prompt()` → 切换区显示 | `prompt()` → 批量加 `.show` |
+
+### HTML 结构（每题内嵌 .answer-reveal）
+
+```html
+<div class="question" id="q1">
+  <div class="q-head">1.</div>
+  <div class="q-body">
+    <p>题干...</p>
+    <ul class="options">...</ul>
+  </div>
+  <div class="answer-reveal"><span class="ans-key">答案：</span>C。解析...</div>
+</div>
+```
+
+`.answer-reveal` 必须是 `.question` 的直接子元素，和其他内容同级。
+
+### CSS 关键：flex 布局陷阱（实战血泪教训）
+
+**根因**：`.question` 常用 `display: flex` 保持题号(.q-head)和题干(.q-body)横向排列。`.answer-reveal` 作为 flex 容器的直接子元素，从 `display: none` 变为 `display: block` 时，会被当作 flex 项横向排在题号旁边，**而不是换行到下方**，导致答案覆盖题目或产生大片空白。
+
+```css
+/* ❌ 错误：答案会横向排列 */
+.question {
+  display: flex;
+  gap: 4px;
+}
+.answer-reveal {
+  display: none;
+  /* 显示后变成横向 flex 项，不换行 */
+}
+```
+
+```css
+/* ✅ 正确：强制答案换行到下方 */
+.question {
+  display: flex;
+  flex-wrap: wrap;     /* ① 允许 flex 项换行 */
+  gap: 4px;
+}
+.answer-reveal {
+  display: none;
+  flex: 0 0 100%;      /* ② 占满整行 → 自然换到下面 */
+  margin: 6px 0 2px;
+  padding: 6px 12px;
+  background: #e8f5e9;
+  border-left: 3px solid #1a5276;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: #1b5e20;
+  line-height: 1.7;
+}
+.answer-reveal.show { display: block; }
+.answer-reveal .ans-key { color: #c0392b; font-weight: 600; }
+```
+
+设计原理：
+- `.q-head`（flex-shrink: 0）和 `.q-body`（flex: 1）默认在同一行
+- `.answer-reveal` 设 `flex: 0 0 100%` → 宽度占满容器 → 在 `flex-wrap: wrap` 下换到下一行
+- 显示时 `display: block` 不受纯 flex 布局干扰
+
+### JS：密码解锁 + 批量显示
+
+```javascript
+function showAnswers() {
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
+  } else if (pwd !== null) {
+    alert('密码错误！');
+  }
+}
+```
+
+按钮触发：
+```html
+<button class="btn-answer" onclick="showAnswers()" style="background:#e8a317;color:#fff;border:none;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;margin-left:8px;">显示答案</button>
+```
+
+> **注意**：`prompt()` 和 `alert()` 在 `file://` 协议下可能被浏览器拦截。如果发现答案按钮点击没反应，需改用自定义 Modal（参见「坑 2：prompt 不工作」章节）。
+
+### 旧答案区清理
+
+切换为内联模式后，必须删除底部独立的参考答案区代码：
+
+```bash
+# 检查是否还有残留
+grep "answer-section" *.html         # 不应有结果
+grep "password-modal" *.html         # 不应有结果
+grep "checkPassword" *.html          # 不应有结果
+```
+
+### 排查清单
+
+- [ ] `.question` 是 flex 容器吗？→ 必须加 `flex-wrap: wrap`
+- [ ] `.answer-reveal` 有 `flex: 0 0 100%` 吗？（重要！否则不换行）
+- [ ] `.answer-reveal` 是 `.question` 的直接子元素吗？
+- [ ] 按钮 onclick 调用 `showAnswers()` 函数名正确吗？
+- [ ] 密码字符串（如 `'2641'`）与用户约定一致吗？
+- [ ] 旧的 `answer-section` / `password-modal` / `toggleAnswer` 代码删干净了吗？
 
 在 OpenCode 中使用本技能：
 

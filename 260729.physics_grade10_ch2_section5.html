@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一物理·必修第一册 第二章 2.5</title>
+<style>
+  /* ===== 全局重置 & 基础 ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "SimSun", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    line-height: 1.8;
+    font-size: 15px;
+    padding: 20px;
+  }
+
+  /* ===== 试卷容器 ===== */
+  .paper {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px 32px 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    border-radius: 2px;
+  }
+
+  /* ===== 页头 ===== */
+  .exam-header {
+    text-align: center;
+    border-bottom: 3px double #222;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+  }
+  .exam-header h1 {
+    font-size: 22px;
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .exam-header .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  .exam-header .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .exam-header .info-row span { display: inline-block; }
+  .exam-header .info-row .label { font-weight: 600; }
+  .exam-header .info-row .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1px solid #222;
+    margin: 0 4px;
+    padding: 0 8px;
+  }
+
+  /* ===== 通用标题 ===== */
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    padding: 4px 0 4px 12px;
+    border-left: 4px solid #1a5276;
+    background: #f7f9fc;
+  }
+  .section-title .score-hint {
+    font-weight: 400;
+    font-size: 13px;
+    color: #777;
+    margin-left: 8px;
+  }
+
+  /* ===== 题目布局 ===== */
+  .question {
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .question .q-head {
+    font-weight: 600;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .question .q-body { flex: 1; min-width: 0; }
+  .question .q-body p { margin-bottom: 4px; }
+
+  /* ===== 选项（单选 / 多选） ===== */
+  .options { list-style: none; padding-left: 20px; }
+  .options li { margin-bottom: 2px; }
+  .options li label {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    cursor: pointer;
+    padding: 1px 6px;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+  .options li label:hover { background: #eef4fa; }
+  .options li input[type="radio"],
+  .options li input[type="checkbox"] {
+    width: 15px; height: 15px;
+    margin-right: 4px;
+    accent-color: #1a5276;
+    cursor: pointer;
+  }
+
+  /* ===== 填空题 ===== */
+  .fillin { margin: 4px 0; }
+  .fillin input[type="text"] {
+    border: none;
+    border-bottom: 1px solid #888;
+    width: 90px;
+    padding: 0 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background: transparent;
+    text-align: center;
+  }
+  .fillin input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: #1a5276;
+    border-bottom-width: 2px;
+  }
+  .fillin .blank-long {
+    display: inline-block;
+    min-width: 60px;
+    border-bottom: 1px solid #888;
+    margin: 0 4px;
+    padding: 0 6px;
+  }
+
+  /* ===== 解答题 ===== */
+  .calc-question .q-body { margin-bottom: 6px; }
+  .calc-question textarea {
+    width: 100%;
+    min-height: 80px;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    background: #fafcfe;
+  }
+  .calc-question textarea:focus {
+    border-color: #1a5276;
+    box-shadow: 0 0 0 2px rgba(26,82,118,0.12);
+    outline: none;
+  }
+  .calc-question .sub-q { margin: 6px 0 6px 16px; }
+  .calc-question .sub-q .sq-label { font-weight: 600; }
+
+  /* ===== SVG 简图 ===== */
+  .figure-container {
+    text-align: center;
+    margin: 8px 0;
+  }
+  .figure-container svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ===== 数据表格 ===== */
+  .data-table {
+    margin: 8px auto;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: center;
+  }
+  .data-table th, .data-table td {
+    border: 1px solid #999;
+    padding: 4px 12px;
+  }
+  .data-table th {
+    background: #eef4fa;
+    font-weight: 600;
+  }
+
+  /* ===== 底部交卷 ===== */
+  .submit-bar {
+    text-align: center;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid #ccc;
+  }
+  .submit-bar button {
+    padding: 8px 36px;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    background: #1a5276;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.15s;
+  }
+  .submit-bar button:hover { background: #0e3a55; }
+
+  /* ===== 右侧分数汇总（可选） ===== */
+  .score-summary {
+    position: fixed; right: 16px; top: 80px;
+    width: 170px;
+    background: #fff;
+    border: 1px solid #d5dfe8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: none;
+  }
+  .score-summary h3 { font-size: 13px; margin-bottom: 6px; }
+  .score-summary .ss-row {
+    display: flex; justify-content: space-between;
+    padding: 2px 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .score-summary .ss-total {
+    font-weight: 700; font-size: 14px; margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ===== 打印样式 ===== */
+  @page {
+    size: A4;
+    margin: 18mm 20mm 22mm;
+  }
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      font-size: 13.5px;
+    }
+    .paper {
+      max-width: 100%;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
+    }
+    .score-summary { display: none !important; }
+    .submit-bar { display: none !important; }
+    .answer-reveal.show { display: block !important; }
+    .options li label:hover { background: transparent; }
+    textarea { border: 1px solid #ccc; background: #fafafa; }
+    .calc-question textarea { min-height: 60px; }
+    .exam-header .info-row .blank { border-bottom: 1px solid #000; }
+    .fillin input[type="text"] { border-bottom: 1px solid #000; }
+  }
+
+  /* ===== 答案内联显示 ===== */
+  .answer-reveal {
+    display: none;
+    flex: 0 0 100%;
+    margin: 6px 0 2px;
+    padding: 6px 12px;
+    background: #e8f5e9;
+    border-left: 3px solid #1a5276;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: #1b5e20;
+    line-height: 1.7;
+  }
+  .answer-reveal.show { display: block; }
+  .answer-reveal .ans-key { color: #c0392b; font-weight: 600; }
+
+  /* ===== 移动端适配 ===== */
+  @media screen and (max-width: 640px) {
+    body { padding: 8px; }
+    .paper { padding: 14px 16px; }
+    .exam-header .info-row { flex-direction: column; align-items: center; }
+    .options { padding-left: 8px; }
+    .score-summary { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+  <!-- ======================== 页头 ======================== -->
+  <div class="exam-header">
+    <h1>高一物理·必修第一册 第二章 2.5</h1>
+    <div class="subtitle">匀变速直线运动推论 · 单元测试卷</div>
+    <div class="info-row">
+      <span><span class="label">姓名：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">班级：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">学号：</span><span class="blank">&nbsp;</span></span>
+      <span><span class="label">得分：</span><span class="blank">&nbsp;</span></span>
+    </div>
+    <div style="margin-top:6px; font-size:13px; color:#666;">
+      总分：100分 &nbsp;&nbsp;|&nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp;|&nbsp;&nbsp; 命题范围：人教版必修第一册第二章 2.5 匀变速直线运动推论
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section-title">
+    一、单项选择题（共10题，每题3分，共30分）
+    <span class="score-hint">每题只有一个正确选项</span>
+  </div>
+
+  <!-- q1：平均速度公式概念 -->
+  <div class="question" id="q1">
+    <div class="q-head">1.</div>
+    <div class="q-body">
+      <p>关于匀变速直线运动的平均速度公式 \(\bar{v} = \dfrac{v_0+v}{2}\)，下列说法正确的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q1" value="A"> A．该公式适用于任意直线运动</label></li>
+        <li><label><input type="radio" name="q1" value="B"> B．该公式中的 \(\bar{v}\) 等于初速度 \(v_0\) 与末速度 \(v\) 的算术平均值，与时间无关</label></li>
+        <li><label><input type="radio" name="q1" value="C"> C．该公式仅适用于匀变速直线运动，且 \(\bar{v}\) 等于中间时刻的瞬时速度</label></li>
+        <li><label><input type="radio" name="q1" value="D"> D．该公式仅适用于初速度为零的情况</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。A错误，该公式仅适用于匀变速直线运动，非匀变速运动不能用。B错误，\(\bar{v} = (v_0+v)/2\) 确实等于初末速度的平均值，但该结论来源于匀变速运动的特殊性质，且平均速度等于位移与时间的比值，与时间并非无关。C正确，根据匀变速直线运动的推论，平均速度等于中间时刻的瞬时速度。D错误，该公式对任意初速度的匀变速直线运动均适用。</div>
+  </div>
+
+  <!-- q2：逐差法 Δx = aT² -->
+  <div class="question" id="q2">
+    <div class="q-head">2.</div>
+    <div class="q-body">
+      <p>做匀变速直线运动的物体，在连续相等的时间间隔 \(T\) 内，相邻两段位移之差 \(\Delta x\) 满足（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q2" value="A"> A．\(\Delta x = aT\)</label></li>
+        <li><label><input type="radio" name="q2" value="B"> B．\(\Delta x = aT^2\)</label></li>
+        <li><label><input type="radio" name="q2" value="C"> C．\(\Delta x = \dfrac{1}{2}aT^2\)</label></li>
+        <li><label><input type="radio" name="q2" value="D"> D．\(\Delta x = 2aT^2\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。逐差法公式 \(\Delta x = aT^2\) 是匀变速直线运动的重要推论。设在连续相等时间间隔 \(T\) 内的位移分别为 \(x_1\)、\(x_2\)、\(x_3\)…，则有 \(x_2 - x_1 = x_3 - x_2 = \cdots = aT^2\)。该公式常用于纸带数据分析求加速度。</div>
+  </div>
+
+  <!-- q3：速度-位移公式 -->
+  <div class="question" id="q3">
+    <div class="q-head">3.</div>
+    <div class="q-body">
+      <p>关于速度-位移公式 \(v^2 - v_0^2 = 2ax\)，下列说法错误的是（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q3" value="A"> A．该公式由匀变速直线运动的速度公式和位移公式联立消去时间 \(t\) 得到</label></li>
+        <li><label><input type="radio" name="q3" value="B"> B．当 \(v_0 = 0\) 时，公式简化为 \(v^2 = 2ax\)</label></li>
+        <li><label><input type="radio" name="q3" value="C"> C．该公式不涉及时间 \(t\)，在不需要求时间时使用非常方便</label></li>
+        <li><label><input type="radio" name="q3" value="D"> D．该公式适用于一切直线运动</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>D。A正确，速度-位移公式是由 \(v = v_0 + at\) 和 \(x = v_0 t + \frac{1}{2}at^2\) 联立消去 \(t\) 得到的。B正确，当 \(v_0 = 0\) 时得 \(v^2 = 2ax\)。C正确，该公式的最大优点就是不涉及时间。D错误，该公式只适用于匀变速直线运动，不适用于非匀变速或非直线运动。</div>
+  </div>
+
+  <!-- q4：比例推论速度比 -->
+  <div class="question" id="q4">
+    <div class="q-head">4.</div>
+    <div class="q-body">
+      <p>一质点从静止开始做匀加速直线运动，则第 \(1\,\text{s}\) 末、第 \(2\,\text{s}\) 末、第 \(3\,\text{s}\) 末的速度之比为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q4" value="A"> A．\(1:2:3\)</label></li>
+        <li><label><input type="radio" name="q4" value="B"> B．\(1:4:9\)</label></li>
+        <li><label><input type="radio" name="q4" value="C"> C．\(1:3:5\)</label></li>
+        <li><label><input type="radio" name="q4" value="D"> D．\(1:1:1\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。初速度为零的匀加速直线运动中，\(v = at\)，速度与时间成正比。设 \(v_1 = a \times 1\)，\(v_2 = a \times 2\)，\(v_3 = a \times 3\)，故 \(v_1:v_2:v_3 = 1:2:3\)。</div>
+  </div>
+
+  <!-- q5：比例推论位移比（连续相等时间） -->
+  <div class="question" id="q5">
+    <div class="q-head">5.</div>
+    <div class="q-body">
+      <p>一质点从静止开始做匀加速直线运动，则第 \(1\,\text{s}\) 内、第 \(2\,\text{s}\) 内、第 \(3\,\text{s}\) 内的位移之比为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q5" value="A"> A．\(1:2:3\)</label></li>
+        <li><label><input type="radio" name="q5" value="B"> B．\(1:4:9\)</label></li>
+        <li><label><input type="radio" name="q5" value="C"> C．\(1:3:5\)</label></li>
+        <li><label><input type="radio" name="q5" value="D"> D．\(1:1:1\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。初速为零的匀加速直线运动中，前 \(t\) 秒内位移 \(x = \frac{1}{2}at^2\)。第1秒内位移 \(x_{\text{I}} = \frac{1}{2}a\times 1^2\)，第2秒内位移 \(x_{\text{II}} = \frac{1}{2}a(2^2-1^2)\)，第3秒内位移 \(x_{\text{III}} = \frac{1}{2}a(3^2-2^2)\)，化简得 \(x_{\text{I}}:x_{\text{II}}:x_{\text{III}} = 1:3:5\)。</div>
+  </div>
+
+  <!-- q6：比例推论位移比（前N秒内） -->
+  <div class="question" id="q6">
+    <div class="q-head">6.</div>
+    <div class="q-body">
+      <p>一质点从静止开始做匀加速直线运动，则前 \(1\,\text{s}\) 内、前 \(2\,\text{s}\) 内、前 \(3\,\text{s}\) 内的位移之比为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q6" value="A"> A．\(1:2:3\)</label></li>
+        <li><label><input type="radio" name="q6" value="B"> B．\(1:4:9\)</label></li>
+        <li><label><input type="radio" name="q6" value="C"> C．\(1:3:5\)</label></li>
+        <li><label><input type="radio" name="q6" value="D"> D．\(1:1:1\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。初速度为零的匀加速直线运动中，位移 \(x = \frac{1}{2}at^2\)，位移与时间的平方成正比。前1秒内位移 \(x_1 = \frac{1}{2}a\times 1^2\)，前2秒内 \(x_2 = \frac{1}{2}a\times 2^2\)，前3秒内 \(x_3 = \frac{1}{2}a\times 3^2\)，故 \(x_1:x_2:x_3 = 1:4:9\)。</div>
+  </div>
+
+  <!-- q7：刹车类问题 -->
+  <div class="question" id="q7">
+    <div class="q-head">7.</div>
+    <div class="q-body">
+      <p>一辆汽车以 \(20\,\text{m/s}\) 的速度在平直公路上行驶，司机发现危险后以 \(5\,\text{m/s}^2\) 的加速度急刹车（做匀减速直线运动），则刹车后 \(5\,\text{s}\) 内汽车的位移为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q7" value="A"> A．\(37.5\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q7" value="B"> B．\(50\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q7" value="C"> C．\(25\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q7" value="D"> D．\(40\,\text{m}\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>D。取初速度方向为正，\(v_0 = 20\,\text{m/s}\)，\(a = -5\,\text{m/s}^2\)。先判断停车时间：由 \(v = v_0 + at\) 得 \(0 = 20 - 5t\)，\(t = 4\,\text{s}\)。因 \(5\,\text{s} > 4\,\text{s}\)，汽车在 \(4\,\text{s}\) 时已停止，故 \(5\,\text{s}\) 的位移等于 \(4\,\text{s}\) 的位移：\(x = v_0 t + \frac{1}{2}at^2 = 20 \times 4 + \frac{1}{2} \times (-5) \times 4^2 = 80 - 40 = 40\,\text{m}\)。也可用 \(x = v_0^2/(2a) = 400/10 = 40\,\text{m}\)。</div>
+  </div>
+
+  <!-- q8：追及相遇问题 -->
+  <div class="question" id="q8">
+    <div class="q-head">8.</div>
+    <div class="q-body">
+      <p>在平直公路上，A车以 \(10\,\text{m/s}\) 的速度匀速行驶，发现前方 \(30\,\text{m}\) 处有一B车以 \(4\,\text{m/s}\) 的速度同向匀速行驶。A车立即以 \(2\,\text{m/s}^2\) 的加速度刹车，则两车（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q8" value="A"> A．不会相撞，最近距离为 \(21\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q8" value="B"> B．不会相撞，最近距离为 \(15\,\text{m}\)</label></li>
+        <li><label><input type="radio" name="q8" value="C"> C．会相撞</label></li>
+        <li><label><input type="radio" name="q8" value="D"> D．不会相撞，最近距离为 \(5\,\text{m}\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A。追及相遇问题应先找速度相同时的临界状态。A车做匀减速：\(v_A = 10 - 2t\)，B车匀速：\(v_B = 4\)。令 \(v_A = v_B\) 得 \(10 - 2t = 4\)，\(t = 3\,\text{s}\)。此时A车位移 \(x_A = 10\times 3 + \frac{1}{2}(-2)\times 3^2 = 30 - 9 = 21\,\text{m}\)，B车位移 \(x_B = 4\times 3 = 12\,\text{m}\)。A比B多走 \(21 - 12 = 9\,\text{m}\)，初始距离 \(30\,\text{m}\)，故此时相距 \(\Delta x = 30 - 9 = 21\,\text{m} > 0\)，两车不会相撞，且此后A车速度继续减小，距离只会增大，所以最近距离即为 \(21\,\text{m}\)。</div>
+  </div>
+
+  <!-- q9：纸带数据处理 -->
+  <div class="question" id="q9">
+    <div class="q-head">9.</div>
+    <div class="q-body">
+      <p>在"研究匀变速直线运动"的实验中，某同学得到一条纸带，相邻计数点间的时间间隔 \(T = 0.1\,\text{s}\)。测得相邻计数点间的距离依次为 \(x_1 = 2.00\,\text{cm}\)，\(x_2 = 4.00\,\text{cm}\)，\(x_3 = 6.00\,\text{cm}\)，\(x_4 = 8.00\,\text{cm}\)。则该物体运动的加速度大小为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q9" value="A"> A．\(1.0\,\text{m/s}^2\)</label></li>
+        <li><label><input type="radio" name="q9" value="B"> B．\(2.0\,\text{m/s}^2\)</label></li>
+        <li><label><input type="radio" name="q9" value="C"> C．\(3.0\,\text{m/s}^2\)</label></li>
+        <li><label><input type="radio" name="q9" value="D"> D．\(4.0\,\text{m/s}^2\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>B。相邻计数点间的位移差 \(\Delta x = x_2 - x_1 = x_3 - x_2 = x_4 - x_3 = 2.00\,\text{cm} = 0.020\,\text{m}\)。由逐差法公式 \(\Delta x = aT^2\) 得：\(a = \dfrac{\Delta x}{T^2} = \dfrac{0.020}{0.1^2} = \dfrac{0.020}{0.01} = 2.0\,\text{m/s}^2\)。</div>
+  </div>
+
+  <!-- q10：v̄ 公式应用 -->
+  <div class="question" id="q10">
+    <div class="q-head">10.</div>
+    <div class="q-body">
+      <p>一物体做匀加速直线运动，初速度 \(v_0 = 2\,\text{m/s}\)，末速度 \(v = 8\,\text{m/s}\)，则该段时间内的平均速度大小为（　）</p>
+      <ul class="options">
+        <li><label><input type="radio" name="q10" value="A"> A．\(3\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q10" value="B"> B．\(4\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q10" value="C"> C．\(5\,\text{m/s}\)</label></li>
+        <li><label><input type="radio" name="q10" value="D"> D．\(6\,\text{m/s}\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>C。由匀变速直线运动的平均速度公式 \(\bar{v} = \dfrac{v_0 + v}{2}\)，代入数据：\(\bar{v} = \dfrac{2 + 8}{2} = \dfrac{10}{2} = 5\,\text{m/s}\)。也可以验证：\(\bar{v} = v_{(t/2)}\)，即平均速度等于中间时刻的瞬时速度。</div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section-title">
+    二、多项选择题（共3题，每题4分，共12分）
+    <span class="score-hint">每题有多个正确选项，全部选对得4分，选对但不全得2分，有选错得0分</span>
+  </div>
+
+  <!-- q101 -->
+  <div class="question" id="q101">
+    <div class="q-head">11.（多选）</div>
+    <div class="q-body">
+      <p>关于匀变速直线运动的推论，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q101" value="A"> A．平均速度公式 \(\bar{v} = \dfrac{v_0+v}{2}\) 只适用于匀变速直线运动</label></li>
+        <li><label><input type="checkbox" name="q101" value="B"> B．对于匀变速直线运动，中间时刻的瞬时速度等于该段时间内的平均速度</label></li>
+        <li><label><input type="checkbox" name="q101" value="C"> C．速度-位移公式 \(v^2 - v_0^2 = 2ax\) 可以用于解决不涉及时间的问题</label></li>
+        <li><label><input type="checkbox" name="q101" value="D"> D．初速为零的匀加速直线运动中，第1 T内、第2 T内、第3 T内的位移之比为 \(1:4:9\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B、C。A正确，平均速度公式 \(\bar{v} = (v_0+v)/2\) 仅适用于匀变速直线运动。B正确，匀变速直线运动中，中间时刻的瞬时速度等于该段的平均速度，即 \(v_{t/2} = \bar{v}\)。C正确，该公式不含时间 \(t\)，非常适合已知初末速度和位移求加速度等情形。D错误，初速为零的匀加速直线运动中，第1 T内、第2 T内、第3 T内的位移比应为 \(1:3:5\)，\(1:4:9\) 是前1 T内、前2 T内、前3 T内的位移比。</div>
+  </div>
+
+  <!-- q102 -->
+  <div class="question" id="q102">
+    <div class="q-head">12.（多选）</div>
+    <div class="q-body">
+      <p>关于初速度为零的匀加速直线运动的比例推论，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q102" value="A"> A．\(1\,\text{T}\) 末、\(2\,\text{T}\) 末、\(3\,\text{T}\) 末的速度之比为 \(1:2:3\)</label></li>
+        <li><label><input type="checkbox" name="q102" value="B"> B．\(1\,\text{T}\) 内、\(2\,\text{T}\) 内、\(3\,\text{T}\) 内的位移之比为 \(1:4:9\)</label></li>
+        <li><label><input type="checkbox" name="q102" value="C"> C．第 \(1\,\text{T}\) 内、第 \(2\,\text{T}\) 内、第 \(3\,\text{T}\) 内的位移之比为 \(1:3:5\)</label></li>
+        <li><label><input type="checkbox" name="q102" value="D"> D．通过 \(1\,\text{T}\) 内、\(2\,\text{T}\) 内、\(3\,\text{T}\) 内所用时间之比为 \(1:3:5\)</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B、C。A正确，初速为零的匀加速直线运动中 \(v = at\)，速度与时间成正比，故 \(v_1:v_2:v_3 = 1:2:3\)。B正确，\(x = \frac{1}{2}at^2\)，位移与时间平方成正比，故 \(x_1:x_2:x_3 = 1:4:9\)。C正确，第 \(n\) 个 \(T\) 内的位移 \(x_n = \frac{1}{2}a(nT)^2 - \frac{1}{2}a[(n-1)T]^2\)，化简得 \(x_{\text{I}}:x_{\text{II}}:x_{\text{III}} = 1:3:5\)。D错误，通过前 \(1T\)、前 \(2T\)、前 \(3T\) 所用时间之比就是 \(1:2:3\)，不是 \(1:3:5\)。</div>
+  </div>
+
+  <!-- q103 -->
+  <div class="question" id="q103">
+    <div class="q-head">13.（多选）</div>
+    <div class="q-body">
+      <p>关于刹车类问题和纸带数据处理，下列说法正确的有（　）</p>
+      <ul class="options">
+        <li><label><input type="checkbox" name="q103" value="A"> A．刹车类问题必须先判断停车时间，避免直接代入公式产生错误</label></li>
+        <li><label><input type="checkbox" name="q103" value="B"> B．在处理纸带数据时，利用逐差法公式 \(\Delta x = aT^2\) 可以求加速度</label></li>
+        <li><label><input type="checkbox" name="q103" value="C"> C．追及相遇问题中，两车速度相等时往往是距离取极值的临界条件</label></li>
+        <li><label><input type="checkbox" name="q103" value="D"> D．匀变速直线运动中，中间位置的速度一定大于中间时刻的速度</label></li>
+      </ul>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>A、B、C、D。A正确，刹车类问题中汽车最终会停止，若给定时间大于停车时间，需按停车时间计算位移，否则会导致错误结果。B正确，纸带数据处理中，利用 \(\Delta x = aT^2\) 求加速度是基本方法，为减小误差通常采用逐差法（如 \((x_4+x_5+x_6)-(x_1+x_2+x_3) = a(3T)^2\)）。C正确，追及相遇问题中，当两车速度相等时，两车之间的距离达到最大或最小，是判断是否相撞的临界条件。D正确，由数学不等式可知 \(\sqrt{(v_0^2+v^2)/2} > (v_0+v)/2\)（当 \(v_0 \neq v\) 时），即 \(v_{x/2} > v_{t/2}\)，中间位置的速度大于中间时刻的速度。</div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section-title">
+    三、填空题（共6题，每题3分，共18分）
+  </div>
+
+  <!-- q14 -->
+  <div class="question" id="q14">
+    <div class="q-head">14.</div>
+    <div class="q-body">
+      <p>匀变速直线运动的平均速度公式为 \(\bar{v} = \) ______（用 \(v_0\) 和 \(v\) 表示），同时 \(\bar{v}\) 也等于 ______ 时刻的瞬时速度。</p>
+      <div class="fillin">\(\bar{v} =\) <input type="text" id="fill_q14" maxlength="16" style="width:110px;">，等于 <input type="text" id="fill_q14b" maxlength="8" style="width:70px;"> 时刻的瞬时速度</div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\((v_0+v)/2\)；中间。匀变速直线运动中，平均速度 \(\bar{v} = \dfrac{v_0 + v}{2}\)，且 \(\bar{v}\) 等于中间时刻（即 \(t/2\) 时刻）的瞬时速度。</div>
+  </div>
+
+  <!-- q15 -->
+  <div class="question" id="q15">
+    <div class="q-head">15.</div>
+    <div class="q-body">
+      <p>匀变速直线运动的速度-位移关系式为 \(v^2 - v_0^2 = \) ______。</p>
+      <div class="fillin"><input type="text" id="fill_q15" maxlength="8" style="width:80px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(2ax\)。速度-位移公式 \(v^2 - v_0^2 = 2ax\) 是由速度公式和位移公式消去时间 \(t\) 推导得到的，适用于匀变速直线运动。</div>
+  </div>
+
+  <!-- q16 -->
+  <div class="question" id="q16">
+    <div class="q-head">16.</div>
+    <div class="q-body">
+      <p>逐差法公式：做匀变速直线运动的物体，在连续相等时间间隔 \(T\) 内，相邻两段位移之差 \(\Delta x = \) ______。</p>
+      <div class="fillin">\(\Delta x =\) <input type="text" id="fill_q16" maxlength="10" style="width:80px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(aT^2\)。逐差法公式 \(\Delta x = aT^2\) 是处理纸带数据、求匀变速直线运动加速度的基本依据。</div>
+  </div>
+
+  <!-- q17 -->
+  <div class="question" id="q17">
+    <div class="q-head">17.</div>
+    <div class="q-body">
+      <p>初速度为零的匀加速直线运动中，\(1\,\text{T}\) 末、\(2\,\text{T}\) 末、\(3\,\text{T}\) 末的速度之比 \(v_1:v_2:v_3 = \) ______。</p>
+      <div class="fillin"><input type="text" id="fill_q17" maxlength="10" style="width:80px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(1:2:3\)。初速度为零时 \(v = at\)，速度与时间成正比，故 \(v_1:v_2:v_3 = 1:2:3\)。</div>
+  </div>
+
+  <!-- q18 -->
+  <div class="question" id="q18">
+    <div class="q-head">18.</div>
+    <div class="q-body">
+      <p>初速度为零的匀加速直线运动中，第 \(1\,\text{T}\) 内、第 \(2\,\text{T}\) 内、第 \(3\,\text{T}\) 内的位移之比 \(x_{\text{I}}:x_{\text{II}}:x_{\text{III}} = \) ______。</p>
+      <div class="fillin"><input type="text" id="fill_q18" maxlength="10" style="width:80px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(1:3:5\)。第 \(n\) 个 \(T\) 内的位移 \(x_n = \frac{1}{2}a(nT)^2 - \frac{1}{2}a[(n-1)T]^2 = \frac{1}{2}a(2n-1)T^2\)，故 \(x_{\text{I}}:x_{\text{II}}:x_{\text{III}} = 1:3:5\)。</div>
+  </div>
+
+  <!-- q19 -->
+  <div class="question" id="q19">
+    <div class="q-head">19.</div>
+    <div class="q-body">
+      <p>初速度为零的匀加速直线运动中，前 \(1\,\text{T}\) 内、前 \(2\,\text{T}\) 内、前 \(3\,\text{T}\) 内的位移之比 \(x_1:x_2:x_3 = \) ______。</p>
+      <div class="fillin"><input type="text" id="fill_q19" maxlength="10" style="width:80px;"></div>
+    </div>
+    <div class="answer-reveal"><span class="ans-key">答案：</span>\(1:4:9\)。前 \(t\) 秒内位移 \(x = \frac{1}{2}at^2\)，位移与时间的平方成正比，故 \(x_1:x_2:x_3 = 1^2:2^2:3^2 = 1:4:9\)。</div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section-title">
+    四、解答题（共4题，共40分）
+    <span class="score-hint">请写出必要的文字说明和解题过程</span>
+  </div>
+
+  <!-- q20：刹车类问题（10分） -->
+  <div class="question calc-question" id="q20">
+    <div class="q-head">20.（10分）</div>
+    <div class="q-body">
+      <p>一辆汽车以 \(25\,\text{m/s}\) 的速度在平直公路上行驶，司机发现前方有危险后立即以 \(5\,\text{m/s}^2\) 的加速度紧急刹车（做匀减速直线运动）。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求刹车后 \(3\,\text{s}\) 末的速度大小；（2分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求刹车后 \(6\,\text{s}\) 内的位移；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求刹车后第 \(3\,\text{s}\) 内的位移。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+取初速度方向为正，\(v_0 = 25\,\text{m/s}\)，\(a = -5\,\text{m/s}^2\)。<br>
+(1) 刹车后 \(3\,\text{s}\) 末速度：\(v_3 = v_0 + at = 25 + (-5)\times 3 = 25 - 15 = 10\,\text{m/s}\)（2分）<br>
+(2) 先判断停车时间：由 \(v = v_0 + at\) 得 \(0 = 25 - 5t\)，\(t = 5\,\text{s}\)。因 \(6\,\text{s} > 5\,\text{s}\)，汽车在 \(5\,\text{s}\) 时已停止，故 \(6\,\text{s}\) 的位移即为 \(5\,\text{s}\) 内的位移（4分）。\(x = v_0 t + \dfrac{1}{2}at^2 = 25\times 5 + \dfrac{1}{2}\times(-5)\times 5^2 = 125 - 62.5 = 62.5\,\text{m}\)。或由 \(v^2 - v_0^2 = 2ax\) 得 \(x = \dfrac{v_0^2}{2a} = \dfrac{25^2}{2\times 5} = \dfrac{625}{10} = 62.5\,\text{m}\)。<br>
+(3) 第 \(3\,\text{s}\) 内的位移等于前 \(3\,\text{s}\) 的位移减去前 \(2\,\text{s}\) 的位移（4分）。\(x_3 = v_0 t_3 + \frac{1}{2}at_3^2 = 25\times 3 + \frac{1}{2}(-5)\times 9 = 75 - 22.5 = 52.5\,\text{m}\)；\(x_2 = 25\times 2 + \frac{1}{2}(-5)\times 4 = 50 - 10 = 40\,\text{m}\)；\(x_{\text{第3s}} = x_3 - x_2 = 52.5 - 40 = 12.5\,\text{m}\)。</div>
+    </div>
+  </div>
+
+  <!-- q21：追及相遇问题（10分） -->
+  <div class="question calc-question" id="q21">
+    <div class="q-head">21.（10分）</div>
+    <div class="q-body">
+      <p>在平直公路上，A车以 \(v_0 = 15\,\text{m/s}\) 的速度匀速行驶，发现前方 \(x_0 = 15\,\text{m}\) 处有一B车以 \(v = 5\,\text{m/s}\) 的速度同向匀速行驶。A车立即以 \(a = 4\,\text{m/s}^2\) 的加速度刹车（做匀减速直线运动）。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求两车速度相等时所用的时间 \(t\)；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求从开始刹车到两车速度相等时，A车和B车各自的位移；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 判断两车是否相撞，若不相撞，求两车之间的最近距离。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+取初速度方向为正，A车做匀减速：\(v_A = v_0 - at = 15 - 4t\)，B车匀速：\(v_B = 5\)。<br>
+(1) 令 \(v_A = v_B\)：\(15 - 4t = 5\)，解得 \(t = 2.5\,\text{s}\)（3分）<br>
+(2) A车位移：\(x_A = v_0 t + \frac{1}{2}at^2 = 15\times 2.5 + \frac{1}{2}\times(-4)\times 2.5^2 = 37.5 - 12.5 = 25\,\text{m}\)（1.5分）<br>
+B车位移：\(x_B = vt = 5\times 2.5 = 12.5\,\text{m}\)（1.5分）<br>
+(3) 此时A车比B车多走的位移：\(\Delta x_{\text{多}} = x_A - x_B = 25 - 12.5 = 12.5\,\text{m}\)（2分）。初始两车相距 \(x_0 = 15\,\text{m}\)，故此时两车相距：\(\Delta x = x_0 - \Delta x_{\text{多}} = 15 - 12.5 = 2.5\,\text{m} > 0\)（1分）。因此两车不会相撞，此后A车速度继续减小，B车速度不变，两车距离将增大，故最近距离为 \(2.5\,\text{m}\)（1分）。</div>
+    </div>
+  </div>
+
+  <!-- q22：纸带数据处理 + 逐差法 / 平均速度（10分） -->
+  <div class="question calc-question" id="q22">
+    <div class="q-head">22.（10分）</div>
+    <div class="q-body">
+      <p>某同学在"研究匀变速直线运动"的实验中打出了一条纸带。从比较清晰的点开始，每5个计时点取一个计数点，测得相邻计数点间的距离如下表所示。打点计时器所用交流电频率为 \(50\,\text{Hz}\)。</p>
+      <table class="data-table">
+        <tr><th>计数点间距</th><th>\(x_1\)</th><th>\(x_2\)</th><th>\(x_3\)</th><th>\(x_4\)</th><th>\(x_5\)</th><th>\(x_6\)</th></tr>
+        <tr><td>距离/cm</td><td>3.50</td><td>5.00</td><td>6.50</td><td>8.00</td><td>9.50</td><td>11.00</td></tr>
+      </table>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求相邻计数点之间的时间间隔 \(T\)；（2分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 利用逐差法求物体运动的加速度 \(a\)；（4分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 求打计数点 \(3\) 时的瞬时速度 \(v_3\)。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+(1) 打点计时器频率 \(50\,\text{Hz}\)，相邻两计时点的时间间隔 \(T_0 = \dfrac{1}{50} = 0.02\,\text{s}\)（1分）。每5个点取一个计数点，故相邻计数点的时间间隔 \(T = 5T_0 = 5 \times 0.02 = 0.1\,\text{s}\)（1分）<br>
+(2) 逐差法求加速度（为减小误差，将6段数据分成三组）：<br>
+\(a_1 = \dfrac{x_4 - x_1}{3T^2} = \dfrac{(8.00 - 3.50)\times 10^{-2}}{3 \times 0.1^2} = \dfrac{0.0450}{0.03} = 1.50\,\text{m/s}^2\)（1分）<br>
+\(a_2 = \dfrac{x_5 - x_2}{3T^2} = \dfrac{(9.50 - 5.00)\times 10^{-2}}{3 \times 0.01} = \dfrac{0.0450}{0.03} = 1.50\,\text{m/s}^2\)（1分）<br>
+\(a_3 = \dfrac{x_6 - x_3}{3T^2} = \dfrac{(11.00 - 6.50)\times 10^{-2}}{3 \times 0.01} = \dfrac{0.0450}{0.03} = 1.50\,\text{m/s}^2\)（1分）<br>
+加速度平均值：\(a = \dfrac{a_1 + a_2 + a_3}{3} = 1.50\,\text{m/s}^2\)（1分）<br>
+(3) 计数点3是 \(x_3\) 和 \(x_4\) 段的中间时刻点，其瞬时速度等于该段的平均速度（2分）：<br>
+\(v_3 = \dfrac{x_3 + x_4}{2T} = \dfrac{(6.50 + 8.00)\times 10^{-2}}{2 \times 0.1} = \dfrac{0.145}{0.2} = 0.725\,\text{m/s}\)（2分）</div>
+    </div>
+  </div>
+
+  <!-- q23：比例推论综合应用（10分） -->
+  <div class="question calc-question" id="q23">
+    <div class="q-head">23.（10分）</div>
+    <div class="q-body">
+      <p>一个物体从静止开始做匀加速直线运动，加速度为 \(a\)，连续经过三段位移，每段位移所用时间均为 \(T\)。</p>
+      <div class="sub-q"><span class="sq-label">(1)</span> 求这三段位移的长度之比 \(x_{\text{I}}:x_{\text{II}}:x_{\text{III}}\)；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(2)</span> 求这三段位移的末速度之比 \(v_1:v_2:v_3\)；（3分）</div>
+      <div class="sub-q"><span class="sq-label">(3)</span> 若 \(T = 1\,\text{s}\)，第三段位移 \(x_{\text{III}} = 25\,\text{m}\)，求加速度 \(a\)。（4分）</div>
+      <textarea placeholder="请在此处书写解答过程……"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+物体从静止开始做匀加速直线运动，\(v_0 = 0\)。<br>
+(1) 第1个 \(T\) 内位移：\(x_{\text{I}} = \frac{1}{2}aT^2\)<br>
+第2个 \(T\) 内位移：\(x_{\text{II}} = \frac{1}{2}a(2T)^2 - \frac{1}{2}aT^2 = \frac{1}{2}a \times 3T^2\)<br>
+第3个 \(T\) 内位移：\(x_{\text{III}} = \frac{1}{2}a(3T)^2 - \frac{1}{2}a(2T)^2 = \frac{1}{2}a \times 5T^2\)（2分）<br>
+故 \(x_{\text{I}}:x_{\text{II}}:x_{\text{III}} = 1:3:5\)（1分）<br>
+(2) 第1段末速度：\(v_1 = aT\)；第2段末速度：\(v_2 = a(2T) = 2aT\)；第3段末速度：\(v_3 = a(3T) = 3aT\)（2分）。故 \(v_1:v_2:v_3 = 1:2:3\)（1分）<br>
+(3) 由(1)知 \(x_{\text{III}} = \frac{1}{2}a \times 5T^2\)，代入 \(T = 1\,\text{s}\)，\(x_{\text{III}} = 25\,\text{m}\)（2分）：<br>
+\(25 = \frac{1}{2}a \times 5 \times 1^2\)，\(\frac{5}{2}a = 25\)，\(a = 25 \times \frac{2}{5} = 10\,\text{m/s}^2\)（2分）</div>
+    </div>
+  </div>
+
+  <!-- ======================== 交卷按钮 ======================== -->
+  <div class="submit-bar">
+    <button onclick="submitExam()">提交试卷（Ctrl+Enter）</button>
+    <button onclick="clearAnswers()" style="background:#888; margin-left:8px;">清空答案</button>
+    <button class="btn-answer" onclick="showAnswers()" style="background:#e8a317;color:#fff;border:none;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;margin-left:8px;">显示答案</button>
+    <p style="margin-top:6px; font-size:12px; color:#999;">按下 Ctrl+Enter 也可提交</p>
+  </div>
+
+</div><!-- /paper -->
+
+<!-- ======================== JavaScript ======================== -->
+<script>
+// ===== 答案自动缓存（防手机切后台丢失） =====
+const PAPER_ID = 'physics_grade10_ch2_s5';
+const STORAGE_KEY = 'test_answers_' + PAPER_ID;
+
+function saveAnswers() {
+  var data = {};
+  // 单选/多选的选中状态
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) {
+    if (r.checked && r.name) {
+      if (!data.r) data.r = {};
+      data.r[r.name] = r.value;
+    }
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) {
+    if (c.checked && c.name) {
+      if (!data.c) data.c = {};
+      if (!data.c[c.name]) data.c[c.name] = [];
+      data.c[c.name].push(c.value);
+    }
+  });
+  // 填空输入
+  document.querySelectorAll('input[type="text"], input.fill-input').forEach(function(t) {
+    var key = t.id || (t.closest('[data-qid]') && t.closest('[data-qid]').getAttribute('data-qid'));
+    if (key) {
+      if (!data.t) data.t = {};
+      data.t[key] = t.value;
+    }
+  });
+  // 解答题区域
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    var parent = ta.closest('.question, [data-qid]');
+    var key = parent ? (parent.id || parent.getAttribute('data-qid')) : null;
+    if (key) {
+      if (!data.a) data.a = {};
+      data.a[key] = ta.value;
+    }
+  });
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreAnswers() {
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    var data = JSON.parse(raw);
+    // 恢复单选
+    if (data.r) {
+      Object.keys(data.r).forEach(function(name) {
+        var el = document.querySelector('input[type="radio"][name="' + name + '"][value="' + data.r[name] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    // 恢复多选
+    if (data.c) {
+      Object.keys(data.c).forEach(function(name) {
+        data.c[name].forEach(function(val) {
+          var el = document.querySelector('input[type="checkbox"][name="' + name + '"][value="' + val + '"]');
+          if (el) el.checked = true;
+        });
+      });
+    }
+    // 恢复填空
+    if (data.t) {
+      Object.keys(data.t).forEach(function(key) {
+        var el = document.getElementById(key);
+        if (!el) el = document.querySelector('input[name="' + key + '"]');
+        if (el) el.value = data.t[key];
+      });
+    }
+    // 恢复解答题
+    if (data.a) {
+      Object.keys(data.a).forEach(function(key) {
+        var ta = document.querySelector('#' + key + ' textarea') || document.querySelector('[data-qid="' + key + '"] textarea');
+        if (ta) ta.value = data.a[key];
+      });
+    }
+  } catch(e) {}
+}
+
+function clearAnswers() {
+  if (!confirm('确定要清空所有已填写的答案吗？此操作不可撤销！')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(c) { c.checked = false; });
+  document.querySelectorAll('input[type="text"], input.fill-input, textarea').forEach(function(el) { el.value = ''; });
+  var scoreEl = document.getElementById('displayScore');
+  if (scoreEl) scoreEl.textContent = '______';
+}
+
+function setupAutoSave() {
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type="radio"], input[type="checkbox"]')) saveAnswers();
+  });
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('input[type="text"], input.fill-input, textarea')) saveAnswers();
+  });
+}
+
+// 页面恢复 + 自动保存
+restoreAnswers();
+setupAutoSave();
+
+// ===== 参考答案密码锁 =====
+function showAnswers() {
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
+  } else if (pwd !== null) {
+    alert('密码错误！');
+  }
+}
+
+// ===== Ctrl+Enter 提交 =====
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    submitExam();
+  }
+});
+
+// ===== 提交试卷（提示并滚动到顶部） =====
+function submitExam() {
+  saveAnswers();  // 提交前确保保存
+  // 收集单选题答案
+  const singleAns = {};
+  const singleKeys = { q1:'C', q2:'B', q3:'D', q4:'A', q5:'C', q6:'B', q7:'D', q8:'A', q9:'B', q10:'C' };
+  let singleScore = 0;
+  let singleResult = '';
+  for (let i = 1; i <= 10; i++) {
+    const name = 'q' + i;
+    const sel = document.querySelector('input[name="' + name + '"]:checked');
+    const userAns = sel ? sel.value : '未选';
+    const correct = singleKeys[name];
+    const isCorrect = (userAns === correct);
+    if (isCorrect) singleScore += 3;
+    singleResult += (i + '.' + userAns + (isCorrect ? '✓' : '✗(' + correct + ')') + ' ');
+  }
+
+  // 收集多选题答案
+  const multiKeys = { q101:['A','B','C'], q102:['A','B','C'], q103:['A','B','C','D'] };
+  let multiScore = 0;
+  let multiResult = '';
+  for (const name in multiKeys) {
+    const checks = document.querySelectorAll('input[name="' + name + '"]:checked');
+    const userVals = Array.from(checks).map(c => c.value).sort();
+    const correctVals = multiKeys[name].slice().sort();
+    const match = (userVals.length === correctVals.length && userVals.every((v,i) => v === correctVals[i]));
+    if (match) multiScore += 4;
+    else if (userVals.length > 0 && userVals.every(v => multiKeys[name].includes(v))) multiScore += 2;
+    multiResult += (name.replace('q','') + '.' + (userVals.join(',') || '未选') + (match ? '✓' : '') + ' ');
+  }
+
+  // 填空题（仅展示，不计分）
+  const fillIds = ['fill_q14','fill_q14b','fill_q15','fill_q16','fill_q17','fill_q18','fill_q19'];
+  let fillResult = '';
+  fillIds.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) fillResult += (id + '=' + (el.value || '空') + ' ');
+  });
+
+  const totalScore = singleScore + multiScore;
+
+  alert(
+    '===== 提交成功 =====\n\n' +
+    '【单选题】' + singleScore + '/30分\n' + singleResult + '\n\n' +
+    '【多选题】' + multiScore + '/12分\n' + multiResult + '\n\n' +
+    '【填空题】（请对照答案自行批改）\n' + fillResult + '\n\n' +
+    '【当前总分】' + totalScore + '/100分（不含填空和解答题）\n\n' +
+    '参考答案已加密，请点击下方"显示答案"按钮查看（密码：2641）。'
+  );
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<!-- ======================== MathJax 3 ======================== -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  options: {
+    ignoreHtmlClass: 'no-mathjax'
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

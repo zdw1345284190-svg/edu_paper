@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高一化学（人教版）第二章 2.3 物质的量</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] ,
+  processEscapes: true, tags: 'none' }, options: { ignoreHtmlClass: 'no-mathjax' }, svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Times New Roman', '宋体', SimSun, serif;
+  font-size: 14px;
+  line-height: 1.8;
+  background: #f0f0f0;
+  padding: 20px;
+  color: #222;
+}
+.paper {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 28px 32px;
+  box-shadow: 0 0 12px rgba(0,0,0,.12);
+  min-height: 297mm;
+  position: relative;
+}
+
+/* ===== Header ===== */
+.header { text-align: center; margin-bottom: 18px; border-bottom: 2px solid #333; padding-bottom: 14px; }
+.header h1 { font-size: 20px; font-weight: bold; letter-spacing: 2px; margin-bottom: 6px; }
+.header .sub { font-size: 15px; color: #555; margin-bottom: 4px; }
+.header .info-bar { font-size: 14px; color: #333; margin: 4px 0; }
+.student-info { display: flex; justify-content: center; gap: 24px; margin-top: 10px; flex-wrap: wrap; }
+.student-info label { font-size: 14px; }
+.student-info input { border: none; border-bottom: 1px solid #333; width: 90px; font-size: 14px; padding: 0 4px; background: transparent; outline: none; }
+
+/* ===== Sections ===== */
+.section { margin-bottom: 20px; }
+.section h2 { font-size: 16px; font-weight: bold; margin: 16px 0 10px; padding-left: 6px; border-left: 4px solid #1a5276; }
+
+/* ===== Questions ===== */
+.question { margin-bottom: 14px; padding: 8px 10px; border-left: 3px solid transparent; }
+.question:hover { border-left-color: #85c1e9; }
+.q-title { font-weight: bold; margin-bottom: 4px; }
+.q-text { margin-bottom: 6px; text-indent: 2em; }
+
+/* Inline question number & text for single/multi choice */
+.question[data-type="single"] .q-title,
+.question[data-type="multi"] .q-title { display: inline; }
+.question[data-type="single"] .q-text,
+.question[data-type="multi"] .q-text { display: inline; text-indent: 0; }
+
+/* Options */
+.options { margin: 6px 0 4px 2em; }
+.options label { display: block; cursor: pointer; padding: 2px 4px; }
+.options label:hover { background: #eaf2f8; }
+.options input[type="radio"], .options input[type="checkbox"] { margin-right: 6px; vertical-align: middle; }
+
+/* Fill-in blanks */
+.fill-question .q-text { text-indent: 0; }
+.fill-blank {
+  border: none; border-bottom: 1.5px solid #333;
+  width: 100px; text-align: center; font-size: 14px;
+  padding: 0 4px; margin: 0 2px; background: transparent; outline: none;
+  font-family: inherit;
+}
+.fill-blank:focus { border-bottom-color: #2980b9; border-bottom-width: 2px; }
+.fill-blank.correct { border-bottom-color: #27ae60; background: #eafaf1; }
+.fill-blank.wrong { border-bottom-color: #e74c3c; background: #fdedec; }
+
+/* Calc textarea */
+.calc-question textarea {
+  width: 100%; min-height: 70px; margin-top: 6px;
+  border: 1px solid #bbb; border-radius: 4px; padding: 8px;
+  font-family: inherit; font-size: 14px; resize: vertical;
+  outline: none; line-height: 1.6;
+}
+.calc-question textarea:focus { border-color: #2980b9; box-shadow: 0 0 3px rgba(41,128,185,.3); }
+.calc-question .q-text { text-indent: 0; }
+.sub-q { margin: 6px 0 4px 1.5em; }
+
+/* ===== Buttons ===== */
+.btn-group { text-align: center; margin: 20px 0 10px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-group button {
+  padding: 8px 22px; font-size: 15px; border: none; border-radius: 4px;
+  cursor: pointer; font-family: inherit; transition: background .2s;
+}
+.btn-submit { background: #1a5276; color: #fff; }
+.btn-submit:hover { background: #154360; }
+.btn-clear { background: #922b21; color: #fff; }
+.btn-clear:hover { background: #7b241c; }
+/* ===== Result ===== */
+#result { text-align: center; font-size: 16px; font-weight: bold; margin: 12px 0; padding: 10px; border-radius: 4px; display: none; }
+#result.show { display: block; }
+#result.pass { background: #d5f5e3; color: #1e8449; }
+#result.fail { background: #fadbd8; color: #922b21; }
+
+/* ===== Status feedback on question ===== */
+.question.correct-q { border-left-color: #27ae60; background: #f0faf4; }
+.question.wrong-q { border-left-color: #e74c3c; background: #fdf2f2; }
+
+/* ===== 答案内联显示 ===== */
+.answer-reveal {
+  display: none;
+  margin: 6px 0 2px;
+  padding: 6px 12px;
+  background: #e8f5e9;
+  border-left: 3px solid #1a5276;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: #1b5e20;
+  line-height: 1.7;
+}
+.answer-reveal.show { display: block; }
+.answer-reveal .ans-key { color: #c0392b; font-weight: 600; }
+
+/* ===== Print ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .paper { box-shadow: none; padding: 15mm 20mm; max-width: 100%; }
+  .btn-group, #result, .student-info input { display: none; }
+  .student-info { display: flex; }
+  .student-info input { border-bottom: 1px solid #000; display: inline-block; }
+  .question:hover { border-left-color: transparent; }
+  .no-print { display: none; }
+  .section { page-break-inside: avoid; }
+  .fill-blank { border-bottom: 1.5px solid #000; }
+  @page { size: A4; margin: 15mm; }
+}
+
+/* ===== 手机端适配 ===== */
+@media screen and (max-width: 640px) {
+  body { padding: 8px; }
+  .paper { padding: 14px 16px; box-shadow: none; min-height: auto; }
+  .student-info { flex-direction: column; gap: 6px; align-items: center; }
+  .options { margin-left: 0.5em; }
+  .sub-q { margin-left: 0.5em; }
+  .header h1 { font-size: 17px; }
+  .btn-group button { padding: 8px 14px; font-size: 14px; }
+}
+
+/* ===== Misc ===== */
+.clearfix::after { content: ''; display: table; clear: both; }
+.score-badge { display: inline-block; background: #1a5276; color: #fff; padding: 0 8px; border-radius: 3px; font-size: 12px; margin-left: 6px; }
+.total-score { font-size: 18px; text-align: center; padding: 10px; margin: 10px 0; background: #eaf2f8; border-radius: 4px; }
+
+</style>
+</head>
+<body>
+
+<div class="paper" id="paper">
+
+  <!-- ==================== HEADER ==================== -->
+  <div class="header">
+    <h1>高一化学（人教版必修第一册）</h1>
+    <div class="sub">第二章 &nbsp; 2.3 物质的量 &nbsp; 单元检测卷</div>
+    <div class="info-bar">
+      <strong>总分：100分</strong> &nbsp;&nbsp; 考试时间：45分钟 &nbsp;&nbsp; 命题范围：第二章 2.3
+    </div>
+    <div class="student-info">
+      <label>姓名：<input type="text" id="student-name" autocomplete="off"></label>
+      <label>班级：<input type="text" id="student-class" autocomplete="off" style="width:70px"></label>
+      <label>学号：<input type="text" id="student-id" autocomplete="off" style="width:80px"></label>
+    </div>
+  </div>
+
+  <!-- ==================== 一、单选题 ==================== -->
+  <div class="section">
+    <h2>一、单选题（共10题，每题3分，共30分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题只有一个选项符合题意。</p>
+
+    <!-- q1 — 摩尔概念 -->
+    <div class="question" data-qid="q1" data-type="single" data-answer="B">
+      <div class="q-title">1.</div>
+      <div class="q-text">下列有关"物质的量"的说法，正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"> A．物质的量的单位是克（g）</label>
+        <label><input type="radio" name="q1" value="B"> B．1 mol 任何微粒的集合体都含有约 \(6.02 \times 10^{23}\) 个微粒</label>
+        <label><input type="radio" name="q1" value="C"> C．物质的量就是物质的质量</label>
+        <label><input type="radio" name="q1" value="D"> D．摩尔是国际单位制中的七个基本物理量之一</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 1 mol 任何微粒集合体所含微粒数与 0.012 kg <sup>12</sup>C 所含碳原子数相同，约为 6.02×10²³ 个。A 错：物质的量单位是摩尔（mol），质量单位才是克。C 错：物质的量是描述微粒集合体的物理量，与质量是不同的概念。D 错：摩尔是物质的量的单位，物质的量本身才是七个基本物理量之一。</div>
+    </div>
+
+    <!-- q2 — N_A 定义 -->
+    <div class="question" data-qid="q2" data-type="single" data-answer="C">
+      <div class="q-title">2.</div>
+      <div class="q-text">阿伏加德罗常数（\(N_A\)）的数值约为（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"> A．\(6.02 \times 10^{22}\)</label>
+        <label><input type="radio" name="q2" value="B"> B．\(6.02 \times 10^{24}\)</label>
+        <label><input type="radio" name="q2" value="C"> C．\(6.02 \times 10^{23}\)</label>
+        <label><input type="radio" name="q2" value="D"> D．\(6.02 \times 10^{25}\)</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>C — 阿伏加德罗常数 N_A ≈ 6.02×10²³ mol⁻¹，表示 1 mol 任何微粒所含的微粒数。A 错在指数偏小（×10²²），B 和 D 均错误。</div>
+    </div>
+
+    <!-- q3 — 公式 n = N/N_A -->
+    <div class="question" data-qid="q3" data-type="single" data-answer="B">
+      <div class="q-title">3.</div>
+      <div class="q-text">\(0.5\ \text{mol}\ \text{H}_2\text{O}\) 中所含的分子数约为（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"> A．\(3.01 \times 10^{22}\)</label>
+        <label><input type="radio" name="q3" value="B"> B．\(3.01 \times 10^{23}\)</label>
+        <label><input type="radio" name="q3" value="C"> C．\(6.02 \times 10^{23}\)</label>
+        <label><input type="radio" name="q3" value="D"> D．\(6.02 \times 10^{24}\)</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 由 n = N / N_A 得 N = n × N_A = 0.5 × 6.02×10²³ = 3.01×10²³（个）。A 是 10²² 数量级错误，C 对应 1 mol，D 对应 10 mol。</div>
+    </div>
+
+    <!-- q4 — 公式 n = m/M -->
+    <div class="question" data-qid="q4" data-type="single" data-answer="D">
+      <div class="q-title">4.</div>
+      <div class="q-text">\(18\ \text{g}\ \text{H}_2\text{O}\) 的物质的量为（　）（已知 H₂O 的摩尔质量为 18 g·mol⁻¹）</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="A"> A．0.5 mol</label>
+        <label><input type="radio" name="q4" value="B"> B．2 mol</label>
+        <label><input type="radio" name="q4" value="C"> C．3 mol</label>
+        <label><input type="radio" name="q4" value="D"> D．1 mol</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>D — 由 n = m / M 得 n(H₂O) = 18 g / 18 g·mol⁻¹ = 1 mol。A 错在 0.5（9 g 水），B 错在 2（36 g 水），C 错在 3（54 g 水）。</div>
+    </div>
+
+    <!-- q5 — 气体摩尔体积 -->
+    <div class="question" data-qid="q5" data-type="single" data-answer="B">
+      <div class="q-title">5.</div>
+      <div class="q-text">标准状况（STP）下，1 mol O₂ 的体积约为（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"> A．11.2 L</label>
+        <label><input type="radio" name="q5" value="B"> B．22.4 L</label>
+        <label><input type="radio" name="q5" value="C"> C．33.6 L</label>
+        <label><input type="radio" name="q5" value="D"> D．44.8 L</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B — 标准状况（0°C，101 kPa）下，1 mol 任何气体（包括 O₂）的体积均约为 22.4 L。A 对应 0.5 mol，C 对应 1.5 mol，D 对应 2 mol。</div>
+    </div>
+
+    <!-- q6 — 标况条件及适用对象 -->
+    <div class="question" data-qid="q6" data-type="single" data-answer="C">
+      <div class="q-title">6.</div>
+      <div class="q-text">下列说法正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q6" value="A"> A．标准状况下，1 mol H₂O 的体积约为 22.4 L</label>
+        <label><input type="radio" name="q6" value="B"> B．常温常压下，1 mol H₂ 的体积约为 22.4 L</label>
+        <label><input type="radio" name="q6" value="C"> C．标准状况下，1 mol N₂ 的体积约为 22.4 L</label>
+        <label><input type="radio" name="q6" value="D"> D．标准状况下，22.4 L H₂SO₄ 的物质的量为 1 mol</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>C — 标准状况（0°C，101 kPa）下，1 mol 任何气体的体积均约为 22.4 L。A 错：H₂O 在标况下为非气态（冰或液态），不适用气体摩尔体积。B 错：常温常压（25°C，101 kPa）下气体摩尔体积约为 24.5 L/mol，不是 22.4 L/mol。D 错：H₂SO₄ 在标况下为液态，不适用气体摩尔体积。</div>
+    </div>
+
+    <!-- q7 — 公式 n = V/V_m -->
+    <div class="question" data-qid="q7" data-type="single" data-answer="A">
+      <div class="q-title">7.</div>
+      <div class="q-text">标准状况下，\(44.8\ \text{L}\ \text{CO}_2\) 的物质的量为（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q7" value="A"> A．2 mol</label>
+        <label><input type="radio" name="q7" value="B"> B．1 mol</label>
+        <label><input type="radio" name="q7" value="C"> C．0.5 mol</label>
+        <label><input type="radio" name="q7" value="D"> D．4 mol</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A — 由 n = V / V_m 得 n(CO₂) = 44.8 L / 22.4 L·mol⁻¹ = 2 mol。B 对应 22.4 L，C 对应 11.2 L，D 对应 89.6 L。</div>
+    </div>
+
+    <!-- q8 — 公式 n = cV -->
+    <div class="question" data-qid="q8" data-type="single" data-answer="D">
+      <div class="q-title">8.</div>
+      <div class="q-text">将 0.1 mol NaCl 溶于水配成 500 mL 溶液，所得溶液的物质的量浓度为（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q8" value="A"> A．0.1 mol·L⁻¹</label>
+        <label><input type="radio" name="q8" value="B"> B．0.5 mol·L⁻¹</label>
+        <label><input type="radio" name="q8" value="C"> C．1.0 mol·L⁻¹</label>
+        <label><input type="radio" name="q8" value="D"> D．0.2 mol·L⁻¹</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>D — c = n / V = 0.1 mol / 0.5 L = 0.2 mol·L⁻¹。注意 V 的单位应统一为升（L），500 mL = 0.5 L。A 错（0.1 对应体积为 1 L），B 错（0.5 对应 0.2 mol 溶质），C 错（1.0 对应 0.5 mol 溶质）。</div>
+    </div>
+
+    <!-- q9 — 溶液配制 -->
+    <div class="question" data-qid="q9" data-type="single" data-answer="C">
+      <div class="q-title">9.</div>
+      <div class="q-text">配制 100 mL 1.00 mol·L⁻¹ NaCl 溶液的正确步骤顺序是（　）<br>①计算 &nbsp; ②溶解 &nbsp; ③转移 &nbsp; ④称量 &nbsp; ⑤定容 &nbsp; ⑥洗涤 &nbsp; ⑦摇匀</div>
+      <div class="options">
+        <label><input type="radio" name="q9" value="A"> A．①④②③⑤⑥⑦</label>
+        <label><input type="radio" name="q9" value="B"> B．①②③④⑤⑥⑦</label>
+        <label><input type="radio" name="q9" value="C"> C．①④②③⑥⑤⑦</label>
+        <label><input type="radio" name="q9" value="D"> D．④①②⑥③⑤⑦</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>C — 配制一定物质的量浓度溶液的标准步骤：①计算 → ④称量 → ②溶解 → ③转移（移入容量瓶）→ ⑥洗涤（洗涤烧杯和玻璃棒，洗涤液一并转入容量瓶）→ ⑤定容 → ⑦摇匀。A 错在洗涤后定容的顺序（先洗涤后定容），B 错在计算后直接溶解（未称量），D 顺序混乱。</div>
+    </div>
+
+    <!-- q10 — 综合概念判断 -->
+    <div class="question" data-qid="q10" data-type="single" data-answer="A">
+      <div class="q-title">10.</div>
+      <div class="q-text">下列说法正确的是（　）</div>
+      <div class="options">
+        <label><input type="radio" name="q10" value="A"> A．1 mol O₂ 的质量是 32 g，在标准状况下的体积约为 22.4 L</label>
+        <label><input type="radio" name="q10" value="B"> B．物质的量浓度是指 1 L 水中所含溶质的物质的量</label>
+        <label><input type="radio" name="q10" value="C"> C．同温同压下，相同体积的任何气体含有相同数目的原子</label>
+        <label><input type="radio" name="q10" value="D"> D．将 40 g NaOH 溶解在 1 L 水中，所得溶液中 NaOH 的物质的量浓度为 1 mol·L⁻¹</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A — O₂ 的摩尔质量为 32 g·mol⁻¹，故 1 mol O₂ 质量为 32 g，标况下体积为 22.4 L。B 错：物质的量浓度是指 1 L <strong>溶液</strong>（而非溶剂水）中所含溶质的物质的量。C 错：阿伏加德罗定律的表述为"相同分子数"，而非"相同原子数"（不同的气体分子含原子个数可能不同，如 O₂ 含 2 个原子，CO₂ 含 3 个原子）。D 错：将 40 g NaOH（1 mol）溶解于 1 L 水中，所得溶液体积不是 1 L，故浓度不是 1 mol·L⁻¹。</div>
+    </div>
+  </div>
+
+  <!-- ==================== 二、多选题 ==================== -->
+  <div class="section">
+    <h2>二、多选题（共3题，每题4分，共12分）</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:8px;">每题有多个选项符合题意。全对得4分，部分选对得2分，有错选得0分。</p>
+
+    <!-- q101 — N_A 正误判断（常见陷阱） -->
+    <div class="question" data-qid="q101" data-type="multi" data-answer='["A","B","D"]'>
+      <div class="q-title">11.</div>
+      <div class="q-text">设 \(N_A\) 表示阿伏加德罗常数的值，下列说法正确的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q101" value="A"> A．1 mol H₂ 中含有的氢分子数为 \(N_A\)</label>
+        <label><input type="checkbox" name="q101" value="B"> B．1 mol H₂O 中含有的原子总数为 \(3N_A\)</label>
+        <label><input type="checkbox" name="q101" value="C"> C．标准状况下，22.4 L H₂O 中含有的分子数为 \(N_A\)</label>
+        <label><input type="checkbox" name="q101" value="D"> D．1 mol Na⁺ 中含有的电子数为 \(10N_A\)</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A, B, D — A 对：1 mol H₂ 分子即含 N_A 个 H₂ 分子。B 对：1 个 H₂O 分子含 3 个原子（2H + 1O），故 1 mol H₂O 含 3N_A 个原子。C 错（典型陷阱）：标准状况下 H₂O 为液态或固态，不是气体，不能用 22.4 L/mol。D 对：Na⁺ 原子序数 11，失去 1 个电子后剩余 10 个电子，故 1 mol Na⁺ 含 10N_A 个电子。</div>
+    </div>
+
+    <!-- q102 — 溶液配制误差分析 -->
+    <div class="question" data-qid="q102" data-type="multi" data-answer='["A","C","D"]'>
+      <div class="q-title">12.</div>
+      <div class="q-text">配制一定物质的量浓度的 NaOH 溶液时，下列操作会导致所配溶液浓度偏低的有（　）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q102" value="A"> A．称量 NaOH 固体时放在纸上称量，NaOH 吸水潮解</label>
+        <label><input type="checkbox" name="q102" value="B"> B．定容时俯视刻度线</label>
+        <label><input type="checkbox" name="q102" value="C"> C．未洗涤烧杯和玻璃棒，残留溶液未转移</label>
+        <label><input type="checkbox" name="q102" value="D"> D．定容摇匀后液面下降，再加水至刻度线</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>A, C, D — A 对：NaOH 吸水潮解导致实际称得溶质质量偏小，n 偏小→c 偏低。B 错：定容时俯视刻度线，读数偏大，实际液面低于刻度线，V 偏小→c 偏高。C 对：未洗涤，溶质残留于烧杯和玻璃棒上，n 偏小→c 偏低。D 对：摇匀后液面下降是正常现象（溶液附着于容量瓶壁），若再加水至刻度线会使 V 偏大→c 偏低。</div>
+    </div>
+
+    <!-- q103 — 综合计算（多步换算） -->
+    <div class="question" data-qid="q103" data-type="multi" data-answer='["B","C"]'>
+      <div class="q-title">13.</div>
+      <div class="q-text">下列说法正确的有（　）（已知 O 的摩尔质量为 16 g·mol⁻¹）</div>
+      <div class="options">
+        <label><input type="checkbox" name="q103" value="A"> A．16 g O₂ 的物质的量为 1 mol</label>
+        <label><input type="checkbox" name="q103" value="B"> B．16 g O₂ 中所含的氧原子数目为 \(N_A\)</label>
+        <label><input type="checkbox" name="q103" value="C"> C．标准状况下，44 g CO₂ 的体积约为 22.4 L</label>
+        <label><input type="checkbox" name="q103" value="D"> D．将 1 mol NaCl 溶于 1 L 水中，可得 1 mol·L⁻¹ NaCl 溶液</label>
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>B, C — A 错：O₂ 的摩尔质量为 32 g·mol⁻¹，n(O₂) = 16 g / 32 g·mol⁻¹ = 0.5 mol。B 对：每个 O₂ 分子含 2 个 O 原子，n(O) = 0.5 mol × 2 = 1 mol，故 O 原子数为 N_A。C 对：CO₂ 的摩尔质量为 44 g·mol⁻¹，n(CO₂) = 44 g / 44 g·mol⁻¹ = 1 mol，标况下体积 = 22.4 L。D 错：1 mol NaCl 溶于 1 L 水后溶液体积大于 1 L，浓度小于 1 mol·L⁻¹。</div>
+    </div>
+  </div>
+
+  <!-- ==================== 三、填空题 ==================== -->
+  <div class="section">
+    <h2>三、填空题（共6题，每题3分，共18分）</h2>
+
+    <!-- q11 (Display 14) — 粒子数计算 -->
+    <div class="question fill-question" data-qid="q11" data-type="fill">
+      <div class="q-title">14. <span style="font-weight:normal">\(0.5\ \text{mol}\ \text{CO}_2\) 中含有</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q11-0" data-answer="3.01×10²³" data-alt="3.01*10^23|3.01e23|3.01×10^23" style="width:100px" autocomplete="off">个 CO₂ 分子，
+        含有 <input type="text" class="fill-blank" id="q11-1" data-answer="9.03×10²³" data-alt="9.03*10^23|9.03e23|9.03×10^23" style="width:100px" autocomplete="off">个原子（含 C 和 O 原子总数）。
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>3.01×10²³；9.03×10²³ — N(CO₂) = n × N_A = 0.5 × 6.02×10²³ = 3.01×10²³（分子数）；每个 CO₂ 分子含 3 个原子（1C + 2O），故原子总数 = 3 × 3.01×10²³ = 9.03×10²³。</div>
+    </div>
+
+    <!-- q12 (Display 15) — 质量计算 -->
+    <div class="question fill-question" data-qid="q12" data-type="fill">
+      <div class="q-title">15. <span style="font-weight:normal">\(1.5\ \text{mol}\ \text{H}_2\text{O}\) 的质量为</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q12-0" data-answer="27" data-alt="27g|27 g" style="width:60px" autocomplete="off"> g，
+        含有 <input type="text" class="fill-blank" id="q12-1" data-answer="3" data-alt="3mol|3 mol" style="width:50px" autocomplete="off"> mol H 原子。
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>27；3 — m(H₂O) = n × M = 1.5 mol × 18 g·mol⁻¹ = 27 g；每个 H₂O 分子含 2 个 H 原子，故 n(H) = 1.5 × 2 = 3 mol。</div>
+    </div>
+
+    <!-- q13 (Display 16) — 气体摩尔体积计算 -->
+    <div class="question fill-question" data-qid="q13" data-type="fill">
+      <div class="q-title">16. <span style="font-weight:normal">标准状况下，\(6.72\ \text{L}\ \text{N}_2\) 的物质的量为</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q13-0" data-answer="0.3" data-alt="0.3mol|0.3 mol" style="width:70px" autocomplete="off"> mol，
+        所含 N₂ 分子的数目为
+        <input type="text" class="fill-blank" id="q13-1" data-answer="1.806×10²³" data-alt="1.806*10^23|1.806e23|1.806×10^23" style="width:100px" autocomplete="off">个。
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>0.3；1.806×10²³ — n(N₂) = V / V_m = 6.72 L / 22.4 L·mol⁻¹ = 0.3 mol；N(N₂) = n × N_A = 0.3 × 6.02×10²³ = 1.806×10²³。</div>
+    </div>
+
+    <!-- q14 (Display 17) — 物质的量浓度计算 -->
+    <div class="question fill-question" data-qid="q14" data-type="fill">
+      <div class="q-title">17. <span style="font-weight:normal">将 0.4 mol NaOH 溶于水配成 500 mL 溶液，所得溶液浓度为</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q14-0" data-answer="0.8" data-alt="0.8mol/L|0.8mol·L⁻¹|0.8 mol·L⁻¹|0.8mol·L-1" style="width:70px" autocomplete="off"> mol·L⁻¹；
+        从中取出 50 mL，其物质的量浓度为
+        <input type="text" class="fill-blank" id="q14-1" data-answer="0.8" data-alt="0.8mol/L|0.8mol·L⁻¹|0.8 mol·L⁻¹|0.8mol·L-1" style="width:70px" autocomplete="off"> mol·L⁻¹。
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>0.8；0.8 — c(NaOH) = n / V = 0.4 mol / 0.5 L = 0.8 mol·L⁻¹。溶液具有均一性，取出任意体积的溶液，其浓度与剩余部分相同，仍为 0.8 mol·L⁻¹，但所含溶质的物质的量会减少。</div>
+    </div>
+
+    <!-- q15 (Display 18) — 阿伏加德罗常数相关 -->
+    <div class="question fill-question" data-qid="q15" data-type="fill">
+      <div class="q-title">18. <span style="font-weight:normal">0.2 mol CH₄ 中含有</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q15-0" data-answer="1.204×10²³" data-alt="1.204*10^23|1.204e23|1.204×10^23" style="width:100px" autocomplete="off">个 CH₄ 分子，
+        含有 <input type="text" class="fill-blank" id="q15-1" data-answer="0.8" data-alt="0.8mol|0.8 mol" style="width:50px" autocomplete="off"> mol H 原子。
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>1.204×10²³；0.8 — N(CH₄) = 0.2 × 6.02×10²³ = 1.204×10²³；每个 CH₄ 分子含 4 个 H 原子，故 n(H) = 0.2 × 4 = 0.8 mol。</div>
+    </div>
+
+    <!-- q16 (Display 19) — 溶液稀释 c₁V₁ = c₂V₂ -->
+    <div class="question fill-question" data-qid="q16" data-type="fill">
+      <div class="q-title">19. <span style="font-weight:normal">配制 250 mL 0.2 mol·L⁻¹ NaCl 溶液，需要量取 2.0 mol·L⁻¹ NaCl 溶液</span></div>
+      <div class="q-text">
+        <input type="text" class="fill-blank" id="q16-0" data-answer="25" data-alt="25.0|25mL|25 mL" style="width:70px" autocomplete="off"> mL。
+        （可选项：25 mL / 50 mL / 100 mL 量筒，应选择
+        <input type="text" class="fill-blank" id="q16-1" data-answer="25" data-alt="25mL|25 mL" style="width:50px" autocomplete="off"> mL 量筒。）
+      </div>
+      <div class="answer-reveal"><span class="ans-key">答案：</span>25；25 — 稀释公式 c₁V₁ = c₂V₂，2.0 × V₁ = 0.2 × 250，解得 V₁ = 25.0 mL。量筒选择原则"一次量取，选用略大于所需体积的规格"，故选用 25 mL 量筒（若用 50 mL 量筒量取 25 mL 误差较大）。</div>
+    </div>
+  </div>
+
+  <!-- ==================== 四、解答题 ==================== -->
+  <div class="section">
+    <h2>四、解答题（共4题，共40分）</h2>
+
+    <!-- q17 (Display 20) — 质量→物质的量→粒子数综合 -->
+    <div class="question calc-question" data-qid="q17" data-type="calc">
+      <div class="q-title">20. <span style="font-weight:normal">（10分）物质的量与质量、粒子数的换算</span></div>
+      <div class="sub-q">(1)（3分）计算 11 g CO₂ 的物质的量。（M(CO₂) = 44 g·mol⁻¹）</div>
+      <textarea id="q17-1" placeholder="写出计算过程…"></textarea>
+      <div class="sub-q">(2)（3分）计算 11 g CO₂ 中含有的 CO₂ 分子数目。</div>
+      <textarea id="q17-2" placeholder="写出计算过程…"></textarea>
+      <div class="sub-q">(3)（4分）计算 11 g CO₂ 在标准状况下的体积；若将该 CO₂ 全部溶于水配成 500 mL 溶液，所得溶液中 CO₂（视为溶质）的物质的量浓度是多少？</div>
+      <textarea id="q17-3" placeholder="写出计算过程…"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1)（3分）n(CO₂) = m / M = 11 g / 44 g·mol⁻¹ = 0.25 mol<br>
+        (2)（3分）N(CO₂) = n × N_A = 0.25 × 6.02×10²³ = 1.505×10²³（个）<br>
+        (3)（4分）V(CO₂) = n × V_m = 0.25 × 22.4 = 5.6 L（标况）（2分）<br>
+        c(CO₂) = n / V = 0.25 mol / 0.5 L = 0.5 mol·L⁻¹（2分）
+      </div>
+    </div>
+
+    <!-- q18 (Display 21) — 气体摩尔体积综合应用 -->
+    <div class="question calc-question" data-qid="q18" data-type="calc">
+      <div class="q-title">21. <span style="font-weight:normal">（10分）气体摩尔体积综合计算</span></div>
+      <div class="sub-q">(1)（3分）标准状况下，6.72 L N₂ 和 6.72 L O₂ 的混合气体中共含多少摩尔分子？</div>
+      <textarea id="q18-1" placeholder="写出计算过程…"></textarea>
+      <div class="sub-q">(2)（3分）标准状况下，4.48 L H₂ 的质量为多少克？（M(H₂) = 2 g·mol⁻¹）</div>
+      <textarea id="q18-2" placeholder="写出计算过程…"></textarea>
+      <div class="sub-q">(3)（4分）同温同压下，体积相同的 H₂ 和 O₂，其物质的量之比为 
+        <input type="text" id="q18-3" data-answer="1:1" data-alt="1∶1|1：1" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">；
+        分子数之比为 
+        <input type="text" id="q18-4" data-answer="1:1" data-alt="1∶1|1：1" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">；
+        质量之比为 
+        <input type="text" id="q18-5" data-answer="1:16" data-alt="1∶16|1：16" style="border:none;border-bottom:1px solid #333;width:50px;padding:0 4px;font-family:inherit" autocomplete="off">。
+      </div>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1)（3分）混合气体总物质的量：n(总) = V₁/V_m + V₂/V_m = 6.72/22.4 + 6.72/22.4 = 0.3 + 0.3 = <strong>0.6 mol</strong><br>
+        (2)（3分）n(H₂) = 4.48 / 22.4 = 0.2 mol；m(H₂) = n × M = 0.2 × 2 = <strong>0.4 g</strong><br>
+        (3)（4分）同温同压下，体积比 = 物质的量比 = 分子数比，故 H₂ : O₂ 物质的量之比 = 1:1，分子数之比 = 1:1（各2分）<br>
+        质量比 = (n×M₁) : (n×M₂) = M(H₂) : M(O₂) = 2 : 32 = <strong>1:16</strong>（2分）
+      </div>
+    </div>
+
+    <!-- q19 (Display 22) — 溶液配制全流程 + 误差分析 -->
+    <div class="question calc-question" data-qid="q19" data-type="calc">
+      <div class="q-title">22. <span style="font-weight:normal">（10分）配制一定物质的量浓度溶液</span></div>
+      <div class="sub-q">(1)（2分）实验室欲配制 100 mL 0.5 mol·L⁻¹ CuSO₄ 溶液，需要 CuSO₄·5H₂O（胆矾，M=250 g·mol⁻¹）的质量为 
+        <input type="text" id="q19-1" data-answer="12.5" data-alt="12.5g|12.5 g" style="border:none;border-bottom:1px solid #333;width:60px;padding:0 4px;font-family:inherit" autocomplete="off"> g。
+      </div>
+      <div class="sub-q">(2)（4分）请写出完整的配制步骤（简要操作过程，包括所需仪器）。</div>
+      <textarea id="q19-2" placeholder="写出步骤和所需仪器…" style="min-height:80px"></textarea>
+      <div class="sub-q">(3)（4分）若在配制过程中，定容时仰视刻度线，对所配溶液浓度将有何影响？请说明原因。另举一个可能导致浓度偏低的操作。</div>
+      <textarea id="q19-3" placeholder="分析误差…" style="min-height:70px"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1)（2分）n(CuSO₄) = 0.5 × 0.1 = 0.05 mol → n(CuSO₄·5H₂O) = 0.05 mol → m = 0.05 × 250 = <strong>12.5 g</strong><br>
+        (2)（4分）步骤：① 计算（求所需胆矾质量）→ ② 称量（用托盘天平称取 12.5 g 胆矾）→ ③ 溶解（在烧杯中用适量蒸馏水溶解，玻璃棒搅拌）→ ④ 转移（冷却后转移至 100 mL 容量瓶）→ ⑤ 洗涤（用蒸馏水洗涤烧杯和玻璃棒 2~3 次，洗涤液一并转入容量瓶）→ ⑥ 定容（加蒸馏水至液面离刻度线 1~2 cm，改用胶头滴管滴加至凹液面最低处与刻度线相切）→ ⑦ 摇匀（盖好瓶塞，上下颠倒摇匀）。<br>
+        所需仪器：托盘天平（含砝码）、药匙、烧杯、玻璃棒、100 mL 容量瓶、胶头滴管、量筒。<br>
+        (3)（4分）仰视定容：导致实际液面高于刻度线，溶液体积 V 偏大 → 浓度偏低（2分）。<br>
+        其他导致浓度偏低的操作示例：① 未洗涤烧杯和玻璃棒（溶质残留）；② 称量时砝码生锈（实际称取质量偏小——修正：砝码生锈实际质量偏大会导致称取溶质偏多，应改为"砝码有缺损"或"称量时左码右物"）；③ 溶解后未冷却至室温即转移（热溶液体积膨胀，冷却后 V 偏小，浓度偏高——故此条不对）。正确示例：称量前天平未调零（偏左），导致称取溶质偏少 → 浓度偏低。（2分，合理即可）
+      </div>
+    </div>
+
+    <!-- q20 (Display 23) — 综合计算（多步换算） -->
+    <div class="question calc-question" data-qid="q20" data-type="calc">
+      <div class="q-title">23. <span style="font-weight:normal">（10分）综合计算</span></div>
+      <div class="sub-q">(1)（3分）计算 0.5 mol Na₂CO₃·10H₂O 的质量。（M = 286 g·mol⁻¹）</div>
+      <textarea id="q20-1" placeholder="写出计算过程…"></textarea>
+      <div class="sub-q">(2)（3分）0.5 mol Na₂CO₃·10H₂O 中含 Na⁺ 的物质的量是多少？含结晶水 H₂O 的分子数是多少？</div>
+      <textarea id="q20-2" placeholder="写出计算过程…"></textarea>
+      <div class="sub-q">(3)（4分）将该 0.5 mol Na₂CO₃·10H₂O 全部溶于水配成 500 mL 溶液，求 Na⁺ 的物质的量浓度；若将该溶液稀释 5 倍，稀释后 Na₂CO₃ 的物质的量浓度是多少？</div>
+      <textarea id="q20-3" placeholder="写出计算过程…"></textarea>
+      <div class="answer-reveal"><strong>参考答案：</strong><br>
+        (1)（3分）m = n × M = 0.5 × 286 = <strong>143 g</strong><br>
+        (2)（3分）每个 Na₂CO₃·10H₂O 中含 2 个 Na⁺，n(Na⁺) = 0.5 × 2 = <strong>1.0 mol</strong>（1.5分）<br>
+        每个 Na₂CO₃·10H₂O 中含 10 个结晶水分子，n(H₂O) = 0.5 × 10 = 5 mol，N(H₂O) = 5 × 6.02×10²³ = <strong>3.01×10²⁴</strong>（1.5分）<br>
+        (3)（4分）c(Na⁺) = n(Na⁺) / V = 1.0 mol / 0.5 L = <strong>2.0 mol·L⁻¹</strong>（2分）<br>
+        稀释 5 倍，即稀释后体积为原体积的 5 倍，c(Na₂CO₃) 稀释后 = c(原) / 5 = (0.5/0.5) / 5 = 1.0 / 5 = <strong>0.2 mol·L⁻¹</strong>（2分）<br>
+        （也可用稀释公式 c₁V₁ = c₂V₂：设稀释后体积为 V₂ = 5V₁，则 c₂ = c₁V₁ / V₂ = 1.0 × 1 / 5 = 0.2 mol·L⁻¹）
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== BUTTONS ==================== -->
+  <div class="btn-group no-print">
+    <button class="btn-submit" onclick="submitPaper()">提交试卷</button>
+    <button class="btn-clear" onclick="clearAll()">清空答案</button>
+    <button class="btn-answer" onclick="showAnswers()" style="background:#e8a317;color:#fff;border:none;padding:8px 22px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;">显示答案</button>
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   Scoring Engine — Standard Three-part Configuration
+   ============================================================ */
+const PAPER_ID = 'chem_grade10_ch2_s3';
+
+const ANSWER_KEY = {
+  // Single choice
+  q1: 'B', q2: 'C', q3: 'B', q4: 'D', q5: 'B',
+  q6: 'C', q7: 'A', q8: 'D', q9: 'C', q10: 'A',
+  // Multi choice
+  q101: ['A', 'B', 'D'],
+  q102: ['A', 'C', 'D'],
+  q103: ['B', 'C'],
+  // Fill-in
+  q11: ['3.01×10²³', '9.03×10²³'],
+  q12: ['27', '3'],
+  q13: ['0.3', '1.806×10²³'],
+  q14: ['0.8', '0.8'],
+  q15: ['1.204×10²³', '0.8'],
+  q16: ['25', '25']
+};
+
+const SCORE_MAP = {
+  q1: 3, q2: 3, q3: 3, q4: 3, q5: 3,
+  q6: 3, q7: 3, q8: 3, q9: 3, q10: 3,
+  q101: 4, q102: 4, q103: 4,
+  q11: 3, q12: 3, q13: 3, q14: 3, q15: 3, q16: 3,
+  q17: 10, q18: 10, q19: 10, q20: 10
+};
+
+const QUESTION_TYPES = {
+  q1:'single', q2:'single', q3:'single', q4:'single', q5:'single',
+  q6:'single', q7:'single', q8:'single', q9:'single', q10:'single',
+  q101:'multi', q102:'multi', q103:'multi',
+  q11:'fill', q12:'fill', q13:'fill', q14:'fill', q15:'fill', q16:'fill',
+  q17:'calc', q18:'calc', q19:'calc', q20:'calc'
+};
+
+const QUESTION_LABELS = {
+  q1:'1', q2:'2', q3:'3', q4:'4', q5:'5', q6:'6', q7:'7', q8:'8', q9:'9', q10:'10',
+  q101:'11', q102:'12', q103:'13',
+  q11:'14', q12:'15', q13:'16', q14:'17', q15:'18', q16:'19',
+  q17:'20', q18:'21', q19:'22', q20:'23'
+};
+
+/* ============================================================
+   Utility Functions
+   ============================================================ */
+
+/** Normalize string for comparison: trim, collapse spaces, unify common symbols */
+function norm(s) {
+  if (!s) return '';
+  return s.trim()
+    .replace(/\s+/g, '')
+    .replace(/³/g, '3').replace(/₂/g, '2').replace(/₃/g, '3').replace(/₄/g, '4')
+    .replace(/²/g, '2').replace(/⁺/g, '+').replace(/⁻/g, '-')
+    .replace(/⁼/g, '=').replace(/↑/g, '').replace(/↓/g, '')
+    .replace(/×/g, 'x').replace(/·/g, '').replace(/⁻/g, '-')
+    .toLowerCase();
+}
+
+/** Check if user answer matches expected answer (with alt support) */
+function matchAnswer(userVal, expected, altStr) {
+  if (!userVal) return false;
+  const u = norm(userVal);
+  if (u === norm(expected)) return true;
+  if (altStr) {
+    const alts = altStr.split('|').map(s => norm(s));
+    return alts.includes(u);
+  }
+  return false;
+}
+
+/** Get selected value from a group of radio buttons */
+function getRadioValue(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+
+/** Get all checked values from a group of checkboxes */
+function getCheckboxValues(name) {
+  const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
+  return Array.from(checked).map(cb => cb.value);
+}
+
+/** Fill input status class */
+function setFillStatus(qid, blankIndex, correct) {
+  const el = document.getElementById(qid + '-' + blankIndex);
+  if (el) {
+    el.classList.remove('correct', 'wrong');
+    el.classList.add(correct ? 'correct' : 'wrong');
+  }
+}
+
+/** Question correct/wrong visual */
+function setQuestionStatus(qid, correct) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  if (q) {
+    q.classList.remove('correct-q', 'wrong-q');
+    q.classList.add(correct ? 'correct-q' : 'wrong-q');
+  }
+}
+
+/* ============================================================
+   Scoring Functions
+   ============================================================ */
+
+function scoreSingle(qid) {
+  const userAns = getRadioValue(qid);
+  const correct = ANSWER_KEY[qid];
+  return { score: userAns === correct ? SCORE_MAP[qid] : 0, user: userAns, correct: correct };
+}
+
+function scoreMulti(qid) {
+  const userAns = getCheckboxValues(qid);
+  const correct = ANSWER_KEY[qid];
+  if (!userAns.length) return { score: 0, user: userAns, correct: correct };
+  for (let a of userAns) {
+    if (!correct.includes(a)) return { score: 0, user: userAns, correct: correct };
+  }
+  if (userAns.length === correct.length) return { score: SCORE_MAP[qid], user: userAns, correct: correct };
+  return { score: SCORE_MAP[qid] / 2, user: userAns, correct: correct };
+}
+
+function scoreFill(qid) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  const inputs = q ? q.querySelectorAll('.fill-blank') : [];
+  let allCorrect = true;
+  let blankResults = [];
+  inputs.forEach((input, idx) => {
+    const val = input.value.trim();
+    const ans = input.dataset.answer;
+    const alt = input.dataset.alt;
+    const ok = matchAnswer(val, ans, alt);
+    setFillStatus(qid, idx, ok);
+    if (!ok) allCorrect = false;
+    blankResults.push(ok);
+  });
+  return { score: allCorrect ? SCORE_MAP[qid] : 0, blanks: blankResults };
+}
+
+/** Calc questions: check embedded fill-ins if present, rest is manual */
+function scoreCalc(qid) {
+  const q = document.querySelector(`.question[data-qid="${qid}"]`);
+  if (!q) return { score: 0, manual: true };
+  // Score any inline input fields within calc questions
+  const inputs = q.querySelectorAll('input[data-answer]');
+  let subScore = 0;
+  let subTotal = 0;
+  inputs.forEach(input => {
+    const val = input.value.trim();
+    const ans = input.dataset.answer;
+    const alt = input.dataset.alt;
+    const ok = matchAnswer(val, ans, alt);
+    if (ok) subScore++;
+    subTotal++;
+    input.style.borderBottomColor = ok ? '#27ae60' : '#e74c3c';
+    input.style.background = ok ? '#eafaf1' : '#fdedec';
+  });
+  return { score: subScore, total: subTotal, manual: true };
+}
+
+/* ============================================================
+   Main Submit
+   ============================================================ */
+
+function submitPaper() {
+  let totalScore = 0;
+  const maxAuto = 60; // single(30) + multi(12) + fill(18)
+  const resultEl = document.getElementById('result');
+  const results = [];
+
+  // --- Single choice ---
+  ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].forEach(qid => {
+    const r = scoreSingle(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.user === r.correct);
+    results.push({ qid, ...r });
+  });
+
+  // --- Multi choice ---
+  ['q101','q102','q103'].forEach(qid => {
+    const r = scoreMulti(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.score > 0);
+    results.push({ qid, ...r });
+  });
+
+  // --- Fill-in ---
+  ['q11','q12','q13','q14','q15','q16'].forEach(qid => {
+    const r = scoreFill(qid);
+    totalScore += r.score;
+    setQuestionStatus(qid, r.score > 0);
+    results.push({ qid, ...r });
+  });
+
+  // Save to localStorage
+  saveToStorage();
+
+  // Show result
+  const pct = Math.round((totalScore / maxAuto) * 100);
+  resultEl.className = 'show ' + (pct >= 60 ? 'pass' : 'fail');
+  resultEl.innerHTML = '📊 客观题得分：<strong>' + totalScore + '</strong> / ' + maxAuto +
+    ' （' + pct + '%）' +
+    '<br><span style="font-size:14px;font-weight:normal;">主观题（解答题20-23题，共40分）请老师手动批改</span>' +
+    '<br><span style="font-size:14px;font-weight:normal;">总分 = 客观题' + totalScore + ' + 主观题（待批改）</span>';
+
+  // Scroll to result
+  resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ============================================================
+   Answer Reveal (inline)
+   ============================================================ */
+
+function showAnswers() {
+  const pwd = prompt('请输入密码查看参考答案：');
+  if (pwd === '2641') {
+    document.querySelectorAll('.answer-reveal').forEach(function(el) {
+      el.classList.add('show');
+    });
+  } else if (pwd !== null) {
+    alert('密码错误！');
+  }
+}
+
+/* ============================================================
+   Clear All
+   ============================================================ */
+
+function clearAll() {
+  if (!confirm('确定要清空所有答案吗？')) return;
+  // Clear radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+  // Clear checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+  // Clear fill-in inputs
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    el.value = '';
+    el.classList.remove('correct', 'wrong');
+  });
+  // Clear textareas
+  document.querySelectorAll('textarea').forEach(el => el.value = '');
+  // Clear calc inline inputs
+  document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+    el.value = '';
+    el.style.borderBottomColor = '#333';
+    el.style.background = 'transparent';
+  });
+  // Clear question status
+  document.querySelectorAll('.question').forEach(el => {
+    el.classList.remove('correct-q', 'wrong-q');
+  });
+  // Clear result
+  document.getElementById('result').className = '';
+  document.getElementById('result').innerHTML = '';
+  // Hide inline answers
+  document.querySelectorAll('.answer-reveal').forEach(function(el) {
+    el.classList.remove('show');
+  });
+  // Remove localStorage
+  localStorage.removeItem(PAPER_ID);
+}
+
+/* ============================================================
+   LocalStorage Auto Save & Restore
+   ============================================================ */
+
+function saveToStorage() {
+  const data = {};
+  // Student info
+  ['student-name','student-class','student-id'].forEach(id => {
+    data[id] = document.getElementById(id).value;
+  });
+  // Radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(el => {
+    if (el.checked) data[el.name] = el.value;
+  });
+  // Checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    const key = el.name + '_cb';
+    if (!data[key]) data[key] = [];
+    if (el.checked) data[key].push(el.value);
+  });
+  // Fill-in blanks
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    data[el.id] = el.value;
+  });
+  // Textareas
+  document.querySelectorAll('textarea').forEach(el => {
+    data[el.id] = el.value;
+  });
+  // Calc inline inputs
+  document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+    data[el.id] = el.value;
+  });
+  try {
+    localStorage.setItem(PAPER_ID, JSON.stringify(data));
+  } catch(e) {}
+}
+
+function restoreFromStorage() {
+  try {
+    const raw = localStorage.getItem(PAPER_ID);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    // Student info
+    ['student-name','student-class','student-id'].forEach(id => {
+      if (data[id]) document.getElementById(id).value = data[id];
+    });
+    // Radio buttons
+    Object.keys(data).forEach(key => {
+      if (key.startsWith('q') && !key.includes('_')) {
+        const radio = document.querySelector(`input[name="${key}"][value="${data[key]}"]`);
+        if (radio) radio.checked = true;
+      }
+    });
+    // Checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+      const key = el.name + '_cb';
+      if (data[key] && data[key].includes(el.value)) el.checked = true;
+    });
+    // Fill-in blanks
+    document.querySelectorAll('.fill-blank').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+    // Textareas
+    document.querySelectorAll('textarea').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+    // Calc inline inputs
+    document.querySelectorAll('.calc-question input[data-answer]').forEach(el => {
+      if (data[el.id]) el.value = data[el.id];
+    });
+  } catch(e) {}
+}
+
+/* ============================================================
+   Auto-save on input change
+   ============================================================ */
+
+document.addEventListener('input', function() {
+  saveToStorage();
+});
+
+/* ============================================================
+   Ctrl+Enter Shortcut
+   ============================================================ */
+
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    submitPaper();
+  }
+});
+
+/* ============================================================
+   Init
+   ============================================================ */
+
+window.addEventListener('DOMContentLoaded', function() {
+  restoreFromStorage();
+});
+</script>
+
+</body>
+</html>
